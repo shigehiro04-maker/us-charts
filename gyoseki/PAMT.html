@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8"><!--kb-theme:v3--><script>(function(){var d=document.documentElement,
+m=/[?&#]theme=(dark|light)/.exec(location.search+location.hash),t=m&&m[1];
+if(!t){try{t=localStorage.getItem('fdb-theme')}catch(e){}}
+if(t==='dark'||t==='light')d.setAttribute('data-theme',t);
+try{if(window.top!==window.self)d.classList.add('kb-embed')}catch(e){d.classList.add('kb-embed')}})();</script>
+<style id="kb-theme">
+:root{--kb-fg:#1f1f1e;--kb-line:#d6d5ce;--kb-hover:rgba(0,0,0,.05)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--kb-fg:#ecebe6;--kb-line:#3b3b38;--kb-hover:rgba(255,255,255,.08)}}
+:root[data-theme="dark"]{--kb-fg:#ecebe6;--kb-line:#3b3b38;--kb-hover:rgba(255,255,255,.08)}
+/* スイッチ本体（トラック） */
+:root{--kb-trk:#e8e7e1;--kb-knob:#fff;--kb-ico:#d08a00;--kb-dim:#a9a79f}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--kb-trk:#2b2b29;--kb-knob:#45453f;--kb-ico:#f3d36a;--kb-dim:#6f6e68}}
+:root[data-theme="dark"]{--kb-trk:#2b2b29;--kb-knob:#45453f;--kb-ico:#f3d36a;--kb-dim:#6f6e68}
+:root button.kb-theme.kb-theme{-webkit-appearance:none;appearance:none;position:relative;display:inline-block;box-sizing:border-box;
+width:54px;height:30px;min-width:54px;min-height:0;padding:0;border:1px solid var(--kb-line);border-radius:15px;background:var(--kb-trk);
+color:var(--kb-fg);font-size:0;line-height:0;cursor:pointer;box-shadow:inset 0 1px 2px rgba(0,0,0,.08);vertical-align:middle;flex-shrink:0;
+overflow:hidden;-webkit-tap-highlight-color:transparent;transition:background .3s,border-color .3s}
+:root button.kb-theme.kb-theme:focus-visible{outline:2px solid #2a78d6;outline-offset:2px}
+:root button.kb-theme.kb-theme svg{display:block;width:100%;height:100%}
+/* 両端の小さなアイコン（つまみが無い側だけ見える） */
+:root button.kb-theme.kb-theme .kb-trk{position:absolute;top:50%;width:13px;height:13px;margin-top:-6.5px;color:var(--kb-dim);transition:opacity .3s}
+:root button.kb-theme.kb-theme .kb-l{left:7px;opacity:0}
+:root button.kb-theme.kb-theme .kb-r{right:7px;opacity:1}
+/* つまみ */
+:root button.kb-theme.kb-theme .kb-knob{position:absolute;top:2px;left:2px;width:24px;height:24px;border-radius:50%;background:var(--kb-knob);
+color:var(--kb-ico);box-shadow:0 1px 3px rgba(0,0,0,.25),0 0 0 .5px rgba(0,0,0,.06);transform:translateX(0);
+transition:transform .32s cubic-bezier(.3,1.35,.5,1),background .3s,color .3s}
+:root button.kb-theme.kb-theme:active .kb-knob{width:28px}
+:root button.kb-theme.kb-theme .kb-knob svg{position:absolute;inset:0;margin:auto;width:15px;height:15px;transition:opacity .25s,transform .35s}
+:root button.kb-theme.kb-theme .kb-knob .kb-sun{opacity:1;transform:none}
+:root button.kb-theme.kb-theme .kb-knob .kb-moon{opacity:0;transform:rotate(-90deg) scale(.4)}
+/* ダーク表示中：つまみを右へ */
+@media (prefers-color-scheme:dark){
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-knob{transform:translateX(24px)}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme:active .kb-knob{transform:translateX(20px)}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-knob .kb-sun{opacity:0;transform:rotate(90deg) scale(.4)}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-knob .kb-moon{opacity:1;transform:none}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-l{opacity:1}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-r{opacity:0}}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-knob{transform:translateX(24px)}
+:root[data-theme="dark"] button.kb-theme.kb-theme:active .kb-knob{transform:translateX(20px)}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-knob .kb-sun{opacity:0;transform:rotate(90deg) scale(.4)}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-knob .kb-moon{opacity:1;transform:none}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-l{opacity:1}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-r{opacity:0}
+@media (prefers-reduced-motion:reduce){:root button.kb-theme.kb-theme *{transition:none!important}}
+/* 全ページ共通の置き場所：ページ右上の角 */
+:root button.kb-theme.kb-theme.kb-corner{position:absolute;top:12px;right:16px;z-index:60;margin:0;float:none}
+@media (max-width:700px){:root button.kb-theme.kb-theme.kb-corner{top:10px;right:12px}}
+/* 右上のスイッチの下に見えない「よけ」を置き、見出しの文字やボタンがスイッチと重ならないようにする */
+.kb-spacer{float:right;width:84px;height:46px;pointer-events:none}
+@media (max-width:700px){.kb-spacer{width:76px;height:44px}}
+html.kb-embed .kb-spacer{display:none}
+html.kb-embed button.kb-theme[data-kb]{display:none}
+
+</style><!--/kb-theme-->
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>PAMT CORP（PAMT）業績ダッシュボード</title>
+<link rel="stylesheet" href="assets/style.css">
+<!--site-icon:v3--><link rel="icon" type="image/svg+xml" href="/us-charts/icon-black.svg?v=3" media="(prefers-color-scheme: light)"><link rel="icon" type="image/svg+xml" href="/us-charts/icon-white.svg?v=3" media="(prefers-color-scheme: dark)"><link rel="apple-touch-icon" href="/us-charts/apple-touch-icon.png?v=3"><!--/site-icon--><!--mobile-fix:v1--><style id="mobile-fix">
+.mf-spacer{display:none}
+html.mf-sa .mf-spacer{display:block;height:calc(env(safe-area-inset-bottom,0px) + 110px)}
+html.mf-sa .detail .inner{padding-bottom:calc(env(safe-area-inset-bottom,0px) + 140px)}
+</style><script>(function(){try{if(window.top!==window.self)return;
+var sa=navigator.standalone===true||matchMedia('(display-mode: standalone)').matches;
+var touch=matchMedia('(pointer: coarse)').matches;
+if(sa||touch)document.documentElement.classList.add('mf-sa');}catch(e){}})();</script><!--/mobile-fix--><!--pc-wide:v1--><style id="pc-wide">@media (min-width:1280px){body>.wrap,body>main,body>div.wrap{max-width:1680px!important}}</style><!--/pc-wide--></head>
+<body><!--kb-btn--><button class="kb-theme kb-corner" id="kbTheme" type="button" data-kb="reload" aria-label="明暗を切り替え（ライト／ダーク）" title="明暗を切り替え（ライト／ダーク）"><span class="kb-trk kb-l"><svg class="kb-sun" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="12" cy="12" r="4.3"/><path d="M12 2.2v2.3M12 19.5v2.3M2.2 12h2.3M19.5 12h2.3M5.1 5.1l1.6 1.6M17.3 17.3l1.6 1.6M5.1 18.9l1.6-1.6M17.3 6.7l1.6-1.6"/></svg></span><span class="kb-trk kb-r"><svg class="kb-moon" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M20.2 14.6A8.4 8.4 0 0 1 9.4 3.8a.6.6 0 0 0-.8-.7A9.2 9.2 0 1 0 20.9 15.4a.6.6 0 0 0-.7-.8z"/></svg></span><span class="kb-knob"><svg class="kb-sun" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="12" cy="12" r="4.3"/><path d="M12 2.2v2.3M12 19.5v2.3M2.2 12h2.3M19.5 12h2.3M5.1 5.1l1.6 1.6M17.3 17.3l1.6 1.6M5.1 18.9l1.6-1.6M17.3 6.7l1.6-1.6"/></svg><svg class="kb-moon" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M20.2 14.6A8.4 8.4 0 0 1 9.4 3.8a.6.6 0 0 0-.8-.7A9.2 9.2 0 1 0 20.9 15.4a.6.6 0 0 0-.7-.8z"/></svg></span></button><div class="kb-spacer" aria-hidden="true"></div><!--/kb-btn-->
+<div class="wrap">
+  <header class="mast">
+    <div class="eyebrow"><a href="../fundamentals.html" style="color:inherit">← 東証スクリーニング</a></div>
+    <h1>PAMT CORP<span class="code">PAMT</span></h1>
+    <div class="slip" id="slip"></div>
+    <p class="biz">トラック輸送のPAMTコーポレーション。</p><p class="site"><a href="https://www.pamtransport.com" target="_blank" rel="noopener noreferrer"><b>公式サイト ↗</b><span>www.pamtransport.com</span></a></p>
+  </header>
+
+  <section class="cards" id="cards" aria-label="判定サマリー"></section>
+
+  <section class="grid">
+    <div class="panel" id="p-annual"></div>
+    <div class="panel" id="p-cf"></div>
+    <div class="panel" id="p-q"></div>
+    <div class="panel" id="p-div"></div>
+    <div class="panel full" id="p-bs"></div>
+    <div class="panel full" id="p-holders"></div>
+  </section>
+
+  <details class="more">
+    <summary>通期の数値をすべて見る</summary>
+    <div class="inner" id="t-annual"></div>
+  </details>
+  <details class="more">
+    <summary>判定の基準と注記</summary>
+    <div class="inner foot"><ol>
+      <li>直近の通期決算を、同じ業種の中央値と比べて判定しています。▲＝良い側　●＝並み　▼＝注意。</li>
+      <li>成長性：売上高の年平均成長率が5%以上で増収。利益が初年度を下回ると増収減益。</li>
+      <li>収益性：営業利益率が業種中央値の1.2倍以上で高い、0.6倍未満で低い。</li>
+      <li>財務安全性：自己資本比率が50%以上か業種の1.3倍以上で厚い、20%未満で薄め（業種並みなら標準）。</li>
+      <li>資本効率：ROE 10%以上で高い、5%未満で低い。</li>
+      <li>割安度：PERとPBRがともに業種中央値を下回ると割安、ともに上回ると割高。</li>
+      <li>売上総利益・粗利率は売上原価データがある期のみ表示し、データの無い系列・列は出しません。</li>
+      <li>グラフ：通期・配当の右端の薄い棒は会社予想（J-Quants 決算短信サマリーの最新値）。折れ線は右軸（%）。</li>
+      <li>経常利益は J-Quants の決算短信サマリーから取得（日本基準のみ。取得範囲は直近約2年）。IFRS・米国基準は税引前利益で表示します。</li>
+      <li>貸借対照表は年次決算（10-K）の連結貸借対照表を Yahoo Finance から取得し、区分にまとめたもの。外国企業は最新の為替でドルに換算しています。</li>
+      <li>株主構成は 13F（運用資産1億ドル超の機関投資家が四半期ごとに出す保有報告）の上位10社を、発行済株式数に対する割合で描画（Yahoo Finance 経由）。その他は上位10社以外の合計です。</li>
+      <li>四半期決算は累計値の差分から単独四半期を算出。フリーCFは営業CF＋投資CF。配当性向は一株配当÷EPS。</li>
+      <li>出所：~/株分析 の fundamentals/（通期）。株価・時価総額は取得日時点。生成 2026-11-28</li>
+    </ol></div>
+  </details>
+</div>
+<script src="assets/app.js"></script>
+<script>renderCompany({"code":"PAMT","name":"PAMT CORP","market":"NASDAQ","sector":"資本財","quote":{"price":9.75,"priceDate":"2026-11-27","mcap":300.332,"per":-5.71,"pbr":1.43,"psr":0.5,"yld":0.0,"asof":"2026-11-28"},"annual":[{"fy":"22/12期","fyEnd":"2022-12-31","y":2022,"rev":946.862,"gp":171.162,"op":120.518,"pbt":119.007,"ni":90.672,"ta":749.162,"se":300.183,"eq":0.4007,"cr":1.9777,"ocf":168.815,"icf":-113.527,"fcf":0.29,"freecf":104.854,"ibd":265.638,"cash":115.815,"ebitda":189.742,"eps":4.09,"bps":13.54,"dps":0.0,"opm":0.12728148346855192,"nim":0.09576052265272025,"gpm":0.18076763034106344,"roe":0.30205574599494306,"roa":0.12103123223014514,"odp":119.007,"payout":0.0,"frcf":55.288},{"fy":"23/12期","fyEnd":"2023-12-31","y":2023,"rev":810.807,"gp":83.805,"op":29.267,"pbt":28.579,"ni":18.416,"ta":760.457,"se":314.216,"eq":0.4132,"cr":1.8311000000000002,"ocf":114.577,"icf":-11.295,"fcf":-76.755,"freecf":80.517,"ibd":261.823,"cash":143.817,"ebitda":102.361,"eps":0.83,"bps":14.27,"dps":0.0,"opm":0.03609613631850736,"nim":0.022713173418581735,"gpm":0.10335998579193323,"roe":0.058609364258981084,"roa":0.024217016872748888,"odp":28.579,"payout":0.0,"frcf":103.282},{"fy":"24/12期","fyEnd":"2024-12-31","y":2024,"rev":714.646,"gp":14.523,"op":-29.593,"pbt":-41.546,"ni":-31.795,"ta":741.654,"se":277.508,"eq":0.37420000000000003,"cr":1.7828,"ocf":59.041,"icf":-100.187,"fcf":8.592,"freecf":-81.718,"ibd":325.582,"cash":110.68,"ebitda":70.958,"eps":-1.46,"bps":12.74,"dps":0.0,"opm":-0.04140931314245095,"nim":-0.04449055896205954,"gpm":0.020321949608617416,"roe":-0.11457327356328467,"roa":-0.042870395089893674,"odp":-41.546,"payout":null,"frcf":-41.146},{"fy":"25/12期","fyEnd":"2025-12-31","y":2025,"rev":598.056,"gp":-12.294,"op":-79.536,"pbt":-70.288,"ni":-52.607,"ta":697.912,"se":210.484,"eq":0.3016,"cr":1.2286,"ocf":17.335,"icf":18.397,"fcf":-68.558,"freecf":-23.405,"ibd":334.987,"cash":83.722,"ebitda":30.468,"eps":-2.48,"bps":10.06,"dps":0.0,"opm":-0.13299089048517196,"nim":-0.08796333453723397,"gpm":-0.0205566033949998,"roe":-0.24993348663081277,"roa":-0.07537769804789142,"odp":-70.288,"payout":null,"frcf":35.732}],"peer":{"n":716,"opm":0.04644072603516732,"nim":0.020618582823437634,"eq":0.4336,"roe":0.06177820160559659,"gpm":0.27567067530064754,"per":25.549999999999997,"pbr":2.3,"yld":0.0},"fc":null,"quarters":[{"fy":"25/09","fyEnd":"2025-09-30","perEnd":"2025-09-30","perSt":null,"rev":150.264,"op":-9.714,"odp":-7.662,"ni":-5.587,"opm":-0.06464622264813927},{"fy":"25/12","fyEnd":"2025-12-31","perEnd":"2025-12-31","perSt":null,"rev":141.316,"op":-42.134,"odp":-39.041,"ni":-29.251,"opm":-0.2981544906450791},{"fy":"26/03","fyEnd":"2026-03-31","perEnd":"2026-03-31","perSt":null,"rev":141.88,"op":-15.417,"odp":-0.01,"ni":-0.008,"opm":-0.10866224978855371},{"fy":"26/06","fyEnd":"2026-06-30","perEnd":"2026-06-30","perSt":null,"rev":164.652,"op":-10.964,"odp":-9.945,"ni":-7.444,"opm":-0.06658892694895903},{"fy":"26/09","fyEnd":"2026-09-30","perEnd":"2026-09-30","perSt":null,"rev":162.548,"op":-5.338,"odp":-10.502,"ni":-8.056,"opm":-0.032839530477151366}],"odpName":"税引前利益","holders":{"asof":"2026-09-30","filed":"2026-09-30","issued":20929073.0,"treasury":0,"holders":[["Dimensional Fund Advisors LP",1274985,0.060899999999999996],["Renaissance Technologies, LLC",802741,0.0384],["Blackrock Inc.",443041,0.0212],["Vanguard Capital Management LLC",230842,0.011000000000000001],["Bridgeway Capital Management, LLC",219850,0.0105],["Pacific Ridge Capital Partners, LLC",191818,0.0092],["Geode Capital Management, LLC",138201,0.0066],["Empowered Funds, LLC",124230,0.0059],["Horrell Capital Management, Inc.",77352,0.0037],["State Street Corporation",62323,0.003]]},"bs":[{"fy":"22/12","fyEnd":"2022-12-31","std":"US","ta":749.162,"tl":448.979,"na":300.183,"noCA":false,"cash":115.815,"recv":119.552,"inv":2.57,"oca":42.829,"ppe":463.595,"onca":4.801,"pay":48.917,"ocl":93.048,"ncl":307.014,"eq":300.183,"oeq":0.0},{"fy":"23/12","fyEnd":"2023-12-31","std":"US","ta":760.457,"tl":446.241,"na":314.216,"noCA":false,"cash":143.817,"recv":75.653,"inv":2.321,"oca":29.25,"ppe":504.719,"onca":4.697,"pay":62.652,"ocl":74.444,"ncl":309.145,"eq":314.216,"oeq":0.0},{"fy":"24/12","fyEnd":"2024-12-31","std":"US","ta":741.654,"tl":464.146,"na":277.508,"noCA":false,"cash":110.68,"recv":78.521,"inv":2.433,"oca":20.136,"ppe":527.218,"onca":2.666,"pay":31.198,"ocl":87.586,"ncl":345.362,"eq":277.508,"oeq":0.0},{"fy":"25/12","fyEnd":"2025-12-31","std":"US","ta":697.912,"tl":487.428,"na":210.484,"noCA":false,"cash":83.722,"recv":67.952,"inv":2.332,"oca":17.226,"ppe":516.837,"onca":9.843,"pay":32.752,"ocl":106.62,"ncl":348.056,"eq":210.484,"oeq":0.0}]});</script>
+<!--kb-theme-js--><script>(function(){var bs=document.querySelectorAll('button.kb-theme[data-kb]');
+for(var i=0;i<bs.length;i++)bs[i].addEventListener('click',function(){var b=this,d=document.documentElement,
+cur=d.getAttribute('data-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'),n=cur==='dark'?'light':'dark';
+d.setAttribute('data-theme',n);try{localStorage.setItem('fdb-theme',n)}catch(e){}
+var f=document.querySelectorAll('iframe');for(var j=0;j<f.length;j++){try{f[j].contentWindow.postMessage({chartTheme:n},'*')}catch(e){}}
+var k=b.getAttribute('data-kb');
+if(k==='reload')location.reload();
+else if(k==='msg')window.postMessage({chartTheme:n},'*');
+else if(k==='fn'&&typeof window.__kbRedraw==='function')window.__kbRedraw();});})();</script><!--/kb-theme-js--><!--mobile-fix-spacer--><div class="mf-spacer" aria-hidden="true"></div><!--/mobile-fix-spacer--></body>
+</html>

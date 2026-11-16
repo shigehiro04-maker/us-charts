@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><!--kb-theme:v3--><script>(function(){var d=document.documentElement,
+m=/[?&#]theme=(dark|light)/.exec(location.search+location.hash),t=m&&m[1];
+if(!t){try{t=localStorage.getItem('fdb-theme')}catch(e){}}
+if(t==='dark'||t==='light')d.setAttribute('data-theme',t);
+try{if(window.top!==window.self)d.classList.add('kb-embed')}catch(e){d.classList.add('kb-embed')}})();</script>
+<style id="kb-theme">
+:root{--kb-fg:#1f1f1e;--kb-line:#d6d5ce;--kb-hover:rgba(0,0,0,.05)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--kb-fg:#ecebe6;--kb-line:#3b3b38;--kb-hover:rgba(255,255,255,.08)}}
+:root[data-theme="dark"]{--kb-fg:#ecebe6;--kb-line:#3b3b38;--kb-hover:rgba(255,255,255,.08)}
+/* スイッチ本体（トラック） */
+:root{--kb-trk:#e8e7e1;--kb-knob:#fff;--kb-ico:#d08a00;--kb-dim:#a9a79f}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--kb-trk:#2b2b29;--kb-knob:#45453f;--kb-ico:#f3d36a;--kb-dim:#6f6e68}}
+:root[data-theme="dark"]{--kb-trk:#2b2b29;--kb-knob:#45453f;--kb-ico:#f3d36a;--kb-dim:#6f6e68}
+:root button.kb-theme.kb-theme{-webkit-appearance:none;appearance:none;position:relative;display:inline-block;box-sizing:border-box;
+width:54px;height:30px;min-width:54px;min-height:0;padding:0;border:1px solid var(--kb-line);border-radius:15px;background:var(--kb-trk);
+color:var(--kb-fg);font-size:0;line-height:0;cursor:pointer;box-shadow:inset 0 1px 2px rgba(0,0,0,.08);vertical-align:middle;flex-shrink:0;
+overflow:hidden;-webkit-tap-highlight-color:transparent;transition:background .3s,border-color .3s}
+:root button.kb-theme.kb-theme:focus-visible{outline:2px solid #2a78d6;outline-offset:2px}
+:root button.kb-theme.kb-theme svg{display:block;width:100%;height:100%}
+/* 両端の小さなアイコン（つまみが無い側だけ見える） */
+:root button.kb-theme.kb-theme .kb-trk{position:absolute;top:50%;width:13px;height:13px;margin-top:-6.5px;color:var(--kb-dim);transition:opacity .3s}
+:root button.kb-theme.kb-theme .kb-l{left:7px;opacity:0}
+:root button.kb-theme.kb-theme .kb-r{right:7px;opacity:1}
+/* つまみ */
+:root button.kb-theme.kb-theme .kb-knob{position:absolute;top:2px;left:2px;width:24px;height:24px;border-radius:50%;background:var(--kb-knob);
+color:var(--kb-ico);box-shadow:0 1px 3px rgba(0,0,0,.25),0 0 0 .5px rgba(0,0,0,.06);transform:translateX(0);
+transition:transform .32s cubic-bezier(.3,1.35,.5,1),background .3s,color .3s}
+:root button.kb-theme.kb-theme:active .kb-knob{width:28px}
+:root button.kb-theme.kb-theme .kb-knob svg{position:absolute;inset:0;margin:auto;width:15px;height:15px;transition:opacity .25s,transform .35s}
+:root button.kb-theme.kb-theme .kb-knob .kb-sun{opacity:1;transform:none}
+:root button.kb-theme.kb-theme .kb-knob .kb-moon{opacity:0;transform:rotate(-90deg) scale(.4)}
+/* ダーク表示中：つまみを右へ */
+@media (prefers-color-scheme:dark){
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-knob{transform:translateX(24px)}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme:active .kb-knob{transform:translateX(20px)}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-knob .kb-sun{opacity:0;transform:rotate(90deg) scale(.4)}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-knob .kb-moon{opacity:1;transform:none}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-l{opacity:1}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-r{opacity:0}}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-knob{transform:translateX(24px)}
+:root[data-theme="dark"] button.kb-theme.kb-theme:active .kb-knob{transform:translateX(20px)}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-knob .kb-sun{opacity:0;transform:rotate(90deg) scale(.4)}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-knob .kb-moon{opacity:1;transform:none}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-l{opacity:1}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-r{opacity:0}
+@media (prefers-reduced-motion:reduce){:root button.kb-theme.kb-theme *{transition:none!important}}
+/* 全ページ共通の置き場所：ページ右上の角 */
+:root button.kb-theme.kb-theme.kb-corner{position:absolute;top:12px;right:16px;z-index:60;margin:0;float:none}
+@media (max-width:700px){:root button.kb-theme.kb-theme.kb-corner{top:10px;right:12px}}
+/* 右上のスイッチの下に見えない「よけ」を置き、見出しの文字やボタンがスイッチと重ならないようにする */
+.kb-spacer{float:right;width:84px;height:46px;pointer-events:none}
+@media (max-width:700px){.kb-spacer{width:76px;height:44px}}
+html.kb-embed .kb-spacer{display:none}
+html.kb-embed button.kb-theme[data-kb]{display:none}
+
+</style><!--/kb-theme-->
+<script>
+/* 親ページから ?theme=dark|light で表示を指定できる。指定が無ければOSの設定に従う。 */
+(function(){try{
+  var m=/[?&#]theme=(dark|light)/.exec(location.search+location.hash);
+  if(m)document.documentElement.setAttribute("data-theme",m[1]);
+}catch(e){}})();
+</script>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PPHC Public Policy Holding Company, Inc. チャート</title>
+<link rel="stylesheet" href="assets/chart.css?v=a08d4ea5"><!--site-icon:v3--><link rel="icon" type="image/svg+xml" href="/us-charts/icon-black.svg?v=3" media="(prefers-color-scheme: light)"><link rel="icon" type="image/svg+xml" href="/us-charts/icon-white.svg?v=3" media="(prefers-color-scheme: dark)"><link rel="apple-touch-icon" href="/us-charts/apple-touch-icon.png?v=3"><!--/site-icon--><!--mobile-fix:v1--><style id="mobile-fix">
+.mf-spacer{display:none}
+html.mf-sa .mf-spacer{display:block;height:calc(env(safe-area-inset-bottom,0px) + 110px)}
+html.mf-sa .detail .inner{padding-bottom:calc(env(safe-area-inset-bottom,0px) + 140px)}
+</style><script>(function(){try{if(window.top!==window.self)return;
+var sa=navigator.standalone===true||matchMedia('(display-mode: standalone)').matches;
+var touch=matchMedia('(pointer: coarse)').matches;
+if(sa||touch)document.documentElement.classList.add('mf-sa');}catch(e){}})();</script><!--/mobile-fix--><!--pc-wide:v1--><style id="pc-wide">@media (min-width:1280px){body>.wrap,body>main,body>div.wrap{max-width:1680px!important}}</style><!--/pc-wide--></head><body><!--kb-btn--><button class="kb-theme kb-corner" id="kbTheme" type="button" data-kb="msg" aria-label="明暗を切り替え（ライト／ダーク）" title="明暗を切り替え（ライト／ダーク）"><span class="kb-trk kb-l"><svg class="kb-sun" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="12" cy="12" r="4.3"/><path d="M12 2.2v2.3M12 19.5v2.3M2.2 12h2.3M19.5 12h2.3M5.1 5.1l1.6 1.6M17.3 17.3l1.6 1.6M5.1 18.9l1.6-1.6M17.3 6.7l1.6-1.6"/></svg></span><span class="kb-trk kb-r"><svg class="kb-moon" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M20.2 14.6A8.4 8.4 0 0 1 9.4 3.8a.6.6 0 0 0-.8-.7A9.2 9.2 0 1 0 20.9 15.4a.6.6 0 0 0-.7-.8z"/></svg></span><span class="kb-knob"><svg class="kb-sun" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="12" cy="12" r="4.3"/><path d="M12 2.2v2.3M12 19.5v2.3M2.2 12h2.3M19.5 12h2.3M5.1 5.1l1.6 1.6M17.3 17.3l1.6 1.6M5.1 18.9l1.6-1.6M17.3 6.7l1.6-1.6"/></svg><svg class="kb-moon" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M20.2 14.6A8.4 8.4 0 0 1 9.4 3.8a.6.6 0 0 0-.8-.7A9.2 9.2 0 1 0 20.9 15.4a.6.6 0 0 0-.7-.8z"/></svg></span></button><div class="kb-spacer" aria-hidden="true"></div><!--/kb-btn--><div class="wrap">
+<h1><a class="back" href="./charts.html" title="一覧へ">‹</a>PPHC Public Policy Holding Company, Inc.<span class="mk">NASDAQ</span><span class="mk sec">資本財</span></h1>
+<div class="price"><b id="last"></b><span class="chg" id="chg"></span><span class="asof" id="asof"></span><a class="dash" href="./one/PPHC.html" target="_top" title="シグナル・チャート・ファンダを1画面で">ダッシュボード ›</a></div>
+<section class="biz" aria-label="会社概要"><p>米国の政府関係・公共政策コンサルティングの会社。</p><a href="https://pphcompany.com" target="_blank" rel="noopener noreferrer"><b>公式サイト ↗</b><span>pphcompany.com</span></a></section><div class="st" id="state"></div>
+<div class="bar">
+  <div class="seg" id="periods"></div>
+  <div class="ipick">
+    <button class="ib" data-g="tr" type="button">トレンド系<span class="cnt" id="cTR"></span><small>チャート上</small></button>
+    <button class="ib" data-g="os" type="button">オシレーター系<span class="cnt" id="cOS"></span><small>チャート下</small></button>
+    <button class="ib" data-g="sg" type="button"><span class="sgi"><b class="bu">▲</b><b class="se">▼</b></span>売買サイン<span class="cnt" id="cSG"></span></button>
+  </div>
+</div>
+<div class="ipanel" id="ipanel" hidden>
+  <div class="iph"><b id="iptitle"></b><span id="ipdesc"></span>
+    <button type="button" id="ipreset">既定に戻す</button><button type="button" id="ipnone">すべて外す</button><button type="button" id="ipclose">閉じる</button></div>
+  <div class="sgst" id="sgst" hidden>表示のしかた
+    <div class="seg" id="sgstyle"><button type="button" data-st="label">ラベル（買・売）</button><button type="button" data-st="tri">大きい三角</button></div>
+    <label><input type="checkbox" id="sgvl">サインの足に縦線も引く</label></div>
+  <div class="ics" id="ipchips"></div>
+</div>
+<div class="legend" id="legend"></div>
+<div class="chart"><canvas id="cv"></canvas><div class="vmode" id="vmode"><button type="button" data-m="v">出来高</button><button type="button" data-m="a">売買代金</button></div><div class="xh" id="xhv"></div><div class="xh" id="xhh"></div><div id="tip"></div></div>
+<details class="nt" id="ntbox"><summary>指標の計算方法</summary><p class="note" id="note"></p></details>
+</div>
+<script>
+const CODE = "PPHC";
+const RAW = [["2026-01-28",11.86,12.07,10.98,10.98,1306900],["2026-01-29",11.68,11.94,11.24,11.92,483900],["2026-01-30",11.97,12.01,11.87,11.92,201200],["2026-02-02",11.97,12.17,11.53,11.97,215700],["2026-02-03",11.98,12.65,11.95,12.02,163700],["2026-02-04",11.87,12.15,11.87,12.03,124400],["2026-02-05",12.03,12.03,11.87,11.97,73800],["2026-02-06",12.02,12.16,11.97,12.04,191900],["2026-02-09",12.04,12.34,11.96,12.1,132800],["2026-02-10",11.93,12.38,11.93,12.17,217400],["2026-02-11",12.16,12.24,11.93,12.03,104300],["2026-02-12",12.08,12.58,11.79,11.93,84200],["2026-02-13",11.97,12.26,11.53,12.05,195300],["2026-02-17",12.03,12.16,11.43,11.92,87100],["2026-02-18",11.92,12.2,11.68,12.07,99500],["2026-02-19",12.06,12.07,11.91,12.03,77200],["2026-02-20",11.93,12.02,11.85,11.92,64800],["2026-02-23",12.02,12.02,11.79,11.92,83900],["2026-02-24",12.07,12.24,11.92,11.97,79700],["2026-02-25",11.93,12.01,11.87,11.92,97000],["2026-02-26",11.92,11.97,11.6,11.64,71400],["2026-02-27",11.52,11.68,10.95,11.25,142900],["2026-03-02",11.18,12.02,11.09,11.92,140800],["2026-03-03",11.74,12.24,11.58,12.16,95100],["2026-03-04",12.17,12.31,11.79,12.16,90600],["2026-03-05",11.98,12.49,11.97,12.25,64100],["2026-03-06",12.3,12.45,12.03,12.16,61500],["2026-03-09",12.08,12.34,11.8,12.05,171800],["2026-03-10",12.21,12.62,11.92,12.49,60700],["2026-03-11",12.38,13.74,12.21,13.05,114700],["2026-03-12",13.07,14.11,12.65,13.09,157900],["2026-03-13",13.22,13.22,12.69,12.69,79100],["2026-03-16",12.81,13.17,12.52,12.69,107600],["2026-03-17",12.37,13.04,12.14,13.03,355600],["2026-03-18",13.15,13.92,13.09,13.1,213100],["2026-03-19",12.96,13.22,12.47,12.52,161100],["2026-03-20",12.54,13.02,12.45,12.65,609600],["2026-03-23",12.7,13.08,12.66,12.84,133600],["2026-03-24",12.8,13.33,12.65,12.84,170700],["2026-03-25",12.74,13.32,12.04,12.08,133900],["2026-03-26",12.16,12.29,11.32,11.47,190900],["2026-03-27",11.43,11.73,11.29,11.39,84500],["2026-03-30",11.41,12.59,11.4,12.52,142600],["2026-03-31",12.46,13.32,12.16,12.73,209600],["2026-04-01",12.52,12.92,12.32,12.62,360400],["2026-04-02",12.41,13.18,12.41,13.08,84300],["2026-04-06",12.9,13.43,12.85,13.33,85100],["2026-04-07",13.18,13.77,12.94,13.75,127200],["2026-04-08",13.67,14.06,13.57,13.74,87300],["2026-04-09",13.62,13.74,13.08,13.44,72700],["2026-04-10",13.22,13.53,13.07,13.08,44100],["2026-04-13",13.02,13.99,13.02,13.92,49400],["2026-04-14",13.49,13.56,13.0,13.3,55500],["2026-04-15",13.26,13.47,13.1,13.11,30400],["2026-04-16",13.03,13.46,13.03,13.19,62600],["2026-04-17",13.1,13.51,13.0,13.49,96100],["2026-04-20",13.4,13.62,13.09,13.2,54200],["2026-04-21",13.12,13.24,12.94,13.03,30100],["2026-04-22",12.85,13.32,12.85,13.29,48200],["2026-04-23",13.49,14.01,13.22,13.94,56600],["2026-04-24",13.87,14.26,13.52,13.88,35900],["2026-04-27",13.83,14.35,12.81,13.91,67700],["2026-04-28",13.69,14.4,13.69,14.31,30600],["2026-04-29",14.25,14.38,13.48,13.59,50000],["2026-04-30",13.57,14.15,13.57,13.88,37700],["2026-05-01",13.95,15.0,13.77,14.46,58600],["2026-05-04",14.4,14.4,13.32,13.32,42700],["2026-05-05",13.11,13.52,13.08,13.32,75500],["2026-05-06",13.19,14.16,12.95,13.26,55500],["2026-05-07",13.18,13.59,13.18,13.33,35100],["2026-05-08",13.32,13.6,13.26,13.41,77300],["2026-05-11",13.32,13.48,13.29,13.36,48100],["2026-05-12",13.32,13.35,12.72,12.84,106300],["2026-05-13",12.72,12.74,11.18,11.51,211200],["2026-05-14",11.51,11.93,11.15,11.46,88000],["2026-05-15",11.22,11.62,11.0,11.28,96000],["2026-05-18",11.23,11.76,10.89,11.04,68700],["2026-05-19",11.0,11.33,10.89,10.95,70800],["2026-05-20",10.9,11.46,10.64,10.78,52200],["2026-05-21",10.69,11.79,10.69,11.69,137600],["2026-05-22",11.82,11.82,11.21,11.43,38100],["2026-05-26",11.43,12.54,11.43,12.02,91000],["2026-05-27",11.94,12.63,11.31,11.59,135800],["2026-05-28",11.47,12.06,11.22,11.52,88800],["2026-05-29",11.37,11.68,10.3,10.3,99700],["2026-06-01",10.3,10.9,9.98,9.98,160000],["2026-06-02",10.0,10.3,9.71,9.74,96200],["2026-06-03",9.9,10.65,9.88,10.12,245800],["2026-06-04",10.11,10.97,10.0,10.3,167100],["2026-06-05",10.2,10.72,10.19,10.24,64700],["2026-06-08",10.2,11.0,10.19,10.49,78400],["2026-06-09",10.53,10.77,10.44,10.54,51200],["2026-06-10",10.39,10.49,9.92,9.94,229100],["2026-06-11",10.01,10.88,10.01,10.41,155300],["2026-06-12",10.57,10.88,10.1,10.4,76200],["2026-06-15",10.4,10.49,9.47,9.58,100800],["2026-06-16",9.68,10.28,9.6,9.83,148100],["2026-06-17",9.7,10.4,9.24,9.31,120700],["2026-06-18",9.47,9.79,8.73,8.96,126500],["2026-06-22",8.86,8.86,7.99,8.09,84100],["2026-06-23",8.04,8.6,7.95,8.18,70100],["2026-06-24",8.18,8.18,7.47,7.6,138100],["2026-06-25",7.53,8.46,7.17,7.26,112900],["2026-06-26",7.24,7.81,7.16,7.41,196600],["2026-06-29",7.45,7.7,7.17,7.25,59000],["2026-06-30",7.21,7.64,6.94,7.33,75700],["2026-07-01",7.5,8.36,7.41,8.0,107700],["2026-07-02",8.05,8.45,7.61,7.65,126400],["2026-07-06",7.92,8.24,7.78,8.2,218000],["2026-07-07",8.19,8.19,7.77,7.79,103700],["2026-07-08",7.78,8.22,7.77,8.06,297900],["2026-07-09",8.07,8.54,7.94,8.36,202100],["2026-07-10",8.32,8.34,7.98,8.25,64000],["2026-07-13",8.33,8.62,7.84,8.31,381200],["2026-07-14",8.41,8.73,8.08,8.13,162000],["2026-07-15",8.17,8.53,8.08,8.43,109100],["2026-07-16",8.43,8.69,8.33,8.59,65200],["2026-07-17",8.48,9.23,8.15,8.79,99000],["2026-07-20",8.86,9.25,8.6,9.21,103900],["2026-07-21",9.06,9.3,8.85,8.99,73400],["2026-07-22",8.91,8.96,8.41,8.54,60400],["2026-07-23",8.42,8.82,7.89,8.74,116100],["2026-07-24",8.76,9.32,8.63,8.9,162400],["2026-07-27",8.9,9.4,8.51,9.32,94500],["2026-07-28",9.32,10.11,9.11,9.87,144500],["2026-07-29",9.89,10.59,9.78,10.45,81600],["2026-07-30",10.38,10.55,9.68,10.47,96000],["2026-07-31",10.48,10.89,10.08,10.74,145400],["2026-08-03",10.89,12.01,10.85,11.97,95100],["2026-08-04",11.69,11.93,11.13,11.29,73800],["2026-08-05",11.16,11.32,10.8,10.91,95000],["2026-08-06",10.92,11.35,10.48,11.13,104200],["2026-08-07",10.98,11.12,10.52,10.63,65600],["2026-08-10",10.61,10.88,10.06,10.33,55600],["2026-08-11",10.87,11.98,10.41,11.23,116000],["2026-08-12",11.34,11.37,10.67,11.12,25900],["2026-08-13",11.02,11.18,10.34,10.52,84200],["2026-08-14",10.44,10.64,9.87,10.02,115600],["2026-08-17",10.26,10.37,9.63,9.95,128100],["2026-08-18",9.85,10.22,9.71,10.14,104000],["2026-08-19",10.14,11.61,10.14,10.86,129700],["2026-08-20",10.72,10.85,9.95,10.01,84100],["2026-08-21",10.06,10.52,9.97,10.45,70500],["2026-08-24",10.45,11.54,10.45,10.98,209400],["2026-08-25",10.92,11.62,10.78,10.85,126500],["2026-08-26",10.88,10.88,10.13,10.53,155800],["2026-08-27",10.64,11.51,10.64,11.09,86000],["2026-08-28",11.04,11.51,10.54,10.85,107100],["2026-08-31",10.89,10.89,10.33,10.73,65400],["2026-09-01",10.67,10.96,10.46,10.84,66200],["2026-09-02",10.92,11.56,10.65,11.32,105000],["2026-09-03",11.44,11.59,11.07,11.12,124000],["2026-09-04",11.13,11.18,10.54,10.54,129700],["2026-09-08",10.61,11.43,10.37,11.33,244300],["2026-09-09",11.36,11.36,10.78,11.26,120400],["2026-09-10",11.16,11.46,10.99,11.15,149800],["2026-09-11",11.18,11.54,10.66,11.37,177500],["2026-09-14",11.37,12.23,10.99,11.77,179800],["2026-09-15",11.62,12.14,11.42,11.65,199800],["2026-09-16",11.6,11.93,11.6,11.69,233300],["2026-09-17",11.69,12.58,11.39,12.46,234000],["2026-09-18",12.46,13.25,12.31,12.98,2938100],["2026-09-21",13.02,13.04,11.12,11.66,161700],["2026-09-22",11.7,12.45,11.7,11.91,134700],["2026-09-23",11.77,12.18,11.4,11.6,60700],["2026-09-24",11.68,11.73,10.8,11.32,305000],["2026-09-25",11.26,11.4,10.89,11.06,118100],["2026-09-28",10.97,11.28,10.21,11.23,217100],["2026-09-29",11.05,11.15,10.2,10.27,140000],["2026-09-30",10.24,10.51,9.83,10.21,301900],["2026-10-01",10.21,10.56,9.92,10.52,177700],["2026-10-02",10.76,10.94,10.22,10.54,136400],["2026-10-05",10.72,10.81,10.49,10.64,100700],["2026-10-06",10.64,11.07,10.57,10.85,99400],["2026-10-07",10.72,11.19,10.47,10.68,83900],["2026-10-08",10.7,11.03,10.61,10.9,51700],["2026-10-09",10.91,11.39,10.49,11.13,151500],["2026-10-12",11.1,11.63,10.57,10.59,113100],["2026-10-13",10.68,11.14,10.32,10.58,101900],["2026-10-14",10.47,10.78,10.29,10.46,94600],["2026-10-15",10.65,10.72,10.25,10.59,74100],["2026-10-16",10.59,10.65,10.03,10.25,52000],["2026-10-19",10.2,10.34,9.79,9.83,106100],["2026-10-20",9.94,10.08,9.68,9.72,95000],["2026-10-21",9.77,9.94,9.53,9.61,127400],["2026-10-22",9.69,10.08,9.69,9.92,80900],["2026-10-23",9.88,10.1,9.61,9.77,136400],["2026-10-26",9.81,10.04,9.62,9.78,67300],["2026-10-27",9.88,10.29,9.51,10.15,191600],["2026-10-28",10.23,10.25,9.96,10.21,93800],["2026-10-29",10.39,10.5,9.95,10.22,117700],["2026-10-30",10.25,10.52,9.84,10.34,111600],["2026-11-02",10.45,11.18,10.33,10.84,118700],["2026-11-03",10.8,11.32,10.8,10.98,59700],["2026-11-04",11.24,13.05,11.24,12.62,210800],["2026-11-05",12.79,13.1,11.08,11.34,148500],["2026-11-06",11.28,11.73,11.01,11.17,73800],["2026-11-09",11.54,11.54,10.85,11.07,93200],["2026-11-10",11.2,11.34,10.11,10.96,146400],["2026-11-11",11.0,11.13,10.76,11.11,80400],["2026-11-12",11.13,11.44,10.23,10.7,90900],["2026-11-13",10.83,10.83,10.1,10.39,154500],["2026-11-16",10.97,10.97,9.72,9.79,133400],["2026-11-17",9.71,9.71,9.18,9.64,113000],["2026-11-18",9.68,9.71,9.19,9.26,124700],["2026-11-19",9.29,9.56,8.7,9.17,151000],["2026-11-20",9.2,9.45,9.1,9.25,191400],["2026-11-23",9.46,9.61,8.92,9.52,120700],["2026-11-24",9.4,9.52,8.9,8.9,117500],["2026-11-25",8.9,9.41,8.67,9.25,134400],["2026-11-27",9.4,9.87,9.06,9.64,88631]];
+const DATANOTE = "";
+</script>
+<script src="intra/PPHC.js?v=20261127516"></script>
+<script src="assets/chart.js?v=aa49b450"></script><!--kb-theme-js--><script>(function(){var bs=document.querySelectorAll('button.kb-theme[data-kb]');
+for(var i=0;i<bs.length;i++)bs[i].addEventListener('click',function(){var b=this,d=document.documentElement,
+cur=d.getAttribute('data-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'),n=cur==='dark'?'light':'dark';
+d.setAttribute('data-theme',n);try{localStorage.setItem('fdb-theme',n)}catch(e){}
+var f=document.querySelectorAll('iframe');for(var j=0;j<f.length;j++){try{f[j].contentWindow.postMessage({chartTheme:n},'*')}catch(e){}}
+var k=b.getAttribute('data-kb');
+if(k==='reload')location.reload();
+else if(k==='msg')window.postMessage({chartTheme:n},'*');
+else if(k==='fn'&&typeof window.__kbRedraw==='function')window.__kbRedraw();});})();</script><!--/kb-theme-js--><!--mobile-fix-spacer--><div class="mf-spacer" aria-hidden="true"></div><!--/mobile-fix-spacer--></body></html>

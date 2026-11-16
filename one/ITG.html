@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8"><!--kb-theme:v3--><script>(function(){var d=document.documentElement,
+m=/[?&#]theme=(dark|light)/.exec(location.search+location.hash),t=m&&m[1];
+if(!t){try{t=localStorage.getItem('fdb-theme')}catch(e){}}
+if(t==='dark'||t==='light')d.setAttribute('data-theme',t);
+try{if(window.top!==window.self)d.classList.add('kb-embed')}catch(e){d.classList.add('kb-embed')}})();</script>
+<style id="kb-theme">
+:root{--kb-fg:#1f1f1e;--kb-line:#d6d5ce;--kb-hover:rgba(0,0,0,.05)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--kb-fg:#ecebe6;--kb-line:#3b3b38;--kb-hover:rgba(255,255,255,.08)}}
+:root[data-theme="dark"]{--kb-fg:#ecebe6;--kb-line:#3b3b38;--kb-hover:rgba(255,255,255,.08)}
+/* スイッチ本体（トラック） */
+:root{--kb-trk:#e8e7e1;--kb-knob:#fff;--kb-ico:#d08a00;--kb-dim:#a9a79f}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--kb-trk:#2b2b29;--kb-knob:#45453f;--kb-ico:#f3d36a;--kb-dim:#6f6e68}}
+:root[data-theme="dark"]{--kb-trk:#2b2b29;--kb-knob:#45453f;--kb-ico:#f3d36a;--kb-dim:#6f6e68}
+:root button.kb-theme.kb-theme{-webkit-appearance:none;appearance:none;position:relative;display:inline-block;box-sizing:border-box;
+width:54px;height:30px;min-width:54px;min-height:0;padding:0;border:1px solid var(--kb-line);border-radius:15px;background:var(--kb-trk);
+color:var(--kb-fg);font-size:0;line-height:0;cursor:pointer;box-shadow:inset 0 1px 2px rgba(0,0,0,.08);vertical-align:middle;flex-shrink:0;
+overflow:hidden;-webkit-tap-highlight-color:transparent;transition:background .3s,border-color .3s}
+:root button.kb-theme.kb-theme:focus-visible{outline:2px solid #2a78d6;outline-offset:2px}
+:root button.kb-theme.kb-theme svg{display:block;width:100%;height:100%}
+/* 両端の小さなアイコン（つまみが無い側だけ見える） */
+:root button.kb-theme.kb-theme .kb-trk{position:absolute;top:50%;width:13px;height:13px;margin-top:-6.5px;color:var(--kb-dim);transition:opacity .3s}
+:root button.kb-theme.kb-theme .kb-l{left:7px;opacity:0}
+:root button.kb-theme.kb-theme .kb-r{right:7px;opacity:1}
+/* つまみ */
+:root button.kb-theme.kb-theme .kb-knob{position:absolute;top:2px;left:2px;width:24px;height:24px;border-radius:50%;background:var(--kb-knob);
+color:var(--kb-ico);box-shadow:0 1px 3px rgba(0,0,0,.25),0 0 0 .5px rgba(0,0,0,.06);transform:translateX(0);
+transition:transform .32s cubic-bezier(.3,1.35,.5,1),background .3s,color .3s}
+:root button.kb-theme.kb-theme:active .kb-knob{width:28px}
+:root button.kb-theme.kb-theme .kb-knob svg{position:absolute;inset:0;margin:auto;width:15px;height:15px;transition:opacity .25s,transform .35s}
+:root button.kb-theme.kb-theme .kb-knob .kb-sun{opacity:1;transform:none}
+:root button.kb-theme.kb-theme .kb-knob .kb-moon{opacity:0;transform:rotate(-90deg) scale(.4)}
+/* ダーク表示中：つまみを右へ */
+@media (prefers-color-scheme:dark){
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-knob{transform:translateX(24px)}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme:active .kb-knob{transform:translateX(20px)}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-knob .kb-sun{opacity:0;transform:rotate(90deg) scale(.4)}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-knob .kb-moon{opacity:1;transform:none}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-l{opacity:1}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-r{opacity:0}}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-knob{transform:translateX(24px)}
+:root[data-theme="dark"] button.kb-theme.kb-theme:active .kb-knob{transform:translateX(20px)}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-knob .kb-sun{opacity:0;transform:rotate(90deg) scale(.4)}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-knob .kb-moon{opacity:1;transform:none}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-l{opacity:1}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-r{opacity:0}
+@media (prefers-reduced-motion:reduce){:root button.kb-theme.kb-theme *{transition:none!important}}
+/* 全ページ共通の置き場所：ページ右上の角 */
+:root button.kb-theme.kb-theme.kb-corner{position:absolute;top:12px;right:16px;z-index:60;margin:0;float:none}
+@media (max-width:700px){:root button.kb-theme.kb-theme.kb-corner{top:10px;right:12px}}
+/* 右上のスイッチの下に見えない「よけ」を置き、見出しの文字やボタンがスイッチと重ならないようにする */
+.kb-spacer{float:right;width:84px;height:46px;pointer-events:none}
+@media (max-width:700px){.kb-spacer{width:76px;height:44px}}
+html.kb-embed .kb-spacer{display:none}
+html.kb-embed button.kb-theme[data-kb]{display:none}
+
+</style><!--/kb-theme-->
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ITG, Inc.（ITG） | 株式分析ダッシュボード</title>
+<script>(function(){let t;try{t=localStorage.getItem('fdb-theme')}catch(e){}if(t)document.documentElement.setAttribute('data-theme',t);})();</script>
+<link rel="stylesheet" href="assets/one.css?v=202611280705">
+<!--site-icon:v3--><link rel="icon" type="image/svg+xml" href="/us-charts/icon-black.svg?v=3" media="(prefers-color-scheme: light)"><link rel="icon" type="image/svg+xml" href="/us-charts/icon-white.svg?v=3" media="(prefers-color-scheme: dark)"><link rel="apple-touch-icon" href="/us-charts/apple-touch-icon.png?v=3"><!--/site-icon--><!--mobile-fix:v1--><style id="mobile-fix">
+.mf-spacer{display:none}
+html.mf-sa .mf-spacer{display:block;height:calc(env(safe-area-inset-bottom,0px) + 110px)}
+html.mf-sa .detail .inner{padding-bottom:calc(env(safe-area-inset-bottom,0px) + 140px)}
+</style><script>(function(){try{if(window.top!==window.self)return;
+var sa=navigator.standalone===true||matchMedia('(display-mode: standalone)').matches;
+var touch=matchMedia('(pointer: coarse)').matches;
+if(sa||touch)document.documentElement.classList.add('mf-sa');}catch(e){}})();</script><!--/mobile-fix--><!--pc-wide:v1--><style id="pc-wide">@media (min-width:1280px){body>.wrap,body>main,body>div.wrap{max-width:1680px!important}}</style><!--/pc-wide--></head>
+<body><!--kb-btn--><button class="tbtn kb-theme kb-corner" id="theme" type="button" aria-label="明暗を切り替え（ライト／ダーク）" title="明暗を切り替え（ライト／ダーク）"><span class="kb-trk kb-l"><svg class="kb-sun" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="12" cy="12" r="4.3"/><path d="M12 2.2v2.3M12 19.5v2.3M2.2 12h2.3M19.5 12h2.3M5.1 5.1l1.6 1.6M17.3 17.3l1.6 1.6M5.1 18.9l1.6-1.6M17.3 6.7l1.6-1.6"/></svg></span><span class="kb-trk kb-r"><svg class="kb-moon" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M20.2 14.6A8.4 8.4 0 0 1 9.4 3.8a.6.6 0 0 0-.8-.7A9.2 9.2 0 1 0 20.9 15.4a.6.6 0 0 0-.7-.8z"/></svg></span><span class="kb-knob"><svg class="kb-sun" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="12" cy="12" r="4.3"/><path d="M12 2.2v2.3M12 19.5v2.3M2.2 12h2.3M19.5 12h2.3M5.1 5.1l1.6 1.6M17.3 17.3l1.6 1.6M5.1 18.9l1.6-1.6M17.3 6.7l1.6-1.6"/></svg><svg class="kb-moon" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M20.2 14.6A8.4 8.4 0 0 1 9.4 3.8a.6.6 0 0 0-.8-.7A9.2 9.2 0 1 0 20.9 15.4a.6.6 0 0 0-.7-.8z"/></svg></span></button><div class="kb-spacer" aria-hidden="true"></div><!--/kb-btn-->
+<div class="wrap">
+<header>
+  <h1 id="h-name"></h1><span class="cd" id="h-code"></span>
+  <span class="px" id="h-px"></span><span class="chg" id="h-chg"></span>
+  <span class="meta" id="h-meta"></span>
+  <span class="sp"><button class="tbtn" id="watchbtn" hidden>☆ 監視銘柄に追加</button><a class="tbtn" href="../index.html" style="text-decoration:none">トップ</a><a class="tbtn" href="index.html" style="text-decoration:none">銘柄一覧</a></span>
+</header>
+<div class="wbox" id="wbox" hidden></div>
+<div class="valline" id="valline" hidden></div>
+<p class="biz" id="biz"></p>
+<p class="bizlink" id="bizlink" hidden></p>
+<p class="empline" id="empline" hidden></p>
+
+<section class="card" id="sigcard">
+  <div class="hero">
+    <div>
+      <div class="big" id="big"></div>
+      <div class="n1" id="notes"></div>
+      <div class="plan" id="plan"></div>
+    </div>
+    <div class="quad" id="quad"></div>
+  </div>
+  <div class="sigfoot"><button class="tgl" id="sig-tgl" aria-expanded="false"><span class="tri">▾</span> 内訳・推移</button></div>
+  <div class="sigdet" id="sigdet" hidden>
+    <div><h5>テクニカルの内訳</h5><div id="partsT"></div></div>
+    <div><h5>ファンダメンタルの内訳</h5><div id="partsF"></div></div>
+    <div><h5>テクニカルスコアの推移</h5><div class="spk" id="spk"></div></div>
+  </div>
+</section>
+
+<div class="grid">
+  <div class="lcol">
+  <section class="card" id="chartcard">
+    <div class="bar">
+      <h2 style="margin:0">チャート</h2>
+      <div class="seg" id="rng"><button data-n="63">3ヶ月</button><button data-n="126" class="on">6ヶ月</button><button data-n="250">1年</button><button data-n="750">3年</button></div>
+      <div class="lg" id="lg-ind"></div>
+      <div class="lg" id="lg-vp"></div>
+      <button class="tgl" id="ch-tgl" aria-expanded="false" style="margin-left:auto"><span class="tri">▾</span> 指標を選ぶ</button>
+    </div>
+    <div id="ch-det" hidden>
+      <div id="indsel"></div>
+      <div class="lg" style="margin:4px 0 2px">
+        <label><input type="checkbox" id="cb-vp" checked>価格帯別出来高</label>
+        <label><input type="checkbox" id="cb-mk" checked>売買サイン</label>
+        <label><input type="checkbox" id="cb-lv" checked>IN・利確・損切り</label>
+      </div>
+      <div class="lg sgopt" id="sgopt"><span class="sgh">売買サイン</span><span class="sgkinds" id="sgkinds"></span></div>
+      <div class="lg sgopt" id="sgopt2"><span class="sgh">表示</span>
+        <div class="seg" id="sgstyle"><button type="button" data-st="label">ラベル（買・売）</button><button type="button" data-st="tri">大きい三角</button></div>
+        <label><input type="checkbox" id="sgvl">縦線も引く</label>
+        <button type="button" class="sgbtn" id="sgdef">既定に戻す</button><button type="button" class="sgbtn" id="sgnone">すべて外す</button>
+      </div>
+      <div class="lvbar" id="lvbar"></div>
+    </div>
+    <div id="chart"></div>
+  </section>
+  <section class="card" id="bscard"><div class="bsgrid"><div class="fp" id="fp-bs"></div><div class="fp" id="fp-holders"></div></div></section>
+  </div>
+
+  <div class="rcol">
+  <section class="card" id="jkcard">
+    <h2><span style="white-space:nowrap">需給</span> <span class="hint" id="jk-hint"></span><a class="jklink" id="jk-link" href="#">空売りの内訳 ›</a></h2>
+    <div class="jkg" id="jkg"></div>
+    <div class="jkf" id="jkf"></div>
+  </section>
+  <section class="card" id="fundcard">
+    <h2>ファンダメンタル <span class="hint" id="f-hint"></span></h2>
+    <div class="jcards" id="jcards"></div>
+    <div class="fgrid" id="fgrid"><div class="fp" id="fp-annual"></div><div class="fp" id="fp-cf"></div><div class="fp" id="fp-q"></div><div class="fp" id="fp-div"></div></div>
+    <div class="meta" id="fmeta"></div>
+  </section>
+  </div>
+</div>
+<section class="card" id="ancard" hidden>
+  <h2><span style="white-space:nowrap">アナリスト予想</span> <span class="hint" id="an-hint"></span><a class="jklink" id="an-link" href="../fundamentals.html#analyst">アナリスト予想ランキング ›</a></h2>
+  <div class="angrid"><div id="an-t"></div><div id="an-b"></div><div class="ancs" id="an-cw"><div id="an-cs"></div><div id="an-ct"></div></div><div id="an-c"></div></div>
+  <div class="anfoot"><button class="tgl" id="an-tgl" aria-expanded="false"><span class="tri">▾</span> <span class="pc">アナリストごとの目標株価・投資判断</span><span class="sp">業績予想・決算サプライズ・アナリスト別</span></button></div>
+  <div id="an-det" hidden><div id="an-u"></div></div>
+</section>
+<section class="card" id="cocard" hidden>
+  <h2><span style="white-space:nowrap">同業他社・関連企業</span> <span class="hint" id="co-hint"></span></h2>
+  <div class="cogrid"><div id="co-peer"></div><div id="co-rel"></div></div>
+</section>
+<footer><span></span><span id="gen"></span></footer>
+</div>
+<div id="tip"></div>
+<script src="assets/watch.js"></script>
+<script>const DATA={"info":{"code":"ITG","name":"ITG, Inc.","market":"NASDAQ","sector":"資本財","date":"2026-11-27","price":5.58,"chg":0.1900000000000004,"chgp":3.5250463821892466,"biz":"通信・電力インフラの工事サービスの会社。","url":"https://www.itgcomm.com","fdate":"2025-12-31"},"px":{"show":750,"d":["2026-07-01","2026-07-02","2026-07-06","2026-07-07","2026-07-08","2026-07-09","2026-07-10","2026-07-13","2026-07-14","2026-07-15","2026-07-16","2026-07-17","2026-07-20","2026-07-21","2026-07-22","2026-07-23","2026-07-24","2026-07-27","2026-07-28","2026-07-29","2026-07-30","2026-07-31","2026-08-03","2026-08-04","2026-08-05","2026-08-06","2026-08-07","2026-08-10","2026-08-11","2026-08-12","2026-08-13","2026-08-14","2026-08-17","2026-08-18","2026-08-19","2026-08-20","2026-08-21","2026-08-24","2026-08-25","2026-08-26","2026-08-27","2026-08-28","2026-08-31","2026-09-01","2026-09-02","2026-09-03","2026-09-04","2026-09-08","2026-09-09","2026-09-10","2026-09-11","2026-09-14","2026-09-15","2026-09-16","2026-09-17","2026-09-18","2026-09-21","2026-09-22","2026-09-23","2026-09-24","2026-09-25","2026-09-28","2026-09-29","2026-09-30","2026-10-01","2026-10-02","2026-10-05","2026-10-06","2026-10-07","2026-10-08","2026-10-09","2026-10-12","2026-10-13","2026-10-14","2026-10-15","2026-10-16","2026-10-19","2026-10-20","2026-10-21","2026-10-22","2026-10-23","2026-10-26","2026-10-27","2026-10-28","2026-10-29","2026-10-30","2026-11-02","2026-11-03","2026-11-04","2026-11-05","2026-11-06","2026-11-09","2026-11-10","2026-11-11","2026-11-12","2026-11-13","2026-11-16","2026-11-17","2026-11-18","2026-11-19","2026-11-20","2026-11-23","2026-11-24","2026-11-25","2026-11-27"],"o":[18,17.3,14.9,14.7,13.6,13.6,14.3,13.8,13.3,12.9,12.3,10.4,12,11.5,11.8,13.4,13.7,14.1,13.1,12.2,12.1,12.9,13.1,13.7,13,12.8,13.3,13.6,13.2,12.6,13.6,13,13,12.2,12.7,12.6,12.7,12.9,11.8,12,12.4,12.8,12.3,12.1,12,13,12.9,13.3,13.4,13.2,13.8,13.4,12.9,12.3,12.7,12.4,12.5,11.8,10.8,10.2,10.4,10.3,7.2,8.1,7.8,7,6.9,7.1,8.1,7.6,7.6,7.8,7.5,7.3,6,5.9,5.9,5.6,5.1,5,5.3,5,5,4.8,4.7,5.5,6,6.2,5.7,5.4,4.4,4.6,5.3,5.1,4.9,5.5,5.6,5.7,6,6.1,5.9,6,5.7,5.1,5.6],"h":[19.3,17.9,16,15.9,13.8,14.5,14.3,14.2,13.5,13.6,12.4,12.5,12.2,12.4,13.8,14.4,13.9,14.1,13.4,13.5,12.9,13.7,13.5,13.8,13.5,13.5,13.8,13.8,13.4,13.8,13.9,13.2,13.4,12.9,13.2,12.8,13.2,13.2,12.3,12.7,13,13,12.4,12.6,13.2,13.3,13.5,14.2,14,14.1,14.1,13.6,13.3,12.9,13.1,13.1,12.9,11.9,10.8,10.5,10.7,10.4,8.7,8.2,8.1,7.2,7.2,8.7,8.2,7.9,8,8,7.7,7.6,6.1,6.2,6,6,5.3,5.1,5.8,5.4,5.2,4.9,6,6,6.4,6.8,5.9,5.4,4.7,5.4,5.6,5.3,5.4,5.8,5.9,5.7,6.3,6.2,6.1,6,5.8,5.5,5.7],"l":[16.3,14.1,13.5,13.1,12.8,13.3,13,12.8,12.6,12.2,10.5,10.4,11.1,11,11.8,12.2,12.4,12.7,11.7,11.8,11.1,12.5,12.2,12.6,12.4,12.7,12.9,13.1,12.2,12.6,12.5,12.5,12.1,12.2,12.5,12.4,12.3,11.6,11.6,11.8,12.2,12.2,12,11.9,11.9,12.5,12.8,12.8,13.2,13.2,13.5,12.7,12.3,12.2,12.3,12.2,11.6,10.4,10.1,10.1,10.2,7.1,7.1,7.3,7,6.5,6.9,7.1,7.5,7.4,7.2,7.4,7.2,6,5.5,5.5,5.4,5,4.8,4.6,5,4.9,4.6,4.4,4.7,5.5,5.8,5.6,5.1,4.2,4.1,4.6,5.2,4.3,4.9,5,5.4,5.1,5.4,5.8,5.3,5.6,5.2,4.6,5.4],"c":[17.7,15.5,14.7,13.6,13.7,14.4,14,13.2,13.1,12.5,10.6,12.1,11.4,12.2,13.4,13.8,13.5,13.1,12.2,12,12.8,12.9,13.5,13.1,12.9,13.3,13.6,13.2,12.4,13.2,12.7,13,12.4,12.7,12.8,12.5,12.9,11.6,12.1,12.4,12.9,12.3,12.2,12,12.9,12.9,13.1,13.4,13.4,13.6,13.7,12.8,12.3,12.5,12.4,12.7,11.7,11,10.2,10.4,10.5,7.1,8.2,7.8,7,6.9,7,8.2,7.8,7.6,7.6,7.5,7.5,6,5.9,5.8,5.6,5.1,5.2,4.9,5.1,5,4.8,4.7,5.7,6,6.1,5.7,5.5,4.2,4.6,5.4,5.3,5.1,5.3,5.7,5.7,5.4,6.2,6.2,5.5,5.8,5.4,5.4,5.6],"v":[4763700,2522600,433600,801200,697600,288600,249100,238900,211000,295600,507900,696700,541600,384600,553900,448700,551000,542700,658800,617600,718000,325800,402900,98200,128900,146800,90000,124100,117600,240900,236800,92100,152700,108700,71800,57300,140700,177300,165400,124400,132500,129800,96600,176700,164800,101200,126000,330800,169000,223800,156100,206300,200500,409400,425900,3939100,412400,453400,293000,234700,141700,1137600,762300,774700,366000,616500,370300,1133800,630500,522900,522000,377700,290800,606100,797500,484700,308700,3181100,1046900,666600,935800,452800,859200,762800,1234300,760200,604700,447700,675600,719600,616700,475100,416000,1112100,912200,1652700,1239900,653500,909200,593200,659000,417400,291000,523200,199858]},"fy":[{"fy":"2024-12","sales":997996000.0,"op":88781000.0,"ni":28280000.0,"opm":8.9,"ocf":39608000.0,"fcf":9599000.0,"eqr":37.04,"roe":10.577142451069497,"per":null},{"fy":"2025-12","sales":1154857000.0,"op":48477000.0,"ni":-402000.0,"opm":4.2,"ocf":12292000.0,"fcf":-44956000.0,"eqr":4.48,"roe":-0.918962167104812,"per":null}],"extra":{"mcap":2.80128613,"ev_ebitda":9.53071475940226,"fscore":null,"payout":null,"beta":null,"cagr":15.73,"dy":80.87,"roe":-0.918962167104812,"opm":4.2,"eqr":4.48,"per":-696.84,"pbr":6.4,"sec_per":25.549999999999997,"sec_pbr":2.365,"sec_roe":13.925786068136098,"sec_opm":10.215,"sec_eqr":46.254999999999995,"rank":"641.0","nsec":"716"},"kb":{"annual":[{"fy":"24/12期","fyEnd":"2024-12-31","fc":null,"disc":null,"rev":997.996,"op":88.781,"odp":35.714,"ni":28.28,"opm":0.08895927438586929,"ocf":39.608,"icf":-114.015,"fcf":67.084,"cash":7.367,"frcf":-74.40700000000001,"dps":0.0,"payout":0.0,"eps":0.62},{"fy":"25/12期","fyEnd":"2025-12-31","fc":null,"disc":null,"rev":1154.857,"op":48.477,"odp":-1.272,"ni":-0.402,"opm":0.041976625677464824,"ocf":12.292,"icf":-163.378,"fcf":147.438,"cash":3.719,"frcf":-151.08599999999998,"dps":4.9769,"payout":null,"eps":-0.01}],"fc":null,"quarters":[{"fy":"25/09","fyEnd":"2025-09-30","perEnd":"2025-09-30","perSt":null,"rev":309.174,"op":20.492,"odp":2.051,"ni":0.827,"opm":0.0662798294811336},{"fy":"25/12","fyEnd":"2025-12-31","perEnd":"2025-12-31","perSt":null,"rev":327.891,"op":-8.32,"odp":-23.515,"ni":-14.408,"opm":-0.02537428596698293},{"fy":"26/03","fyEnd":"2026-03-31","perEnd":"2026-03-31","perSt":null,"rev":333.922,"op":7.872,"odp":-3.701,"ni":-1.688,"opm":0.023574367666700603},{"fy":"26/06","fyEnd":"2026-06-30","perEnd":"2026-06-30","perSt":null,"rev":404.633,"op":22.897,"odp":2.055,"ni":1.788,"opm":0.05658708014422946},{"fy":"26/09","fyEnd":"2026-09-30","perEnd":"2026-09-30","perSt":null,"rev":461.528,"op":24.326,"odp":2.767,"ni":-6.149,"opm":0.05270752803730218}],"odpName":"税引前利益","holders":{"asof":"2026-09-30","filed":"2026-09-30","issued":null,"treasury":null,"holders":[["Ophir Asset Management Pty Ltd",4241370,0.0875],["Hood River Capital Management LLC",3177776,0.06559999999999999],["Reaves (W.H.) & Company, Inc.",3145000,0.0649],["Citadel Advisors Llc",2261142,0.0467],["Zimmer Partners, Lp",2114256,0.0436],["Alyeska Investment Group, L.p.",1858122,0.0383],["Electron Capital Partners, LLC",1271191,0.0262],["Blackrock Inc.",1242823,0.0256],["Vanguard Capital Management LLC",930244,0.0192],["Pictet Asset Management Holding SA",659623,0.013600000000000001]]},"bs":[{"fy":"24/12","fyEnd":"2024-12-31","std":"US","ta":721.903,"tl":454.534,"na":267.369,"noCA":false,"cash":7.367,"recv":96.028,"inv":null,"oca":172.041,"ppe":96.382,"onca":350.085,"pay":27.77,"ocl":90.257,"ncl":336.507,"eq":267.369,"oeq":0.0},{"fy":"25/12","fyEnd":"2025-12-31","std":"US","ta":975.837,"tl":932.092,"na":43.745,"noCA":false,"cash":3.719,"recv":151.356,"inv":null,"oca":229.362,"ppe":189.437,"onca":401.963,"pay":41.221,"ocl":108.428,"ncl":782.443,"eq":43.745,"oeq":0.0}]},"srow":{"c":"ITG","n":"ITG, Inc.","m":"NASDAQ","s":"資本財","d":"2026-11-27","p":5.58,"chg":3.53,"ts":-41,"tt":-14,"to":4,"lv":{"atr":0.72,"atrp":12.9,"mode":"dip","inB":60,"in":[5.23,5.58],"stopB":33,"stop":4.34,"t1":6.44,"t1B":12,"t2":7.7,"t2B":22,"rr":1,"trail":3.78,"trailB":6,"hot":0},"tc":[null,-1,-0.43,-0.38,0.04,0.16,-0.09,0.43],"tr":[3.2,-35.4,null,1,2.36,0,-1,-1,46.7,54,61,0.58,null,null,135.9],"te":[],"hp0":4.23,"hpk":0.00948949,"hp":[917,936,965,972,986,999,904,855,871,864,887,783,716,631,653,659,299,414,374,294,279,290,422,373,357,352,342,345,184,180,164,142,92,99,74,89,81,59,51,153,183,198,151,137,0,37,121,117,95,113,153,153,120,202,205,137,162,119,122,142],"hs":[-43,-45,-43,-38,-40,-35,-32,-30,-32,-38,-28,-19,-19,-22,-22,-22,-27,-24,-27,-27,-30,-30,-30,-30,-32,-34,-34,-33,-34,-49,-63,-62,-68,-66,-67,-64,-64,-66,-67,-65,-62,-59,-63,-64,-62,-62,-64,-63,-63,-61,-58,-58,-52,-51,-46,-46,-45,-41,-39,-41],"fs":-67,"fc":[-0.64,-1,1,-1,null,-1],"fr":[-696.8,6.4,1,"PBR",-0.9,1,4.2,15.7,15.7,5,4.5,1,null,-16,80.87,0,9.5],"ff":["赤字"],"fp":"2025-12-31","dv":36.3,"mc":447},"smeta":{"tw":{"hi52":0.25,"lv":0.25,"ma":0.15,"ichi":0.1,"macd":0.05,"rsi":0.05,"bb":0.05,"vol":0.1},"fw":{"val":0.55,"prof":0.1,"grow":0.05,"safe":0.1,"fs":0.1,"cash":0.1},"levels":{"t":[40,15,-15,-30],"f":[45,20,-5,-20],"tr":[50,20,-20,-50],"os":[70,35,-35,-70],"ad":[60,40,-40,-60]},"names":["良好","やや良好","中立","弱い","避ける"]},"jk":{"score":50.0,"ratio":null,"buy":null,"sell":null,"dbuy":null,"dsell":null,"days":null,"pl":null,"lend":null,"short":7.05,"sp":7.05,"si":1582555.0,"sic":-10.0,"dtc":2.05,"inst":105.6,"ins":0.5,"judge":"中立","memo":"空売りが減った","asof":"2026-10-30","flag":"","kind":""},"val":{"f":26.2,"mean":25,"mode":0.2,"sd":24.2,"cv":96.9,"va":26.2,"lo":0.2,"f0":26.2,"hi":48.5,"nm":3,"px":5.6,"per":null,"pbr":0.2,"dcf":26.2,"ddm":48.5,"h":0.5,"rim":3.1,"tk":2.5,"adj":false,"adju":false,"rel":"低","note":"理論株価が株価の3倍超（特殊要因の確認を）","asof":"2026-11-27"},"shape":{"r":4,"k":4,"name":"下げ止まった？","s":-84.0,"q":45.0},"an":{"target":{"mean":10.22222,"median":10.0,"high":13.0,"low":8.0},"n":9,"rec_mean":1.11111,"rec":[["0m",1,8,0,0,0],["-1m",1,8,0,0,0],["-2m",1,8,0,0,0]],"cur":"USD","cur_rev":"USD","est":{"0q":{"end":"2026-12-31","eps":0.17779,"eps_lo":0.13,"eps_hi":0.33527,"eps_n":7,"eps_ya":null,"eps_g":null,"rev":377891640,"rev_lo":377780990,"rev_hi":378000000,"rev_n":6,"rev_ya":null,"rev_g":null,"t":[0.17779,0.18081,0.18219,0.18255,0.18255],"up7":0,"up30":0,"dn7":1,"dn30":1},"+1q":{"end":"2027-03-31","eps":0.19682,"eps_lo":0.14,"eps_hi":0.28046,"eps_n":3,"eps_ya":null,"eps_g":null,"rev":409116550,"rev_lo":403163000,"rev_hi":416937000,"rev_n":3,"rev_ya":null,"rev_g":null,"t":[0.19682,0.18916,0.15752,0.16054,0.16054],"up7":0,"up30":0,"dn7":1,"dn30":1},"0y":{"end":"2026-12-31","eps":0.54072,"eps_lo":0.37579,"eps_hi":0.90921,"eps_n":8,"eps_ya":null,"eps_g":null,"rev":1578074250,"rev_lo":1577188570,"rev_hi":1579410870,"rev_n":9,"rev_ya":null,"rev_g":null,"t":[0.54072,0.53672,0.55792,0.55792,0.55792],"up7":1,"up30":1,"dn7":0,"dn30":0},"+1y":{"end":"2027-12-31","eps":1.06194,"eps_lo":0.8,"eps_hi":1.88341,"eps_n":8,"eps_ya":0.54072,"eps_g":96.4,"rev":1894067460,"rev_lo":1826528370,"rev_hi":1942015390,"rev_n":8,"rev_ya":1578074250,"rev_g":20.0,"t":[1.06194,1.07018,0.96447,0.97223,0.97223],"up7":0,"up30":0,"dn7":1,"dn30":1}},"hist":[["2026-06-30",0.11406,0.1027,-10.0],["2026-09-30",0.22887,0.1664,-27.3]],"ud":[["2026-11-19","UBS","Buy","Buy","main",18.0,10.0],["2026-11-13","Truist Securities","Buy","Buy","reit",14.0,11.0],["2026-11-13","Stifel","Buy","Buy","main",9.0,8.0],["2026-11-12","B of A Securities","Buy","Buy","main",16.0,13.0],["2026-11-12","Keybanc","Overweight","Overweight","main",13.0,10.0],["2026-11-12","Baird","Outperform","Outperform","main",14.0,10.0],["2026-11-12","Morgan Stanley","Overweight","Overweight","main",18.0,9.0],["2026-10-23","Citigroup","Buy","Buy","main",17.0,9.0],["2026-10-22","Stifel","Buy","Buy","main",16.0,9.0],["2026-10-15","Keybanc","Overweight","Overweight","main",17.0,13.0],["2026-10-05","Truist Securities","Buy","Buy","main",17.0,14.0],["2026-08-17","Truist Securities","Buy","Buy","main",16.0,17.0],["2026-08-17","Morgan Stanley","Overweight","Overweight","main",19.0,18.0],["2026-07-27","B of A Securities","","Buy","init",null,16.0],["2026-07-27","UBS","","Buy","init",null,18.0],["2026-07-27","Citigroup","","Buy","init",null,17.0],["2026-07-27","Truist Securities","","Buy","init",null,16.0],["2026-07-27","Keybanc","","Overweight","init",null,17.0],["2026-07-27","Stifel","","Buy","init",null,16.0],["2026-07-27","Morgan Stanley","","Overweight","init",null,19.0]],"fetched":"2026-11-25","pc":"USD"},"co":{"cur":"ドル","ind":"Engineering & Construction","emp":{"emp":2900.0},"peers":[["ITG","ITG, Inc.",2.8,-696.8,6.4,-0.9,4.2,80.9,null],["DY","Dycom Industries, Inc.",54.4,19.4,2.93,15.1,7.7,0,null],["PRIM","Primoris Services Corporation",30.5,11.1,1.81,16.4,5.5,0.6,null],["ESOA","Energy Services of America Corporation",1.6,421.6,2.7,0.6,1,0.9,null],["MTZ","MasTec, Inc.",126.6,31.7,3.88,12.2,4.6,0,null]],"rel":[],"rec":[]},"gen":"2026-11-28 07:05"};</script>
+<script src="assets/one.js?v=202611280705"></script>
+<!--mobile-fix-spacer--><div class="mf-spacer" aria-hidden="true"></div><!--/mobile-fix-spacer--></body>
+</html>

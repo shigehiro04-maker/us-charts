@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8"><!--kb-theme:v3--><script>(function(){var d=document.documentElement,
+m=/[?&#]theme=(dark|light)/.exec(location.search+location.hash),t=m&&m[1];
+if(!t){try{t=localStorage.getItem('fdb-theme')}catch(e){}}
+if(t==='dark'||t==='light')d.setAttribute('data-theme',t);
+try{if(window.top!==window.self)d.classList.add('kb-embed')}catch(e){d.classList.add('kb-embed')}})();</script>
+<style id="kb-theme">
+:root{--kb-fg:#1f1f1e;--kb-line:#d6d5ce;--kb-hover:rgba(0,0,0,.05)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--kb-fg:#ecebe6;--kb-line:#3b3b38;--kb-hover:rgba(255,255,255,.08)}}
+:root[data-theme="dark"]{--kb-fg:#ecebe6;--kb-line:#3b3b38;--kb-hover:rgba(255,255,255,.08)}
+/* スイッチ本体（トラック） */
+:root{--kb-trk:#e8e7e1;--kb-knob:#fff;--kb-ico:#d08a00;--kb-dim:#a9a79f}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--kb-trk:#2b2b29;--kb-knob:#45453f;--kb-ico:#f3d36a;--kb-dim:#6f6e68}}
+:root[data-theme="dark"]{--kb-trk:#2b2b29;--kb-knob:#45453f;--kb-ico:#f3d36a;--kb-dim:#6f6e68}
+:root button.kb-theme.kb-theme{-webkit-appearance:none;appearance:none;position:relative;display:inline-block;box-sizing:border-box;
+width:54px;height:30px;min-width:54px;min-height:0;padding:0;border:1px solid var(--kb-line);border-radius:15px;background:var(--kb-trk);
+color:var(--kb-fg);font-size:0;line-height:0;cursor:pointer;box-shadow:inset 0 1px 2px rgba(0,0,0,.08);vertical-align:middle;flex-shrink:0;
+overflow:hidden;-webkit-tap-highlight-color:transparent;transition:background .3s,border-color .3s}
+:root button.kb-theme.kb-theme:focus-visible{outline:2px solid #2a78d6;outline-offset:2px}
+:root button.kb-theme.kb-theme svg{display:block;width:100%;height:100%}
+/* 両端の小さなアイコン（つまみが無い側だけ見える） */
+:root button.kb-theme.kb-theme .kb-trk{position:absolute;top:50%;width:13px;height:13px;margin-top:-6.5px;color:var(--kb-dim);transition:opacity .3s}
+:root button.kb-theme.kb-theme .kb-l{left:7px;opacity:0}
+:root button.kb-theme.kb-theme .kb-r{right:7px;opacity:1}
+/* つまみ */
+:root button.kb-theme.kb-theme .kb-knob{position:absolute;top:2px;left:2px;width:24px;height:24px;border-radius:50%;background:var(--kb-knob);
+color:var(--kb-ico);box-shadow:0 1px 3px rgba(0,0,0,.25),0 0 0 .5px rgba(0,0,0,.06);transform:translateX(0);
+transition:transform .32s cubic-bezier(.3,1.35,.5,1),background .3s,color .3s}
+:root button.kb-theme.kb-theme:active .kb-knob{width:28px}
+:root button.kb-theme.kb-theme .kb-knob svg{position:absolute;inset:0;margin:auto;width:15px;height:15px;transition:opacity .25s,transform .35s}
+:root button.kb-theme.kb-theme .kb-knob .kb-sun{opacity:1;transform:none}
+:root button.kb-theme.kb-theme .kb-knob .kb-moon{opacity:0;transform:rotate(-90deg) scale(.4)}
+/* ダーク表示中：つまみを右へ */
+@media (prefers-color-scheme:dark){
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-knob{transform:translateX(24px)}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme:active .kb-knob{transform:translateX(20px)}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-knob .kb-sun{opacity:0;transform:rotate(90deg) scale(.4)}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-knob .kb-moon{opacity:1;transform:none}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-l{opacity:1}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-r{opacity:0}}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-knob{transform:translateX(24px)}
+:root[data-theme="dark"] button.kb-theme.kb-theme:active .kb-knob{transform:translateX(20px)}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-knob .kb-sun{opacity:0;transform:rotate(90deg) scale(.4)}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-knob .kb-moon{opacity:1;transform:none}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-l{opacity:1}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-r{opacity:0}
+@media (prefers-reduced-motion:reduce){:root button.kb-theme.kb-theme *{transition:none!important}}
+/* 全ページ共通の置き場所：ページ右上の角 */
+:root button.kb-theme.kb-theme.kb-corner{position:absolute;top:12px;right:16px;z-index:60;margin:0;float:none}
+@media (max-width:700px){:root button.kb-theme.kb-theme.kb-corner{top:10px;right:12px}}
+/* 右上のスイッチの下に見えない「よけ」を置き、見出しの文字やボタンがスイッチと重ならないようにする */
+.kb-spacer{float:right;width:84px;height:46px;pointer-events:none}
+@media (max-width:700px){.kb-spacer{width:76px;height:44px}}
+html.kb-embed .kb-spacer{display:none}
+html.kb-embed button.kb-theme[data-kb]{display:none}
+
+</style><!--/kb-theme-->
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Reliance Global Group, Inc.（XGPU） | 株式分析ダッシュボード</title>
+<script>(function(){let t;try{t=localStorage.getItem('fdb-theme')}catch(e){}if(t)document.documentElement.setAttribute('data-theme',t);})();</script>
+<link rel="stylesheet" href="assets/one.css?v=202611280705">
+<!--site-icon:v3--><link rel="icon" type="image/svg+xml" href="/us-charts/icon-black.svg?v=3" media="(prefers-color-scheme: light)"><link rel="icon" type="image/svg+xml" href="/us-charts/icon-white.svg?v=3" media="(prefers-color-scheme: dark)"><link rel="apple-touch-icon" href="/us-charts/apple-touch-icon.png?v=3"><!--/site-icon--><!--mobile-fix:v1--><style id="mobile-fix">
+.mf-spacer{display:none}
+html.mf-sa .mf-spacer{display:block;height:calc(env(safe-area-inset-bottom,0px) + 110px)}
+html.mf-sa .detail .inner{padding-bottom:calc(env(safe-area-inset-bottom,0px) + 140px)}
+</style><script>(function(){try{if(window.top!==window.self)return;
+var sa=navigator.standalone===true||matchMedia('(display-mode: standalone)').matches;
+var touch=matchMedia('(pointer: coarse)').matches;
+if(sa||touch)document.documentElement.classList.add('mf-sa');}catch(e){}})();</script><!--/mobile-fix--><!--pc-wide:v1--><style id="pc-wide">@media (min-width:1280px){body>.wrap,body>main,body>div.wrap{max-width:1680px!important}}</style><!--/pc-wide--></head>
+<body><!--kb-btn--><button class="tbtn kb-theme kb-corner" id="theme" type="button" aria-label="明暗を切り替え（ライト／ダーク）" title="明暗を切り替え（ライト／ダーク）"><span class="kb-trk kb-l"><svg class="kb-sun" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="12" cy="12" r="4.3"/><path d="M12 2.2v2.3M12 19.5v2.3M2.2 12h2.3M19.5 12h2.3M5.1 5.1l1.6 1.6M17.3 17.3l1.6 1.6M5.1 18.9l1.6-1.6M17.3 6.7l1.6-1.6"/></svg></span><span class="kb-trk kb-r"><svg class="kb-moon" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M20.2 14.6A8.4 8.4 0 0 1 9.4 3.8a.6.6 0 0 0-.8-.7A9.2 9.2 0 1 0 20.9 15.4a.6.6 0 0 0-.7-.8z"/></svg></span><span class="kb-knob"><svg class="kb-sun" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="12" cy="12" r="4.3"/><path d="M12 2.2v2.3M12 19.5v2.3M2.2 12h2.3M19.5 12h2.3M5.1 5.1l1.6 1.6M17.3 17.3l1.6 1.6M5.1 18.9l1.6-1.6M17.3 6.7l1.6-1.6"/></svg><svg class="kb-moon" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M20.2 14.6A8.4 8.4 0 0 1 9.4 3.8a.6.6 0 0 0-.8-.7A9.2 9.2 0 1 0 20.9 15.4a.6.6 0 0 0-.7-.8z"/></svg></span></button><div class="kb-spacer" aria-hidden="true"></div><!--/kb-btn-->
+<div class="wrap">
+<header>
+  <h1 id="h-name"></h1><span class="cd" id="h-code"></span>
+  <span class="px" id="h-px"></span><span class="chg" id="h-chg"></span>
+  <span class="meta" id="h-meta"></span>
+  <span class="sp"><button class="tbtn" id="watchbtn" hidden>☆ 監視銘柄に追加</button><a class="tbtn" href="../index.html" style="text-decoration:none">トップ</a><a class="tbtn" href="index.html" style="text-decoration:none">銘柄一覧</a></span>
+</header>
+<div class="wbox" id="wbox" hidden></div>
+<div class="valline" id="valline" hidden></div>
+<p class="biz" id="biz"></p>
+<p class="bizlink" id="bizlink" hidden></p>
+<p class="empline" id="empline" hidden></p>
+
+<section class="card" id="sigcard">
+  <div class="hero">
+    <div>
+      <div class="big" id="big"></div>
+      <div class="n1" id="notes"></div>
+      <div class="plan" id="plan"></div>
+    </div>
+    <div class="quad" id="quad"></div>
+  </div>
+  <div class="sigfoot"><button class="tgl" id="sig-tgl" aria-expanded="false"><span class="tri">▾</span> 内訳・推移</button></div>
+  <div class="sigdet" id="sigdet" hidden>
+    <div><h5>テクニカルの内訳</h5><div id="partsT"></div></div>
+    <div><h5>ファンダメンタルの内訳</h5><div id="partsF"></div></div>
+    <div><h5>テクニカルスコアの推移</h5><div class="spk" id="spk"></div></div>
+  </div>
+</section>
+
+<div class="grid">
+  <div class="lcol">
+  <section class="card" id="chartcard">
+    <div class="bar">
+      <h2 style="margin:0">チャート</h2>
+      <div class="seg" id="rng"><button data-n="63">3ヶ月</button><button data-n="126" class="on">6ヶ月</button><button data-n="250">1年</button><button data-n="750">3年</button></div>
+      <div class="lg" id="lg-ind"></div>
+      <div class="lg" id="lg-vp"></div>
+      <button class="tgl" id="ch-tgl" aria-expanded="false" style="margin-left:auto"><span class="tri">▾</span> 指標を選ぶ</button>
+    </div>
+    <div id="ch-det" hidden>
+      <div id="indsel"></div>
+      <div class="lg" style="margin:4px 0 2px">
+        <label><input type="checkbox" id="cb-vp" checked>価格帯別出来高</label>
+        <label><input type="checkbox" id="cb-mk" checked>売買サイン</label>
+        <label><input type="checkbox" id="cb-lv" checked>IN・利確・損切り</label>
+      </div>
+      <div class="lg sgopt" id="sgopt"><span class="sgh">売買サイン</span><span class="sgkinds" id="sgkinds"></span></div>
+      <div class="lg sgopt" id="sgopt2"><span class="sgh">表示</span>
+        <div class="seg" id="sgstyle"><button type="button" data-st="label">ラベル（買・売）</button><button type="button" data-st="tri">大きい三角</button></div>
+        <label><input type="checkbox" id="sgvl">縦線も引く</label>
+        <button type="button" class="sgbtn" id="sgdef">既定に戻す</button><button type="button" class="sgbtn" id="sgnone">すべて外す</button>
+      </div>
+      <div class="lvbar" id="lvbar"></div>
+    </div>
+    <div id="chart"></div>
+  </section>
+  <section class="card" id="bscard"><div class="bsgrid"><div class="fp" id="fp-bs"></div><div class="fp" id="fp-holders"></div></div></section>
+  </div>
+
+  <div class="rcol">
+  <section class="card" id="jkcard">
+    <h2><span style="white-space:nowrap">需給</span> <span class="hint" id="jk-hint"></span><a class="jklink" id="jk-link" href="#">空売りの内訳 ›</a></h2>
+    <div class="jkg" id="jkg"></div>
+    <div class="jkf" id="jkf"></div>
+  </section>
+  <section class="card" id="fundcard">
+    <h2>ファンダメンタル <span class="hint" id="f-hint"></span></h2>
+    <div class="jcards" id="jcards"></div>
+    <div class="fgrid" id="fgrid"><div class="fp" id="fp-annual"></div><div class="fp" id="fp-cf"></div><div class="fp" id="fp-q"></div><div class="fp" id="fp-div"></div></div>
+    <div class="meta" id="fmeta"></div>
+  </section>
+  </div>
+</div>
+<section class="card" id="ancard" hidden>
+  <h2><span style="white-space:nowrap">アナリスト予想</span> <span class="hint" id="an-hint"></span><a class="jklink" id="an-link" href="../fundamentals.html#analyst">アナリスト予想ランキング ›</a></h2>
+  <div class="angrid"><div id="an-t"></div><div id="an-b"></div><div class="ancs" id="an-cw"><div id="an-cs"></div><div id="an-ct"></div></div><div id="an-c"></div></div>
+  <div class="anfoot"><button class="tgl" id="an-tgl" aria-expanded="false"><span class="tri">▾</span> <span class="pc">アナリストごとの目標株価・投資判断</span><span class="sp">業績予想・決算サプライズ・アナリスト別</span></button></div>
+  <div id="an-det" hidden><div id="an-u"></div></div>
+</section>
+<section class="card" id="cocard" hidden>
+  <h2><span style="white-space:nowrap">同業他社・関連企業</span> <span class="hint" id="co-hint"></span></h2>
+  <div class="cogrid"><div id="co-peer"></div><div id="co-rel"></div></div>
+</section>
+<footer><span></span><span id="gen"></span></footer>
+</div>
+<div id="tip"></div>
+<script src="assets/watch.js"></script>
+<script>const DATA={"info":{"code":"XGPU","name":"Reliance Global Group, Inc.","market":"NASDAQ","sector":"金融","date":"2026-11-27","price":1.62,"chg":0.030000000000000027,"chgp":1.8867924528301903,"biz":"保険代理店を取得・保有・管理する会社。","url":"https://relianceglobalgroup.com","fdate":"2025-12-31"},"px":{"show":750,"d":["2026-10-19","2026-10-20","2026-10-21","2026-10-22","2026-10-23","2026-10-26","2026-10-27","2026-10-28","2026-10-29","2026-10-30","2026-11-02","2026-11-03","2026-11-04","2026-11-05","2026-11-06","2026-11-09","2026-11-10","2026-11-11","2026-11-12","2026-11-13","2026-11-16","2026-11-17","2026-11-18","2026-11-19","2026-11-20","2026-11-23","2026-11-24","2026-11-25","2026-11-27"],"o":[2.2,2.3,2.4,2.4,2.2,2.2,2.3,2.2,2.2,2.1,2.1,2.2,2.4,2.4,2.3,2.1,2.2,2.2,2,2,1.9,1.8,1.8,1.8,1.7,1.6,1.9,1.6,1.6],"h":[2.3,2.5,2.4,2.6,2.3,2.3,2.3,2.2,2.2,2.1,2.2,2.5,2.4,2.5,2.4,2.7,2.3,2.2,2,2,1.9,2.1,1.9,1.8,1.7,1.9,1.9,1.6,1.7],"l":[2.2,2.3,2.3,2.2,2.1,2.1,2.2,2.2,2.2,2,2.1,2.1,2.2,2,2.1,2.1,1.8,1.9,1.9,1.8,1.7,1.7,1.8,1.6,1.5,1.6,1.6,1.4,1.6],"c":[2.2,2.4,2.3,2.3,2.2,2.2,2.2,2.2,2.2,2,2.2,2.4,2.4,2.1,2.1,2.6,2,2,1.9,1.9,1.8,1.9,1.8,1.6,1.5,1.8,1.6,1.6,1.6],"v":[6700,21900,12400,109700,15000,11200,10400,8200,11900,24500,22500,40900,26700,64300,3600,212600,129800,43000,17800,10700,45300,147300,86900,28500,12600,33100,51500,34900,4018]},"fy":[{"fy":"2022-12","sales":11761882.0,"op":-6580135.0,"ni":6466162.0,"opm":-55.94,"ocf":-3189997.0,"fcf":-3992373.0,"eqr":23.19,"roe":72.5635024153749,"per":null},{"fy":"2023-12","sales":13731826.0,"op":-4568319.0,"ni":-12009982.0,"opm":-33.27,"ocf":-847970.0,"fcf":-1037781.0,"eqr":31.06,"roe":-168.03452478058242,"per":null},{"fy":"2024-12","sales":14054361.0,"op":-3725448.0,"ni":-9071584.0,"opm":-26.51,"ocf":-2515124.0,"fcf":-2598352.0,"eqr":17.31,"roe":-302.66438278924426,"per":null},{"fy":"2025-12","sales":12430959.0,"op":-9012996.0,"ni":-6987756.0,"opm":-72.5,"ocf":-3094535.0,"fcf":-3137224.0,"eqr":47.44,"roe":-108.71773010363395,"per":null}],"extra":{"mcap":0.02721496,"ev_ebitda":null,"fscore":null,"payout":null,"beta":null,"cagr":1.86,"dy":14.27,"roe":-108.71773010363395,"opm":-72.5,"eqr":47.44,"per":-0.39,"pbr":0.42,"sec_per":14.7,"sec_pbr":1.31,"sec_roe":9.961506508698818,"sec_opm":21.564999999999998,"sec_eqr":16.06,"rank":"753.0","nsec":"876"},"kb":{"annual":[{"fy":"22/12期","fyEnd":"2022-12-31","fc":null,"disc":null,"rev":11.762,"op":-6.58,"odp":21.562,"ni":6.466,"opm":-0.5594286685937766,"ocf":-3.19,"icf":-24.642,"fcf":25.121,"cash":0.505,"frcf":-27.832,"dps":0.0,"payout":null,"eps":-285.6},{"fy":"23/12期","fyEnd":"2023-12-31","fc":null,"disc":null,"rev":13.732,"op":-4.568,"odp":-10.025,"ni":-12.01,"opm":-0.33265365569472766,"ocf":-0.848,"icf":0.71,"fcf":0.967,"cash":1.329,"frcf":-0.138,"dps":0.0,"payout":null,"eps":-3508.0},{"fy":"24/12期","fyEnd":"2024-12-31","fc":null,"disc":null,"rev":14.054,"op":-3.725,"odp":-9.072,"ni":-9.072,"opm":-0.26504909634267826,"ocf":-2.515,"icf":-0.083,"fcf":1.657,"cash":0.373,"frcf":-2.5980000000000003,"dps":0.0,"payout":null,"eps":-360.4},{"fy":"25/12期","fyEnd":"2025-12-31","fc":null,"disc":null,"rev":12.431,"op":-9.013,"odp":-6.988,"ni":-6.988,"opm":-0.7250422331268603,"ocf":-3.095,"icf":5.328,"fcf":-1.3,"cash":1.316,"frcf":2.233,"dps":1.4595,"payout":null,"eps":-51.2}],"fc":null,"quarters":[{"fy":"25/09","fyEnd":"2025-09-30","perEnd":"2025-09-30","perSt":null,"rev":2.496,"op":-3.914,"odp":-1.157,"ni":-1.157,"opm":-1.5681089743589745},{"fy":"25/12","fyEnd":"2025-12-31","perEnd":"2025-12-31","perSt":null,"rev":2.612,"op":-1.32,"odp":-1.383,"ni":-1.383,"opm":-0.5053598774885145},{"fy":"26/03","fyEnd":"2026-03-31","perEnd":"2026-03-31","perSt":null,"rev":3.827,"op":-1.24,"odp":-1.471,"ni":-1.471,"opm":-0.32401358766657956},{"fy":"26/06","fyEnd":"2026-06-30","perEnd":"2026-06-30","perSt":null,"rev":2.111,"op":-1.824,"odp":-1.994,"ni":-1.991,"opm":-0.8640454760776882},{"fy":"26/09","fyEnd":"2026-09-30","perEnd":"2026-09-30","perSt":null,"rev":1.843,"op":-3.391,"odp":3.341,"ni":3.347,"opm":-1.8399348887683125}],"odpName":"税引前利益","holders":{"asof":"2026-09-30","filed":"2026-09-30","issued":null,"treasury":null,"holders":[["T3 Companies, LLC",70500,0.0703],["Shay Capital LLC",69038,0.0688],["Geode Capital Management, LLC",21435,0.021400000000000002],["Jane Street Group, LLC",19022,0.019],["Two Sigma Securities, LLC",10400,0.0104],["UBS Group AG",8741,0.0087],["Blackrock Inc.",3269,0.0033],["IFP Advisors, Inc",2967,0.003],["Vanguard Fiduciary Trust Co",2040,0.002],["Morgan Stanley",133,0.0001]]},"bs":[{"fy":"22/12","fyEnd":"2022-12-31","std":"US","ta":38.428,"tl":29.517,"na":8.911,"noCA":false,"cash":0.505,"recv":1.013,"inv":null,"oca":1.747,"ppe":1.182,"onca":33.981,"pay":0.747,"ocl":7.095,"ncl":21.675,"eq":8.911,"oeq":0.0},{"fy":"23/12","fyEnd":"2023-12-31","std":"US","ta":23.015,"tl":15.868,"na":7.147,"noCA":false,"cash":1.329,"recv":1.305,"inv":null,"oca":1.745,"ppe":0.88,"onca":17.756,"pay":0.635,"ocl":2.555,"ncl":12.678,"eq":7.147,"oeq":0.0},{"fy":"24/12","fyEnd":"2024-12-31","std":"US","ta":17.315,"tl":14.318,"na":2.997,"noCA":false,"cash":0.373,"recv":1.468,"inv":null,"oca":2.148,"ppe":1.187,"onca":12.139,"pay":0.937,"ocl":2.637,"ncl":10.744,"eq":2.997,"oeq":0.0},{"fy":"25/12","fyEnd":"2025-12-31","std":"US","ta":13.548,"tl":7.121,"na":6.427,"noCA":false,"cash":1.316,"recv":0.75,"inv":null,"oca":2.206,"ppe":0.975,"onca":8.301,"pay":0.497,"ocl":1.9,"ncl":4.724,"eq":6.427,"oeq":0.0}]},"srow":null,"smeta":{"tw":{"hi52":0.25,"lv":0.25,"ma":0.15,"ichi":0.1,"macd":0.05,"rsi":0.05,"bb":0.05,"vol":0.1},"fw":{"val":0.55,"prof":0.1,"grow":0.05,"safe":0.1,"fs":0.1,"cash":0.1},"levels":{"t":[40,15,-15,-30],"f":[45,20,-5,-20],"tr":[50,20,-20,-50],"os":[70,35,-35,-70],"ad":[60,40,-40,-60]},"names":["良好","やや良好","中立","弱い","避ける"]},"jk":{"score":40.0,"ratio":null,"buy":null,"sell":null,"dbuy":null,"dsell":null,"days":null,"pl":null,"lend":null,"short":2.65,"sp":2.65,"si":43558.0,"sic":140.5,"dtc":0.11,"inst":7.6,"ins":20.7,"judge":"売り圧力","memo":"空売りが急増","asof":"2026-10-15","flag":"","kind":""},"val":{"f":9.5,"mean":9.5,"mode":4.8,"sd":6.6,"cv":69.7,"va":9.3,"lo":4.8,"f0":9.5,"hi":14.2,"nm":2,"px":1.6,"per":null,"pbr":4.8,"dcf":null,"ddm":14.2,"h":1.3,"rim":0.4,"tk":1.3,"adj":false,"adju":false,"rel":"低","note":"理論株価が株価の3倍超（特殊要因の確認を）","asof":"2026-11-27"},"shape":null,"an":null,"co":{"cur":"ドル","ind":"Insurance Brokers","emp":{"emp":40.0},"peers":[["XGPU","Reliance Global Group, Inc.",0,-0.4,0.42,-108.7,-72.5,14.3,null],["XHG","XChange TEC.INC",1.7,-1542.4,-1.31,null,-9.4,0,null],["NP","Neptune Insurance Holdings Inc.",39.4,-144.8,-17.32,null,50.1,4.4,null],["GSHD","Goosehead Insurance, Inc.",10.4,26.3,-10.91,null,null,14,null],["BGL","Blue Gold Limited",0,-0.2,-0.2,null,null,0,null]],"rel":[],"rec":[]},"gen":"2026-11-28 07:05"};</script>
+<script src="assets/one.js?v=202611280705"></script>
+<!--mobile-fix-spacer--><div class="mf-spacer" aria-hidden="true"></div><!--/mobile-fix-spacer--></body>
+</html>

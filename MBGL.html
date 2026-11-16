@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><!--kb-theme:v3--><script>(function(){var d=document.documentElement,
+m=/[?&#]theme=(dark|light)/.exec(location.search+location.hash),t=m&&m[1];
+if(!t){try{t=localStorage.getItem('fdb-theme')}catch(e){}}
+if(t==='dark'||t==='light')d.setAttribute('data-theme',t);
+try{if(window.top!==window.self)d.classList.add('kb-embed')}catch(e){d.classList.add('kb-embed')}})();</script>
+<style id="kb-theme">
+:root{--kb-fg:#1f1f1e;--kb-line:#d6d5ce;--kb-hover:rgba(0,0,0,.05)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--kb-fg:#ecebe6;--kb-line:#3b3b38;--kb-hover:rgba(255,255,255,.08)}}
+:root[data-theme="dark"]{--kb-fg:#ecebe6;--kb-line:#3b3b38;--kb-hover:rgba(255,255,255,.08)}
+/* スイッチ本体（トラック） */
+:root{--kb-trk:#e8e7e1;--kb-knob:#fff;--kb-ico:#d08a00;--kb-dim:#a9a79f}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--kb-trk:#2b2b29;--kb-knob:#45453f;--kb-ico:#f3d36a;--kb-dim:#6f6e68}}
+:root[data-theme="dark"]{--kb-trk:#2b2b29;--kb-knob:#45453f;--kb-ico:#f3d36a;--kb-dim:#6f6e68}
+:root button.kb-theme.kb-theme{-webkit-appearance:none;appearance:none;position:relative;display:inline-block;box-sizing:border-box;
+width:54px;height:30px;min-width:54px;min-height:0;padding:0;border:1px solid var(--kb-line);border-radius:15px;background:var(--kb-trk);
+color:var(--kb-fg);font-size:0;line-height:0;cursor:pointer;box-shadow:inset 0 1px 2px rgba(0,0,0,.08);vertical-align:middle;flex-shrink:0;
+overflow:hidden;-webkit-tap-highlight-color:transparent;transition:background .3s,border-color .3s}
+:root button.kb-theme.kb-theme:focus-visible{outline:2px solid #2a78d6;outline-offset:2px}
+:root button.kb-theme.kb-theme svg{display:block;width:100%;height:100%}
+/* 両端の小さなアイコン（つまみが無い側だけ見える） */
+:root button.kb-theme.kb-theme .kb-trk{position:absolute;top:50%;width:13px;height:13px;margin-top:-6.5px;color:var(--kb-dim);transition:opacity .3s}
+:root button.kb-theme.kb-theme .kb-l{left:7px;opacity:0}
+:root button.kb-theme.kb-theme .kb-r{right:7px;opacity:1}
+/* つまみ */
+:root button.kb-theme.kb-theme .kb-knob{position:absolute;top:2px;left:2px;width:24px;height:24px;border-radius:50%;background:var(--kb-knob);
+color:var(--kb-ico);box-shadow:0 1px 3px rgba(0,0,0,.25),0 0 0 .5px rgba(0,0,0,.06);transform:translateX(0);
+transition:transform .32s cubic-bezier(.3,1.35,.5,1),background .3s,color .3s}
+:root button.kb-theme.kb-theme:active .kb-knob{width:28px}
+:root button.kb-theme.kb-theme .kb-knob svg{position:absolute;inset:0;margin:auto;width:15px;height:15px;transition:opacity .25s,transform .35s}
+:root button.kb-theme.kb-theme .kb-knob .kb-sun{opacity:1;transform:none}
+:root button.kb-theme.kb-theme .kb-knob .kb-moon{opacity:0;transform:rotate(-90deg) scale(.4)}
+/* ダーク表示中：つまみを右へ */
+@media (prefers-color-scheme:dark){
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-knob{transform:translateX(24px)}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme:active .kb-knob{transform:translateX(20px)}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-knob .kb-sun{opacity:0;transform:rotate(90deg) scale(.4)}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-knob .kb-moon{opacity:1;transform:none}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-l{opacity:1}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-r{opacity:0}}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-knob{transform:translateX(24px)}
+:root[data-theme="dark"] button.kb-theme.kb-theme:active .kb-knob{transform:translateX(20px)}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-knob .kb-sun{opacity:0;transform:rotate(90deg) scale(.4)}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-knob .kb-moon{opacity:1;transform:none}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-l{opacity:1}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-r{opacity:0}
+@media (prefers-reduced-motion:reduce){:root button.kb-theme.kb-theme *{transition:none!important}}
+/* 全ページ共通の置き場所：ページ右上の角 */
+:root button.kb-theme.kb-theme.kb-corner{position:absolute;top:12px;right:16px;z-index:60;margin:0;float:none}
+@media (max-width:700px){:root button.kb-theme.kb-theme.kb-corner{top:10px;right:12px}}
+/* 右上のスイッチの下に見えない「よけ」を置き、見出しの文字やボタンがスイッチと重ならないようにする */
+.kb-spacer{float:right;width:84px;height:46px;pointer-events:none}
+@media (max-width:700px){.kb-spacer{width:76px;height:44px}}
+html.kb-embed .kb-spacer{display:none}
+html.kb-embed button.kb-theme[data-kb]{display:none}
+
+</style><!--/kb-theme-->
+<script>
+/* 親ページから ?theme=dark|light で表示を指定できる。指定が無ければOSの設定に従う。 */
+(function(){try{
+  var m=/[?&#]theme=(dark|light)/.exec(location.search+location.hash);
+  if(m)document.documentElement.setAttribute("data-theme",m[1]);
+}catch(e){}})();
+</script>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MBGL Mobility Global Inc. チャート</title>
+<link rel="stylesheet" href="assets/chart.css?v=a08d4ea5"><!--site-icon:v3--><link rel="icon" type="image/svg+xml" href="/us-charts/icon-black.svg?v=3" media="(prefers-color-scheme: light)"><link rel="icon" type="image/svg+xml" href="/us-charts/icon-white.svg?v=3" media="(prefers-color-scheme: dark)"><link rel="apple-touch-icon" href="/us-charts/apple-touch-icon.png?v=3"><!--/site-icon--><!--mobile-fix:v1--><style id="mobile-fix">
+.mf-spacer{display:none}
+html.mf-sa .mf-spacer{display:block;height:calc(env(safe-area-inset-bottom,0px) + 110px)}
+html.mf-sa .detail .inner{padding-bottom:calc(env(safe-area-inset-bottom,0px) + 140px)}
+</style><script>(function(){try{if(window.top!==window.self)return;
+var sa=navigator.standalone===true||matchMedia('(display-mode: standalone)').matches;
+var touch=matchMedia('(pointer: coarse)').matches;
+if(sa||touch)document.documentElement.classList.add('mf-sa');}catch(e){}})();</script><!--/mobile-fix--><!--pc-wide:v1--><style id="pc-wide">@media (min-width:1280px){body>.wrap,body>main,body>div.wrap{max-width:1680px!important}}</style><!--/pc-wide--></head><body><!--kb-btn--><button class="kb-theme kb-corner" id="kbTheme" type="button" data-kb="msg" aria-label="明暗を切り替え（ライト／ダーク）" title="明暗を切り替え（ライト／ダーク）"><span class="kb-trk kb-l"><svg class="kb-sun" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="12" cy="12" r="4.3"/><path d="M12 2.2v2.3M12 19.5v2.3M2.2 12h2.3M19.5 12h2.3M5.1 5.1l1.6 1.6M17.3 17.3l1.6 1.6M5.1 18.9l1.6-1.6M17.3 6.7l1.6-1.6"/></svg></span><span class="kb-trk kb-r"><svg class="kb-moon" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M20.2 14.6A8.4 8.4 0 0 1 9.4 3.8a.6.6 0 0 0-.8-.7A9.2 9.2 0 1 0 20.9 15.4a.6.6 0 0 0-.7-.8z"/></svg></span><span class="kb-knob"><svg class="kb-sun" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="12" cy="12" r="4.3"/><path d="M12 2.2v2.3M12 19.5v2.3M2.2 12h2.3M19.5 12h2.3M5.1 5.1l1.6 1.6M17.3 17.3l1.6 1.6M5.1 18.9l1.6-1.6M17.3 6.7l1.6-1.6"/></svg><svg class="kb-moon" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M20.2 14.6A8.4 8.4 0 0 1 9.4 3.8a.6.6 0 0 0-.8-.7A9.2 9.2 0 1 0 20.9 15.4a.6.6 0 0 0-.7-.8z"/></svg></span></button><div class="kb-spacer" aria-hidden="true"></div><!--/kb-btn--><div class="wrap">
+<h1><a class="back" href="./charts.html" title="一覧へ">‹</a>MBGL Mobility Global Inc.<span class="mk">NYSE</span><span class="mk sec">情報技術</span></h1>
+<div class="price"><b id="last"></b><span class="chg" id="chg"></span><span class="asof" id="asof"></span><a class="dash" href="./one/MBGL.html" target="_top" title="シグナル・チャート・ファンダを1画面で">ダッシュボード ›</a></div>
+<section class="biz" aria-label="会社概要"><p>自動車業界向けのデータ・ソフトウェアの会社。</p><a href="https://www.mobilityglobal.com" target="_blank" rel="noopener noreferrer"><b>公式サイト ↗</b><span>www.mobilityglobal.com</span></a></section><div class="st" id="state"></div>
+<div class="bar">
+  <div class="seg" id="periods"></div>
+  <div class="ipick">
+    <button class="ib" data-g="tr" type="button">トレンド系<span class="cnt" id="cTR"></span><small>チャート上</small></button>
+    <button class="ib" data-g="os" type="button">オシレーター系<span class="cnt" id="cOS"></span><small>チャート下</small></button>
+    <button class="ib" data-g="sg" type="button"><span class="sgi"><b class="bu">▲</b><b class="se">▼</b></span>売買サイン<span class="cnt" id="cSG"></span></button>
+  </div>
+</div>
+<div class="ipanel" id="ipanel" hidden>
+  <div class="iph"><b id="iptitle"></b><span id="ipdesc"></span>
+    <button type="button" id="ipreset">既定に戻す</button><button type="button" id="ipnone">すべて外す</button><button type="button" id="ipclose">閉じる</button></div>
+  <div class="sgst" id="sgst" hidden>表示のしかた
+    <div class="seg" id="sgstyle"><button type="button" data-st="label">ラベル（買・売）</button><button type="button" data-st="tri">大きい三角</button></div>
+    <label><input type="checkbox" id="sgvl">サインの足に縦線も引く</label></div>
+  <div class="ics" id="ipchips"></div>
+</div>
+<div class="legend" id="legend"></div>
+<div class="chart"><canvas id="cv"></canvas><div class="vmode" id="vmode"><button type="button" data-m="v">出来高</button><button type="button" data-m="a">売買代金</button></div><div class="xh" id="xhv"></div><div class="xh" id="xhh"></div><div id="tip"></div></div>
+<details class="nt" id="ntbox"><summary>指標の計算方法</summary><p class="note" id="note"></p></details>
+</div>
+<script>
+const CODE = "MBGL";
+const RAW = [["2026-06-26",24.98,25.92,20.94,20.94,56000],["2026-06-29",21.94,23.93,21.69,22.93,167300],["2026-06-30",23.23,23.23,21.94,21.99,205600],["2026-07-01",20.24,21.44,18.05,21.13,97846400],["2026-07-02",20.89,20.89,19.74,19.74,26967900],["2026-07-06",18.8,19.4,17.62,19.2,35850600],["2026-07-07",19.19,21.36,19.19,21.14,21719200],["2026-07-08",20.66,21.91,19.85,21.44,17409500],["2026-07-09",21.13,22.26,20.76,22.2,9072700],["2026-07-10",21.47,21.66,20.69,20.74,5922000],["2026-07-13",19.99,20.99,19.94,20.2,5462200],["2026-07-14",20.32,21.23,20.15,20.51,6641800],["2026-07-15",20.3,21.34,20.2,20.94,6074100],["2026-07-16",21.18,21.31,20.07,20.6,5457000],["2026-07-17",20.15,20.72,19.83,20.05,6113100],["2026-07-20",20.34,20.57,19.82,20.06,4715400],["2026-07-21",19.85,20.02,19.39,19.8,5170300],["2026-07-22",19.79,20.38,19.7,20.32,4829300],["2026-07-23",19.75,20.67,19.74,20.64,4398900],["2026-07-24",20.61,21.28,20.32,20.49,4174800],["2026-07-27",20.24,21.04,20.24,20.56,2889700],["2026-07-28",19.94,21.94,19.85,21.66,6184000],["2026-07-29",21.42,21.93,21.2,21.41,3845500],["2026-07-30",21.18,21.2,20.05,20.42,2852900],["2026-07-31",20.04,20.4,19.85,20.32,2924700],["2026-08-03",20.21,21.25,20.21,21.24,2612600],["2026-08-04",20.69,21.26,20.69,21.15,3327400],["2026-08-05",21.0,21.51,20.85,21.2,3331700],["2026-08-06",20.96,21.2,20.34,20.67,3519100],["2026-08-07",20.31,20.64,18.67,19.64,10921200],["2026-08-10",19.15,19.64,18.63,18.94,4390800],["2026-08-11",18.68,19.74,18.68,19.31,4880500],["2026-08-12",19.19,19.67,19.04,19.56,4563500],["2026-08-13",19.69,19.94,19.49,19.77,3758800],["2026-08-14",20.76,21.08,19.83,20.28,3655300],["2026-08-17",20.16,20.28,19.57,19.66,3776800],["2026-08-18",19.62,20.16,19.32,19.76,5744600],["2026-08-19",19.88,21.07,19.88,20.63,6031500],["2026-08-20",20.76,20.77,19.97,20.14,2616700],["2026-08-21",20.24,20.39,19.66,19.79,2902400],["2026-08-24",19.79,20.16,19.48,19.64,4663300],["2026-08-25",19.72,20.3,19.64,20.2,3450100],["2026-08-26",20.1,20.92,20.1,20.49,2855700],["2026-08-27",20.42,20.8,20.25,20.27,3945600],["2026-08-28",20.36,20.51,19.97,20.24,3055100],["2026-08-31",20.04,20.58,20.04,20.3,4365800],["2026-09-01",20.12,20.19,19.7,19.83,3485500],["2026-09-02",19.9,20.83,19.76,20.38,3782100],["2026-09-03",20.73,20.9,20.26,20.46,3626600],["2026-09-04",20.33,20.62,20.21,20.58,3365400],["2026-09-08",20.6,20.9,19.97,20.52,4588900],["2026-09-09",20.45,20.53,19.75,19.76,3906300],["2026-09-10",19.75,20.24,19.74,20.19,3358900],["2026-09-11",20.23,20.36,19.91,20.16,2754400],["2026-09-14",20.31,20.61,20.22,20.26,3742500],["2026-09-15",20.15,20.52,20.04,20.34,3378500],["2026-09-16",20.29,20.43,19.82,19.94,3037200],["2026-09-17",19.9,20.16,19.85,20.05,3181800],["2026-09-18",19.9,20.02,19.43,19.49,9890700],["2026-09-21",19.49,19.6,18.92,19.2,4201300],["2026-09-22",19.46,19.87,18.9,19.09,2606500],["2026-09-23",19.0,19.21,18.77,18.88,2910400],["2026-09-24",18.9,19.14,18.25,18.34,4008800],["2026-09-25",18.17,18.42,17.8,17.87,5493500],["2026-09-28",17.67,17.79,17.51,17.76,3474600],["2026-09-29",17.72,17.86,17.36,17.8,4548100],["2026-09-30",17.82,17.88,17.14,17.15,5190800],["2026-10-01",17.22,17.74,16.95,17.71,3688100],["2026-10-02",17.64,17.74,17.01,17.21,5329000],["2026-10-05",17.31,17.72,17.09,17.59,8118100],["2026-10-06",17.64,17.76,17.2,17.62,4446800],["2026-10-07",17.53,17.74,17.26,17.37,2710600],["2026-10-08",17.27,18.14,17.26,18.08,4324300],["2026-10-09",18.02,18.31,18.02,18.22,2215300],["2026-10-12",18.19,18.29,18.0,18.11,2028200],["2026-10-13",18.14,18.37,17.99,18.11,2595100],["2026-10-14",18.0,18.06,17.65,17.84,3135800],["2026-10-15",18.02,18.93,18.02,18.72,4638400],["2026-10-16",18.93,19.09,18.55,18.69,3605200],["2026-10-19",18.55,18.73,18.25,18.43,2714700],["2026-10-20",18.72,19.01,18.47,18.52,2745300],["2026-10-21",18.57,18.71,18.43,18.52,2383000],["2026-10-22",18.64,19.37,18.5,19.28,2593300],["2026-10-23",19.13,19.29,18.65,18.76,3012300],["2026-10-26",18.61,18.94,18.61,18.68,2737500],["2026-10-27",18.71,18.77,18.14,18.2,3378300],["2026-10-28",18.21,18.36,18.01,18.33,2963500],["2026-10-29",18.33,19.01,18.26,18.92,9318200],["2026-10-30",18.96,19.28,18.76,18.91,6233300],["2026-11-02",18.91,19.77,18.72,19.6,2935200],["2026-11-03",19.25,19.65,19.11,19.32,3662000],["2026-11-04",19.15,20.0,19.15,19.79,4776600],["2026-11-05",19.9,20.18,19.71,19.86,4215800],["2026-11-06",19.35,19.98,19.25,19.64,2853600],["2026-11-09",19.63,19.87,19.25,19.86,2797800],["2026-11-10",19.66,20.03,19.4,19.93,3127400],["2026-11-11",19.98,19.98,19.6,19.92,3028000],["2026-11-12",21.12,23.31,21.09,23.13,7288200],["2026-11-13",23.17,23.31,22.66,23.28,5772100],["2026-11-16",23.44,24.86,23.44,24.04,9915400],["2026-11-17",23.83,24.21,23.66,23.89,6599000],["2026-11-18",23.86,24.25,23.63,23.93,4983300],["2026-11-19",23.73,23.76,22.22,22.32,8291100],["2026-11-20",22.49,22.94,22.35,22.63,4889200],["2026-11-23",22.52,23.18,22.52,22.96,5683000],["2026-11-24",23.38,23.49,22.83,22.96,4837300],["2026-11-25",22.96,23.17,22.56,23.15,2510000],["2026-11-27",23.08,23.75,23.09,23.56,1449068]];
+const DATANOTE = "";
+</script>
+<script src="intra/MBGL.js?v=20261127898"></script>
+<script src="assets/chart.js?v=aa49b450"></script><!--kb-theme-js--><script>(function(){var bs=document.querySelectorAll('button.kb-theme[data-kb]');
+for(var i=0;i<bs.length;i++)bs[i].addEventListener('click',function(){var b=this,d=document.documentElement,
+cur=d.getAttribute('data-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'),n=cur==='dark'?'light':'dark';
+d.setAttribute('data-theme',n);try{localStorage.setItem('fdb-theme',n)}catch(e){}
+var f=document.querySelectorAll('iframe');for(var j=0;j<f.length;j++){try{f[j].contentWindow.postMessage({chartTheme:n},'*')}catch(e){}}
+var k=b.getAttribute('data-kb');
+if(k==='reload')location.reload();
+else if(k==='msg')window.postMessage({chartTheme:n},'*');
+else if(k==='fn'&&typeof window.__kbRedraw==='function')window.__kbRedraw();});})();</script><!--/kb-theme-js--><!--mobile-fix-spacer--><div class="mf-spacer" aria-hidden="true"></div><!--/mobile-fix-spacer--></body></html>

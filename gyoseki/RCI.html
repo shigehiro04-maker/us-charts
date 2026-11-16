@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8"><!--kb-theme:v3--><script>(function(){var d=document.documentElement,
+m=/[?&#]theme=(dark|light)/.exec(location.search+location.hash),t=m&&m[1];
+if(!t){try{t=localStorage.getItem('fdb-theme')}catch(e){}}
+if(t==='dark'||t==='light')d.setAttribute('data-theme',t);
+try{if(window.top!==window.self)d.classList.add('kb-embed')}catch(e){d.classList.add('kb-embed')}})();</script>
+<style id="kb-theme">
+:root{--kb-fg:#1f1f1e;--kb-line:#d6d5ce;--kb-hover:rgba(0,0,0,.05)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--kb-fg:#ecebe6;--kb-line:#3b3b38;--kb-hover:rgba(255,255,255,.08)}}
+:root[data-theme="dark"]{--kb-fg:#ecebe6;--kb-line:#3b3b38;--kb-hover:rgba(255,255,255,.08)}
+/* スイッチ本体（トラック） */
+:root{--kb-trk:#e8e7e1;--kb-knob:#fff;--kb-ico:#d08a00;--kb-dim:#a9a79f}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--kb-trk:#2b2b29;--kb-knob:#45453f;--kb-ico:#f3d36a;--kb-dim:#6f6e68}}
+:root[data-theme="dark"]{--kb-trk:#2b2b29;--kb-knob:#45453f;--kb-ico:#f3d36a;--kb-dim:#6f6e68}
+:root button.kb-theme.kb-theme{-webkit-appearance:none;appearance:none;position:relative;display:inline-block;box-sizing:border-box;
+width:54px;height:30px;min-width:54px;min-height:0;padding:0;border:1px solid var(--kb-line);border-radius:15px;background:var(--kb-trk);
+color:var(--kb-fg);font-size:0;line-height:0;cursor:pointer;box-shadow:inset 0 1px 2px rgba(0,0,0,.08);vertical-align:middle;flex-shrink:0;
+overflow:hidden;-webkit-tap-highlight-color:transparent;transition:background .3s,border-color .3s}
+:root button.kb-theme.kb-theme:focus-visible{outline:2px solid #2a78d6;outline-offset:2px}
+:root button.kb-theme.kb-theme svg{display:block;width:100%;height:100%}
+/* 両端の小さなアイコン（つまみが無い側だけ見える） */
+:root button.kb-theme.kb-theme .kb-trk{position:absolute;top:50%;width:13px;height:13px;margin-top:-6.5px;color:var(--kb-dim);transition:opacity .3s}
+:root button.kb-theme.kb-theme .kb-l{left:7px;opacity:0}
+:root button.kb-theme.kb-theme .kb-r{right:7px;opacity:1}
+/* つまみ */
+:root button.kb-theme.kb-theme .kb-knob{position:absolute;top:2px;left:2px;width:24px;height:24px;border-radius:50%;background:var(--kb-knob);
+color:var(--kb-ico);box-shadow:0 1px 3px rgba(0,0,0,.25),0 0 0 .5px rgba(0,0,0,.06);transform:translateX(0);
+transition:transform .32s cubic-bezier(.3,1.35,.5,1),background .3s,color .3s}
+:root button.kb-theme.kb-theme:active .kb-knob{width:28px}
+:root button.kb-theme.kb-theme .kb-knob svg{position:absolute;inset:0;margin:auto;width:15px;height:15px;transition:opacity .25s,transform .35s}
+:root button.kb-theme.kb-theme .kb-knob .kb-sun{opacity:1;transform:none}
+:root button.kb-theme.kb-theme .kb-knob .kb-moon{opacity:0;transform:rotate(-90deg) scale(.4)}
+/* ダーク表示中：つまみを右へ */
+@media (prefers-color-scheme:dark){
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-knob{transform:translateX(24px)}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme:active .kb-knob{transform:translateX(20px)}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-knob .kb-sun{opacity:0;transform:rotate(90deg) scale(.4)}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-knob .kb-moon{opacity:1;transform:none}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-l{opacity:1}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-r{opacity:0}}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-knob{transform:translateX(24px)}
+:root[data-theme="dark"] button.kb-theme.kb-theme:active .kb-knob{transform:translateX(20px)}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-knob .kb-sun{opacity:0;transform:rotate(90deg) scale(.4)}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-knob .kb-moon{opacity:1;transform:none}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-l{opacity:1}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-r{opacity:0}
+@media (prefers-reduced-motion:reduce){:root button.kb-theme.kb-theme *{transition:none!important}}
+/* 全ページ共通の置き場所：ページ右上の角 */
+:root button.kb-theme.kb-theme.kb-corner{position:absolute;top:12px;right:16px;z-index:60;margin:0;float:none}
+@media (max-width:700px){:root button.kb-theme.kb-theme.kb-corner{top:10px;right:12px}}
+/* 右上のスイッチの下に見えない「よけ」を置き、見出しの文字やボタンがスイッチと重ならないようにする */
+.kb-spacer{float:right;width:84px;height:46px;pointer-events:none}
+@media (max-width:700px){.kb-spacer{width:76px;height:44px}}
+html.kb-embed .kb-spacer{display:none}
+html.kb-embed button.kb-theme[data-kb]{display:none}
+
+</style><!--/kb-theme-->
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Rogers Communication, Inc.（RCI）業績ダッシュボード</title>
+<link rel="stylesheet" href="assets/style.css">
+<!--site-icon:v3--><link rel="icon" type="image/svg+xml" href="/us-charts/icon-black.svg?v=3" media="(prefers-color-scheme: light)"><link rel="icon" type="image/svg+xml" href="/us-charts/icon-white.svg?v=3" media="(prefers-color-scheme: dark)"><link rel="apple-touch-icon" href="/us-charts/apple-touch-icon.png?v=3"><!--/site-icon--><!--mobile-fix:v1--><style id="mobile-fix">
+.mf-spacer{display:none}
+html.mf-sa .mf-spacer{display:block;height:calc(env(safe-area-inset-bottom,0px) + 110px)}
+html.mf-sa .detail .inner{padding-bottom:calc(env(safe-area-inset-bottom,0px) + 140px)}
+</style><script>(function(){try{if(window.top!==window.self)return;
+var sa=navigator.standalone===true||matchMedia('(display-mode: standalone)').matches;
+var touch=matchMedia('(pointer: coarse)').matches;
+if(sa||touch)document.documentElement.classList.add('mf-sa');}catch(e){}})();</script><!--/mobile-fix--><!--pc-wide:v1--><style id="pc-wide">@media (min-width:1280px){body>.wrap,body>main,body>div.wrap{max-width:1680px!important}}</style><!--/pc-wide--></head>
+<body><!--kb-btn--><button class="kb-theme kb-corner" id="kbTheme" type="button" data-kb="reload" aria-label="明暗を切り替え（ライト／ダーク）" title="明暗を切り替え（ライト／ダーク）"><span class="kb-trk kb-l"><svg class="kb-sun" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="12" cy="12" r="4.3"/><path d="M12 2.2v2.3M12 19.5v2.3M2.2 12h2.3M19.5 12h2.3M5.1 5.1l1.6 1.6M17.3 17.3l1.6 1.6M5.1 18.9l1.6-1.6M17.3 6.7l1.6-1.6"/></svg></span><span class="kb-trk kb-r"><svg class="kb-moon" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M20.2 14.6A8.4 8.4 0 0 1 9.4 3.8a.6.6 0 0 0-.8-.7A9.2 9.2 0 1 0 20.9 15.4a.6.6 0 0 0-.7-.8z"/></svg></span><span class="kb-knob"><svg class="kb-sun" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="12" cy="12" r="4.3"/><path d="M12 2.2v2.3M12 19.5v2.3M2.2 12h2.3M19.5 12h2.3M5.1 5.1l1.6 1.6M17.3 17.3l1.6 1.6M5.1 18.9l1.6-1.6M17.3 6.7l1.6-1.6"/></svg><svg class="kb-moon" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M20.2 14.6A8.4 8.4 0 0 1 9.4 3.8a.6.6 0 0 0-.8-.7A9.2 9.2 0 1 0 20.9 15.4a.6.6 0 0 0-.7-.8z"/></svg></span></button><div class="kb-spacer" aria-hidden="true"></div><!--/kb-btn-->
+<div class="wrap">
+  <header class="mast">
+    <div class="eyebrow"><a href="../fundamentals.html" style="color:inherit">← 東証スクリーニング</a></div>
+    <h1>Rogers Communication, Inc.<span class="code">RCI</span></h1>
+    <div class="slip" id="slip"></div>
+    <p class="biz">カナダの大手通信・メディア会社ロジャーズ。</p><p class="site"><a href="https://www.rogers.com" target="_blank" rel="noopener noreferrer"><b>公式サイト ↗</b><span>www.rogers.com</span></a></p>
+  </header>
+
+  <section class="cards" id="cards" aria-label="判定サマリー"></section>
+
+  <section class="grid">
+    <div class="panel" id="p-annual"></div>
+    <div class="panel" id="p-cf"></div>
+    <div class="panel" id="p-q"></div>
+    <div class="panel" id="p-div"></div>
+    <div class="panel full" id="p-bs"></div>
+    <div class="panel full" id="p-holders"></div>
+  </section>
+
+  <details class="more">
+    <summary>通期の数値をすべて見る</summary>
+    <div class="inner" id="t-annual"></div>
+  </details>
+  <details class="more">
+    <summary>判定の基準と注記</summary>
+    <div class="inner foot"><ol>
+      <li>直近の通期決算を、同じ業種の中央値と比べて判定しています。▲＝良い側　●＝並み　▼＝注意。</li>
+      <li>成長性：売上高の年平均成長率が5%以上で増収。利益が初年度を下回ると増収減益。</li>
+      <li>収益性：営業利益率が業種中央値の1.2倍以上で高い、0.6倍未満で低い。</li>
+      <li>財務安全性：自己資本比率が50%以上か業種の1.3倍以上で厚い、20%未満で薄め（業種並みなら標準）。</li>
+      <li>資本効率：ROE 10%以上で高い、5%未満で低い。</li>
+      <li>割安度：PERとPBRがともに業種中央値を下回ると割安、ともに上回ると割高。</li>
+      <li>売上総利益・粗利率は売上原価データがある期のみ表示し、データの無い系列・列は出しません。</li>
+      <li>グラフ：通期・配当の右端の薄い棒は会社予想（J-Quants 決算短信サマリーの最新値）。折れ線は右軸（%）。</li>
+      <li>経常利益は J-Quants の決算短信サマリーから取得（日本基準のみ。取得範囲は直近約2年）。IFRS・米国基準は税引前利益で表示します。</li>
+      <li>貸借対照表は年次決算（10-K）の連結貸借対照表を Yahoo Finance から取得し、区分にまとめたもの。外国企業は最新の為替でドルに換算しています。</li>
+      <li>株主構成は 13F（運用資産1億ドル超の機関投資家が四半期ごとに出す保有報告）の上位10社を、発行済株式数に対する割合で描画（Yahoo Finance 経由）。その他は上位10社以外の合計です。</li>
+      <li>四半期決算は累計値の差分から単独四半期を算出。フリーCFは営業CF＋投資CF。配当性向は一株配当÷EPS。</li>
+      <li>出所：~/株分析 の fundamentals/（通期）。株価・時価総額は取得日時点。生成 2026-11-28</li>
+    </ol></div>
+  </details>
+</div>
+<script src="assets/app.js"></script>
+<script>renderCompany({"code":"RCI","name":"Rogers Communication, Inc.","market":"NYSE","sector":"通信サービス","quote":{"price":35.64,"priceDate":"2026-11-27","mcap":19253.629,"per":3.98,"pbr":1.55,"psr":1.26,"yld":0.0333,"asof":"2026-11-28"},"annual":[{"fy":"22/12期","fyEnd":"2022-12-31","y":2022,"rev":10804.135,"gp":4486.284,"op":2678.578,"pbt":1606.305,"ni":1178.939,"ta":39055.867,"se":7082.056,"eq":0.1813,"cr":2.0194,"ocf":3152.96,"icf":-2289.809,"fcf":7968.365,"freecf":962.099,"ibd":25786.486,"cash":324.91,"ebitda":4442.776,"eps":2.3368257624112734,"bps":14.027972069249655,"dps":1.4037094812466278,"opm":0.24792155966211085,"nim":0.10911923999468723,"gpm":0.4152376844606255,"roe":0.16646846621941427,"roa":0.03018596412160048,"odp":1606.305,"payout":0.6006906906906907,"frcf":863.1509999999998},{"fy":"23/12期","fyEnd":"2023-12-31","y":2023,"rev":13549.379,"gp":6021.712,"op":3129.803,"pbt":958.59,"ni":595.785,"ta":48618.607,"se":7326.265,"eq":0.1507,"cr":0.8920999999999999,"ocf":3663.834,"icf":-14175.339,"fcf":1739.637,"freecf":775.433,"ibd":31717.673,"cash":561.4,"ebitda":5341.015,"eps":1.1368341546865655,"bps":13.824464720571196,"dps":1.2710086549187083,"opm":0.2309923576571295,"nim":0.043971387913792945,"gpm":0.44442715787933895,"roe":0.08132179220926351,"roa":0.012254258950693505,"odp":958.59,"payout":1.1180246913580247,"frcf":-10511.505000000001},{"fy":"24/12期","fyEnd":"2024-12-31","y":2024,"rev":14458.846,"gp":6748.725,"op":3510.853,"pbt":1618.234,"ni":1216.834,"ta":50112.632,"se":7300.3,"eq":0.1457,"cr":0.664,"ocf":3985.937,"icf":-3126.294,"fcf":-790.872,"freecf":1058.238,"ibd":33426.433,"cash":630.171,"ebitda":6391.534,"eps":2.280685804155147,"bps":13.613939877110722,"dps":0.9673616557008831,"opm":0.24281695786786858,"nim":0.08415844528671237,"gpm":0.46675405492250216,"roe":0.16668273906551787,"roa":0.024281981437335003,"odp":1618.234,"payout":0.4241538461538461,"frcf":859.643},{"fy":"25/12期","fyEnd":"2025-12-31","y":2025,"rev":15236.385,"gp":6891.18,"op":3521.379,"pbt":5351.542,"ni":4837.861,"ta":63165.874,"se":12456.755,"eq":0.1972,"cr":0.6062,"ocf":4251.9,"icf":-5762.767,"fcf":1823.847,"freecf":1467.358,"ibd":31000.485,"cash":943.151,"ebitda":10235.016,"eps":8.961340836634223,"bps":23.059487853704038,"dps":1.1859566181606762,"opm":0.23111643608375607,"nim":0.3175202648134712,"gpm":0.45228444936249645,"roe":0.388372493478438,"roa":0.07658978960696403,"odp":5351.542,"payout":0.13234142521534845,"frcf":-1510.8670000000002}],"peer":{"n":247,"opm":0.02442501475213797,"nim":-0.02315959672817196,"eq":0.42469999999999997,"roe":0.014958094498618374,"gpm":0.5333919156414763,"per":16.2,"pbr":1.545,"yld":0.0},"fc":null,"quarters":[{"fy":"25/09","fyEnd":"2025-09-30","perEnd":"2025-09-30","perSt":null,"rev":3752.956,"op":901.748,"odp":4196.462,"ni":4009.797,"opm":0.24027673119535642},{"fy":"25/12","fyEnd":"2025-12-31","perEnd":"2025-12-31","perSt":null,"rev":4331.198,"op":1029.466,"odp":635.083,"ni":493.33,"opm":0.2376862013696903},{"fy":"26/03","fyEnd":"2026-03-31","perEnd":"2026-03-31","perSt":null,"rev":3846.991,"op":802.1,"odp":459.646,"ni":307.366,"opm":0.20850061775553932},{"fy":"26/06","fyEnd":"2026-06-30","perEnd":"2026-06-30","perSt":null,"rev":3940.323,"op":875.783,"odp":-362.804,"ni":-509.47,"opm":0.22226172828978744},{"fy":"26/09","fyEnd":"2026-09-30","perEnd":"2026-09-30","perSt":null,"rev":3819.622,"op":935.432,"odp":487.716,"ni":338.243,"opm":0.24490172064146662}],"odpName":"税引前利益","holders":{"asof":"2026-09-30","filed":"2026-09-30","issued":null,"treasury":null,"holders":[["Royal Bank of Canada",30283998,0.0706],["Bank of Montreal /CAN/",26723498,0.0623],["FIL LTD",14005970,0.0326],["1832 Asset Management L.P.",13194625,0.0308],["CIBC World Market, Inc.",11536788,0.0269],["National Bank of Canada/FI/",10783026,0.025099999999999997],["Beutel, Goodman & Company Ltd",7343372,0.0171],["Morgan Stanley",7080584,0.0165],["Fiera Capital Corporation",6683827,0.015600000000000001],["Letko, Brosseau & Associates Inc.",6506317,0.0152]]},"bs":[{"fy":"22/12","fyEnd":"2022-12-31","std":"US","ta":39055.867,"tl":31973.811,"na":7082.056,"noCA":false,"cash":324.91,"recv":2936.12,"inv":307.366,"oca":9963.439,"ppe":10929.046,"onca":14594.986,"pay":2611.912,"ocl":4089.094,"ncl":25272.805,"eq":7082.056,"oeq":0.0},{"fy":"23/12","fyEnd":"2023-12-31","std":"US","ta":48618.607,"tl":41292.343,"na":7326.265,"noCA":false,"cash":561.4,"recv":3505.94,"inv":319.998,"oca":1110.167,"ppe":17074.968,"onca":26046.134,"pay":2962.085,"ocl":3200.679,"ncl":35129.579,"eq":7326.265,"oeq":0.0},{"fy":"24/12","fyEnd":"2024-12-31","std":"US","ta":50112.632,"tl":42812.332,"na":7300.3,"noCA":false,"cash":630.171,"recv":3844.184,"inv":449.821,"oca":951.572,"ppe":17594.263,"onca":26642.621,"pay":2848.401,"ocl":5999.958,"ncl":33963.973,"eq":7300.3,"oeq":0.0},{"fy":"25/12","fyEnd":"2025-12-31","std":"US","ta":63165.874,"tl":46123.186,"na":17042.688,"noCA":false,"cash":943.151,"recv":4284.181,"inv":385.962,"oca":1044.905,"ppe":18460.924,"onca":38046.751,"pay":3390.152,"ocl":7593.631,"ncl":35139.403,"eq":12456.755,"oeq":4585.933}]});</script>
+<!--kb-theme-js--><script>(function(){var bs=document.querySelectorAll('button.kb-theme[data-kb]');
+for(var i=0;i<bs.length;i++)bs[i].addEventListener('click',function(){var b=this,d=document.documentElement,
+cur=d.getAttribute('data-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'),n=cur==='dark'?'light':'dark';
+d.setAttribute('data-theme',n);try{localStorage.setItem('fdb-theme',n)}catch(e){}
+var f=document.querySelectorAll('iframe');for(var j=0;j<f.length;j++){try{f[j].contentWindow.postMessage({chartTheme:n},'*')}catch(e){}}
+var k=b.getAttribute('data-kb');
+if(k==='reload')location.reload();
+else if(k==='msg')window.postMessage({chartTheme:n},'*');
+else if(k==='fn'&&typeof window.__kbRedraw==='function')window.__kbRedraw();});})();</script><!--/kb-theme-js--><!--mobile-fix-spacer--><div class="mf-spacer" aria-hidden="true"></div><!--/mobile-fix-spacer--></body>
+</html>

@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><!--kb-theme:v3--><script>(function(){var d=document.documentElement,
+m=/[?&#]theme=(dark|light)/.exec(location.search+location.hash),t=m&&m[1];
+if(!t){try{t=localStorage.getItem('fdb-theme')}catch(e){}}
+if(t==='dark'||t==='light')d.setAttribute('data-theme',t);
+try{if(window.top!==window.self)d.classList.add('kb-embed')}catch(e){d.classList.add('kb-embed')}})();</script>
+<style id="kb-theme">
+:root{--kb-fg:#1f1f1e;--kb-line:#d6d5ce;--kb-hover:rgba(0,0,0,.05)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--kb-fg:#ecebe6;--kb-line:#3b3b38;--kb-hover:rgba(255,255,255,.08)}}
+:root[data-theme="dark"]{--kb-fg:#ecebe6;--kb-line:#3b3b38;--kb-hover:rgba(255,255,255,.08)}
+/* スイッチ本体（トラック） */
+:root{--kb-trk:#e8e7e1;--kb-knob:#fff;--kb-ico:#d08a00;--kb-dim:#a9a79f}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--kb-trk:#2b2b29;--kb-knob:#45453f;--kb-ico:#f3d36a;--kb-dim:#6f6e68}}
+:root[data-theme="dark"]{--kb-trk:#2b2b29;--kb-knob:#45453f;--kb-ico:#f3d36a;--kb-dim:#6f6e68}
+:root button.kb-theme.kb-theme{-webkit-appearance:none;appearance:none;position:relative;display:inline-block;box-sizing:border-box;
+width:54px;height:30px;min-width:54px;min-height:0;padding:0;border:1px solid var(--kb-line);border-radius:15px;background:var(--kb-trk);
+color:var(--kb-fg);font-size:0;line-height:0;cursor:pointer;box-shadow:inset 0 1px 2px rgba(0,0,0,.08);vertical-align:middle;flex-shrink:0;
+overflow:hidden;-webkit-tap-highlight-color:transparent;transition:background .3s,border-color .3s}
+:root button.kb-theme.kb-theme:focus-visible{outline:2px solid #2a78d6;outline-offset:2px}
+:root button.kb-theme.kb-theme svg{display:block;width:100%;height:100%}
+/* 両端の小さなアイコン（つまみが無い側だけ見える） */
+:root button.kb-theme.kb-theme .kb-trk{position:absolute;top:50%;width:13px;height:13px;margin-top:-6.5px;color:var(--kb-dim);transition:opacity .3s}
+:root button.kb-theme.kb-theme .kb-l{left:7px;opacity:0}
+:root button.kb-theme.kb-theme .kb-r{right:7px;opacity:1}
+/* つまみ */
+:root button.kb-theme.kb-theme .kb-knob{position:absolute;top:2px;left:2px;width:24px;height:24px;border-radius:50%;background:var(--kb-knob);
+color:var(--kb-ico);box-shadow:0 1px 3px rgba(0,0,0,.25),0 0 0 .5px rgba(0,0,0,.06);transform:translateX(0);
+transition:transform .32s cubic-bezier(.3,1.35,.5,1),background .3s,color .3s}
+:root button.kb-theme.kb-theme:active .kb-knob{width:28px}
+:root button.kb-theme.kb-theme .kb-knob svg{position:absolute;inset:0;margin:auto;width:15px;height:15px;transition:opacity .25s,transform .35s}
+:root button.kb-theme.kb-theme .kb-knob .kb-sun{opacity:1;transform:none}
+:root button.kb-theme.kb-theme .kb-knob .kb-moon{opacity:0;transform:rotate(-90deg) scale(.4)}
+/* ダーク表示中：つまみを右へ */
+@media (prefers-color-scheme:dark){
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-knob{transform:translateX(24px)}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme:active .kb-knob{transform:translateX(20px)}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-knob .kb-sun{opacity:0;transform:rotate(90deg) scale(.4)}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-knob .kb-moon{opacity:1;transform:none}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-l{opacity:1}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-r{opacity:0}}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-knob{transform:translateX(24px)}
+:root[data-theme="dark"] button.kb-theme.kb-theme:active .kb-knob{transform:translateX(20px)}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-knob .kb-sun{opacity:0;transform:rotate(90deg) scale(.4)}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-knob .kb-moon{opacity:1;transform:none}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-l{opacity:1}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-r{opacity:0}
+@media (prefers-reduced-motion:reduce){:root button.kb-theme.kb-theme *{transition:none!important}}
+/* 全ページ共通の置き場所：ページ右上の角 */
+:root button.kb-theme.kb-theme.kb-corner{position:absolute;top:12px;right:16px;z-index:60;margin:0;float:none}
+@media (max-width:700px){:root button.kb-theme.kb-theme.kb-corner{top:10px;right:12px}}
+/* 右上のスイッチの下に見えない「よけ」を置き、見出しの文字やボタンがスイッチと重ならないようにする */
+.kb-spacer{float:right;width:84px;height:46px;pointer-events:none}
+@media (max-width:700px){.kb-spacer{width:76px;height:44px}}
+html.kb-embed .kb-spacer{display:none}
+html.kb-embed button.kb-theme[data-kb]{display:none}
+
+</style><!--/kb-theme-->
+<script>
+/* 親ページから ?theme=dark|light で表示を指定できる。指定が無ければOSの設定に従う。 */
+(function(){try{
+  var m=/[?&#]theme=(dark|light)/.exec(location.search+location.hash);
+  if(m)document.documentElement.setAttribute("data-theme",m[1]);
+}catch(e){}})();
+</script>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>TCGX TCGX Acquisition Corp. チャート</title>
+<link rel="stylesheet" href="assets/chart.css?v=a08d4ea5"><!--site-icon:v3--><link rel="icon" type="image/svg+xml" href="/us-charts/icon-black.svg?v=3" media="(prefers-color-scheme: light)"><link rel="icon" type="image/svg+xml" href="/us-charts/icon-white.svg?v=3" media="(prefers-color-scheme: dark)"><link rel="apple-touch-icon" href="/us-charts/apple-touch-icon.png?v=3"><!--/site-icon--><!--mobile-fix:v1--><style id="mobile-fix">
+.mf-spacer{display:none}
+html.mf-sa .mf-spacer{display:block;height:calc(env(safe-area-inset-bottom,0px) + 110px)}
+html.mf-sa .detail .inner{padding-bottom:calc(env(safe-area-inset-bottom,0px) + 140px)}
+</style><script>(function(){try{if(window.top!==window.self)return;
+var sa=navigator.standalone===true||matchMedia('(display-mode: standalone)').matches;
+var touch=matchMedia('(pointer: coarse)').matches;
+if(sa||touch)document.documentElement.classList.add('mf-sa');}catch(e){}})();</script><!--/mobile-fix--><!--pc-wide:v1--><style id="pc-wide">@media (min-width:1280px){body>.wrap,body>main,body>div.wrap{max-width:1680px!important}}</style><!--/pc-wide--></head><body><!--kb-btn--><button class="kb-theme kb-corner" id="kbTheme" type="button" data-kb="msg" aria-label="明暗を切り替え（ライト／ダーク）" title="明暗を切り替え（ライト／ダーク）"><span class="kb-trk kb-l"><svg class="kb-sun" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="12" cy="12" r="4.3"/><path d="M12 2.2v2.3M12 19.5v2.3M2.2 12h2.3M19.5 12h2.3M5.1 5.1l1.6 1.6M17.3 17.3l1.6 1.6M5.1 18.9l1.6-1.6M17.3 6.7l1.6-1.6"/></svg></span><span class="kb-trk kb-r"><svg class="kb-moon" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M20.2 14.6A8.4 8.4 0 0 1 9.4 3.8a.6.6 0 0 0-.8-.7A9.2 9.2 0 1 0 20.9 15.4a.6.6 0 0 0-.7-.8z"/></svg></span><span class="kb-knob"><svg class="kb-sun" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="12" cy="12" r="4.3"/><path d="M12 2.2v2.3M12 19.5v2.3M2.2 12h2.3M19.5 12h2.3M5.1 5.1l1.6 1.6M17.3 17.3l1.6 1.6M5.1 18.9l1.6-1.6M17.3 6.7l1.6-1.6"/></svg><svg class="kb-moon" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M20.2 14.6A8.4 8.4 0 0 1 9.4 3.8a.6.6 0 0 0-.8-.7A9.2 9.2 0 1 0 20.9 15.4a.6.6 0 0 0-.7-.8z"/></svg></span></button><div class="kb-spacer" aria-hidden="true"></div><!--/kb-btn--><div class="wrap">
+<h1><a class="back" href="./charts.html" title="一覧へ">‹</a>TCGX TCGX Acquisition Corp.<span class="mk">NASDAQ</span><span class="mk sec">金融</span></h1>
+<div class="price"><b id="last"></b><span class="chg" id="chg"></span><span class="asof" id="asof"></span><a class="dash" href="./one/TCGX.html" target="_top" title="シグナル・チャート・ファンダを1画面で">ダッシュボード ›</a></div>
+<section class="biz" aria-label="会社概要"><p>企業買収を目的とする特別買収目的会社（SPAC）。</p><a href="https://tcgcrossover.com" target="_blank" rel="noopener noreferrer"><b>公式サイト ↗</b><span>tcgcrossover.com</span></a></section><div class="st" id="state"></div>
+<div class="bar">
+  <div class="seg" id="periods"></div>
+  <div class="ipick">
+    <button class="ib" data-g="tr" type="button">トレンド系<span class="cnt" id="cTR"></span><small>チャート上</small></button>
+    <button class="ib" data-g="os" type="button">オシレーター系<span class="cnt" id="cOS"></span><small>チャート下</small></button>
+    <button class="ib" data-g="sg" type="button"><span class="sgi"><b class="bu">▲</b><b class="se">▼</b></span>売買サイン<span class="cnt" id="cSG"></span></button>
+  </div>
+</div>
+<div class="ipanel" id="ipanel" hidden>
+  <div class="iph"><b id="iptitle"></b><span id="ipdesc"></span>
+    <button type="button" id="ipreset">既定に戻す</button><button type="button" id="ipnone">すべて外す</button><button type="button" id="ipclose">閉じる</button></div>
+  <div class="sgst" id="sgst" hidden>表示のしかた
+    <div class="seg" id="sgstyle"><button type="button" data-st="label">ラベル（買・売）</button><button type="button" data-st="tri">大きい三角</button></div>
+    <label><input type="checkbox" id="sgvl">サインの足に縦線も引く</label></div>
+  <div class="ics" id="ipchips"></div>
+</div>
+<div class="legend" id="legend"></div>
+<div class="chart"><canvas id="cv"></canvas><div class="vmode" id="vmode"><button type="button" data-m="v">出来高</button><button type="button" data-m="a">売買代金</button></div><div class="xh" id="xhv"></div><div class="xh" id="xhh"></div><div id="tip"></div></div>
+<details class="nt" id="ntbox"><summary>指標の計算方法</summary><p class="note" id="note"></p></details>
+</div>
+<script>
+const CODE = "TCGX";
+const RAW = [["2026-08-04",10.0,10.0,10.0,10.0,0],["2026-08-05",10.3,11.06,10.3,10.75,1084100],["2026-08-06",10.65,11.76,10.52,11.76,27300],["2026-08-07",12.59,14.93,12.4,12.7,45300],["2026-08-10",12.77,14.55,11.62,14.16,33500],["2026-08-11",14.77,15.61,13.79,14.42,13800],["2026-08-12",14.32,18.91,13.45,17.5,39300],["2026-08-13",16.27,17.1,15.83,16.6,10600],["2026-08-14",15.01,15.67,14.0,14.87,11000],["2026-08-17",14.01,14.99,13.6,14.02,1800],["2026-08-18",14.0,14.11,14.0,14.0,1500],["2026-08-19",17.93,17.93,14.2,14.89,469500],["2026-08-20",15.24,16.25,13.22,14.1,395500],["2026-08-21",13.0,15.05,13.0,13.9,137000],["2026-08-24",13.24,14.04,13.24,14.0,20700],["2026-08-25",14.01,14.75,13.21,13.89,26800],["2026-08-26",13.88,14.08,13.58,13.91,99200],["2026-08-27",13.83,14.0,13.26,13.78,73300],["2026-08-28",13.69,14.9,13.26,13.67,325500],["2026-08-31",13.83,14.4,13.29,14.1,38500],["2026-09-01",13.97,14.1,13.57,13.95,53500],["2026-09-02",14.15,14.51,13.75,14.22,168800],["2026-09-03",14.04,14.7,14.02,14.19,41600],["2026-09-04",14.01,14.35,13.63,14.05,17100],["2026-09-08",14.05,14.26,13.65,14.01,12200],["2026-09-09",13.83,14.1,13.53,13.75,55100],["2026-09-10",13.75,13.94,13.48,13.71,42500],["2026-09-11",13.65,14.0,12.48,13.44,28800],["2026-09-14",14.22,14.22,13.0,13.01,23900],["2026-09-15",13.25,13.3,13.19,13.3,5500],["2026-09-16",13.5,14.21,13.13,13.85,20200],["2026-09-17",14.0,16.0,13.83,15.03,54600],["2026-09-18",14.85,15.0,14.65,14.65,5900],["2026-09-21",14.4,15.25,13.81,14.31,22800],["2026-09-22",14.7,15.28,13.9,14.55,36600],["2026-09-23",14.0,15.4,14.0,14.73,17800],["2026-09-24",14.47,14.85,13.71,14.38,14700],["2026-09-25",14.45,14.46,14.1,14.1,5400],["2026-09-28",13.8,13.92,13.45,13.65,9000],["2026-09-29",13.74,13.88,13.37,13.37,7200],["2026-09-30",13.47,13.5,12.5,12.51,7400],["2026-10-01",12.91,12.91,11.77,12.25,28900],["2026-10-02",12.75,12.75,12.75,12.75,2000],["2026-10-05",12.75,12.75,12.75,12.75,0],["2026-10-06",12.75,12.75,12.75,12.75,0],["2026-10-07",12.58,12.59,12.58,12.59,300],["2026-10-08",12.35,12.35,12.03,12.03,1100],["2026-10-09",12.24,12.59,12.24,12.51,900],["2026-10-12",12.32,12.32,12.32,12.32,1100],["2026-10-13",12.21,16.99,12.09,12.36,24500],["2026-10-14",12.47,13.3,12.43,12.88,18700],["2026-10-15",12.36,12.36,12.36,12.36,200],["2026-10-16",12.8,12.8,12.3,12.3,500],["2026-10-19",12.1,12.27,9.9,10.02,1796200],["2026-10-20",10.03,10.11,10.0,10.01,1084500],["2026-10-21",10.02,10.08,9.99,10.0,643100],["2026-10-22",10.02,10.06,10.0,10.03,296700],["2026-10-23",10.02,10.15,10.02,10.1,178600],["2026-10-26",10.15,10.19,10.1,10.14,88200],["2026-10-27",10.14,10.17,10.05,10.1,423500],["2026-10-28",10.08,10.12,10.07,10.09,35400],["2026-10-29",10.1,10.1,10.05,10.06,132300],["2026-10-30",10.08,10.08,10.02,10.04,47700],["2026-11-02",10.03,10.08,10.02,10.03,18800],["2026-11-03",10.03,10.05,10.03,10.03,14000],["2026-11-04",10.05,10.06,10.02,10.04,54100],["2026-11-05",10.03,10.03,10.01,10.03,122800],["2026-11-06",10.03,10.04,10.03,10.04,2400],["2026-11-09",10.05,10.05,10.01,10.05,73400],["2026-11-10",10.05,10.06,10.01,10.04,9000],["2026-11-11",10.04,10.04,10.04,10.04,10500],["2026-11-12",10.06,10.06,10.01,10.03,9500],["2026-11-13",10.01,10.03,10.01,10.01,1200],["2026-11-16",10.02,10.02,10.0,10.0,18800],["2026-11-17",10.02,10.03,10.02,10.03,49600],["2026-11-18",10.02,10.04,10.02,10.02,14800],["2026-11-19",10.01,10.03,10.0,10.03,111100],["2026-11-20",10.0,10.03,10.0,10.02,123200],["2026-11-23",10.04,10.04,10.01,10.03,5600],["2026-11-24",10.04,10.04,10.04,10.04,2200],["2026-11-25",10.04,10.04,10.02,10.03,18600],["2026-11-27",10.06,10.06,10.04,10.04,865]];
+const DATANOTE = "";
+</script>
+<script src="intra/TCGX.js?v=2026112768"></script>
+<script src="assets/chart.js?v=aa49b450"></script><!--kb-theme-js--><script>(function(){var bs=document.querySelectorAll('button.kb-theme[data-kb]');
+for(var i=0;i<bs.length;i++)bs[i].addEventListener('click',function(){var b=this,d=document.documentElement,
+cur=d.getAttribute('data-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'),n=cur==='dark'?'light':'dark';
+d.setAttribute('data-theme',n);try{localStorage.setItem('fdb-theme',n)}catch(e){}
+var f=document.querySelectorAll('iframe');for(var j=0;j<f.length;j++){try{f[j].contentWindow.postMessage({chartTheme:n},'*')}catch(e){}}
+var k=b.getAttribute('data-kb');
+if(k==='reload')location.reload();
+else if(k==='msg')window.postMessage({chartTheme:n},'*');
+else if(k==='fn'&&typeof window.__kbRedraw==='function')window.__kbRedraw();});})();</script><!--/kb-theme-js--><!--mobile-fix-spacer--><div class="mf-spacer" aria-hidden="true"></div><!--/mobile-fix-spacer--></body></html>

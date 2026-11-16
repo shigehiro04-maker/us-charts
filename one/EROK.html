@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8"><!--kb-theme:v3--><script>(function(){var d=document.documentElement,
+m=/[?&#]theme=(dark|light)/.exec(location.search+location.hash),t=m&&m[1];
+if(!t){try{t=localStorage.getItem('fdb-theme')}catch(e){}}
+if(t==='dark'||t==='light')d.setAttribute('data-theme',t);
+try{if(window.top!==window.self)d.classList.add('kb-embed')}catch(e){d.classList.add('kb-embed')}})();</script>
+<style id="kb-theme">
+:root{--kb-fg:#1f1f1e;--kb-line:#d6d5ce;--kb-hover:rgba(0,0,0,.05)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--kb-fg:#ecebe6;--kb-line:#3b3b38;--kb-hover:rgba(255,255,255,.08)}}
+:root[data-theme="dark"]{--kb-fg:#ecebe6;--kb-line:#3b3b38;--kb-hover:rgba(255,255,255,.08)}
+/* スイッチ本体（トラック） */
+:root{--kb-trk:#e8e7e1;--kb-knob:#fff;--kb-ico:#d08a00;--kb-dim:#a9a79f}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--kb-trk:#2b2b29;--kb-knob:#45453f;--kb-ico:#f3d36a;--kb-dim:#6f6e68}}
+:root[data-theme="dark"]{--kb-trk:#2b2b29;--kb-knob:#45453f;--kb-ico:#f3d36a;--kb-dim:#6f6e68}
+:root button.kb-theme.kb-theme{-webkit-appearance:none;appearance:none;position:relative;display:inline-block;box-sizing:border-box;
+width:54px;height:30px;min-width:54px;min-height:0;padding:0;border:1px solid var(--kb-line);border-radius:15px;background:var(--kb-trk);
+color:var(--kb-fg);font-size:0;line-height:0;cursor:pointer;box-shadow:inset 0 1px 2px rgba(0,0,0,.08);vertical-align:middle;flex-shrink:0;
+overflow:hidden;-webkit-tap-highlight-color:transparent;transition:background .3s,border-color .3s}
+:root button.kb-theme.kb-theme:focus-visible{outline:2px solid #2a78d6;outline-offset:2px}
+:root button.kb-theme.kb-theme svg{display:block;width:100%;height:100%}
+/* 両端の小さなアイコン（つまみが無い側だけ見える） */
+:root button.kb-theme.kb-theme .kb-trk{position:absolute;top:50%;width:13px;height:13px;margin-top:-6.5px;color:var(--kb-dim);transition:opacity .3s}
+:root button.kb-theme.kb-theme .kb-l{left:7px;opacity:0}
+:root button.kb-theme.kb-theme .kb-r{right:7px;opacity:1}
+/* つまみ */
+:root button.kb-theme.kb-theme .kb-knob{position:absolute;top:2px;left:2px;width:24px;height:24px;border-radius:50%;background:var(--kb-knob);
+color:var(--kb-ico);box-shadow:0 1px 3px rgba(0,0,0,.25),0 0 0 .5px rgba(0,0,0,.06);transform:translateX(0);
+transition:transform .32s cubic-bezier(.3,1.35,.5,1),background .3s,color .3s}
+:root button.kb-theme.kb-theme:active .kb-knob{width:28px}
+:root button.kb-theme.kb-theme .kb-knob svg{position:absolute;inset:0;margin:auto;width:15px;height:15px;transition:opacity .25s,transform .35s}
+:root button.kb-theme.kb-theme .kb-knob .kb-sun{opacity:1;transform:none}
+:root button.kb-theme.kb-theme .kb-knob .kb-moon{opacity:0;transform:rotate(-90deg) scale(.4)}
+/* ダーク表示中：つまみを右へ */
+@media (prefers-color-scheme:dark){
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-knob{transform:translateX(24px)}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme:active .kb-knob{transform:translateX(20px)}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-knob .kb-sun{opacity:0;transform:rotate(90deg) scale(.4)}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-knob .kb-moon{opacity:1;transform:none}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-l{opacity:1}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-r{opacity:0}}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-knob{transform:translateX(24px)}
+:root[data-theme="dark"] button.kb-theme.kb-theme:active .kb-knob{transform:translateX(20px)}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-knob .kb-sun{opacity:0;transform:rotate(90deg) scale(.4)}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-knob .kb-moon{opacity:1;transform:none}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-l{opacity:1}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-r{opacity:0}
+@media (prefers-reduced-motion:reduce){:root button.kb-theme.kb-theme *{transition:none!important}}
+/* 全ページ共通の置き場所：ページ右上の角 */
+:root button.kb-theme.kb-theme.kb-corner{position:absolute;top:12px;right:16px;z-index:60;margin:0;float:none}
+@media (max-width:700px){:root button.kb-theme.kb-theme.kb-corner{top:10px;right:12px}}
+/* 右上のスイッチの下に見えない「よけ」を置き、見出しの文字やボタンがスイッチと重ならないようにする */
+.kb-spacer{float:right;width:84px;height:46px;pointer-events:none}
+@media (max-width:700px){.kb-spacer{width:76px;height:44px}}
+html.kb-embed .kb-spacer{display:none}
+html.kb-embed button.kb-theme[data-kb]{display:none}
+
+</style><!--/kb-theme-->
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>EagleRock Land, LLC（EROK） | 株式分析ダッシュボード</title>
+<script>(function(){let t;try{t=localStorage.getItem('fdb-theme')}catch(e){}if(t)document.documentElement.setAttribute('data-theme',t);})();</script>
+<link rel="stylesheet" href="assets/one.css?v=202611280705">
+<!--site-icon:v3--><link rel="icon" type="image/svg+xml" href="/us-charts/icon-black.svg?v=3" media="(prefers-color-scheme: light)"><link rel="icon" type="image/svg+xml" href="/us-charts/icon-white.svg?v=3" media="(prefers-color-scheme: dark)"><link rel="apple-touch-icon" href="/us-charts/apple-touch-icon.png?v=3"><!--/site-icon--><!--mobile-fix:v1--><style id="mobile-fix">
+.mf-spacer{display:none}
+html.mf-sa .mf-spacer{display:block;height:calc(env(safe-area-inset-bottom,0px) + 110px)}
+html.mf-sa .detail .inner{padding-bottom:calc(env(safe-area-inset-bottom,0px) + 140px)}
+</style><script>(function(){try{if(window.top!==window.self)return;
+var sa=navigator.standalone===true||matchMedia('(display-mode: standalone)').matches;
+var touch=matchMedia('(pointer: coarse)').matches;
+if(sa||touch)document.documentElement.classList.add('mf-sa');}catch(e){}})();</script><!--/mobile-fix--><!--pc-wide:v1--><style id="pc-wide">@media (min-width:1280px){body>.wrap,body>main,body>div.wrap{max-width:1680px!important}}</style><!--/pc-wide--></head>
+<body><!--kb-btn--><button class="tbtn kb-theme kb-corner" id="theme" type="button" aria-label="明暗を切り替え（ライト／ダーク）" title="明暗を切り替え（ライト／ダーク）"><span class="kb-trk kb-l"><svg class="kb-sun" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="12" cy="12" r="4.3"/><path d="M12 2.2v2.3M12 19.5v2.3M2.2 12h2.3M19.5 12h2.3M5.1 5.1l1.6 1.6M17.3 17.3l1.6 1.6M5.1 18.9l1.6-1.6M17.3 6.7l1.6-1.6"/></svg></span><span class="kb-trk kb-r"><svg class="kb-moon" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M20.2 14.6A8.4 8.4 0 0 1 9.4 3.8a.6.6 0 0 0-.8-.7A9.2 9.2 0 1 0 20.9 15.4a.6.6 0 0 0-.7-.8z"/></svg></span><span class="kb-knob"><svg class="kb-sun" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="12" cy="12" r="4.3"/><path d="M12 2.2v2.3M12 19.5v2.3M2.2 12h2.3M19.5 12h2.3M5.1 5.1l1.6 1.6M17.3 17.3l1.6 1.6M5.1 18.9l1.6-1.6M17.3 6.7l1.6-1.6"/></svg><svg class="kb-moon" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M20.2 14.6A8.4 8.4 0 0 1 9.4 3.8a.6.6 0 0 0-.8-.7A9.2 9.2 0 1 0 20.9 15.4a.6.6 0 0 0-.7-.8z"/></svg></span></button><div class="kb-spacer" aria-hidden="true"></div><!--/kb-btn-->
+<div class="wrap">
+<header>
+  <h1 id="h-name"></h1><span class="cd" id="h-code"></span>
+  <span class="px" id="h-px"></span><span class="chg" id="h-chg"></span>
+  <span class="meta" id="h-meta"></span>
+  <span class="sp"><button class="tbtn" id="watchbtn" hidden>☆ 監視銘柄に追加</button><a class="tbtn" href="../index.html" style="text-decoration:none">トップ</a><a class="tbtn" href="index.html" style="text-decoration:none">銘柄一覧</a></span>
+</header>
+<div class="wbox" id="wbox" hidden></div>
+<div class="valline" id="valline" hidden></div>
+<p class="biz" id="biz"></p>
+<p class="bizlink" id="bizlink" hidden></p>
+<p class="empline" id="empline" hidden></p>
+
+<section class="card" id="sigcard">
+  <div class="hero">
+    <div>
+      <div class="big" id="big"></div>
+      <div class="n1" id="notes"></div>
+      <div class="plan" id="plan"></div>
+    </div>
+    <div class="quad" id="quad"></div>
+  </div>
+  <div class="sigfoot"><button class="tgl" id="sig-tgl" aria-expanded="false"><span class="tri">▾</span> 内訳・推移</button></div>
+  <div class="sigdet" id="sigdet" hidden>
+    <div><h5>テクニカルの内訳</h5><div id="partsT"></div></div>
+    <div><h5>ファンダメンタルの内訳</h5><div id="partsF"></div></div>
+    <div><h5>テクニカルスコアの推移</h5><div class="spk" id="spk"></div></div>
+  </div>
+</section>
+
+<div class="grid">
+  <div class="lcol">
+  <section class="card" id="chartcard">
+    <div class="bar">
+      <h2 style="margin:0">チャート</h2>
+      <div class="seg" id="rng"><button data-n="63">3ヶ月</button><button data-n="126" class="on">6ヶ月</button><button data-n="250">1年</button><button data-n="750">3年</button></div>
+      <div class="lg" id="lg-ind"></div>
+      <div class="lg" id="lg-vp"></div>
+      <button class="tgl" id="ch-tgl" aria-expanded="false" style="margin-left:auto"><span class="tri">▾</span> 指標を選ぶ</button>
+    </div>
+    <div id="ch-det" hidden>
+      <div id="indsel"></div>
+      <div class="lg" style="margin:4px 0 2px">
+        <label><input type="checkbox" id="cb-vp" checked>価格帯別出来高</label>
+        <label><input type="checkbox" id="cb-mk" checked>売買サイン</label>
+        <label><input type="checkbox" id="cb-lv" checked>IN・利確・損切り</label>
+      </div>
+      <div class="lg sgopt" id="sgopt"><span class="sgh">売買サイン</span><span class="sgkinds" id="sgkinds"></span></div>
+      <div class="lg sgopt" id="sgopt2"><span class="sgh">表示</span>
+        <div class="seg" id="sgstyle"><button type="button" data-st="label">ラベル（買・売）</button><button type="button" data-st="tri">大きい三角</button></div>
+        <label><input type="checkbox" id="sgvl">縦線も引く</label>
+        <button type="button" class="sgbtn" id="sgdef">既定に戻す</button><button type="button" class="sgbtn" id="sgnone">すべて外す</button>
+      </div>
+      <div class="lvbar" id="lvbar"></div>
+    </div>
+    <div id="chart"></div>
+  </section>
+  <section class="card" id="bscard"><div class="bsgrid"><div class="fp" id="fp-bs"></div><div class="fp" id="fp-holders"></div></div></section>
+  </div>
+
+  <div class="rcol">
+  <section class="card" id="jkcard">
+    <h2><span style="white-space:nowrap">需給</span> <span class="hint" id="jk-hint"></span><a class="jklink" id="jk-link" href="#">空売りの内訳 ›</a></h2>
+    <div class="jkg" id="jkg"></div>
+    <div class="jkf" id="jkf"></div>
+  </section>
+  <section class="card" id="fundcard">
+    <h2>ファンダメンタル <span class="hint" id="f-hint"></span></h2>
+    <div class="jcards" id="jcards"></div>
+    <div class="fgrid" id="fgrid"><div class="fp" id="fp-annual"></div><div class="fp" id="fp-cf"></div><div class="fp" id="fp-q"></div><div class="fp" id="fp-div"></div></div>
+    <div class="meta" id="fmeta"></div>
+  </section>
+  </div>
+</div>
+<section class="card" id="ancard" hidden>
+  <h2><span style="white-space:nowrap">アナリスト予想</span> <span class="hint" id="an-hint"></span><a class="jklink" id="an-link" href="../fundamentals.html#analyst">アナリスト予想ランキング ›</a></h2>
+  <div class="angrid"><div id="an-t"></div><div id="an-b"></div><div class="ancs" id="an-cw"><div id="an-cs"></div><div id="an-ct"></div></div><div id="an-c"></div></div>
+  <div class="anfoot"><button class="tgl" id="an-tgl" aria-expanded="false"><span class="tri">▾</span> <span class="pc">アナリストごとの目標株価・投資判断</span><span class="sp">業績予想・決算サプライズ・アナリスト別</span></button></div>
+  <div id="an-det" hidden><div id="an-u"></div></div>
+</section>
+<section class="card" id="cocard" hidden>
+  <h2><span style="white-space:nowrap">同業他社・関連企業</span> <span class="hint" id="co-hint"></span></h2>
+  <div class="cogrid"><div id="co-peer"></div><div id="co-rel"></div></div>
+</section>
+<footer><span></span><span id="gen"></span></footer>
+</div>
+<div id="tip"></div>
+<script src="assets/watch.js"></script>
+<script>const DATA={"info":{"code":"EROK","name":"EagleRock Land, LLC","market":"NYSE","sector":"エネルギー","date":"2026-11-27","price":21.97,"chg":0.5499999999999972,"chgp":2.567693744164319,"biz":"米国の土地を保有・管理する会社。","url":"https://www.erok.com","fdate":"2025-12-31"},"px":{"show":750,"d":["2026-05-14","2026-05-15","2026-05-18","2026-05-19","2026-05-20","2026-05-21","2026-05-22","2026-05-26","2026-05-27","2026-05-28","2026-05-29","2026-06-01","2026-06-02","2026-06-03","2026-06-04","2026-06-05","2026-06-08","2026-06-09","2026-06-10","2026-06-11","2026-06-12","2026-06-15","2026-06-16","2026-06-17","2026-06-18","2026-06-22","2026-06-23","2026-06-24","2026-06-25","2026-06-26","2026-06-29","2026-06-30","2026-07-01","2026-07-02","2026-07-06","2026-07-07","2026-07-08","2026-07-09","2026-07-10","2026-07-13","2026-07-14","2026-07-15","2026-07-16","2026-07-17","2026-07-20","2026-07-21","2026-07-22","2026-07-23","2026-07-24","2026-07-27","2026-07-28","2026-07-29","2026-07-30","2026-07-31","2026-08-03","2026-08-04","2026-08-05","2026-08-06","2026-08-07","2026-08-10","2026-08-11","2026-08-12","2026-08-13","2026-08-14","2026-08-17","2026-08-18","2026-08-19","2026-08-20","2026-08-21","2026-08-24","2026-08-25","2026-08-26","2026-08-27","2026-08-28","2026-08-31","2026-09-01","2026-09-02","2026-09-03","2026-09-04","2026-09-08","2026-09-09","2026-09-10","2026-09-11","2026-09-14","2026-09-15","2026-09-16","2026-09-17","2026-09-18","2026-09-21","2026-09-22","2026-09-23","2026-09-24","2026-09-25","2026-09-28","2026-09-29","2026-09-30","2026-10-01","2026-10-02","2026-10-05","2026-10-06","2026-10-07","2026-10-08","2026-10-09","2026-10-12","2026-10-13","2026-10-14","2026-10-15","2026-10-16","2026-10-19","2026-10-20","2026-10-21","2026-10-22","2026-10-23","2026-10-26","2026-10-27","2026-10-28","2026-10-29","2026-10-30","2026-11-02","2026-11-03","2026-11-04","2026-11-05","2026-11-06","2026-11-09","2026-11-10","2026-11-11","2026-11-12","2026-11-13","2026-11-16","2026-11-17","2026-11-18","2026-11-19","2026-11-20","2026-11-23","2026-11-24","2026-11-25","2026-11-27"],"o":[23,21.5,21.6,23,23.5,23,22.8,23.2,24.5,22.3,22.3,22.3,22.1,21.6,21.3,22.2,21.3,21,21,22,21,21.1,20.1,20.4,20.6,20.9,20.5,21.4,20.2,20.1,21.2,21.4,21.4,21.4,20.4,20.9,21.1,22.1,21.7,21.4,22,22.1,22,20.8,20.5,20.4,21.1,22.1,22.4,22.1,21.8,20.9,21,21.6,22.5,21.9,22,22,22.6,23.5,24,25.9,24.6,25.4,25.3,25.7,25.8,25.4,26.5,26.8,25.7,25.3,24.5,24.9,24.9,25.7,25.2,25.7,25.8,26.1,26.4,26.6,25.1,25.1,23.9,24.4,23.8,23.9,23.7,23.3,22.6,22.3,22,22,21.2,20.6,20.6,21.4,21.3,21.9,21.8,21.7,21.6,21.9,21.5,20.3,19.1,18.4,18,17.7,18.6,18.4,19,18.3,19.7,19.6,20.6,20.2,19.8,18.9,19.1,19.3,18.8,20,20.9,20.8,21.8,21,20.7,20.6,20.3,20.5,20.1,22.2,21,20.3,21.6],"h":[23.8,22.6,23.1,23.7,24.4,23.3,23.5,24.6,24.8,22.9,22.7,22.9,22.2,22.6,22.9,23,22.3,21.6,21.6,22,21.5,21.3,21.4,20.7,21.1,21.3,21.4,21.4,20.7,21.4,22.4,22.2,22,21.6,21.2,21.1,22.1,22.1,21.7,21.8,22.4,22.1,22.4,21.2,21.1,21.5,22.7,22.7,22.8,22.3,21.9,21.5,21.7,22.4,22.7,22.1,22.2,23.6,23.6,24.5,26.3,26.2,25.3,25.4,26.2,27,26.2,26.9,27.4,27.2,26.1,25.6,24.9,25.6,25.5,25.7,25.8,26.1,26.1,26.5,26.6,26.6,25.8,25.7,24.6,24.4,24.3,24,24.5,23.8,22.8,22.6,22.1,22.1,21.5,21.4,21.9,21.9,22.3,22.4,21.9,22,22.1,22.2,21.6,20.3,19.2,18.7,18.5,18.5,19.1,19.7,19.4,20,20.3,21,21.3,21.1,20,19.7,20.7,19.3,20.2,21.4,21.6,22.1,21.8,21.3,21.2,21.2,21,22,20.3,23.2,21.4,21.8,22.1],"l":[21.8,21.2,21.6,22.4,22.9,22.5,22.8,23.1,22.1,22,22,21.9,21.2,21.3,21.3,21.3,21,20.6,20.4,20.4,20.8,20.2,20,19.9,19.8,20.3,20.5,20.4,20.1,20.1,20.8,21,20.6,20.2,20.1,20.4,20.5,21.5,20.9,21.1,21.4,21.5,20.6,20.1,20.2,20.2,21,21.6,22.1,21.8,20.5,20.7,20.9,21,21.6,21.3,21.4,22,22.6,23.2,24,23.8,23.8,24.3,25.1,25.3,24.8,25.4,26.5,25.5,25.2,24.4,24.2,24.4,24.4,24.7,25,25.4,25.4,25.9,25.8,25.3,25,23.9,23.9,23.7,23.7,23.6,23,22.2,22,21.6,21.3,21.4,20.1,20.1,20.6,21.2,21.3,21.5,21.4,21.4,21.5,21.6,19.9,18.5,18.3,17.6,17,17.4,18.3,18.2,18.2,18.2,19.2,19.5,20.1,19.6,18.8,18.6,18.6,18.3,18.7,20,20.2,20.6,20.8,20.6,20.3,20,20.1,20.1,19.2,20.6,20.2,20.3,21.5],"c":[21.8,21.6,23,23.3,23,22.6,23.4,24.3,22.3,22.3,22.3,21.9,21.8,21.6,22.2,21.4,21.1,20.9,20.5,21,21.2,20.3,20.2,20,20.6,21.1,21.1,20.5,20.1,21.2,21.6,21.2,21.2,20.5,21,20.9,21.9,21.7,21.1,21.7,21.8,21.7,20.6,20.4,20.3,21.1,22.2,22.3,22.1,21.8,20.7,20.8,21.3,22.4,22.1,21.9,22,23.1,23,24.3,25.9,24.5,25.2,25,25.6,25.8,25.2,26.2,26.6,25.9,25.4,24.6,24.7,24.6,25.4,25.2,25.6,25.8,25.9,26.3,26.2,25.4,25.3,24,24.4,23.9,23.8,23.6,23.6,22.3,22.1,22,21.6,21.4,20.3,20.8,21.2,21.4,21.6,21.8,21.6,21.6,21.9,21.7,20.5,19,18.3,17.6,17.5,18.4,18.4,19,18.2,19.7,19.5,20.7,20.4,19.8,18.9,19.1,19.1,18.6,19.8,21.2,20.4,22,20.9,21.1,20.6,20.2,20.4,20.3,19.7,21.2,20.7,21.4,22],"v":[4882400,1144900,595300,519200,1357600,357300,364300,498900,824400,156100,299200,221100,536500,306700,288100,185500,248400,518300,186500,208700,108700,187300,252600,306800,333800,107900,89100,270800,383500,198700,460300,619000,495700,204400,250800,210600,112200,81000,98700,105300,106700,108400,193100,247500,94800,254700,144300,110500,232000,87100,146500,163600,95600,92400,99500,166400,91900,278100,152900,185500,424300,812500,168900,138500,148200,171500,119600,233000,164400,108900,78100,112100,74800,101500,133700,91000,138900,132000,122200,174600,97000,200900,113300,91500,51600,95200,75500,73500,127600,237200,171200,128200,161400,229800,346600,330500,386700,296000,175400,164400,451900,197300,105100,217600,382600,405100,339500,256200,209300,1006600,588100,461900,345900,206100,173900,233100,136800,171500,254200,178500,465500,282000,374400,198200,290100,253800,243100,134000,246800,205000,198800,220700,449900,4178100,2365100,3674400,300180]},"fy":[{"fy":"2024-12","sales":17701000.0,"op":2648000.0,"ni":-1075000.0,"opm":14.96,"ocf":907000.0,"fcf":-299000.0,"eqr":0.0,"roe":null,"per":null},{"fy":"2025-12","sales":141438000.0,"op":4098000.0,"ni":357000.0,"opm":2.9,"ocf":14138000.0,"fcf":8859000.0,"eqr":0.0,"roe":null,"per":null}],"extra":{"mcap":5.19198602,"ev_ebitda":28.128626555785008,"fscore":null,"payout":0.0,"beta":null,"cagr":700.18,"dy":0.0,"roe":null,"opm":2.9,"eqr":0.0,"per":1454.34,"pbr":null,"sec_per":18.35,"sec_pbr":1.63,"sec_roe":10.928366752789447,"sec_opm":17.68,"sec_eqr":49.290000000000006,"rank":"202.0","nsec":"221"},"kb":{"annual":[{"fy":"24/12期","fyEnd":"2024-12-31","fc":null,"disc":null,"rev":17.701,"op":2.648,"odp":-1.101,"ni":-1.075,"opm":0.149596068018756,"ocf":0.907,"icf":-64.556,"fcf":64.711,"cash":1.062,"frcf":-63.649,"dps":0.0,"payout":null,"eps":-0.04},{"fy":"25/12期","fyEnd":"2025-12-31","fc":null,"disc":null,"rev":141.438,"op":4.098,"odp":2.532,"ni":0.357,"opm":0.02897382598735842,"ocf":14.138,"icf":-204.963,"fcf":199.09,"cash":15.218,"frcf":-190.825,"dps":0.0,"payout":0.0,"eps":0.01}],"fc":null,"quarters":[{"fy":"25/09","fyEnd":"2025-09-30","perEnd":"2025-09-30","perSt":null,"rev":17.53,"op":1.503,"odp":-4.888,"ni":-4.888,"opm":0.08573873359954363},{"fy":"25/12","fyEnd":"2025-12-31","perEnd":"2025-12-31","perSt":null,"rev":92.978,"op":-4.312,"odp":79.327,"ni":77.152,"opm":-0.046376562197509096},{"fy":"26/03","fyEnd":"2026-03-31","perEnd":"2026-03-31","perSt":null,"rev":23.056,"op":6.152,"odp":3.593,"ni":3.363,"opm":0.26682859125607217},{"fy":"26/06","fyEnd":"2026-06-30","perEnd":"2026-06-30","perSt":null,"rev":41.526,"op":-53.147,"odp":-37.616,"ni":-7.562,"opm":-1.2798487694456484},{"fy":"26/09","fyEnd":"2026-09-30","perEnd":"2026-09-30","perSt":null,"rev":43.348,"op":12.461,"odp":11.558,"ni":2.107,"opm":0.28746424287164346}],"odpName":"税引前利益","holders":{"asof":"2026-09-30","filed":"2026-09-30","issued":null,"treasury":null,"holders":[["TCW Group, Inc.",4560688,0.17300000000000001],["First Manhattan Co. LLC",3622353,0.1374],["Price (T.Rowe) Associates Inc",2052298,0.0779],["Encompass Capital Advisors, LLC",1840649,0.0698],["Horizon Kinetics Asset Management LLC",1714237,0.065],["Deprince, Race & Zollo, Inc.",946094,0.0359],["Merewether Investment Management, LP",890279,0.0338],["CIBC Bancorp USA Inc.",653299,0.0248],["Eagle Global Advisors LLC",633052,0.024],["Schwartz Investment Counsel, Inc.",579996,0.022000000000000002]]},"bs":[{"fy":"24/12","fyEnd":"2024-12-31","std":"US","ta":86.694,"tl":87.769,"na":-1.075,"noCA":false,"cash":1.062,"recv":6.378,"inv":0.0,"oca":0.268,"ppe":15.22,"onca":63.766,"pay":3.82,"ocl":6.428,"ncl":77.521,"eq":-1.075,"oeq":0.0,"neg":true},{"fy":"25/12","fyEnd":"2025-12-31","std":"US","ta":1520.636,"tl":9.908,"na":1510.728,"noCA":false,"cash":15.218,"recv":15.132,"inv":1.027,"oca":2.626,"ppe":362.825,"onca":1123.808,"pay":0.645,"ocl":6.726,"ncl":2.537,"eq":0.0,"oeq":1510.728}]},"srow":{"c":"EROK","n":"EagleRock Land, LLC","m":"NYSE","s":"エネルギー","d":"2026-11-27","p":21.97,"chg":2.57,"ts":-22,"tt":32,"to":-62,"lv":{"atr":1.36,"atrp":6.2,"mode":"dip","inB":60,"in":[20.31,21.13],"stopB":9,"stop":18.27,"t1":22.1,"t1B":76,"t2":26.58,"t2B":20,"rr":0.6,"trail":19.83,"trailB":1,"hot":0},"tc":[-0.13,-1,0.13,0.3,0.41,-0.41,-0.83,0.59],"tr":[8.5,-0.6,null,1,0.88,1,0,1,58.2,92,65,3.48,80.1,27.4,55.4],"te":[],"hp0":17.46,"hpk":0.00880881,"hp":[948,952,999,993,906,890,742,788,730,721,703,699,552,526,517,467,446,319,379,428,444,469,489,476,468,505,478,342,175,95,12,0,104,108,175,89,251,235,371,331,267,168,192,188,125,263,429,328,517,392,418,354,316,329,321,254,427,370,450,512],"hs":[9,11,10,8,18,12,8,3,-6,-8,-15,-19,-28,-32,-34,-38,-38,-43,-41,-38,-36,-36,-35,-37,-38,-36,-38,-42,-48,-51,-53,-54,-49,-41,-40,-39,-43,-40,-40,-41,-41,-45,-52,-51,-54,-47,-37,-43,-28,-38,-34,-40,-45,-44,-45,-49,-28,-35,-26,-22],"fs":-75,"fc":[-1,-1,1,-1,null,0.28],"fr":[1454.3,null,1,"実績PER",null,1,2.9,699,700.2,5,0,1,null,1.7,0,0,28.1],"ff":[],"fp":"2025-12-31","dv":34.6,"mc":828},"smeta":{"tw":{"hi52":0.25,"lv":0.25,"ma":0.15,"ichi":0.1,"macd":0.05,"rsi":0.05,"bb":0.05,"vol":0.1},"fw":{"val":0.55,"prof":0.1,"grow":0.05,"safe":0.1,"fs":0.1,"cash":0.1},"levels":{"t":[40,15,-15,-30],"f":[45,20,-5,-20],"tr":[50,20,-20,-50],"os":[70,35,-35,-70],"ad":[60,40,-40,-60]},"names":["良好","やや良好","中立","弱い","避ける"]},"jk":{"score":40.0,"ratio":null,"buy":null,"sell":null,"dbuy":null,"dsell":null,"days":null,"pl":null,"lend":null,"short":5.51,"sp":5.51,"si":1030404.0,"sic":15.9,"dtc":3.27,"inst":91.3,"ins":20.4,"judge":"売り圧力","memo":"空売りが増えた","asof":"2026-10-30","flag":"","kind":""},"val":{"f":0.2,"mean":0.2,"mode":0.2,"sd":null,"cv":null,"va":0.2,"lo":0.2,"f0":0.2,"hi":0.2,"nm":1,"px":22,"per":0.2,"pbr":null,"dcf":null,"ddm":null,"h":null,"rim":null,"tk":null,"adj":false,"adju":false,"rel":"低","note":"株価が理論株価の3倍超（手法の想定を超える高い成長期待が織り込まれている）","asof":"2026-11-27"},"shape":{"r":4,"k":4,"name":"下げ止まった？","s":-16.1,"q":20.6},"an":{"target":{"mean":26.6,"median":27.0,"high":28.0,"low":23.0},"n":5,"rec_mean":2.0,"rec":[["0m",3,1,1,0,0],["-1m",4,1,1,0,0],["-2m",4,1,1,0,0],["-3m",4,1,1,0,0]],"cur":"USD","cur_rev":"USD","est":{"0q":{"end":"2026-12-31","eps":0.153,"eps_lo":0.15,"eps_hi":0.156,"eps_n":2,"eps_ya":null,"eps_g":null,"rev":50125750,"rev_lo":47000000,"rev_hi":52303000,"rev_n":4,"rev_ya":null,"rev_g":null,"t":[0.153,0.156,0.242,0.0,0.0],"up7":0,"up30":0,"dn7":0,"dn30":0},"+1q":{"end":"2027-03-31","eps":0.1725,"eps_lo":0.17,"eps_hi":0.175,"eps_n":2,"eps_ya":null,"eps_g":null,"rev":51273750,"rev_lo":48000000,"rev_hi":53895000,"rev_n":4,"rev_ya":23056000,"rev_g":122.4,"t":[0.1725,0.175,0.244,0.0,0.0],"up7":0,"up30":0,"dn7":0,"dn30":0},"0y":{"end":"2026-12-31","eps":0.59,"eps_lo":0.59,"eps_hi":0.59,"eps_n":1,"eps_ya":null,"eps_g":null,"rev":164926750,"rev_lo":155000000,"rev_hi":177807000,"rev_n":4,"rev_ya":null,"rev_g":null,"t":[0.59,0.0,0.12,0.0,0.0],"up7":0,"up30":0,"dn7":0,"dn30":0},"+1y":{"end":"2027-12-31","eps":0.772,"eps_lo":0.77,"eps_hi":0.774,"eps_n":2,"eps_ya":0.59,"eps_g":30.9,"rev":217376250,"rev_lo":204000000,"rev_hi":231905000,"rev_n":4,"rev_ya":164926750,"rev_g":31.8,"t":[0.772,0.774,0.952,0.0,0.0],"up7":0,"up30":0,"dn7":0,"dn30":0}},"hist":[["2026-03-31",0.06,null,null],["2026-06-30",0.1325,0.5579,321.1],["2026-09-30",0.136,0.288,111.8]],"ud":[["2026-11-24","Piper Sandler","Overweight","Neutral","down",29.0,23.0],["2026-11-05","Piper Sandler","Overweight","Overweight","main",31.0,29.0],["2026-10-19","Piper Sandler","Overweight","Overweight","main",33.0,31.0],["2026-10-13","JP Morgan","Overweight","Overweight","main",29.0,27.0],["2026-09-01","Piper Sandler","Overweight","Overweight","main",28.0,33.0],["2026-08-21","Goldman Sachs","Neutral","Neutral","main",24.0,28.0],["2026-08-12","Barclays","Overweight","Overweight","main",25.0,27.0],["2026-06-08","Raymond James","","Outperform","init",null,25.0],["2026-06-08","Piper Sandler","","Overweight","init",null,28.0],["2026-06-08","Goldman Sachs","","Neutral","init",null,24.0],["2026-06-08","Stephens & Co.","","Overweight","init",null,28.0],["2026-06-08","Barclays","","Overweight","init",null,25.0],["2026-06-08","JP Morgan","","Overweight","init",null,25.0]],"fetched":"2026-11-25","pc":"USD"},"co":{"cur":"ドル","ind":"Oil & Gas Equipment & Services","emp":{"emp":28.0},"peers":[["EROK","EagleRock Land, LLC",5.2,1454.3,null,null,2.9,0,null],["CKX","CKX Lands, Inc.",0.3,9.1,1.28,14,9.9,0,null],["LB","LandBridge Corporation",21.6,73.6,6.35,8.6,59.5,3,null],["SAFE","Safehold Inc.",6.9,6,0.28,4.8,80.8,7.4,null],["AXR","AMREP Corporation",1.1,10.4,0.76,7.3,23.4,0,null]],"rel":[],"rec":[]},"gen":"2026-11-28 07:05"};</script>
+<script src="assets/one.js?v=202611280705"></script>
+<!--mobile-fix-spacer--><div class="mf-spacer" aria-hidden="true"></div><!--/mobile-fix-spacer--></body>
+</html>

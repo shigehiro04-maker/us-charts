@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8"><!--kb-theme:v3--><script>(function(){var d=document.documentElement,
+m=/[?&#]theme=(dark|light)/.exec(location.search+location.hash),t=m&&m[1];
+if(!t){try{t=localStorage.getItem('fdb-theme')}catch(e){}}
+if(t==='dark'||t==='light')d.setAttribute('data-theme',t);
+try{if(window.top!==window.self)d.classList.add('kb-embed')}catch(e){d.classList.add('kb-embed')}})();</script>
+<style id="kb-theme">
+:root{--kb-fg:#1f1f1e;--kb-line:#d6d5ce;--kb-hover:rgba(0,0,0,.05)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--kb-fg:#ecebe6;--kb-line:#3b3b38;--kb-hover:rgba(255,255,255,.08)}}
+:root[data-theme="dark"]{--kb-fg:#ecebe6;--kb-line:#3b3b38;--kb-hover:rgba(255,255,255,.08)}
+/* スイッチ本体（トラック） */
+:root{--kb-trk:#e8e7e1;--kb-knob:#fff;--kb-ico:#d08a00;--kb-dim:#a9a79f}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--kb-trk:#2b2b29;--kb-knob:#45453f;--kb-ico:#f3d36a;--kb-dim:#6f6e68}}
+:root[data-theme="dark"]{--kb-trk:#2b2b29;--kb-knob:#45453f;--kb-ico:#f3d36a;--kb-dim:#6f6e68}
+:root button.kb-theme.kb-theme{-webkit-appearance:none;appearance:none;position:relative;display:inline-block;box-sizing:border-box;
+width:54px;height:30px;min-width:54px;min-height:0;padding:0;border:1px solid var(--kb-line);border-radius:15px;background:var(--kb-trk);
+color:var(--kb-fg);font-size:0;line-height:0;cursor:pointer;box-shadow:inset 0 1px 2px rgba(0,0,0,.08);vertical-align:middle;flex-shrink:0;
+overflow:hidden;-webkit-tap-highlight-color:transparent;transition:background .3s,border-color .3s}
+:root button.kb-theme.kb-theme:focus-visible{outline:2px solid #2a78d6;outline-offset:2px}
+:root button.kb-theme.kb-theme svg{display:block;width:100%;height:100%}
+/* 両端の小さなアイコン（つまみが無い側だけ見える） */
+:root button.kb-theme.kb-theme .kb-trk{position:absolute;top:50%;width:13px;height:13px;margin-top:-6.5px;color:var(--kb-dim);transition:opacity .3s}
+:root button.kb-theme.kb-theme .kb-l{left:7px;opacity:0}
+:root button.kb-theme.kb-theme .kb-r{right:7px;opacity:1}
+/* つまみ */
+:root button.kb-theme.kb-theme .kb-knob{position:absolute;top:2px;left:2px;width:24px;height:24px;border-radius:50%;background:var(--kb-knob);
+color:var(--kb-ico);box-shadow:0 1px 3px rgba(0,0,0,.25),0 0 0 .5px rgba(0,0,0,.06);transform:translateX(0);
+transition:transform .32s cubic-bezier(.3,1.35,.5,1),background .3s,color .3s}
+:root button.kb-theme.kb-theme:active .kb-knob{width:28px}
+:root button.kb-theme.kb-theme .kb-knob svg{position:absolute;inset:0;margin:auto;width:15px;height:15px;transition:opacity .25s,transform .35s}
+:root button.kb-theme.kb-theme .kb-knob .kb-sun{opacity:1;transform:none}
+:root button.kb-theme.kb-theme .kb-knob .kb-moon{opacity:0;transform:rotate(-90deg) scale(.4)}
+/* ダーク表示中：つまみを右へ */
+@media (prefers-color-scheme:dark){
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-knob{transform:translateX(24px)}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme:active .kb-knob{transform:translateX(20px)}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-knob .kb-sun{opacity:0;transform:rotate(90deg) scale(.4)}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-knob .kb-moon{opacity:1;transform:none}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-l{opacity:1}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-r{opacity:0}}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-knob{transform:translateX(24px)}
+:root[data-theme="dark"] button.kb-theme.kb-theme:active .kb-knob{transform:translateX(20px)}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-knob .kb-sun{opacity:0;transform:rotate(90deg) scale(.4)}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-knob .kb-moon{opacity:1;transform:none}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-l{opacity:1}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-r{opacity:0}
+@media (prefers-reduced-motion:reduce){:root button.kb-theme.kb-theme *{transition:none!important}}
+/* 全ページ共通の置き場所：ページ右上の角 */
+:root button.kb-theme.kb-theme.kb-corner{position:absolute;top:12px;right:16px;z-index:60;margin:0;float:none}
+@media (max-width:700px){:root button.kb-theme.kb-theme.kb-corner{top:10px;right:12px}}
+/* 右上のスイッチの下に見えない「よけ」を置き、見出しの文字やボタンがスイッチと重ならないようにする */
+.kb-spacer{float:right;width:84px;height:46px;pointer-events:none}
+@media (max-width:700px){.kb-spacer{width:76px;height:44px}}
+html.kb-embed .kb-spacer{display:none}
+html.kb-embed button.kb-theme[data-kb]{display:none}
+
+</style><!--/kb-theme-->
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Apnimed, Inc.（APMD） | 株式分析ダッシュボード</title>
+<script>(function(){let t;try{t=localStorage.getItem('fdb-theme')}catch(e){}if(t)document.documentElement.setAttribute('data-theme',t);})();</script>
+<link rel="stylesheet" href="assets/one.css?v=202611280705">
+<!--site-icon:v3--><link rel="icon" type="image/svg+xml" href="/us-charts/icon-black.svg?v=3" media="(prefers-color-scheme: light)"><link rel="icon" type="image/svg+xml" href="/us-charts/icon-white.svg?v=3" media="(prefers-color-scheme: dark)"><link rel="apple-touch-icon" href="/us-charts/apple-touch-icon.png?v=3"><!--/site-icon--><!--mobile-fix:v1--><style id="mobile-fix">
+.mf-spacer{display:none}
+html.mf-sa .mf-spacer{display:block;height:calc(env(safe-area-inset-bottom,0px) + 110px)}
+html.mf-sa .detail .inner{padding-bottom:calc(env(safe-area-inset-bottom,0px) + 140px)}
+</style><script>(function(){try{if(window.top!==window.self)return;
+var sa=navigator.standalone===true||matchMedia('(display-mode: standalone)').matches;
+var touch=matchMedia('(pointer: coarse)').matches;
+if(sa||touch)document.documentElement.classList.add('mf-sa');}catch(e){}})();</script><!--/mobile-fix--><!--pc-wide:v1--><style id="pc-wide">@media (min-width:1280px){body>.wrap,body>main,body>div.wrap{max-width:1680px!important}}</style><!--/pc-wide--></head>
+<body><!--kb-btn--><button class="tbtn kb-theme kb-corner" id="theme" type="button" aria-label="明暗を切り替え（ライト／ダーク）" title="明暗を切り替え（ライト／ダーク）"><span class="kb-trk kb-l"><svg class="kb-sun" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="12" cy="12" r="4.3"/><path d="M12 2.2v2.3M12 19.5v2.3M2.2 12h2.3M19.5 12h2.3M5.1 5.1l1.6 1.6M17.3 17.3l1.6 1.6M5.1 18.9l1.6-1.6M17.3 6.7l1.6-1.6"/></svg></span><span class="kb-trk kb-r"><svg class="kb-moon" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M20.2 14.6A8.4 8.4 0 0 1 9.4 3.8a.6.6 0 0 0-.8-.7A9.2 9.2 0 1 0 20.9 15.4a.6.6 0 0 0-.7-.8z"/></svg></span><span class="kb-knob"><svg class="kb-sun" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="12" cy="12" r="4.3"/><path d="M12 2.2v2.3M12 19.5v2.3M2.2 12h2.3M19.5 12h2.3M5.1 5.1l1.6 1.6M17.3 17.3l1.6 1.6M5.1 18.9l1.6-1.6M17.3 6.7l1.6-1.6"/></svg><svg class="kb-moon" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M20.2 14.6A8.4 8.4 0 0 1 9.4 3.8a.6.6 0 0 0-.8-.7A9.2 9.2 0 1 0 20.9 15.4a.6.6 0 0 0-.7-.8z"/></svg></span></button><div class="kb-spacer" aria-hidden="true"></div><!--/kb-btn-->
+<div class="wrap">
+<header>
+  <h1 id="h-name"></h1><span class="cd" id="h-code"></span>
+  <span class="px" id="h-px"></span><span class="chg" id="h-chg"></span>
+  <span class="meta" id="h-meta"></span>
+  <span class="sp"><button class="tbtn" id="watchbtn" hidden>☆ 監視銘柄に追加</button><a class="tbtn" href="../index.html" style="text-decoration:none">トップ</a><a class="tbtn" href="index.html" style="text-decoration:none">銘柄一覧</a></span>
+</header>
+<div class="wbox" id="wbox" hidden></div>
+<div class="valline" id="valline" hidden></div>
+<p class="biz" id="biz"></p>
+<p class="bizlink" id="bizlink" hidden></p>
+<p class="empline" id="empline" hidden></p>
+
+<section class="card" id="sigcard">
+  <div class="hero">
+    <div>
+      <div class="big" id="big"></div>
+      <div class="n1" id="notes"></div>
+      <div class="plan" id="plan"></div>
+    </div>
+    <div class="quad" id="quad"></div>
+  </div>
+  <div class="sigfoot"><button class="tgl" id="sig-tgl" aria-expanded="false"><span class="tri">▾</span> 内訳・推移</button></div>
+  <div class="sigdet" id="sigdet" hidden>
+    <div><h5>テクニカルの内訳</h5><div id="partsT"></div></div>
+    <div><h5>ファンダメンタルの内訳</h5><div id="partsF"></div></div>
+    <div><h5>テクニカルスコアの推移</h5><div class="spk" id="spk"></div></div>
+  </div>
+</section>
+
+<div class="grid">
+  <div class="lcol">
+  <section class="card" id="chartcard">
+    <div class="bar">
+      <h2 style="margin:0">チャート</h2>
+      <div class="seg" id="rng"><button data-n="63">3ヶ月</button><button data-n="126" class="on">6ヶ月</button><button data-n="250">1年</button><button data-n="750">3年</button></div>
+      <div class="lg" id="lg-ind"></div>
+      <div class="lg" id="lg-vp"></div>
+      <button class="tgl" id="ch-tgl" aria-expanded="false" style="margin-left:auto"><span class="tri">▾</span> 指標を選ぶ</button>
+    </div>
+    <div id="ch-det" hidden>
+      <div id="indsel"></div>
+      <div class="lg" style="margin:4px 0 2px">
+        <label><input type="checkbox" id="cb-vp" checked>価格帯別出来高</label>
+        <label><input type="checkbox" id="cb-mk" checked>売買サイン</label>
+        <label><input type="checkbox" id="cb-lv" checked>IN・利確・損切り</label>
+      </div>
+      <div class="lg sgopt" id="sgopt"><span class="sgh">売買サイン</span><span class="sgkinds" id="sgkinds"></span></div>
+      <div class="lg sgopt" id="sgopt2"><span class="sgh">表示</span>
+        <div class="seg" id="sgstyle"><button type="button" data-st="label">ラベル（買・売）</button><button type="button" data-st="tri">大きい三角</button></div>
+        <label><input type="checkbox" id="sgvl">縦線も引く</label>
+        <button type="button" class="sgbtn" id="sgdef">既定に戻す</button><button type="button" class="sgbtn" id="sgnone">すべて外す</button>
+      </div>
+      <div class="lvbar" id="lvbar"></div>
+    </div>
+    <div id="chart"></div>
+  </section>
+  <section class="card" id="bscard"><div class="bsgrid"><div class="fp" id="fp-bs"></div><div class="fp" id="fp-holders"></div></div></section>
+  </div>
+
+  <div class="rcol">
+  <section class="card" id="jkcard">
+    <h2><span style="white-space:nowrap">需給</span> <span class="hint" id="jk-hint"></span><a class="jklink" id="jk-link" href="#">空売りの内訳 ›</a></h2>
+    <div class="jkg" id="jkg"></div>
+    <div class="jkf" id="jkf"></div>
+  </section>
+  <section class="card" id="fundcard">
+    <h2>ファンダメンタル <span class="hint" id="f-hint"></span></h2>
+    <div class="jcards" id="jcards"></div>
+    <div class="fgrid" id="fgrid"><div class="fp" id="fp-annual"></div><div class="fp" id="fp-cf"></div><div class="fp" id="fp-q"></div><div class="fp" id="fp-div"></div></div>
+    <div class="meta" id="fmeta"></div>
+  </section>
+  </div>
+</div>
+<section class="card" id="ancard" hidden>
+  <h2><span style="white-space:nowrap">アナリスト予想</span> <span class="hint" id="an-hint"></span><a class="jklink" id="an-link" href="../fundamentals.html#analyst">アナリスト予想ランキング ›</a></h2>
+  <div class="angrid"><div id="an-t"></div><div id="an-b"></div><div class="ancs" id="an-cw"><div id="an-cs"></div><div id="an-ct"></div></div><div id="an-c"></div></div>
+  <div class="anfoot"><button class="tgl" id="an-tgl" aria-expanded="false"><span class="tri">▾</span> <span class="pc">アナリストごとの目標株価・投資判断</span><span class="sp">業績予想・決算サプライズ・アナリスト別</span></button></div>
+  <div id="an-det" hidden><div id="an-u"></div></div>
+</section>
+<section class="card" id="cocard" hidden>
+  <h2><span style="white-space:nowrap">同業他社・関連企業</span> <span class="hint" id="co-hint"></span></h2>
+  <div class="cogrid"><div id="co-peer"></div><div id="co-rel"></div></div>
+</section>
+<footer><span></span><span id="gen"></span></footer>
+</div>
+<div id="tip"></div>
+<script src="assets/watch.js"></script>
+<script>const DATA={"info":{"code":"APMD","name":"Apnimed, Inc.","market":"NASDAQ","sector":"ヘルスケア","date":"2026-11-27","price":15.31,"chg":-0.2599999999999998,"chgp":-1.6698779704560036,"biz":"経口の新薬を開発する臨床段階の製薬会社。","url":"https://apnimed.com","fdate":"2025-12-31"},"px":{"show":750,"d":["2026-07-31","2026-08-03","2026-08-04","2026-08-05","2026-08-06","2026-08-07","2026-08-10","2026-08-11","2026-08-12","2026-08-13","2026-08-14","2026-08-17","2026-08-18","2026-08-19","2026-08-20","2026-08-21","2026-08-24","2026-08-25","2026-08-26","2026-08-27","2026-08-28","2026-08-31","2026-09-01","2026-09-02","2026-09-03","2026-09-04","2026-09-08","2026-09-09","2026-09-10","2026-09-11","2026-09-14","2026-09-15","2026-09-16","2026-09-17","2026-09-18","2026-09-21","2026-09-22","2026-09-23","2026-09-24","2026-09-25","2026-09-28","2026-09-29","2026-09-30","2026-10-01","2026-10-02","2026-10-05","2026-10-06","2026-10-07","2026-10-08","2026-10-09","2026-10-12","2026-10-13","2026-10-14","2026-10-15","2026-10-16","2026-10-19","2026-10-20","2026-10-21","2026-10-22","2026-10-23","2026-10-26","2026-10-27","2026-10-28","2026-10-29","2026-10-30","2026-11-02","2026-11-03","2026-11-04","2026-11-05","2026-11-06","2026-11-09","2026-11-10","2026-11-11","2026-11-12","2026-11-13","2026-11-16","2026-11-17","2026-11-18","2026-11-19","2026-11-20","2026-11-23","2026-11-24","2026-11-25","2026-11-27"],"o":[22,24.3,25,26,26.8,28,28.1,27.9,24.8,26.7,30.6,31.7,32.9,32.1,31.9,28.6,27.8,26.6,27.6,29.5,29,29.7,26.1,27,28.1,27.4,27.7,28.8,27.1,27.1,26.5,25.6,25.8,27.5,28.3,28.9,26.4,25.4,22.1,22,21.1,21.5,23.6,22,22.6,21.7,21.9,18.7,18.1,18.2,18.6,18.9,17.9,17.2,18.3,18,16.6,18.8,18.8,18.5,19.1,19.1,19.4,19.1,17.1,16.6,15.5,15.4,15.4,14.3,15.3,15.7,16,17.5,17.4,16.1,16,17.9,17.6,17.1,16.8,16.7,17,15.9],"h":[29.1,27.9,27.8,28.9,28.4,28.6,29.8,28.2,27,28.9,33.1,34.8,35.3,33.1,32,29.6,27.8,29.6,30.2,31.1,32.4,30.1,27.9,28.8,28.8,28.4,29.6,29.5,28.7,27.7,27.1,26.8,28,29,30.2,28.9,26.7,25.4,22.9,22.8,22.1,24.3,24.5,24.5,22.7,22.1,21.9,19.4,18.6,19.5,20,18.9,18.6,18.8,18.4,18.5,18.8,19.6,19.2,19.1,19.5,19.8,19.6,19.2,17.4,16.8,17,16,15.5,15.4,16.3,16.6,16.9,17.5,17.5,17.1,17.9,19.1,17.6,17.7,17,17.6,17.2,16.3],"l":[16.1,22.4,24.1,24.4,25.1,25.9,26.2,24.6,22.6,25.8,28.1,31,30.5,31.1,28.4,27.6,25.3,26,26.9,28.3,28.8,25.6,25.1,26.9,27.3,26.4,27.4,27.3,26.6,26.2,25.1,25.1,25.7,27.1,28,23.1,24.4,21.6,20.5,20.7,19.8,21.5,21.5,22,21.1,21.1,18.3,17.8,17.4,17.8,18.3,17.4,17,17.2,17.4,16.5,16.4,18.6,18.2,17.8,18.4,18.2,17.9,17,16.2,15.1,15,14.7,13.9,14.1,15.1,15.2,15.3,16.2,16.4,15.8,15.9,17.4,16.5,15.9,16.2,16.4,15.3,14.5],"c":[25,25,25.7,26.5,27.9,27,27.9,24.9,26.6,28.8,31.8,32.5,31.8,32,28.6,28,25.6,27.4,29.6,28.7,29.7,26.2,26.9,27.8,27.8,27.4,28.8,28.1,26.8,26.2,25.6,25.6,27.1,28.1,29,26.2,25.5,22.5,21.6,21.1,21.7,23.9,21.9,22.5,21.5,21.8,18.6,18,18.2,18.5,18.6,17.8,17.2,18.2,17.8,16.6,18.5,18.9,18.5,19,18.9,19.5,19.1,17.3,16.4,15.4,15.1,15.3,14.2,15.1,15.8,15.9,16.8,16.6,16.9,16.3,17.8,17.4,17.2,16.1,16.8,17,15.6,15.3],"v":[3444700,700300,298200,486100,300800,160900,352400,174600,273800,775200,650900,519600,347900,132200,433800,245300,244400,480600,334000,421700,536100,475600,376500,276600,234300,232900,380800,220000,213400,207800,263400,350400,552600,355700,3141800,1507000,624000,858100,398200,298700,283800,669500,668800,747400,681800,340300,580800,465600,332000,268300,301100,215600,1012700,260200,235100,264400,311000,295500,194800,277300,178500,365500,323300,1011700,466000,530900,575800,604500,448200,225300,290100,378300,195600,278600,690800,256900,395500,297000,197600,248600,215700,204500,171100,250373]},"fy":[{"fy":"2024-12","sales":8012000.0,"op":-114234000.0,"ni":-111305000.0,"opm":-1425.79,"ocf":-110209000.0,"fcf":-110279000.0,"eqr":-227.62,"roe":44.77002594372826,"per":null},{"fy":"2025-12","sales":38467000.0,"op":-53818000.0,"ni":-932000.0,"opm":-139.91,"ocf":-77832000.0,"fcf":-77832000.0,"eqr":-511.55,"roe":0.25001140073447553,"per":null}],"extra":{"mcap":6.37367226,"ev_ebitda":null,"fscore":null,"payout":null,"beta":null,"cagr":380.63,"dy":0.0,"roe":null,"opm":-139.91,"eqr":-511.55,"per":-683.87,"pbr":-1.71,"sec_per":24.765,"sec_pbr":2.4,"sec_roe":12.985737640644764,"sec_opm":13.785,"sec_eqr":64.96,"rank":"685.0","nsec":"1037"},"kb":{"annual":[{"fy":"24/12期","fyEnd":"2024-12-31","fc":null,"disc":null,"rev":8.012,"op":-114.234,"odp":-108.55,"ni":-111.305,"opm":-14.25786320519221,"ocf":-110.209,"icf":151.962,"fcf":0.051,"cash":68.35,"frcf":41.752999999999986,"dps":0.0,"payout":null,"eps":-3.87},{"fy":"25/12期","fyEnd":"2025-12-31","fc":null,"disc":null,"rev":38.467,"op":-53.818,"odp":-0.932,"ni":-0.932,"opm":-1.399069332154834,"ocf":-77.832,"icf":0.0,"fcf":51.372,"cash":41.89,"frcf":-77.832,"dps":0.0,"payout":null,"eps":-0.03}],"fc":null,"quarters":[{"fy":"25/03","fyEnd":"2025-03-31","perEnd":"2025-03-31","perSt":null,"rev":3.131,"op":-27.112,"odp":-26.681,"ni":-28.646,"opm":-8.659214308527627},{"fy":"25/06","fyEnd":"2025-06-30","perEnd":"2025-06-30","perSt":null,"rev":17.11,"op":-5.936,"odp":-5.627,"ni":-69.474,"opm":-0.3469316189362946},{"fy":"26/03","fyEnd":"2026-03-31","perEnd":"2026-03-31","perSt":null,"rev":84.814,"op":68.044,"odp":70.373,"ni":70.373,"opm":0.8022732096116207},{"fy":"26/06","fyEnd":"2026-06-30","perEnd":"2026-06-30","perSt":null,"rev":12.08,"op":-11.704,"odp":40.733,"ni":125.935,"opm":-0.9688741721854305}],"odpName":"税引前利益","holders":{"asof":"2026-09-30","filed":"2026-09-30","issued":41630779.0,"treasury":0,"holders":[["Ameriprise Financial, Inc.",7775543,0.1868],["Alpha Wave Global, LP",7054954,0.16949999999999998],["Tao Capital Management, LP",2178138,0.052300000000000006],["Janus Henderson Group Ltd.",1562500,0.0375],["JPMORGAN CHASE & CO",1438577,0.0346],["Nexpoint Asset Management, L.P.",1271830,0.030600000000000002],["Logos Global Management LP",1100000,0.0264],["Jennison Associates LLC",1083138,0.026000000000000002],["Aberdeen Group plc",945078,0.0227],["Sectoral Asset Management, Inc.",942208,0.0226]]},"bs":[{"fy":"24/12","fyEnd":"2024-12-31","std":"US","ta":109.223,"tl":357.838,"na":-248.615,"noCA":false,"cash":68.35,"recv":1.115,"inv":null,"oca":3.781,"ppe":1.157,"onca":34.82,"pay":3.585,"ocl":38.774,"ncl":315.479,"eq":-248.615,"oeq":0.0,"neg":true},{"fy":"25/12","fyEnd":"2025-12-31","std":"US","ta":72.873,"tl":445.656,"na":-372.783,"noCA":false,"cash":41.89,"recv":0.959,"inv":null,"oca":2.206,"ppe":0.901,"onca":26.917,"pay":1.788,"ocl":109.088,"ncl":334.78,"eq":-372.783,"oeq":0.0,"neg":true}]},"srow":{"c":"APMD","n":"Apnimed, Inc.","m":"NASDAQ","s":"ヘルスケア","d":"2026-11-27","p":15.31,"chg":-1.67,"ts":-55,"tt":-53,"to":48,"lv":{"atr":1.59,"atrp":10.4,"mode":"wait","trig":16.68,"trigB":13,"t1":17.98,"t1B":12,"t2":20.77,"t2B":22,"trail":11.34,"trailB":6,"hot":0},"tc":[null,-1,-0.78,-0.73,-0.17,0.5,0.46,-0.15],"tr":[-8.2,-29.9,null,0,0.7,0,-1,-1,40,27,46,0.6,null,null,81.8],"te":[],"hp0":14.16,"hpk":0.0148549,"hp":[919,895,985,937,851,813,767,767,870,939,999,812,764,561,503,467,506,656,522,564,495,511,302,261,273,294,301,247,207,275,242,164,293,319,294,325,322,359,336,214,151,83,61,77,0,63,111,114,176,166,186,143,245,221,208,130,176,191,95,77],"hs":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,-40,-41,-37,-38,-38,-37,-36,-38,-38,-37,-34,-33,-37,-41,-52,-46,-49,-45,-41,-41,-44,-48,-46,-48,-46,-50,-52,-47,-49,-52,-54,-48,-46,-47,-49,-48,-48,-51,-51,-55,-53,-56,-55,-55],"fs":-71,"fc":[null,-1,1,-1,null,-1],"fr":[-683.9,-1.71,null,"評価不能",null,1,-139.9,380.1,380.6,5,-511.6,1,null,-12.2,0,0,null],"ff":["赤字"],"fp":"2025-12-31","dv":45,"mc":1017},"smeta":{"tw":{"hi52":0.25,"lv":0.25,"ma":0.15,"ichi":0.1,"macd":0.05,"rsi":0.05,"bb":0.05,"vol":0.1},"fw":{"val":0.55,"prof":0.1,"grow":0.05,"safe":0.1,"fs":0.1,"cash":0.1},"levels":{"t":[40,15,-15,-30],"f":[45,20,-5,-20],"tr":[50,20,-20,-50],"os":[70,35,-35,-70],"ad":[60,40,-40,-60]},"names":["良好","やや良好","中立","弱い","避ける"]},"jk":{"score":55.0,"ratio":null,"buy":null,"sell":null,"dbuy":null,"dsell":null,"days":null,"pl":null,"lend":null,"short":null,"sp":null,"si":1586895.0,"sic":-10.1,"dtc":3.72,"inst":76.9,"ins":42.7,"judge":"中立","memo":"空売りが減った","asof":"2026-10-30","flag":"","kind":""},"val":{"f":25.7,"mean":25.7,"mode":25.7,"sd":null,"cv":null,"va":26.1,"lo":25.7,"f0":25.7,"hi":25.7,"nm":1,"px":15.3,"per":null,"pbr":null,"dcf":25.7,"ddm":null,"h":null,"rim":null,"tk":null,"adj":false,"adju":false,"rel":"低","note":"","asof":"2026-11-27"},"shape":null,"an":{"target":{"mean":50.0,"median":50.0,"high":60.0,"low":40.0},"n":3,"rec_mean":1.0,"rec":[["0m",0,4,0,0,0],["-1m",0,4,0,0,0],["-2m",0,4,0,0,0],["-3m",0,4,0,0,0]],"cur":"USD","cur_rev":"USD","est":{"0q":{"end":"2026-12-31","eps":-0.78,"eps_lo":-0.92,"eps_hi":-0.62,"eps_n":3,"eps_ya":null,"eps_g":null,"rev":0,"rev_lo":0,"rev_hi":0,"rev_n":3,"rev_ya":null,"rev_g":null,"t":[-0.78,-0.72,-0.72,-0.72,0.0],"up7":1,"up30":0,"dn7":0,"dn30":0},"+1q":{"end":"2027-03-31","eps":-1.155,"eps_lo":-1.27,"eps_hi":-1.04,"eps_n":2,"eps_ya":null,"eps_g":null,"rev":0,"rev_lo":0,"rev_hi":0,"rev_n":2,"rev_ya":null,"rev_g":null,"t":[-1.155,-1.025,-1.025,-1.025,0.0],"up7":0,"up30":0,"dn7":0,"dn30":0},"0y":{"end":"2026-12-31","eps":1.07,"eps_lo":1.07,"eps_hi":1.07,"eps_n":1,"eps_ya":null,"eps_g":null,"rev":99374000,"rev_lo":99374000,"rev_hi":99374000,"rev_n":2,"rev_ya":null,"rev_g":null,"t":[1.07,-0.195,-0.195,-0.195,0.0],"up7":0,"up30":0,"dn7":0,"dn30":0},"+1y":{"end":"2027-12-31","eps":-4.0375,"eps_lo":-5.55,"eps_hi":-1.33,"eps_n":4,"eps_ya":1.07,"eps_g":-477.3,"rev":22440860,"rev_lo":13800000,"rev_hi":32247430,"rev_n":4,"rev_ya":99374000,"rev_g":-77.4,"t":[-4.0375,-3.975,-3.975,-3.975,0.0],"up7":0,"up30":0,"dn7":0,"dn30":0}},"hist":[["2026-06-30",-0.34,-0.41641,-22.5],["2026-09-30",-0.6,-1.0875,-81.2]],"ud":[["2026-08-25","LifeSci Capital","","Outperform","init",null,50.0],["2026-08-25","Cantor Fitzgerald","","Overweight","init",null,60.0],["2026-08-25","Evercore ISI Group","","Outperform","init",null,null],["2026-08-25","B of A Securities","","Buy","init",null,41.0]],"fetched":"2026-11-25","pc":"USD"},"co":{"cur":"ドル","ind":"Biotechnology","emp":{"emp":112.0},"peers":[["APMD","Apnimed, Inc.",6.4,-683.9,-1.71,null,-139.9,0,null],["IKT","Inhibikase Therapeutics, Inc.",2.3,-4.8,1.34,-27.9,null,0,null],["HELP","Helus Pharma Inc.",4.9,-3.3,2.1,-63.9,null,0,null],["SCTX","Scribe Therapeutics Inc.",2.4,-11.1,-1.68,null,-50.9,0,null],["COAG","Hemab Therapeutics Holdings, Inc.",20.4,-32,-11.57,null,null,0,null]],"rel":[],"rec":[]},"gen":"2026-11-28 07:05"};</script>
+<script src="assets/one.js?v=202611280705"></script>
+<!--mobile-fix-spacer--><div class="mf-spacer" aria-hidden="true"></div><!--/mobile-fix-spacer--></body>
+</html>

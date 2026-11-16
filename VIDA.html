@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><!--kb-theme:v3--><script>(function(){var d=document.documentElement,
+m=/[?&#]theme=(dark|light)/.exec(location.search+location.hash),t=m&&m[1];
+if(!t){try{t=localStorage.getItem('fdb-theme')}catch(e){}}
+if(t==='dark'||t==='light')d.setAttribute('data-theme',t);
+try{if(window.top!==window.self)d.classList.add('kb-embed')}catch(e){d.classList.add('kb-embed')}})();</script>
+<style id="kb-theme">
+:root{--kb-fg:#1f1f1e;--kb-line:#d6d5ce;--kb-hover:rgba(0,0,0,.05)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--kb-fg:#ecebe6;--kb-line:#3b3b38;--kb-hover:rgba(255,255,255,.08)}}
+:root[data-theme="dark"]{--kb-fg:#ecebe6;--kb-line:#3b3b38;--kb-hover:rgba(255,255,255,.08)}
+/* スイッチ本体（トラック） */
+:root{--kb-trk:#e8e7e1;--kb-knob:#fff;--kb-ico:#d08a00;--kb-dim:#a9a79f}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--kb-trk:#2b2b29;--kb-knob:#45453f;--kb-ico:#f3d36a;--kb-dim:#6f6e68}}
+:root[data-theme="dark"]{--kb-trk:#2b2b29;--kb-knob:#45453f;--kb-ico:#f3d36a;--kb-dim:#6f6e68}
+:root button.kb-theme.kb-theme{-webkit-appearance:none;appearance:none;position:relative;display:inline-block;box-sizing:border-box;
+width:54px;height:30px;min-width:54px;min-height:0;padding:0;border:1px solid var(--kb-line);border-radius:15px;background:var(--kb-trk);
+color:var(--kb-fg);font-size:0;line-height:0;cursor:pointer;box-shadow:inset 0 1px 2px rgba(0,0,0,.08);vertical-align:middle;flex-shrink:0;
+overflow:hidden;-webkit-tap-highlight-color:transparent;transition:background .3s,border-color .3s}
+:root button.kb-theme.kb-theme:focus-visible{outline:2px solid #2a78d6;outline-offset:2px}
+:root button.kb-theme.kb-theme svg{display:block;width:100%;height:100%}
+/* 両端の小さなアイコン（つまみが無い側だけ見える） */
+:root button.kb-theme.kb-theme .kb-trk{position:absolute;top:50%;width:13px;height:13px;margin-top:-6.5px;color:var(--kb-dim);transition:opacity .3s}
+:root button.kb-theme.kb-theme .kb-l{left:7px;opacity:0}
+:root button.kb-theme.kb-theme .kb-r{right:7px;opacity:1}
+/* つまみ */
+:root button.kb-theme.kb-theme .kb-knob{position:absolute;top:2px;left:2px;width:24px;height:24px;border-radius:50%;background:var(--kb-knob);
+color:var(--kb-ico);box-shadow:0 1px 3px rgba(0,0,0,.25),0 0 0 .5px rgba(0,0,0,.06);transform:translateX(0);
+transition:transform .32s cubic-bezier(.3,1.35,.5,1),background .3s,color .3s}
+:root button.kb-theme.kb-theme:active .kb-knob{width:28px}
+:root button.kb-theme.kb-theme .kb-knob svg{position:absolute;inset:0;margin:auto;width:15px;height:15px;transition:opacity .25s,transform .35s}
+:root button.kb-theme.kb-theme .kb-knob .kb-sun{opacity:1;transform:none}
+:root button.kb-theme.kb-theme .kb-knob .kb-moon{opacity:0;transform:rotate(-90deg) scale(.4)}
+/* ダーク表示中：つまみを右へ */
+@media (prefers-color-scheme:dark){
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-knob{transform:translateX(24px)}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme:active .kb-knob{transform:translateX(20px)}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-knob .kb-sun{opacity:0;transform:rotate(90deg) scale(.4)}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-knob .kb-moon{opacity:1;transform:none}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-l{opacity:1}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-r{opacity:0}}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-knob{transform:translateX(24px)}
+:root[data-theme="dark"] button.kb-theme.kb-theme:active .kb-knob{transform:translateX(20px)}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-knob .kb-sun{opacity:0;transform:rotate(90deg) scale(.4)}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-knob .kb-moon{opacity:1;transform:none}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-l{opacity:1}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-r{opacity:0}
+@media (prefers-reduced-motion:reduce){:root button.kb-theme.kb-theme *{transition:none!important}}
+/* 全ページ共通の置き場所：ページ右上の角 */
+:root button.kb-theme.kb-theme.kb-corner{position:absolute;top:12px;right:16px;z-index:60;margin:0;float:none}
+@media (max-width:700px){:root button.kb-theme.kb-theme.kb-corner{top:10px;right:12px}}
+/* 右上のスイッチの下に見えない「よけ」を置き、見出しの文字やボタンがスイッチと重ならないようにする */
+.kb-spacer{float:right;width:84px;height:46px;pointer-events:none}
+@media (max-width:700px){.kb-spacer{width:76px;height:44px}}
+html.kb-embed .kb-spacer{display:none}
+html.kb-embed button.kb-theme[data-kb]{display:none}
+
+</style><!--/kb-theme-->
+<script>
+/* 親ページから ?theme=dark|light で表示を指定できる。指定が無ければOSの設定に従う。 */
+(function(){try{
+  var m=/[?&#]theme=(dark|light)/.exec(location.search+location.hash);
+  if(m)document.documentElement.setAttribute("data-theme",m[1]);
+}catch(e){}})();
+</script>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>VIDA VIDA Global Inc. チャート</title>
+<link rel="stylesheet" href="assets/chart.css?v=a08d4ea5"><!--site-icon:v3--><link rel="icon" type="image/svg+xml" href="/us-charts/icon-black.svg?v=3" media="(prefers-color-scheme: light)"><link rel="icon" type="image/svg+xml" href="/us-charts/icon-white.svg?v=3" media="(prefers-color-scheme: dark)"><link rel="apple-touch-icon" href="/us-charts/apple-touch-icon.png?v=3"><!--/site-icon--><!--mobile-fix:v1--><style id="mobile-fix">
+.mf-spacer{display:none}
+html.mf-sa .mf-spacer{display:block;height:calc(env(safe-area-inset-bottom,0px) + 110px)}
+html.mf-sa .detail .inner{padding-bottom:calc(env(safe-area-inset-bottom,0px) + 140px)}
+</style><script>(function(){try{if(window.top!==window.self)return;
+var sa=navigator.standalone===true||matchMedia('(display-mode: standalone)').matches;
+var touch=matchMedia('(pointer: coarse)').matches;
+if(sa||touch)document.documentElement.classList.add('mf-sa');}catch(e){}})();</script><!--/mobile-fix--><!--pc-wide:v1--><style id="pc-wide">@media (min-width:1280px){body>.wrap,body>main,body>div.wrap{max-width:1680px!important}}</style><!--/pc-wide--></head><body><!--kb-btn--><button class="kb-theme kb-corner" id="kbTheme" type="button" data-kb="msg" aria-label="明暗を切り替え（ライト／ダーク）" title="明暗を切り替え（ライト／ダーク）"><span class="kb-trk kb-l"><svg class="kb-sun" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="12" cy="12" r="4.3"/><path d="M12 2.2v2.3M12 19.5v2.3M2.2 12h2.3M19.5 12h2.3M5.1 5.1l1.6 1.6M17.3 17.3l1.6 1.6M5.1 18.9l1.6-1.6M17.3 6.7l1.6-1.6"/></svg></span><span class="kb-trk kb-r"><svg class="kb-moon" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M20.2 14.6A8.4 8.4 0 0 1 9.4 3.8a.6.6 0 0 0-.8-.7A9.2 9.2 0 1 0 20.9 15.4a.6.6 0 0 0-.7-.8z"/></svg></span><span class="kb-knob"><svg class="kb-sun" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="12" cy="12" r="4.3"/><path d="M12 2.2v2.3M12 19.5v2.3M2.2 12h2.3M19.5 12h2.3M5.1 5.1l1.6 1.6M17.3 17.3l1.6 1.6M5.1 18.9l1.6-1.6M17.3 6.7l1.6-1.6"/></svg><svg class="kb-moon" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M20.2 14.6A8.4 8.4 0 0 1 9.4 3.8a.6.6 0 0 0-.8-.7A9.2 9.2 0 1 0 20.9 15.4a.6.6 0 0 0-.7-.8z"/></svg></span></button><div class="kb-spacer" aria-hidden="true"></div><!--/kb-btn--><div class="wrap">
+<h1><a class="back" href="./charts.html" title="一覧へ">‹</a>VIDA VIDA Global Inc.<span class="mk">NYSE American</span><span class="mk sec">情報技術</span></h1>
+<div class="price"><b id="last"></b><span class="chg" id="chg"></span><span class="asof" id="asof"></span><a class="dash" href="./one/VIDA.html" target="_top" title="シグナル・チャート・ファンダを1画面で">ダッシュボード ›</a></div>
+<section class="biz" aria-label="会社概要"><p>企業向けAIエージェントOSの会社。</p><a href="https://vida.io" target="_blank" rel="noopener noreferrer"><b>公式サイト ↗</b><span>vida.io</span></a></section><div class="st" id="state"></div>
+<div class="bar">
+  <div class="seg" id="periods"></div>
+  <div class="ipick">
+    <button class="ib" data-g="tr" type="button">トレンド系<span class="cnt" id="cTR"></span><small>チャート上</small></button>
+    <button class="ib" data-g="os" type="button">オシレーター系<span class="cnt" id="cOS"></span><small>チャート下</small></button>
+    <button class="ib" data-g="sg" type="button"><span class="sgi"><b class="bu">▲</b><b class="se">▼</b></span>売買サイン<span class="cnt" id="cSG"></span></button>
+  </div>
+</div>
+<div class="ipanel" id="ipanel" hidden>
+  <div class="iph"><b id="iptitle"></b><span id="ipdesc"></span>
+    <button type="button" id="ipreset">既定に戻す</button><button type="button" id="ipnone">すべて外す</button><button type="button" id="ipclose">閉じる</button></div>
+  <div class="sgst" id="sgst" hidden>表示のしかた
+    <div class="seg" id="sgstyle"><button type="button" data-st="label">ラベル（買・売）</button><button type="button" data-st="tri">大きい三角</button></div>
+    <label><input type="checkbox" id="sgvl">サインの足に縦線も引く</label></div>
+  <div class="ics" id="ipchips"></div>
+</div>
+<div class="legend" id="legend"></div>
+<div class="chart"><canvas id="cv"></canvas><div class="vmode" id="vmode"><button type="button" data-m="v">出来高</button><button type="button" data-m="a">売買代金</button></div><div class="xh" id="xhv"></div><div class="xh" id="xhh"></div><div id="tip"></div></div>
+<details class="nt" id="ntbox"><summary>指標の計算方法</summary><p class="note" id="note"></p></details>
+</div>
+<script>
+const CODE = "VIDA";
+const RAW = [["2026-05-15",4.0,4.0,2.5,2.52,1651200],["2026-05-18",2.52,2.67,2.04,2.24,164800],["2026-05-19",2.44,2.45,2.1,2.29,229700],["2026-05-20",2.75,4.33,2.52,4.15,47588700],["2026-05-21",4.35,5.07,3.9,4.93,17417900],["2026-05-22",4.02,4.37,3.64,4.19,2065600],["2026-05-26",4.08,4.29,3.7,3.8,836000],["2026-05-27",3.8,3.91,3.38,3.58,519600],["2026-05-28",3.61,4.47,3.61,3.86,867200],["2026-05-29",3.9,3.91,3.42,3.48,743600],["2026-06-01",3.45,3.8,3.4,3.61,260000],["2026-06-02",3.56,5.54,3.54,5.54,2044300],["2026-06-03",5.11,6.2,4.55,5.59,983900],["2026-06-04",5.5,6.21,5.0,5.44,375400],["2026-06-05",5.33,5.33,3.75,4.05,341900],["2026-06-08",4.31,4.69,4.01,4.44,229700],["2026-06-09",4.48,4.83,3.9,4.1,173900],["2026-06-10",4.11,4.28,3.76,3.99,221800],["2026-06-11",4.04,4.31,3.98,4.24,110200],["2026-06-12",4.14,4.85,3.83,3.83,239000],["2026-06-15",4.05,4.86,3.61,4.67,333700],["2026-06-16",4.47,4.55,3.9,4.35,221400],["2026-06-17",4.17,4.95,4.1,4.11,233500],["2026-06-18",4.32,4.6,4.16,4.23,338900],["2026-06-22",4.2,4.25,3.8,4.13,194600],["2026-06-23",3.86,4.11,3.61,3.87,162600],["2026-06-24",3.73,3.78,3.26,3.45,102600],["2026-06-25",3.55,3.72,2.9,2.97,151700],["2026-06-26",2.94,3.0,2.57,2.94,203200],["2026-06-29",2.96,3.3,2.81,2.96,108800],["2026-06-30",3.04,3.1,2.66,2.8,111100],["2026-07-01",2.72,3.0,2.69,2.84,36400],["2026-07-02",2.77,2.9,2.35,2.35,56100],["2026-07-06",2.47,2.7,2.35,2.51,89600],["2026-07-07",2.43,2.5,2.31,2.36,47100],["2026-07-08",2.32,2.67,2.06,2.57,189800],["2026-07-09",2.48,2.96,2.32,2.4,272800],["2026-07-10",2.44,2.62,2.38,2.39,57500],["2026-07-13",2.43,2.47,2.18,2.18,151200],["2026-07-14",2.39,2.56,2.15,2.27,205800],["2026-07-15",2.4,2.8,2.3,2.57,164600],["2026-07-16",2.51,2.59,2.26,2.37,122400],["2026-07-17",2.34,2.4,2.2,2.32,50200],["2026-07-20",2.43,2.43,2.25,2.27,21300],["2026-07-21",2.45,2.92,2.45,2.51,279300],["2026-07-22",2.61,2.86,2.45,2.68,216500],["2026-07-23",2.58,2.75,2.53,2.75,29300],["2026-07-24",2.75,3.0,2.59,2.86,92200],["2026-07-27",2.99,3.25,2.75,2.97,116000],["2026-07-28",2.93,2.99,2.55,2.73,96000],["2026-07-29",2.78,2.78,2.35,2.4,115800],["2026-07-30",2.48,2.79,2.34,2.48,118800],["2026-07-31",2.74,2.74,2.3,2.41,26200],["2026-08-03",2.48,2.59,2.4,2.45,51200],["2026-08-04",2.52,2.6,2.41,2.41,62600],["2026-08-05",2.41,2.65,2.41,2.43,49000],["2026-08-06",2.44,2.46,2.38,2.39,16700],["2026-08-07",2.41,2.79,2.38,2.44,140600],["2026-08-10",2.47,2.65,2.43,2.48,75200],["2026-08-11",2.43,2.54,2.43,2.5,52100],["2026-08-12",2.46,2.52,2.35,2.35,57400],["2026-08-13",2.42,2.52,2.36,2.42,51000],["2026-08-14",2.48,2.49,2.27,2.35,42200],["2026-08-17",2.33,2.43,2.21,2.43,77900],["2026-08-18",2.2,2.39,2.2,2.28,44200],["2026-08-19",2.26,2.43,2.26,2.26,26800],["2026-08-20",2.3,2.41,2.26,2.29,12600],["2026-08-21",2.27,2.63,2.27,2.37,47700],["2026-08-24",2.43,2.6,2.38,2.52,19400],["2026-08-25",2.36,2.64,2.36,2.54,25400],["2026-08-26",2.53,2.64,2.5,2.64,14300],["2026-08-27",2.69,2.77,2.57,2.7,40400],["2026-08-28",2.72,2.75,2.51,2.7,21400],["2026-08-31",2.62,2.74,2.58,2.74,28400],["2026-09-01",2.8,2.9,2.4,2.57,614400],["2026-09-02",2.36,2.64,2.36,2.56,155200],["2026-09-03",2.54,3.06,2.32,2.49,559300],["2026-09-04",2.54,2.65,1.8,2.0,362500],["2026-09-08",2.01,2.44,1.93,2.44,437900],["2026-09-09",2.43,2.43,2.17,2.26,94800],["2026-09-10",2.19,2.19,1.98,2.08,98500],["2026-09-11",2.08,2.19,2.0,2.13,62500],["2026-09-14",2.07,2.08,1.9,2.04,56500],["2026-09-15",1.92,1.98,1.8,1.84,117000],["2026-09-16",1.83,1.89,1.75,1.84,133300],["2026-09-17",1.78,1.9,1.74,1.82,54200],["2026-09-18",1.81,1.95,1.76,1.94,70600],["2026-09-21",1.92,2.08,1.83,1.83,101900],["2026-09-22",1.86,1.96,1.81,1.82,56700],["2026-09-23",1.8,1.91,1.8,1.84,50500],["2026-09-24",1.85,1.85,1.62,1.68,69700],["2026-09-25",1.72,1.78,1.7,1.73,25500],["2026-09-28",1.73,1.78,1.61,1.64,51700],["2026-09-29",1.67,1.7,1.58,1.65,25700],["2026-09-30",1.65,1.73,1.62,1.64,74900],["2026-10-01",1.6,1.67,1.55,1.58,42100],["2026-10-02",1.61,1.65,1.55,1.59,53500],["2026-10-05",1.6,1.61,1.5,1.52,81700],["2026-10-06",1.54,1.62,1.5,1.51,54200],["2026-10-07",1.54,1.55,1.4,1.46,101300],["2026-10-08",1.44,1.46,1.32,1.38,40800],["2026-10-09",1.38,1.47,1.33,1.47,30700],["2026-10-12",1.33,1.54,1.27,1.31,60500],["2026-10-13",1.27,1.3,1.15,1.2,41200],["2026-10-14",1.06,1.35,1.06,1.14,32800],["2026-10-15",1.08,1.21,1.08,1.15,31800],["2026-10-16",1.12,1.19,1.1,1.1,37900],["2026-10-19",1.14,1.14,1.03,1.06,76200],["2026-10-20",1.02,1.12,1.02,1.1,56500],["2026-10-21",1.15,1.15,1.07,1.12,20200],["2026-10-22",1.09,1.12,1.08,1.1,9200],["2026-10-23",1.07,1.11,1.05,1.06,11500],["2026-10-26",1.06,1.07,1.0,1.01,22900],["2026-10-27",1.04,1.12,1.03,1.04,17100],["2026-10-28",1.1,1.19,1.02,1.1,48700],["2026-10-29",1.06,1.12,0.98,1.07,38700],["2026-10-30",1.02,1.05,0.88,0.99,58000],["2026-11-02",1.04,1.07,0.93,0.93,54900],["2026-11-03",0.93,0.97,0.8,0.92,44900],["2026-11-04",0.96,0.98,0.77,0.84,170600],["2026-11-05",0.8,0.85,0.73,0.76,45200],["2026-11-06",0.84,0.84,0.75,0.77,10500],["2026-11-09",0.76,0.84,0.7,0.71,132000],["2026-11-10",0.78,0.83,0.72,0.73,86300],["2026-11-11",0.74,0.79,0.7,0.7,177500],["2026-11-12",0.7,0.76,0.7,0.71,44600],["2026-11-13",0.72,0.81,0.7,0.75,176100],["2026-11-16",0.74,0.81,0.65,0.68,260300],["2026-11-17",0.66,0.69,0.6,0.61,64800],["2026-11-18",0.6,0.65,0.59,0.6,61200],["2026-11-19",0.62,0.65,0.58,0.63,24000],["2026-11-20",0.62,0.64,0.48,0.54,97300],["2026-11-23",0.55,0.61,0.54,0.6,47400],["2026-11-24",0.59,0.59,0.49,0.53,54200],["2026-11-25",0.54,0.57,0.48,0.53,38100],["2026-11-27",0.54,0.6,0.52,0.54,23986]];
+const DATANOTE = "";
+</script>
+<script src="intra/VIDA.js?v=20261127371"></script>
+<script src="assets/chart.js?v=aa49b450"></script><!--kb-theme-js--><script>(function(){var bs=document.querySelectorAll('button.kb-theme[data-kb]');
+for(var i=0;i<bs.length;i++)bs[i].addEventListener('click',function(){var b=this,d=document.documentElement,
+cur=d.getAttribute('data-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'),n=cur==='dark'?'light':'dark';
+d.setAttribute('data-theme',n);try{localStorage.setItem('fdb-theme',n)}catch(e){}
+var f=document.querySelectorAll('iframe');for(var j=0;j<f.length;j++){try{f[j].contentWindow.postMessage({chartTheme:n},'*')}catch(e){}}
+var k=b.getAttribute('data-kb');
+if(k==='reload')location.reload();
+else if(k==='msg')window.postMessage({chartTheme:n},'*');
+else if(k==='fn'&&typeof window.__kbRedraw==='function')window.__kbRedraw();});})();</script><!--/kb-theme-js--><!--mobile-fix-spacer--><div class="mf-spacer" aria-hidden="true"></div><!--/mobile-fix-spacer--></body></html>

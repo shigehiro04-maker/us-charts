@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><!--kb-theme:v3--><script>(function(){var d=document.documentElement,
+m=/[?&#]theme=(dark|light)/.exec(location.search+location.hash),t=m&&m[1];
+if(!t){try{t=localStorage.getItem('fdb-theme')}catch(e){}}
+if(t==='dark'||t==='light')d.setAttribute('data-theme',t);
+try{if(window.top!==window.self)d.classList.add('kb-embed')}catch(e){d.classList.add('kb-embed')}})();</script>
+<style id="kb-theme">
+:root{--kb-fg:#1f1f1e;--kb-line:#d6d5ce;--kb-hover:rgba(0,0,0,.05)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--kb-fg:#ecebe6;--kb-line:#3b3b38;--kb-hover:rgba(255,255,255,.08)}}
+:root[data-theme="dark"]{--kb-fg:#ecebe6;--kb-line:#3b3b38;--kb-hover:rgba(255,255,255,.08)}
+/* スイッチ本体（トラック） */
+:root{--kb-trk:#e8e7e1;--kb-knob:#fff;--kb-ico:#d08a00;--kb-dim:#a9a79f}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--kb-trk:#2b2b29;--kb-knob:#45453f;--kb-ico:#f3d36a;--kb-dim:#6f6e68}}
+:root[data-theme="dark"]{--kb-trk:#2b2b29;--kb-knob:#45453f;--kb-ico:#f3d36a;--kb-dim:#6f6e68}
+:root button.kb-theme.kb-theme{-webkit-appearance:none;appearance:none;position:relative;display:inline-block;box-sizing:border-box;
+width:54px;height:30px;min-width:54px;min-height:0;padding:0;border:1px solid var(--kb-line);border-radius:15px;background:var(--kb-trk);
+color:var(--kb-fg);font-size:0;line-height:0;cursor:pointer;box-shadow:inset 0 1px 2px rgba(0,0,0,.08);vertical-align:middle;flex-shrink:0;
+overflow:hidden;-webkit-tap-highlight-color:transparent;transition:background .3s,border-color .3s}
+:root button.kb-theme.kb-theme:focus-visible{outline:2px solid #2a78d6;outline-offset:2px}
+:root button.kb-theme.kb-theme svg{display:block;width:100%;height:100%}
+/* 両端の小さなアイコン（つまみが無い側だけ見える） */
+:root button.kb-theme.kb-theme .kb-trk{position:absolute;top:50%;width:13px;height:13px;margin-top:-6.5px;color:var(--kb-dim);transition:opacity .3s}
+:root button.kb-theme.kb-theme .kb-l{left:7px;opacity:0}
+:root button.kb-theme.kb-theme .kb-r{right:7px;opacity:1}
+/* つまみ */
+:root button.kb-theme.kb-theme .kb-knob{position:absolute;top:2px;left:2px;width:24px;height:24px;border-radius:50%;background:var(--kb-knob);
+color:var(--kb-ico);box-shadow:0 1px 3px rgba(0,0,0,.25),0 0 0 .5px rgba(0,0,0,.06);transform:translateX(0);
+transition:transform .32s cubic-bezier(.3,1.35,.5,1),background .3s,color .3s}
+:root button.kb-theme.kb-theme:active .kb-knob{width:28px}
+:root button.kb-theme.kb-theme .kb-knob svg{position:absolute;inset:0;margin:auto;width:15px;height:15px;transition:opacity .25s,transform .35s}
+:root button.kb-theme.kb-theme .kb-knob .kb-sun{opacity:1;transform:none}
+:root button.kb-theme.kb-theme .kb-knob .kb-moon{opacity:0;transform:rotate(-90deg) scale(.4)}
+/* ダーク表示中：つまみを右へ */
+@media (prefers-color-scheme:dark){
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-knob{transform:translateX(24px)}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme:active .kb-knob{transform:translateX(20px)}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-knob .kb-sun{opacity:0;transform:rotate(90deg) scale(.4)}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-knob .kb-moon{opacity:1;transform:none}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-l{opacity:1}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-r{opacity:0}}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-knob{transform:translateX(24px)}
+:root[data-theme="dark"] button.kb-theme.kb-theme:active .kb-knob{transform:translateX(20px)}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-knob .kb-sun{opacity:0;transform:rotate(90deg) scale(.4)}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-knob .kb-moon{opacity:1;transform:none}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-l{opacity:1}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-r{opacity:0}
+@media (prefers-reduced-motion:reduce){:root button.kb-theme.kb-theme *{transition:none!important}}
+/* 全ページ共通の置き場所：ページ右上の角 */
+:root button.kb-theme.kb-theme.kb-corner{position:absolute;top:12px;right:16px;z-index:60;margin:0;float:none}
+@media (max-width:700px){:root button.kb-theme.kb-theme.kb-corner{top:10px;right:12px}}
+/* 右上のスイッチの下に見えない「よけ」を置き、見出しの文字やボタンがスイッチと重ならないようにする */
+.kb-spacer{float:right;width:84px;height:46px;pointer-events:none}
+@media (max-width:700px){.kb-spacer{width:76px;height:44px}}
+html.kb-embed .kb-spacer{display:none}
+html.kb-embed button.kb-theme[data-kb]{display:none}
+
+</style><!--/kb-theme-->
+<script>
+/* 親ページから ?theme=dark|light で表示を指定できる。指定が無ければOSの設定に従う。 */
+(function(){try{
+  var m=/[?&#]theme=(dark|light)/.exec(location.search+location.hash);
+  if(m)document.documentElement.setAttribute("data-theme",m[1]);
+}catch(e){}})();
+</script>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>OBX Obsidian Therapeutics, Inc. チャート</title>
+<link rel="stylesheet" href="assets/chart.css?v=a08d4ea5"><!--site-icon:v3--><link rel="icon" type="image/svg+xml" href="/us-charts/icon-black.svg?v=3" media="(prefers-color-scheme: light)"><link rel="icon" type="image/svg+xml" href="/us-charts/icon-white.svg?v=3" media="(prefers-color-scheme: dark)"><link rel="apple-touch-icon" href="/us-charts/apple-touch-icon.png?v=3"><!--/site-icon--><!--mobile-fix:v1--><style id="mobile-fix">
+.mf-spacer{display:none}
+html.mf-sa .mf-spacer{display:block;height:calc(env(safe-area-inset-bottom,0px) + 110px)}
+html.mf-sa .detail .inner{padding-bottom:calc(env(safe-area-inset-bottom,0px) + 140px)}
+</style><script>(function(){try{if(window.top!==window.self)return;
+var sa=navigator.standalone===true||matchMedia('(display-mode: standalone)').matches;
+var touch=matchMedia('(pointer: coarse)').matches;
+if(sa||touch)document.documentElement.classList.add('mf-sa');}catch(e){}})();</script><!--/mobile-fix--><!--pc-wide:v1--><style id="pc-wide">@media (min-width:1280px){body>.wrap,body>main,body>div.wrap{max-width:1680px!important}}</style><!--/pc-wide--></head><body><!--kb-btn--><button class="kb-theme kb-corner" id="kbTheme" type="button" data-kb="msg" aria-label="明暗を切り替え（ライト／ダーク）" title="明暗を切り替え（ライト／ダーク）"><span class="kb-trk kb-l"><svg class="kb-sun" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="12" cy="12" r="4.3"/><path d="M12 2.2v2.3M12 19.5v2.3M2.2 12h2.3M19.5 12h2.3M5.1 5.1l1.6 1.6M17.3 17.3l1.6 1.6M5.1 18.9l1.6-1.6M17.3 6.7l1.6-1.6"/></svg></span><span class="kb-trk kb-r"><svg class="kb-moon" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M20.2 14.6A8.4 8.4 0 0 1 9.4 3.8a.6.6 0 0 0-.8-.7A9.2 9.2 0 1 0 20.9 15.4a.6.6 0 0 0-.7-.8z"/></svg></span><span class="kb-knob"><svg class="kb-sun" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="12" cy="12" r="4.3"/><path d="M12 2.2v2.3M12 19.5v2.3M2.2 12h2.3M19.5 12h2.3M5.1 5.1l1.6 1.6M17.3 17.3l1.6 1.6M5.1 18.9l1.6-1.6M17.3 6.7l1.6-1.6"/></svg><svg class="kb-moon" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M20.2 14.6A8.4 8.4 0 0 1 9.4 3.8a.6.6 0 0 0-.8-.7A9.2 9.2 0 1 0 20.9 15.4a.6.6 0 0 0-.7-.8z"/></svg></span></button><div class="kb-spacer" aria-hidden="true"></div><!--/kb-btn--><div class="wrap">
+<h1><a class="back" href="./charts.html" title="一覧へ">‹</a>OBX Obsidian Therapeutics, Inc.<span class="mk">NASDAQ</span><span class="mk sec">ヘルスケア</span></h1>
+<div class="price"><b id="last"></b><span class="chg" id="chg"></span><span class="asof" id="asof"></span><a class="dash" href="./one/OBX.html" target="_top" title="シグナル・チャート・ファンダを1画面で">ダッシュボード ›</a></div>
+<section class="biz" aria-label="会社概要"><p>細胞・遺伝子治療を開発する臨床段階のバイオ企業。</p><a href="https://obsidiantx.com" target="_blank" rel="noopener noreferrer"><b>公式サイト ↗</b><span>obsidiantx.com</span></a></section><div class="st" id="state"></div>
+<div class="bar">
+  <div class="seg" id="periods"></div>
+  <div class="ipick">
+    <button class="ib" data-g="tr" type="button">トレンド系<span class="cnt" id="cTR"></span><small>チャート上</small></button>
+    <button class="ib" data-g="os" type="button">オシレーター系<span class="cnt" id="cOS"></span><small>チャート下</small></button>
+    <button class="ib" data-g="sg" type="button"><span class="sgi"><b class="bu">▲</b><b class="se">▼</b></span>売買サイン<span class="cnt" id="cSG"></span></button>
+  </div>
+</div>
+<div class="ipanel" id="ipanel" hidden>
+  <div class="iph"><b id="iptitle"></b><span id="ipdesc"></span>
+    <button type="button" id="ipreset">既定に戻す</button><button type="button" id="ipnone">すべて外す</button><button type="button" id="ipclose">閉じる</button></div>
+  <div class="sgst" id="sgst" hidden>表示のしかた
+    <div class="seg" id="sgstyle"><button type="button" data-st="label">ラベル（買・売）</button><button type="button" data-st="tri">大きい三角</button></div>
+    <label><input type="checkbox" id="sgvl">サインの足に縦線も引く</label></div>
+  <div class="ics" id="ipchips"></div>
+</div>
+<div class="legend" id="legend"></div>
+<div class="chart"><canvas id="cv"></canvas><div class="vmode" id="vmode"><button type="button" data-m="v">出来高</button><button type="button" data-m="a">売買代金</button></div><div class="xh" id="xhv"></div><div class="xh" id="xhh"></div><div id="tip"></div></div>
+<details class="nt" id="ntbox"><summary>指標の計算方法</summary><p class="note" id="note"></p></details>
+</div>
+<script>
+const CODE = "OBX";
+const RAW = [["2026-07-27",17.5,17.5,17.5,17.5,0],["2026-07-28",15.57,15.57,15.57,15.57,100],["2026-07-29",15.62,15.62,15.62,15.62,300],["2026-07-30",15.62,15.62,15.62,15.62,0],["2026-07-31",15.62,15.62,15.62,15.62,0],["2026-08-03",16.0,19.0,16.0,18.99,2400],["2026-08-04",49.97,49.97,25.0,34.0,13400],["2026-08-05",30.0,30.3,23.0,28.51,18400],["2026-08-06",27.14,29.95,27.14,28.35,7400],["2026-08-07",27.54,28.45,26.8,27.5,8900],["2026-08-10",28.5,37.15,28.5,35.0,27200],["2026-08-11",37.96,39.0,30.0,32.9,89900],["2026-08-12",30.0,33.49,24.0,28.0,111500],["2026-08-13",26.7,26.72,17.05,18.92,163500],["2026-08-14",20.01,20.01,17.77,17.77,32700],["2026-08-17",14.57,18.51,14.57,17.54,18600],["2026-08-18",19.26,20.2,16.31,19.95,112300],["2026-08-19",19.81,22.33,19.3,20.0,48600],["2026-08-20",20.2,21.03,19.7,20.19,74400],["2026-08-21",20.47,21.33,18.44,19.9,1449300],["2026-08-24",20.39,21.98,17.8,18.7,133100],["2026-08-25",19.29,19.44,18.5,19.0,155700],["2026-08-26",18.32,19.2,17.79,18.4,118400],["2026-08-27",17.8,18.72,16.8,17.04,65100],["2026-08-28",16.58,18.11,15.85,16.3,260500],["2026-08-31",16.55,17.99,15.53,17.51,142500],["2026-09-01",17.18,18.1,16.27,17.04,79300],["2026-09-02",17.35,18.02,16.25,17.0,126300],["2026-09-03",16.85,18.06,16.15,17.09,136200],["2026-09-04",17.26,19.0,16.57,16.82,140100],["2026-09-08",16.98,19.87,16.98,18.73,599400],["2026-09-09",18.16,19.97,18.16,18.68,332200],["2026-09-10",18.65,19.55,17.0,17.16,454200],["2026-09-11",17.23,18.49,17.17,17.8,392800],["2026-09-14",18.39,19.0,17.84,18.1,455500],["2026-09-15",18.17,18.75,17.0,17.0,472300],["2026-09-16",17.29,18.1,16.91,17.15,1167000],["2026-09-17",17.16,18.19,17.16,17.5,829600],["2026-09-18",17.61,18.16,17.36,17.75,3974300],["2026-09-21",18.08,18.21,17.14,17.33,1104800],["2026-09-22",17.44,17.97,16.71,17.0,1151600],["2026-09-23",17.1,17.1,15.25,15.26,582600],["2026-09-24",15.27,15.66,13.2,13.41,426600],["2026-09-25",13.54,13.7,12.16,12.86,454500],["2026-09-28",12.91,13.73,12.33,13.37,913000],["2026-09-29",13.28,15.38,12.8,14.58,378600],["2026-09-30",14.58,14.7,13.11,13.73,351600],["2026-10-01",13.86,14.68,13.16,13.32,299800],["2026-10-02",13.07,13.9,13.07,13.59,229000],["2026-10-05",13.45,14.26,13.09,13.84,199200],["2026-10-06",13.84,14.42,13.0,13.22,288800],["2026-10-07",13.02,13.88,12.8,13.2,359000],["2026-10-08",13.14,13.39,12.07,12.24,517100],["2026-10-09",12.25,13.95,12.25,13.0,532200],["2026-10-12",13.13,13.21,12.61,12.79,420000],["2026-10-13",12.96,13.18,11.86,11.99,377300],["2026-10-14",12.0,12.67,11.79,12.22,298300],["2026-10-15",12.31,12.67,12.06,12.2,240300],["2026-10-16",12.31,12.46,11.62,11.77,297700],["2026-10-19",11.75,12.0,11.52,11.94,106400],["2026-10-20",11.97,13.47,11.57,13.25,410900],["2026-10-21",13.34,14.6,13.34,13.93,332800],["2026-10-22",14.1,14.5,13.74,13.94,174200],["2026-10-23",13.83,14.17,13.43,13.98,279800],["2026-10-26",14.07,14.3,13.16,13.86,204800],["2026-10-27",13.72,14.31,13.2,14.25,397700],["2026-10-28",13.38,15.0,13.38,14.59,412000],["2026-10-29",14.67,15.87,14.3,14.52,248200],["2026-10-30",14.55,15.52,13.66,14.79,563000],["2026-11-02",14.62,14.92,13.48,14.43,526000],["2026-11-03",14.23,14.97,13.01,13.23,626800],["2026-11-04",13.55,13.75,10.6,10.99,544000],["2026-11-05",10.98,10.98,9.6,9.6,778300],["2026-11-06",10.41,14.77,9.71,13.87,2091400],["2026-11-09",13.34,14.21,12.4,13.71,1143700],["2026-11-10",13.39,14.03,12.74,13.74,744000],["2026-11-11",13.77,14.0,12.82,12.88,663400],["2026-11-12",12.99,13.04,12.0,12.48,328700],["2026-11-13",12.37,13.0,11.8,12.56,314000],["2026-11-16",12.5,12.71,11.85,12.36,727800],["2026-11-17",12.26,12.51,11.88,12.07,282000],["2026-11-18",12.0,13.25,11.73,12.21,681200],["2026-11-19",12.3,12.81,11.99,12.15,361900],["2026-11-20",12.01,12.3,11.76,12.0,336500],["2026-11-23",12.43,12.68,11.7,12.25,549700],["2026-11-24",12.17,13.61,12.16,13.47,787100],["2026-11-25",13.49,14.37,12.46,14.29,526400],["2026-11-27",14.34,14.99,13.15,14.68,462907]];
+const DATANOTE = "";
+</script>
+<script src="intra/OBX.js?v=20261127858"></script>
+<script src="assets/chart.js?v=aa49b450"></script><!--kb-theme-js--><script>(function(){var bs=document.querySelectorAll('button.kb-theme[data-kb]');
+for(var i=0;i<bs.length;i++)bs[i].addEventListener('click',function(){var b=this,d=document.documentElement,
+cur=d.getAttribute('data-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'),n=cur==='dark'?'light':'dark';
+d.setAttribute('data-theme',n);try{localStorage.setItem('fdb-theme',n)}catch(e){}
+var f=document.querySelectorAll('iframe');for(var j=0;j<f.length;j++){try{f[j].contentWindow.postMessage({chartTheme:n},'*')}catch(e){}}
+var k=b.getAttribute('data-kb');
+if(k==='reload')location.reload();
+else if(k==='msg')window.postMessage({chartTheme:n},'*');
+else if(k==='fn'&&typeof window.__kbRedraw==='function')window.__kbRedraw();});})();</script><!--/kb-theme-js--><!--mobile-fix-spacer--><div class="mf-spacer" aria-hidden="true"></div><!--/mobile-fix-spacer--></body></html>

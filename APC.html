@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><!--kb-theme:v3--><script>(function(){var d=document.documentElement,
+m=/[?&#]theme=(dark|light)/.exec(location.search+location.hash),t=m&&m[1];
+if(!t){try{t=localStorage.getItem('fdb-theme')}catch(e){}}
+if(t==='dark'||t==='light')d.setAttribute('data-theme',t);
+try{if(window.top!==window.self)d.classList.add('kb-embed')}catch(e){d.classList.add('kb-embed')}})();</script>
+<style id="kb-theme">
+:root{--kb-fg:#1f1f1e;--kb-line:#d6d5ce;--kb-hover:rgba(0,0,0,.05)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--kb-fg:#ecebe6;--kb-line:#3b3b38;--kb-hover:rgba(255,255,255,.08)}}
+:root[data-theme="dark"]{--kb-fg:#ecebe6;--kb-line:#3b3b38;--kb-hover:rgba(255,255,255,.08)}
+/* スイッチ本体（トラック） */
+:root{--kb-trk:#e8e7e1;--kb-knob:#fff;--kb-ico:#d08a00;--kb-dim:#a9a79f}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--kb-trk:#2b2b29;--kb-knob:#45453f;--kb-ico:#f3d36a;--kb-dim:#6f6e68}}
+:root[data-theme="dark"]{--kb-trk:#2b2b29;--kb-knob:#45453f;--kb-ico:#f3d36a;--kb-dim:#6f6e68}
+:root button.kb-theme.kb-theme{-webkit-appearance:none;appearance:none;position:relative;display:inline-block;box-sizing:border-box;
+width:54px;height:30px;min-width:54px;min-height:0;padding:0;border:1px solid var(--kb-line);border-radius:15px;background:var(--kb-trk);
+color:var(--kb-fg);font-size:0;line-height:0;cursor:pointer;box-shadow:inset 0 1px 2px rgba(0,0,0,.08);vertical-align:middle;flex-shrink:0;
+overflow:hidden;-webkit-tap-highlight-color:transparent;transition:background .3s,border-color .3s}
+:root button.kb-theme.kb-theme:focus-visible{outline:2px solid #2a78d6;outline-offset:2px}
+:root button.kb-theme.kb-theme svg{display:block;width:100%;height:100%}
+/* 両端の小さなアイコン（つまみが無い側だけ見える） */
+:root button.kb-theme.kb-theme .kb-trk{position:absolute;top:50%;width:13px;height:13px;margin-top:-6.5px;color:var(--kb-dim);transition:opacity .3s}
+:root button.kb-theme.kb-theme .kb-l{left:7px;opacity:0}
+:root button.kb-theme.kb-theme .kb-r{right:7px;opacity:1}
+/* つまみ */
+:root button.kb-theme.kb-theme .kb-knob{position:absolute;top:2px;left:2px;width:24px;height:24px;border-radius:50%;background:var(--kb-knob);
+color:var(--kb-ico);box-shadow:0 1px 3px rgba(0,0,0,.25),0 0 0 .5px rgba(0,0,0,.06);transform:translateX(0);
+transition:transform .32s cubic-bezier(.3,1.35,.5,1),background .3s,color .3s}
+:root button.kb-theme.kb-theme:active .kb-knob{width:28px}
+:root button.kb-theme.kb-theme .kb-knob svg{position:absolute;inset:0;margin:auto;width:15px;height:15px;transition:opacity .25s,transform .35s}
+:root button.kb-theme.kb-theme .kb-knob .kb-sun{opacity:1;transform:none}
+:root button.kb-theme.kb-theme .kb-knob .kb-moon{opacity:0;transform:rotate(-90deg) scale(.4)}
+/* ダーク表示中：つまみを右へ */
+@media (prefers-color-scheme:dark){
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-knob{transform:translateX(24px)}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme:active .kb-knob{transform:translateX(20px)}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-knob .kb-sun{opacity:0;transform:rotate(90deg) scale(.4)}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-knob .kb-moon{opacity:1;transform:none}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-l{opacity:1}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-r{opacity:0}}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-knob{transform:translateX(24px)}
+:root[data-theme="dark"] button.kb-theme.kb-theme:active .kb-knob{transform:translateX(20px)}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-knob .kb-sun{opacity:0;transform:rotate(90deg) scale(.4)}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-knob .kb-moon{opacity:1;transform:none}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-l{opacity:1}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-r{opacity:0}
+@media (prefers-reduced-motion:reduce){:root button.kb-theme.kb-theme *{transition:none!important}}
+/* 全ページ共通の置き場所：ページ右上の角 */
+:root button.kb-theme.kb-theme.kb-corner{position:absolute;top:12px;right:16px;z-index:60;margin:0;float:none}
+@media (max-width:700px){:root button.kb-theme.kb-theme.kb-corner{top:10px;right:12px}}
+/* 右上のスイッチの下に見えない「よけ」を置き、見出しの文字やボタンがスイッチと重ならないようにする */
+.kb-spacer{float:right;width:84px;height:46px;pointer-events:none}
+@media (max-width:700px){.kb-spacer{width:76px;height:44px}}
+html.kb-embed .kb-spacer{display:none}
+html.kb-embed button.kb-theme[data-kb]{display:none}
+
+</style><!--/kb-theme-->
+<script>
+/* 親ページから ?theme=dark|light で表示を指定できる。指定が無ければOSの設定に従う。 */
+(function(){try{
+  var m=/[?&#]theme=(dark|light)/.exec(location.search+location.hash);
+  if(m)document.documentElement.setAttribute("data-theme",m[1]);
+}catch(e){}})();
+</script>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>APC ARKO Petroleum Corp. チャート</title>
+<link rel="stylesheet" href="assets/chart.css?v=a08d4ea5"><!--site-icon:v3--><link rel="icon" type="image/svg+xml" href="/us-charts/icon-black.svg?v=3" media="(prefers-color-scheme: light)"><link rel="icon" type="image/svg+xml" href="/us-charts/icon-white.svg?v=3" media="(prefers-color-scheme: dark)"><link rel="apple-touch-icon" href="/us-charts/apple-touch-icon.png?v=3"><!--/site-icon--><!--mobile-fix:v1--><style id="mobile-fix">
+.mf-spacer{display:none}
+html.mf-sa .mf-spacer{display:block;height:calc(env(safe-area-inset-bottom,0px) + 110px)}
+html.mf-sa .detail .inner{padding-bottom:calc(env(safe-area-inset-bottom,0px) + 140px)}
+</style><script>(function(){try{if(window.top!==window.self)return;
+var sa=navigator.standalone===true||matchMedia('(display-mode: standalone)').matches;
+var touch=matchMedia('(pointer: coarse)').matches;
+if(sa||touch)document.documentElement.classList.add('mf-sa');}catch(e){}})();</script><!--/mobile-fix--><!--pc-wide:v1--><style id="pc-wide">@media (min-width:1280px){body>.wrap,body>main,body>div.wrap{max-width:1680px!important}}</style><!--/pc-wide--></head><body><!--kb-btn--><button class="kb-theme kb-corner" id="kbTheme" type="button" data-kb="msg" aria-label="明暗を切り替え（ライト／ダーク）" title="明暗を切り替え（ライト／ダーク）"><span class="kb-trk kb-l"><svg class="kb-sun" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="12" cy="12" r="4.3"/><path d="M12 2.2v2.3M12 19.5v2.3M2.2 12h2.3M19.5 12h2.3M5.1 5.1l1.6 1.6M17.3 17.3l1.6 1.6M5.1 18.9l1.6-1.6M17.3 6.7l1.6-1.6"/></svg></span><span class="kb-trk kb-r"><svg class="kb-moon" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M20.2 14.6A8.4 8.4 0 0 1 9.4 3.8a.6.6 0 0 0-.8-.7A9.2 9.2 0 1 0 20.9 15.4a.6.6 0 0 0-.7-.8z"/></svg></span><span class="kb-knob"><svg class="kb-sun" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="12" cy="12" r="4.3"/><path d="M12 2.2v2.3M12 19.5v2.3M2.2 12h2.3M19.5 12h2.3M5.1 5.1l1.6 1.6M17.3 17.3l1.6 1.6M5.1 18.9l1.6-1.6M17.3 6.7l1.6-1.6"/></svg><svg class="kb-moon" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M20.2 14.6A8.4 8.4 0 0 1 9.4 3.8a.6.6 0 0 0-.8-.7A9.2 9.2 0 1 0 20.9 15.4a.6.6 0 0 0-.7-.8z"/></svg></span></button><div class="kb-spacer" aria-hidden="true"></div><!--/kb-btn--><div class="wrap">
+<h1><a class="back" href="./charts.html" title="一覧へ">‹</a>APC ARKO Petroleum Corp.<span class="mk">NASDAQ</span><span class="mk sec">エネルギー</span></h1>
+<div class="price"><b id="last"></b><span class="chg" id="chg"></span><span class="asof" id="asof"></span><a class="dash" href="./one/APC.html" target="_top" title="シグナル・チャート・ファンダを1画面で">ダッシュボード ›</a></div>
+<section class="biz" aria-label="会社概要"><p>北米の燃料卸・流通の会社。</p><a href="https://www.arkopetroleum.com" target="_blank" rel="noopener noreferrer"><b>公式サイト ↗</b><span>www.arkopetroleum.com</span></a></section><div class="st" id="state"></div>
+<div class="bar">
+  <div class="seg" id="periods"></div>
+  <div class="ipick">
+    <button class="ib" data-g="tr" type="button">トレンド系<span class="cnt" id="cTR"></span><small>チャート上</small></button>
+    <button class="ib" data-g="os" type="button">オシレーター系<span class="cnt" id="cOS"></span><small>チャート下</small></button>
+    <button class="ib" data-g="sg" type="button"><span class="sgi"><b class="bu">▲</b><b class="se">▼</b></span>売買サイン<span class="cnt" id="cSG"></span></button>
+  </div>
+</div>
+<div class="ipanel" id="ipanel" hidden>
+  <div class="iph"><b id="iptitle"></b><span id="ipdesc"></span>
+    <button type="button" id="ipreset">既定に戻す</button><button type="button" id="ipnone">すべて外す</button><button type="button" id="ipclose">閉じる</button></div>
+  <div class="sgst" id="sgst" hidden>表示のしかた
+    <div class="seg" id="sgstyle"><button type="button" data-st="label">ラベル（買・売）</button><button type="button" data-st="tri">大きい三角</button></div>
+    <label><input type="checkbox" id="sgvl">サインの足に縦線も引く</label></div>
+  <div class="ics" id="ipchips"></div>
+</div>
+<div class="legend" id="legend"></div>
+<div class="chart"><canvas id="cv"></canvas><div class="vmode" id="vmode"><button type="button" data-m="v">出来高</button><button type="button" data-m="a">売買代金</button></div><div class="xh" id="xhv"></div><div class="xh" id="xhh"></div><div id="tip"></div></div>
+<details class="nt" id="ntbox"><summary>指標の計算方法</summary><p class="note" id="note"></p></details>
+</div>
+<script>
+const CODE = "APC";
+const RAW = [["2026-02-12",16.48,16.91,15.76,16.27,2587900],["2026-02-13",16.4,16.92,16.27,16.69,738600],["2026-02-17",16.68,17.16,16.55,16.6,226400],["2026-02-18",16.69,16.92,16.53,16.71,288600],["2026-02-19",16.58,18.08,16.58,17.83,355800],["2026-02-20",17.8,17.95,17.54,17.81,234200],["2026-02-23",17.85,17.85,17.01,17.76,257900],["2026-02-24",17.62,17.68,17.46,17.59,67300],["2026-02-25",17.63,17.64,17.16,17.32,123700],["2026-02-26",17.5,17.62,17.16,17.49,117700],["2026-02-27",17.39,17.8,17.2,17.63,162900],["2026-03-02",17.48,18.04,17.42,17.63,164800],["2026-03-03",17.79,18.0,17.51,17.81,233700],["2026-03-04",18.08,18.36,17.55,17.83,149000],["2026-03-05",17.8,17.95,17.53,17.68,131200],["2026-03-06",17.6,17.88,17.09,17.36,337300],["2026-03-09",17.37,17.9,17.37,17.7,329100],["2026-03-10",17.62,18.04,17.47,17.99,180200],["2026-03-11",18.13,18.21,17.2,17.27,217800],["2026-03-12",16.97,17.57,16.88,17.3,108700],["2026-03-13",17.48,17.48,16.29,16.7,114900],["2026-03-16",16.84,17.52,16.75,17.29,97700],["2026-03-17",17.51,17.59,16.9,17.48,67600],["2026-03-18",17.53,17.6,17.06,17.08,113000],["2026-03-19",17.12,17.4,16.95,17.01,186000],["2026-03-20",17.02,17.32,16.89,16.96,971800],["2026-03-23",17.2,17.32,16.64,16.8,101700],["2026-03-24",16.75,16.85,16.62,16.69,53500],["2026-03-25",16.66,17.31,16.6,16.74,289100],["2026-03-26",16.53,16.9,16.4,16.64,228100],["2026-03-27",16.47,16.86,16.14,16.36,195300],["2026-03-30",16.28,16.46,15.84,16.08,163000],["2026-03-31",16.14,16.83,16.12,16.59,168700],["2026-04-01",16.59,16.91,16.29,16.84,231800],["2026-04-02",16.65,17.0,16.27,16.8,169800],["2026-04-06",16.95,17.15,16.81,17.15,65800],["2026-04-07",16.98,17.42,16.97,16.97,103400],["2026-04-08",17.26,17.67,17.04,17.07,173000],["2026-04-09",17.1,17.58,17.0,17.41,68200],["2026-04-10",17.39,17.83,17.13,17.65,102700],["2026-04-13",17.55,17.75,17.35,17.42,146900],["2026-04-14",17.39,17.63,17.39,17.6,122800],["2026-04-15",17.6,17.61,17.38,17.53,122300],["2026-04-16",17.58,17.74,17.27,17.43,115200],["2026-04-17",17.76,17.76,16.94,17.06,84900],["2026-04-20",17.06,17.4,16.95,17.3,87500],["2026-04-21",17.35,17.49,16.62,16.88,89200],["2026-04-22",17.11,17.11,16.61,16.83,115900],["2026-04-23",16.95,17.19,16.6,16.78,55900],["2026-04-24",16.73,17.03,16.61,16.92,69400],["2026-04-27",16.9,17.19,16.9,17.03,40500],["2026-04-28",17.08,17.3,16.96,17.11,48100],["2026-04-29",17.25,17.33,17.0,17.11,118300],["2026-04-30",17.18,17.75,17.16,17.58,208800],["2026-05-01",17.44,17.87,17.29,17.73,215400],["2026-05-04",17.81,17.91,17.49,17.75,151200],["2026-05-05",17.78,18.04,17.71,17.91,243400],["2026-05-06",17.91,18.0,17.54,17.8,124200],["2026-05-07",18.04,18.05,17.67,17.91,69000],["2026-05-08",18.04,18.31,17.77,18.19,274600],["2026-05-11",18.35,19.09,18.07,18.89,287500],["2026-05-12",18.82,20.42,18.62,20.26,444800],["2026-05-13",20.37,20.37,19.44,19.71,153300],["2026-05-14",19.8,20.22,19.65,19.66,83500],["2026-05-15",19.52,19.63,19.05,19.34,136500],["2026-05-18",19.46,19.92,19.34,19.63,107200],["2026-05-19",19.62,20.09,19.47,19.69,109200],["2026-05-20",19.82,20.15,19.56,19.99,125900],["2026-05-21",19.79,20.02,19.61,19.61,101900],["2026-05-22",19.74,19.87,19.35,19.48,63100],["2026-05-26",19.43,19.62,18.81,18.84,127400],["2026-05-27",18.71,19.08,18.26,18.46,153700],["2026-05-28",18.46,18.66,17.68,17.98,356900],["2026-05-29",18.04,18.24,17.78,17.89,81400],["2026-06-01",17.84,18.09,17.75,17.9,88700],["2026-06-02",17.93,19.5,17.9,18.14,67400],["2026-06-03",18.53,18.6,18.16,18.31,141300],["2026-06-04",18.37,19.27,18.37,18.74,98600],["2026-06-05",19.0,19.03,18.38,18.53,65100],["2026-06-08",18.6,19.14,18.48,18.52,77600],["2026-06-09",18.59,19.19,18.22,18.43,136100],["2026-06-10",18.56,18.94,18.35,18.84,125700],["2026-06-11",18.85,19.17,18.83,19.07,93100],["2026-06-12",19.19,19.47,18.94,19.3,182400],["2026-06-15",19.39,19.75,18.23,18.27,136500],["2026-06-16",18.32,19.05,18.09,18.37,219700],["2026-06-17",18.61,19.16,17.25,17.45,248600],["2026-06-18",17.46,19.13,17.11,17.29,298300],["2026-06-22",17.29,17.59,16.85,17.38,360300],["2026-06-23",17.38,17.97,17.15,17.78,307600],["2026-06-24",17.68,17.89,17.06,17.23,119300],["2026-06-25",17.2,17.86,16.93,16.96,135300],["2026-06-26",16.82,17.8,16.82,17.48,1661400],["2026-06-29",17.33,17.87,17.16,17.78,150500],["2026-06-30",17.78,17.94,17.55,17.73,100300],["2026-07-01",17.73,17.82,17.07,17.12,93400],["2026-07-02",17.27,17.58,17.19,17.48,87200],["2026-07-06",17.49,18.0,17.22,17.69,105700],["2026-07-07",17.71,18.22,17.4,18.19,93300],["2026-07-08",18.08,18.47,17.86,18.07,103200],["2026-07-09",18.07,18.19,17.88,18.1,80900],["2026-07-10",18.04,18.57,17.82,17.97,93500],["2026-07-13",17.97,18.99,17.87,18.97,103700],["2026-07-14",19.07,19.07,18.6,18.69,140400],["2026-07-15",18.8,19.08,18.47,18.5,40000],["2026-07-16",18.66,19.57,18.55,19.51,78800],["2026-07-17",19.55,19.82,19.23,19.54,52100],["2026-07-20",19.57,19.95,19.38,19.51,65900],["2026-07-21",19.47,19.97,19.43,19.95,62200],["2026-07-22",20.05,20.25,19.32,19.47,162700],["2026-07-23",19.2,19.64,18.96,19.52,75800],["2026-07-24",20.42,20.42,19.32,19.59,90400],["2026-07-27",19.6,19.89,19.55,19.78,76000],["2026-07-28",19.89,19.95,18.53,19.0,169100],["2026-07-29",19.1,19.27,18.62,18.81,130500],["2026-07-30",18.84,19.37,18.79,18.98,99100],["2026-07-31",19.03,19.19,18.72,19.09,90300],["2026-08-03",19.12,19.27,18.73,18.88,76800],["2026-08-04",18.77,19.48,18.33,19.41,117700],["2026-08-05",19.43,19.43,18.58,18.66,115600],["2026-08-06",18.67,18.75,18.19,18.63,97800],["2026-08-07",18.62,18.68,17.4,18.28,184400],["2026-08-10",18.21,18.38,17.43,17.51,250700],["2026-08-11",17.42,17.7,17.02,17.25,211400],["2026-08-12",17.0,17.86,16.97,17.67,358000],["2026-08-13",17.85,18.21,17.45,17.93,125700],["2026-08-14",17.95,18.25,17.79,18.1,218000],["2026-08-17",18.07,18.44,17.88,18.34,174400],["2026-08-18",18.35,18.43,17.74,17.9,333500],["2026-08-19",18.0,18.08,17.61,18.06,231700],["2026-08-20",18.02,18.24,17.8,18.11,128600],["2026-08-21",18.11,18.21,17.74,17.76,139200],["2026-08-24",17.88,18.14,17.76,18.12,133100],["2026-08-25",17.72,18.21,17.72,18.18,115100],["2026-08-26",18.18,18.32,17.97,18.09,142000],["2026-08-27",18.02,18.08,17.66,17.85,119000],["2026-08-28",17.88,18.04,17.76,17.85,119800],["2026-08-31",17.84,17.89,17.47,17.52,123800],["2026-09-01",17.49,17.6,17.28,17.36,189500],["2026-09-02",17.43,18.11,17.43,17.73,140200],["2026-09-03",17.84,17.96,17.57,17.85,322200],["2026-09-04",17.81,18.37,17.81,18.33,147300],["2026-09-08",18.33,18.45,17.92,18.1,94100],["2026-09-09",18.11,18.42,17.97,18.42,126600],["2026-09-10",18.42,18.49,17.89,18.09,133200],["2026-09-11",18.27,18.59,18.12,18.26,122500],["2026-09-14",18.29,18.66,18.0,18.02,65900],["2026-09-15",17.95,18.49,17.95,18.32,142800],["2026-09-16",18.26,18.31,17.84,17.95,89400],["2026-09-17",18.09,18.18,17.85,17.94,74300],["2026-09-18",17.94,18.26,17.77,18.16,298700],["2026-09-21",18.13,18.14,17.3,17.38,92500],["2026-09-22",17.47,17.51,16.73,16.96,126300],["2026-09-23",17.04,17.28,16.35,16.38,120900],["2026-09-24",16.39,17.0,16.03,16.18,147600],["2026-09-25",16.24,16.59,15.3,15.66,474200],["2026-09-28",15.67,15.67,15.2,15.55,176000],["2026-09-29",15.38,15.49,14.48,14.54,171900],["2026-09-30",14.53,14.58,13.99,14.34,204000],["2026-10-01",14.34,14.86,14.24,14.51,237300],["2026-10-02",14.99,15.36,14.66,14.96,280300],["2026-10-05",15.0,15.56,14.86,15.22,266300],["2026-10-06",15.21,15.81,14.97,15.75,171500],["2026-10-07",15.68,15.89,15.49,15.67,85600],["2026-10-08",15.7,15.82,15.39,15.71,77600],["2026-10-09",15.83,16.26,15.54,15.59,79900],["2026-10-12",15.58,15.58,15.07,15.35,110900],["2026-10-13",15.43,15.81,15.35,15.52,77300],["2026-10-14",15.44,15.65,15.11,15.3,92400],["2026-10-15",15.38,15.99,15.3,15.5,112500],["2026-10-16",15.6,15.79,15.44,15.79,87800],["2026-10-19",15.82,16.07,15.21,15.44,114100],["2026-10-20",15.46,15.68,15.34,15.36,93800],["2026-10-21",15.44,15.8,15.12,15.3,90300],["2026-10-22",15.3,15.59,15.25,15.31,58200],["2026-10-23",15.31,15.45,15.06,15.32,72400],["2026-10-26",15.3,15.49,15.22,15.44,49300],["2026-10-27",15.44,15.51,15.32,15.37,42100],["2026-10-28",15.42,15.42,14.36,14.59,392200],["2026-10-29",14.83,15.0,14.27,14.33,55900],["2026-10-30",14.58,14.7,14.25,14.5,96700],["2026-11-02",14.42,14.93,14.4,14.48,95100],["2026-11-03",14.42,14.52,13.42,13.48,86200],["2026-11-04",13.72,14.78,13.24,13.26,173100],["2026-11-05",13.46,14.94,13.46,14.25,217600],["2026-11-06",14.1,14.52,13.63,14.28,162400],["2026-11-09",14.41,14.59,13.96,14.34,105200],["2026-11-10",14.34,14.46,14.17,14.38,88300],["2026-11-11",14.39,14.86,14.39,14.86,72900],["2026-11-12",14.77,14.81,14.04,14.16,185900],["2026-11-13",14.22,14.4,13.75,14.11,191400],["2026-11-16",14.23,14.25,13.88,13.93,321700],["2026-11-17",13.88,14.1,13.67,13.83,205600],["2026-11-18",13.83,14.09,13.41,13.85,278200],["2026-11-19",13.81,13.9,11.98,12.95,345400],["2026-11-20",13.03,13.36,12.82,13.13,280300],["2026-11-23",13.23,13.91,13.1,13.58,218000],["2026-11-24",13.62,13.91,13.24,13.85,243600],["2026-11-25",13.79,14.59,13.65,14.29,174200],["2026-11-27",14.4,14.51,14.07,14.5,85888]];
+const DATANOTE = "";
+</script>
+<script src="intra/APC.js?v=20261127693"></script>
+<script src="assets/chart.js?v=aa49b450"></script><!--kb-theme-js--><script>(function(){var bs=document.querySelectorAll('button.kb-theme[data-kb]');
+for(var i=0;i<bs.length;i++)bs[i].addEventListener('click',function(){var b=this,d=document.documentElement,
+cur=d.getAttribute('data-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'),n=cur==='dark'?'light':'dark';
+d.setAttribute('data-theme',n);try{localStorage.setItem('fdb-theme',n)}catch(e){}
+var f=document.querySelectorAll('iframe');for(var j=0;j<f.length;j++){try{f[j].contentWindow.postMessage({chartTheme:n},'*')}catch(e){}}
+var k=b.getAttribute('data-kb');
+if(k==='reload')location.reload();
+else if(k==='msg')window.postMessage({chartTheme:n},'*');
+else if(k==='fn'&&typeof window.__kbRedraw==='function')window.__kbRedraw();});})();</script><!--/kb-theme-js--><!--mobile-fix-spacer--><div class="mf-spacer" aria-hidden="true"></div><!--/mobile-fix-spacer--></body></html>

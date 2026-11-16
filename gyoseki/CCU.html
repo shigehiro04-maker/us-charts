@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8"><!--kb-theme:v3--><script>(function(){var d=document.documentElement,
+m=/[?&#]theme=(dark|light)/.exec(location.search+location.hash),t=m&&m[1];
+if(!t){try{t=localStorage.getItem('fdb-theme')}catch(e){}}
+if(t==='dark'||t==='light')d.setAttribute('data-theme',t);
+try{if(window.top!==window.self)d.classList.add('kb-embed')}catch(e){d.classList.add('kb-embed')}})();</script>
+<style id="kb-theme">
+:root{--kb-fg:#1f1f1e;--kb-line:#d6d5ce;--kb-hover:rgba(0,0,0,.05)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--kb-fg:#ecebe6;--kb-line:#3b3b38;--kb-hover:rgba(255,255,255,.08)}}
+:root[data-theme="dark"]{--kb-fg:#ecebe6;--kb-line:#3b3b38;--kb-hover:rgba(255,255,255,.08)}
+/* スイッチ本体（トラック） */
+:root{--kb-trk:#e8e7e1;--kb-knob:#fff;--kb-ico:#d08a00;--kb-dim:#a9a79f}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--kb-trk:#2b2b29;--kb-knob:#45453f;--kb-ico:#f3d36a;--kb-dim:#6f6e68}}
+:root[data-theme="dark"]{--kb-trk:#2b2b29;--kb-knob:#45453f;--kb-ico:#f3d36a;--kb-dim:#6f6e68}
+:root button.kb-theme.kb-theme{-webkit-appearance:none;appearance:none;position:relative;display:inline-block;box-sizing:border-box;
+width:54px;height:30px;min-width:54px;min-height:0;padding:0;border:1px solid var(--kb-line);border-radius:15px;background:var(--kb-trk);
+color:var(--kb-fg);font-size:0;line-height:0;cursor:pointer;box-shadow:inset 0 1px 2px rgba(0,0,0,.08);vertical-align:middle;flex-shrink:0;
+overflow:hidden;-webkit-tap-highlight-color:transparent;transition:background .3s,border-color .3s}
+:root button.kb-theme.kb-theme:focus-visible{outline:2px solid #2a78d6;outline-offset:2px}
+:root button.kb-theme.kb-theme svg{display:block;width:100%;height:100%}
+/* 両端の小さなアイコン（つまみが無い側だけ見える） */
+:root button.kb-theme.kb-theme .kb-trk{position:absolute;top:50%;width:13px;height:13px;margin-top:-6.5px;color:var(--kb-dim);transition:opacity .3s}
+:root button.kb-theme.kb-theme .kb-l{left:7px;opacity:0}
+:root button.kb-theme.kb-theme .kb-r{right:7px;opacity:1}
+/* つまみ */
+:root button.kb-theme.kb-theme .kb-knob{position:absolute;top:2px;left:2px;width:24px;height:24px;border-radius:50%;background:var(--kb-knob);
+color:var(--kb-ico);box-shadow:0 1px 3px rgba(0,0,0,.25),0 0 0 .5px rgba(0,0,0,.06);transform:translateX(0);
+transition:transform .32s cubic-bezier(.3,1.35,.5,1),background .3s,color .3s}
+:root button.kb-theme.kb-theme:active .kb-knob{width:28px}
+:root button.kb-theme.kb-theme .kb-knob svg{position:absolute;inset:0;margin:auto;width:15px;height:15px;transition:opacity .25s,transform .35s}
+:root button.kb-theme.kb-theme .kb-knob .kb-sun{opacity:1;transform:none}
+:root button.kb-theme.kb-theme .kb-knob .kb-moon{opacity:0;transform:rotate(-90deg) scale(.4)}
+/* ダーク表示中：つまみを右へ */
+@media (prefers-color-scheme:dark){
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-knob{transform:translateX(24px)}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme:active .kb-knob{transform:translateX(20px)}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-knob .kb-sun{opacity:0;transform:rotate(90deg) scale(.4)}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-knob .kb-moon{opacity:1;transform:none}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-l{opacity:1}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-r{opacity:0}}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-knob{transform:translateX(24px)}
+:root[data-theme="dark"] button.kb-theme.kb-theme:active .kb-knob{transform:translateX(20px)}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-knob .kb-sun{opacity:0;transform:rotate(90deg) scale(.4)}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-knob .kb-moon{opacity:1;transform:none}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-l{opacity:1}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-r{opacity:0}
+@media (prefers-reduced-motion:reduce){:root button.kb-theme.kb-theme *{transition:none!important}}
+/* 全ページ共通の置き場所：ページ右上の角 */
+:root button.kb-theme.kb-theme.kb-corner{position:absolute;top:12px;right:16px;z-index:60;margin:0;float:none}
+@media (max-width:700px){:root button.kb-theme.kb-theme.kb-corner{top:10px;right:12px}}
+/* 右上のスイッチの下に見えない「よけ」を置き、見出しの文字やボタンがスイッチと重ならないようにする */
+.kb-spacer{float:right;width:84px;height:46px;pointer-events:none}
+@media (max-width:700px){.kb-spacer{width:76px;height:44px}}
+html.kb-embed .kb-spacer{display:none}
+html.kb-embed button.kb-theme[data-kb]{display:none}
+
+</style><!--/kb-theme-->
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Compania Cervecerias Unidas, S.A.（CCU）業績ダッシュボード</title>
+<link rel="stylesheet" href="assets/style.css">
+<!--site-icon:v3--><link rel="icon" type="image/svg+xml" href="/us-charts/icon-black.svg?v=3" media="(prefers-color-scheme: light)"><link rel="icon" type="image/svg+xml" href="/us-charts/icon-white.svg?v=3" media="(prefers-color-scheme: dark)"><link rel="apple-touch-icon" href="/us-charts/apple-touch-icon.png?v=3"><!--/site-icon--><!--mobile-fix:v1--><style id="mobile-fix">
+.mf-spacer{display:none}
+html.mf-sa .mf-spacer{display:block;height:calc(env(safe-area-inset-bottom,0px) + 110px)}
+html.mf-sa .detail .inner{padding-bottom:calc(env(safe-area-inset-bottom,0px) + 140px)}
+</style><script>(function(){try{if(window.top!==window.self)return;
+var sa=navigator.standalone===true||matchMedia('(display-mode: standalone)').matches;
+var touch=matchMedia('(pointer: coarse)').matches;
+if(sa||touch)document.documentElement.classList.add('mf-sa');}catch(e){}})();</script><!--/mobile-fix--><!--pc-wide:v1--><style id="pc-wide">@media (min-width:1280px){body>.wrap,body>main,body>div.wrap{max-width:1680px!important}}</style><!--/pc-wide--></head>
+<body><!--kb-btn--><button class="kb-theme kb-corner" id="kbTheme" type="button" data-kb="reload" aria-label="明暗を切り替え（ライト／ダーク）" title="明暗を切り替え（ライト／ダーク）"><span class="kb-trk kb-l"><svg class="kb-sun" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="12" cy="12" r="4.3"/><path d="M12 2.2v2.3M12 19.5v2.3M2.2 12h2.3M19.5 12h2.3M5.1 5.1l1.6 1.6M17.3 17.3l1.6 1.6M5.1 18.9l1.6-1.6M17.3 6.7l1.6-1.6"/></svg></span><span class="kb-trk kb-r"><svg class="kb-moon" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M20.2 14.6A8.4 8.4 0 0 1 9.4 3.8a.6.6 0 0 0-.8-.7A9.2 9.2 0 1 0 20.9 15.4a.6.6 0 0 0-.7-.8z"/></svg></span><span class="kb-knob"><svg class="kb-sun" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="12" cy="12" r="4.3"/><path d="M12 2.2v2.3M12 19.5v2.3M2.2 12h2.3M19.5 12h2.3M5.1 5.1l1.6 1.6M17.3 17.3l1.6 1.6M5.1 18.9l1.6-1.6M17.3 6.7l1.6-1.6"/></svg><svg class="kb-moon" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M20.2 14.6A8.4 8.4 0 0 1 9.4 3.8a.6.6 0 0 0-.8-.7A9.2 9.2 0 1 0 20.9 15.4a.6.6 0 0 0-.7-.8z"/></svg></span></button><div class="kb-spacer" aria-hidden="true"></div><!--/kb-btn-->
+<div class="wrap">
+  <header class="mast">
+    <div class="eyebrow"><a href="../fundamentals.html" style="color:inherit">← 東証スクリーニング</a></div>
+    <h1>Compania Cervecerias Unidas, S.A.<span class="code">CCU</span></h1>
+    <div class="slip" id="slip"></div>
+    <p class="biz">チリのビール・飲料会社CCU（ADR）。</p><p class="site"><a href="https://www.ccu.cl" target="_blank" rel="noopener noreferrer"><b>公式サイト ↗</b><span>www.ccu.cl</span></a></p>
+  </header>
+
+  <section class="cards" id="cards" aria-label="判定サマリー"></section>
+
+  <section class="grid">
+    <div class="panel" id="p-annual"></div>
+    <div class="panel" id="p-cf"></div>
+    <div class="panel" id="p-q"></div>
+    <div class="panel" id="p-div"></div>
+    <div class="panel full" id="p-bs"></div>
+    <div class="panel full" id="p-holders"></div>
+  </section>
+
+  <details class="more">
+    <summary>通期の数値をすべて見る</summary>
+    <div class="inner" id="t-annual"></div>
+  </details>
+  <details class="more">
+    <summary>判定の基準と注記</summary>
+    <div class="inner foot"><ol>
+      <li>直近の通期決算を、同じ業種の中央値と比べて判定しています。▲＝良い側　●＝並み　▼＝注意。</li>
+      <li>成長性：売上高の年平均成長率が5%以上で増収。利益が初年度を下回ると増収減益。</li>
+      <li>収益性：営業利益率が業種中央値の1.2倍以上で高い、0.6倍未満で低い。</li>
+      <li>財務安全性：自己資本比率が50%以上か業種の1.3倍以上で厚い、20%未満で薄め（業種並みなら標準）。</li>
+      <li>資本効率：ROE 10%以上で高い、5%未満で低い。</li>
+      <li>割安度：PERとPBRがともに業種中央値を下回ると割安、ともに上回ると割高。</li>
+      <li>売上総利益・粗利率は売上原価データがある期のみ表示し、データの無い系列・列は出しません。</li>
+      <li>グラフ：通期・配当の右端の薄い棒は会社予想（J-Quants 決算短信サマリーの最新値）。折れ線は右軸（%）。</li>
+      <li>経常利益は J-Quants の決算短信サマリーから取得（日本基準のみ。取得範囲は直近約2年）。IFRS・米国基準は税引前利益で表示します。</li>
+      <li>貸借対照表は年次決算（10-K）の連結貸借対照表を Yahoo Finance から取得し、区分にまとめたもの。外国企業は最新の為替でドルに換算しています。</li>
+      <li>株主構成は 13F（運用資産1億ドル超の機関投資家が四半期ごとに出す保有報告）の上位10社を、発行済株式数に対する割合で描画（Yahoo Finance 経由）。その他は上位10社以外の合計です。</li>
+      <li>四半期決算は累計値の差分から単独四半期を算出。フリーCFは営業CF＋投資CF。配当性向は一株配当÷EPS。</li>
+      <li>出所：~/株分析 の fundamentals/（通期）。株価・時価総額は取得日時点。生成 2026-11-28</li>
+    </ol></div>
+  </details>
+</div>
+<script src="assets/app.js"></script>
+<script>renderCompany({"code":"CCU","name":"Compania Cervecerias Unidas, S.A.","market":"NYSE","sector":"生活必需品","quote":{"price":9.88,"priceDate":"2026-11-27","mcap":1829.177,"per":16.08,"pbr":1.28,"psr":0.65,"yld":0.0416,"asof":"2026-11-28"},"annual":[{"fy":"22/12期","fyEnd":"2022-12-31","y":2022,"rev":2633.484,"gp":1162.111,"op":221.005,"pbt":131.846,"ni":114.771,"ta":3491.724,"se":1277.22,"eq":0.36579999999999996,"cr":2.0849,"ocf":null,"icf":-229.659,"fcf":521.661,"freecf":-153.134,"ibd":1333.099,"cash":591.529,"ebitda":205.594,"eps":0.6212121359424164,"bps":3.4565948760582006,"dps":0.41615181639467413,"opm":0.08392114780268269,"nim":0.043581430530810136,"gpm":0.4412827266085536,"roe":0.08986000845586509,"roa":0.032869436415936655,"odp":131.846,"payout":0.6699029080675423,"frcf":null},{"fy":"23/12期","fyEnd":"2023-12-31","y":2023,"rev":2491.799,"gp":1152.821,"op":242.803,"pbt":100.192,"ni":102.615,"ta":3325.511,"se":1183.338,"eq":0.3558,"cr":2.3298,"ocf":null,"icf":-133.287,"fcf":-114.643,"freecf":159.916,"ibd":1291.048,"cash":603.602,"ebitda":175.001,"eps":0.5554195935897909,"bps":3.202515615954173,"dps":0.17238831022600912,"opm":0.09744084494776666,"nim":0.04118109044910925,"gpm":0.4626460641488338,"roe":0.08671655942765295,"roa":0.03085691191519138,"odp":100.192,"payout":0.310374916937712,"frcf":null},{"fy":"24/12期","fyEnd":"2024-12-31","y":2024,"rev":2821.063,"gp":1275.844,"op":217.592,"pbt":160.771,"ni":156.317,"ta":3875.017,"se":1481.336,"eq":0.3823,"cr":2.0596,"ocf":null,"icf":-114.893,"fcf":-121.441,"freecf":123.767,"ibd":1373.908,"cash":687.592,"ebitda":255.143,"eps":0.8460955911583437,"bps":4.008993879055776,"dps":0.21500728948057635,"opm":0.07713120905133987,"nim":0.05541067321077197,"gpm":0.45225647211707076,"roe":0.10552433748994151,"roa":0.040339693993600545,"odp":160.771,"payout":0.2541170190784489,"frcf":null},{"fy":"25/12期","fyEnd":"2025-12-31","y":2025,"rev":2825.977,"gp":1254.459,"op":205.331,"pbt":107.072,"ni":113.784,"ta":3540.586,"se":1429.613,"eq":0.40380000000000005,"cr":1.8991999999999998,"ocf":null,"icf":-159.577,"fcf":-200.64,"freecf":79.787,"ibd":1214.059,"cash":505.432,"ebitda":184.721,"eps":0.6158702554738684,"bps":3.8690171857599336,"dps":0.20587209112876273,"opm":0.07265841158650618,"nim":0.040263597332887,"gpm":0.4439027635398307,"roe":0.07959077036932373,"roa":0.03213705301890704,"odp":107.072,"payout":0.33427834726383854,"frcf":null}],"peer":{"n":236,"opm":0.05002637374599109,"nim":0.017396069195893336,"eq":0.4005,"roe":0.0814782881329362,"gpm":0.33693173551621824,"per":19.04,"pbr":1.77,"yld":0.0},"fc":null,"quarters":[{"fy":"25/09","fyEnd":"2025-09-30","perEnd":"2025-09-30","perSt":null,"rev":639.693,"op":34.98,"odp":8.14,"ni":15.051,"opm":0.054682480502365974},{"fy":"25/12","fyEnd":"2025-12-31","perEnd":"2025-12-31","perSt":null,"rev":828.878,"op":103.018,"odp":81.835,"ni":53.512,"opm":0.12428608311476477},{"fy":"26/03","fyEnd":"2026-03-31","perEnd":"2026-03-31","perSt":null,"rev":795.955,"op":87.502,"odp":75.046,"ni":52.308,"opm":0.10993335050348323},{"fy":"26/06","fyEnd":"2026-06-30","perEnd":"2026-06-30","perSt":null,"rev":590.328,"op":-10.198,"odp":-41.647,"ni":-20.117,"opm":-0.01727514195498096},{"fy":"26/09","fyEnd":"2026-09-30","perEnd":"2026-09-30","perSt":null,"rev":738.528,"op":36.068,"odp":15.013,"ni":15.803,"opm":0.0488376879414186}],"odpName":"税引前利益","holders":{"asof":"2026-09-30","filed":"2026-09-30","issued":185139328.0,"treasury":0,"holders":[["First Eagle Investment Management, LLC",15994760,0.0866],["Wellington Management Group, LLP",3038926,0.016399999999999998],["Discerene Group, LP",1412942,0.0076],["Ranmore Fund Management Ltd",645061,0.0034999999999999996],["Empowered Funds, LLC",611077,0.0033],["Nomura Asset Management International Inc",427593,0.0023],["Blackrock Inc.",370498,0.002],["American Century Companies Inc",351324,0.0019],["Bank of America Corporation",344300,0.0019],["State Street Corporation",337060,0.0018]]},"bs":[{"fy":"22/12","fyEnd":"2022-12-31","std":"US","ta":3491.724,"tl":2097.038,"na":1394.686,"noCA":false,"cash":591.529,"recv":362.789,"inv":483.649,"oca":176.202,"ppe":1351.702,"onca":525.853,"pay":408.51,"ocl":365.725,"ncl":1322.803,"eq":1277.22,"oeq":117.466},{"fy":"23/12","fyEnd":"2023-12-31","std":"US","ta":3325.511,"tl":2026.577,"na":1298.934,"noCA":false,"cash":603.602,"recv":368.995,"inv":428.562,"oca":154.477,"ppe":1272.079,"onca":497.796,"pay":351.241,"ocl":316.477,"ncl":1358.859,"eq":1183.338,"oeq":115.596},{"fy":"24/12","fyEnd":"2024-12-31","std":"US","ta":3875.017,"tl":2250.584,"na":1624.432,"noCA":false,"cash":687.592,"recv":424.303,"inv":463.619,"oca":144.831,"ppe":1522.655,"onca":632.017,"pay":411.406,"ocl":423.876,"ncl":1415.302,"eq":1481.336,"oeq":143.096},{"fy":"25/12","fyEnd":"2025-12-31","std":"US","ta":3540.586,"tl":1970.597,"na":1569.989,"noCA":false,"cash":505.432,"recv":399.08,"inv":429.295,"oca":133.847,"ppe":1464.643,"onca":608.289,"pay":366.721,"ocl":406.055,"ncl":1197.821,"eq":1429.613,"oeq":140.376}]});</script>
+<!--kb-theme-js--><script>(function(){var bs=document.querySelectorAll('button.kb-theme[data-kb]');
+for(var i=0;i<bs.length;i++)bs[i].addEventListener('click',function(){var b=this,d=document.documentElement,
+cur=d.getAttribute('data-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'),n=cur==='dark'?'light':'dark';
+d.setAttribute('data-theme',n);try{localStorage.setItem('fdb-theme',n)}catch(e){}
+var f=document.querySelectorAll('iframe');for(var j=0;j<f.length;j++){try{f[j].contentWindow.postMessage({chartTheme:n},'*')}catch(e){}}
+var k=b.getAttribute('data-kb');
+if(k==='reload')location.reload();
+else if(k==='msg')window.postMessage({chartTheme:n},'*');
+else if(k==='fn'&&typeof window.__kbRedraw==='function')window.__kbRedraw();});})();</script><!--/kb-theme-js--><!--mobile-fix-spacer--><div class="mf-spacer" aria-hidden="true"></div><!--/mobile-fix-spacer--></body>
+</html>

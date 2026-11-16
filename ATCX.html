@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><!--kb-theme:v3--><script>(function(){var d=document.documentElement,
+m=/[?&#]theme=(dark|light)/.exec(location.search+location.hash),t=m&&m[1];
+if(!t){try{t=localStorage.getItem('fdb-theme')}catch(e){}}
+if(t==='dark'||t==='light')d.setAttribute('data-theme',t);
+try{if(window.top!==window.self)d.classList.add('kb-embed')}catch(e){d.classList.add('kb-embed')}})();</script>
+<style id="kb-theme">
+:root{--kb-fg:#1f1f1e;--kb-line:#d6d5ce;--kb-hover:rgba(0,0,0,.05)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--kb-fg:#ecebe6;--kb-line:#3b3b38;--kb-hover:rgba(255,255,255,.08)}}
+:root[data-theme="dark"]{--kb-fg:#ecebe6;--kb-line:#3b3b38;--kb-hover:rgba(255,255,255,.08)}
+/* スイッチ本体（トラック） */
+:root{--kb-trk:#e8e7e1;--kb-knob:#fff;--kb-ico:#d08a00;--kb-dim:#a9a79f}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--kb-trk:#2b2b29;--kb-knob:#45453f;--kb-ico:#f3d36a;--kb-dim:#6f6e68}}
+:root[data-theme="dark"]{--kb-trk:#2b2b29;--kb-knob:#45453f;--kb-ico:#f3d36a;--kb-dim:#6f6e68}
+:root button.kb-theme.kb-theme{-webkit-appearance:none;appearance:none;position:relative;display:inline-block;box-sizing:border-box;
+width:54px;height:30px;min-width:54px;min-height:0;padding:0;border:1px solid var(--kb-line);border-radius:15px;background:var(--kb-trk);
+color:var(--kb-fg);font-size:0;line-height:0;cursor:pointer;box-shadow:inset 0 1px 2px rgba(0,0,0,.08);vertical-align:middle;flex-shrink:0;
+overflow:hidden;-webkit-tap-highlight-color:transparent;transition:background .3s,border-color .3s}
+:root button.kb-theme.kb-theme:focus-visible{outline:2px solid #2a78d6;outline-offset:2px}
+:root button.kb-theme.kb-theme svg{display:block;width:100%;height:100%}
+/* 両端の小さなアイコン（つまみが無い側だけ見える） */
+:root button.kb-theme.kb-theme .kb-trk{position:absolute;top:50%;width:13px;height:13px;margin-top:-6.5px;color:var(--kb-dim);transition:opacity .3s}
+:root button.kb-theme.kb-theme .kb-l{left:7px;opacity:0}
+:root button.kb-theme.kb-theme .kb-r{right:7px;opacity:1}
+/* つまみ */
+:root button.kb-theme.kb-theme .kb-knob{position:absolute;top:2px;left:2px;width:24px;height:24px;border-radius:50%;background:var(--kb-knob);
+color:var(--kb-ico);box-shadow:0 1px 3px rgba(0,0,0,.25),0 0 0 .5px rgba(0,0,0,.06);transform:translateX(0);
+transition:transform .32s cubic-bezier(.3,1.35,.5,1),background .3s,color .3s}
+:root button.kb-theme.kb-theme:active .kb-knob{width:28px}
+:root button.kb-theme.kb-theme .kb-knob svg{position:absolute;inset:0;margin:auto;width:15px;height:15px;transition:opacity .25s,transform .35s}
+:root button.kb-theme.kb-theme .kb-knob .kb-sun{opacity:1;transform:none}
+:root button.kb-theme.kb-theme .kb-knob .kb-moon{opacity:0;transform:rotate(-90deg) scale(.4)}
+/* ダーク表示中：つまみを右へ */
+@media (prefers-color-scheme:dark){
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-knob{transform:translateX(24px)}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme:active .kb-knob{transform:translateX(20px)}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-knob .kb-sun{opacity:0;transform:rotate(90deg) scale(.4)}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-knob .kb-moon{opacity:1;transform:none}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-l{opacity:1}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-r{opacity:0}}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-knob{transform:translateX(24px)}
+:root[data-theme="dark"] button.kb-theme.kb-theme:active .kb-knob{transform:translateX(20px)}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-knob .kb-sun{opacity:0;transform:rotate(90deg) scale(.4)}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-knob .kb-moon{opacity:1;transform:none}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-l{opacity:1}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-r{opacity:0}
+@media (prefers-reduced-motion:reduce){:root button.kb-theme.kb-theme *{transition:none!important}}
+/* 全ページ共通の置き場所：ページ右上の角 */
+:root button.kb-theme.kb-theme.kb-corner{position:absolute;top:12px;right:16px;z-index:60;margin:0;float:none}
+@media (max-width:700px){:root button.kb-theme.kb-theme.kb-corner{top:10px;right:12px}}
+/* 右上のスイッチの下に見えない「よけ」を置き、見出しの文字やボタンがスイッチと重ならないようにする */
+.kb-spacer{float:right;width:84px;height:46px;pointer-events:none}
+@media (max-width:700px){.kb-spacer{width:76px;height:44px}}
+html.kb-embed .kb-spacer{display:none}
+html.kb-embed button.kb-theme[data-kb]{display:none}
+
+</style><!--/kb-theme-->
+<script>
+/* 親ページから ?theme=dark|light で表示を指定できる。指定が無ければOSの設定に従う。 */
+(function(){try{
+  var m=/[?&#]theme=(dark|light)/.exec(location.search+location.hash);
+  if(m)document.documentElement.setAttribute("data-theme",m[1]);
+}catch(e){}})();
+</script>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ATCX Atlas Critical Minerals Corporation チャート</title>
+<link rel="stylesheet" href="assets/chart.css?v=a08d4ea5"><!--site-icon:v3--><link rel="icon" type="image/svg+xml" href="/us-charts/icon-black.svg?v=3" media="(prefers-color-scheme: light)"><link rel="icon" type="image/svg+xml" href="/us-charts/icon-white.svg?v=3" media="(prefers-color-scheme: dark)"><link rel="apple-touch-icon" href="/us-charts/apple-touch-icon.png?v=3"><!--/site-icon--><!--mobile-fix:v1--><style id="mobile-fix">
+.mf-spacer{display:none}
+html.mf-sa .mf-spacer{display:block;height:calc(env(safe-area-inset-bottom,0px) + 110px)}
+html.mf-sa .detail .inner{padding-bottom:calc(env(safe-area-inset-bottom,0px) + 140px)}
+</style><script>(function(){try{if(window.top!==window.self)return;
+var sa=navigator.standalone===true||matchMedia('(display-mode: standalone)').matches;
+var touch=matchMedia('(pointer: coarse)').matches;
+if(sa||touch)document.documentElement.classList.add('mf-sa');}catch(e){}})();</script><!--/mobile-fix--><!--pc-wide:v1--><style id="pc-wide">@media (min-width:1280px){body>.wrap,body>main,body>div.wrap{max-width:1680px!important}}</style><!--/pc-wide--></head><body><!--kb-btn--><button class="kb-theme kb-corner" id="kbTheme" type="button" data-kb="msg" aria-label="明暗を切り替え（ライト／ダーク）" title="明暗を切り替え（ライト／ダーク）"><span class="kb-trk kb-l"><svg class="kb-sun" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="12" cy="12" r="4.3"/><path d="M12 2.2v2.3M12 19.5v2.3M2.2 12h2.3M19.5 12h2.3M5.1 5.1l1.6 1.6M17.3 17.3l1.6 1.6M5.1 18.9l1.6-1.6M17.3 6.7l1.6-1.6"/></svg></span><span class="kb-trk kb-r"><svg class="kb-moon" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M20.2 14.6A8.4 8.4 0 0 1 9.4 3.8a.6.6 0 0 0-.8-.7A9.2 9.2 0 1 0 20.9 15.4a.6.6 0 0 0-.7-.8z"/></svg></span><span class="kb-knob"><svg class="kb-sun" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="12" cy="12" r="4.3"/><path d="M12 2.2v2.3M12 19.5v2.3M2.2 12h2.3M19.5 12h2.3M5.1 5.1l1.6 1.6M17.3 17.3l1.6 1.6M5.1 18.9l1.6-1.6M17.3 6.7l1.6-1.6"/></svg><svg class="kb-moon" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M20.2 14.6A8.4 8.4 0 0 1 9.4 3.8a.6.6 0 0 0-.8-.7A9.2 9.2 0 1 0 20.9 15.4a.6.6 0 0 0-.7-.8z"/></svg></span></button><div class="kb-spacer" aria-hidden="true"></div><!--/kb-btn--><div class="wrap">
+<h1><a class="back" href="./charts.html" title="一覧へ">‹</a>ATCX Atlas Critical Minerals Corporation<span class="mk">NASDAQ</span><span class="mk sec"></span></h1>
+<div class="price"><b id="last"></b><span class="chg" id="chg"></span><span class="asof" id="asof"></span><a class="dash" href="./one/ATCX.html" target="_top" title="シグナル・チャート・ファンダを1画面で">ダッシュボード ›</a></div>
+<div class="st" id="state"></div>
+<div class="bar">
+  <div class="seg" id="periods"></div>
+  <div class="ipick">
+    <button class="ib" data-g="tr" type="button">トレンド系<span class="cnt" id="cTR"></span><small>チャート上</small></button>
+    <button class="ib" data-g="os" type="button">オシレーター系<span class="cnt" id="cOS"></span><small>チャート下</small></button>
+    <button class="ib" data-g="sg" type="button"><span class="sgi"><b class="bu">▲</b><b class="se">▼</b></span>売買サイン<span class="cnt" id="cSG"></span></button>
+  </div>
+</div>
+<div class="ipanel" id="ipanel" hidden>
+  <div class="iph"><b id="iptitle"></b><span id="ipdesc"></span>
+    <button type="button" id="ipreset">既定に戻す</button><button type="button" id="ipnone">すべて外す</button><button type="button" id="ipclose">閉じる</button></div>
+  <div class="sgst" id="sgst" hidden>表示のしかた
+    <div class="seg" id="sgstyle"><button type="button" data-st="label">ラベル（買・売）</button><button type="button" data-st="tri">大きい三角</button></div>
+    <label><input type="checkbox" id="sgvl">サインの足に縦線も引く</label></div>
+  <div class="ics" id="ipchips"></div>
+</div>
+<div class="legend" id="legend"></div>
+<div class="chart"><canvas id="cv"></canvas><div class="vmode" id="vmode"><button type="button" data-m="v">出来高</button><button type="button" data-m="a">売買代金</button></div><div class="xh" id="xhv"></div><div class="xh" id="xhh"></div><div id="tip"></div></div>
+<details class="nt" id="ntbox"><summary>指標の計算方法</summary><p class="note" id="note"></p></details>
+</div>
+<script>
+const CODE = "ATCX";
+const RAW = [["2026-01-09",10.0,10.75,8.21,8.8,183100],["2026-01-12",9.75,10.28,8.8,8.83,198300],["2026-01-13",9.36,9.5,8.51,8.53,161000],["2026-01-14",9.28,9.28,7.4,7.96,126700],["2026-01-15",8.19,8.35,8.0,8.0,52400],["2026-01-16",8.0,8.89,8.0,8.5,48900],["2026-01-20",8.6,9.69,8.33,9.64,152800],["2026-01-21",9.8,10.25,8.15,9.18,460800],["2026-01-22",10.02,10.48,9.18,9.74,323300],["2026-01-23",10.0,13.53,9.87,12.36,314400],["2026-01-26",13.9,14.01,9.18,9.4,460600],["2026-01-27",9.8,10.98,9.6,10.28,202100],["2026-01-28",10.67,10.67,9.0,9.68,188900],["2026-01-29",9.73,9.93,7.79,7.8,219400],["2026-01-30",9.09,9.09,7.05,7.1,282200],["2026-02-02",7.02,7.39,6.37,6.73,120900],["2026-02-03",6.76,8.7,6.76,8.68,137200],["2026-02-04",8.82,8.82,7.5,7.61,87200],["2026-02-05",7.29,7.95,6.5,6.9,112700],["2026-02-06",6.9,7.36,6.11,6.16,68000],["2026-02-09",6.18,6.9,6.18,6.76,85200],["2026-02-10",6.42,7.39,6.25,7.0,64900],["2026-02-11",7.14,7.23,6.35,6.4,102000],["2026-02-12",6.31,6.94,6.3,6.4,75800],["2026-02-13",6.35,6.83,6.3,6.48,43600],["2026-02-17",6.35,6.44,5.7,6.02,69500],["2026-02-18",6.01,6.29,5.32,6.29,61100],["2026-02-19",6.02,6.31,6.0,6.0,37000],["2026-02-20",6.15,6.31,6.01,6.11,30800],["2026-02-23",6.3,7.14,6.2,6.56,125100],["2026-02-24",6.48,6.7,6.15,6.15,64500],["2026-02-25",6.34,7.0,6.16,6.59,70300],["2026-02-26",6.7,7.7,6.68,7.59,69100],["2026-02-27",7.82,7.85,6.2,6.31,120700],["2026-03-02",6.31,7.25,6.28,7.03,68100],["2026-03-03",7.36,7.56,6.81,7.06,117600],["2026-03-04",7.02,7.21,6.36,6.36,43900],["2026-03-05",6.51,7.06,6.0,6.21,44700],["2026-03-06",6.35,6.67,6.0,6.01,49500],["2026-03-09",6.04,6.88,6.0,6.53,49400],["2026-03-10",6.74,7.37,6.71,7.23,65400],["2026-03-11",7.14,7.31,6.71,6.71,20500],["2026-03-12",6.67,6.83,6.1,6.46,32100],["2026-03-13",6.45,6.75,6.22,6.22,32700],["2026-03-16",6.3,6.66,5.88,5.91,57300],["2026-03-17",5.94,6.35,5.91,6.01,31800],["2026-03-18",6.04,6.09,5.59,5.66,25700],["2026-03-19",5.5,5.75,5.1,5.2,41000],["2026-03-20",5.2,5.34,4.65,4.88,33600],["2026-03-23",4.88,5.25,4.88,5.0,31500],["2026-03-24",4.88,5.3,4.86,5.16,27000],["2026-03-25",5.31,5.44,5.26,5.3,11100],["2026-03-26",5.21,5.31,5.04,5.1,6200],["2026-03-27",5.04,5.25,4.77,4.77,9400],["2026-03-30",4.8,5.01,4.39,4.46,30200],["2026-03-31",4.56,5.79,4.5,5.56,64200],["2026-04-01",5.64,6.16,5.5,5.73,53700],["2026-04-02",5.55,5.89,5.18,5.69,18200],["2026-04-06",5.93,6.46,5.31,6.26,54000],["2026-04-07",6.33,6.39,5.7,5.83,24400],["2026-04-08",6.38,6.4,5.75,5.8,39200],["2026-04-09",5.91,6.2,5.05,5.07,64200],["2026-04-10",5.12,5.58,5.08,5.23,25400],["2026-04-13",5.28,5.55,5.07,5.22,36500],["2026-04-14",5.26,5.49,5.1,5.33,39600],["2026-04-15",5.31,5.44,4.92,4.96,56600],["2026-04-16",5.25,5.4,4.71,5.06,65700],["2026-04-17",5.21,5.45,5.06,5.27,68500],["2026-04-20",5.28,5.53,5.26,5.53,30700],["2026-04-21",5.46,5.62,5.1,5.17,55000],["2026-04-22",5.25,5.46,5.16,5.17,42700],["2026-04-23",5.0,5.29,5.0,5.17,33900],["2026-04-24",5.21,5.27,5.0,5.01,27500],["2026-04-27",5.09,5.4,4.93,5.08,58900],["2026-04-28",5.05,5.4,4.91,5.3,49600],["2026-04-29",5.3,5.88,5.25,5.71,76300],["2026-04-30",5.84,5.9,5.61,5.69,35500],["2026-05-01",5.62,5.84,5.62,5.67,30100],["2026-05-04",5.74,5.8,5.5,5.54,32200],["2026-05-05",5.61,5.63,5.54,5.55,6700],["2026-05-06",5.46,5.74,5.32,5.7,29800],["2026-05-07",5.68,6.06,5.6,5.87,33900],["2026-05-08",5.88,6.0,5.65,5.74,27100],["2026-05-11",5.52,5.75,5.52,5.55,15700],["2026-05-12",5.5,5.59,5.4,5.45,10100],["2026-05-13",5.33,5.5,5.33,5.38,10900],["2026-05-14",5.44,5.6,5.17,5.23,24800],["2026-05-15",5.15,5.2,4.91,5.01,34100],["2026-05-18",5.12,5.12,4.82,4.9,20600],["2026-05-19",4.87,5.09,4.66,4.68,25300],["2026-05-20",4.66,4.94,4.51,4.77,38200],["2026-05-21",4.51,4.8,4.28,4.34,53200],["2026-05-22",4.45,4.65,4.4,4.44,20200],["2026-05-26",4.5,4.73,4.36,4.43,23800],["2026-05-27",4.37,4.74,4.35,4.37,23800],["2026-05-28",4.37,4.62,4.37,4.41,16500],["2026-05-29",4.37,4.47,4.12,4.3,27000],["2026-06-01",4.35,4.41,4.28,4.31,11400],["2026-06-02",4.33,4.59,4.29,4.41,29300],["2026-06-03",4.3,4.44,4.09,4.11,24900],["2026-06-04",4.13,4.27,3.77,4.04,28400],["2026-06-05",3.98,3.99,3.62,3.71,30100],["2026-06-08",3.68,4.27,3.68,4.17,26800],["2026-06-09",4.24,4.25,3.6,3.91,14200],["2026-06-10",3.8,3.93,3.8,3.9,11300],["2026-06-11",3.9,3.9,3.8,3.86,10100],["2026-06-12",3.88,4.17,3.85,3.99,25500],["2026-06-15",4.14,4.19,3.6,3.82,43400],["2026-06-16",3.75,4.19,3.5,3.7,26600],["2026-06-17",3.7,3.88,3.7,3.72,7400],["2026-06-18",3.77,3.99,3.77,3.92,7700],["2026-06-22",3.93,4.18,3.8,4.09,17100],["2026-06-23",3.93,4.08,3.85,3.89,6600],["2026-06-24",3.96,4.05,3.8,4.0,7500],["2026-06-25",3.94,4.24,3.8,3.8,5800],["2026-06-26",3.8,3.95,3.65,3.68,10600],["2026-06-29",3.65,3.87,3.65,3.65,7700],["2026-06-30",3.65,3.79,3.54,3.54,15300],["2026-07-01",3.55,3.75,3.55,3.7,6700],["2026-07-02",3.71,3.84,3.61,3.63,16100],["2026-07-06",3.6,3.71,3.54,3.55,11100],["2026-07-07",3.57,3.73,3.47,3.73,12400],["2026-07-08",3.63,3.69,3.5,3.52,6500],["2026-07-09",3.5,3.6,3.49,3.5,2400],["2026-07-10",3.59,3.79,3.54,3.79,13800],["2026-07-13",3.81,3.81,3.58,3.64,12100],["2026-07-14",3.7,3.74,3.65,3.65,1700],["2026-07-15",3.71,3.77,3.47,3.6,15000],["2026-07-16",3.5,3.5,3.02,3.08,19400],["2026-07-17",3.19,3.25,3.02,3.17,12700],["2026-07-20",3.22,3.23,3.06,3.08,17600],["2026-07-21",3.06,3.25,3.05,3.05,18600],["2026-07-22",3.05,3.16,3.05,3.05,5700],["2026-07-23",3.1,3.15,2.79,2.81,7500],["2026-07-24",2.85,3.16,2.85,2.99,6800],["2026-07-27",2.99,3.08,2.99,3.01,3600],["2026-07-28",3.02,3.1,2.94,3.0,8100],["2026-07-29",3.04,3.17,2.95,2.98,5500],["2026-07-30",2.99,3.04,2.79,3.02,12800],["2026-07-31",2.85,2.95,2.75,2.79,8900],["2026-08-03",2.76,2.95,2.65,2.66,6400],["2026-08-04",2.68,2.78,2.67,2.78,13600],["2026-08-05",2.77,2.77,2.65,2.65,6900],["2026-08-06",2.61,2.65,2.57,2.57,9500],["2026-08-07",2.65,2.77,2.6,2.74,23600],["2026-08-10",2.8,3.14,2.8,3.14,24500],["2026-08-11",3.11,3.2,2.91,3.2,11600],["2026-08-12",2.92,3.21,2.84,3.12,17000],["2026-08-13",3.12,3.27,3.0,3.16,15100],["2026-08-14",3.24,3.4,3.17,3.4,13700],["2026-08-17",3.43,3.7,3.18,3.7,10500],["2026-08-18",3.7,3.7,3.57,3.6,11400],["2026-08-19",3.61,3.68,3.61,3.68,4800],["2026-08-20",3.67,3.72,3.44,3.5,4600],["2026-08-21",3.55,3.78,3.5,3.78,8900],["2026-08-24",3.78,3.78,3.58,3.7,8500],["2026-08-25",3.65,3.71,3.65,3.69,4200],["2026-08-26",3.71,3.9,3.6,3.88,13800],["2026-08-27",3.7,3.85,3.51,3.77,9700],["2026-08-28",3.58,3.64,3.52,3.52,5100],["2026-08-31",3.49,3.6,3.47,3.47,3000],["2026-09-01",3.39,3.49,3.28,3.37,7200],["2026-09-02",3.38,3.48,3.26,3.33,5400],["2026-09-03",3.28,3.39,3.02,3.11,29100],["2026-09-04",3.17,3.27,3.02,3.15,6300],["2026-09-08",3.09,3.1,2.96,3.02,10200],["2026-09-09",3.0,3.21,3.0,3.21,10100],["2026-09-10",3.14,3.27,3.0,3.17,3300],["2026-09-11",3.34,3.34,3.14,3.31,7500],["2026-09-14",3.25,3.35,3.03,3.25,24100],["2026-09-15",3.15,3.19,3.05,3.17,4400],["2026-09-16",3.31,3.33,3.16,3.21,10600],["2026-09-17",3.31,3.31,3.14,3.17,7100],["2026-09-18",3.17,3.2,3.05,3.19,2200],["2026-09-21",3.18,3.18,3.06,3.17,1300],["2026-09-22",3.17,3.2,3.05,3.18,7800],["2026-09-23",3.07,3.1,3.07,3.1,1000],["2026-09-24",3.2,3.2,3.06,3.1,3200],["2026-09-25",3.17,3.19,2.81,3.1,31100],["2026-09-28",3.05,3.05,2.9,2.93,24100],["2026-09-29",3.08,3.5,2.93,3.05,103500],["2026-09-30",3.1,3.17,2.88,3.0,155000],["2026-10-01",3.05,3.09,2.81,2.81,114200],["2026-10-02",2.94,2.98,2.77,2.91,45700],["2026-10-05",2.96,2.96,2.73,2.75,14600],["2026-10-06",2.68,2.85,2.64,2.64,46200],["2026-10-07",2.6,2.7,2.55,2.55,18100],["2026-10-08",2.75,2.75,2.52,2.52,9300],["2026-10-09",2.57,2.62,2.52,2.6,12100],["2026-10-12",2.6,2.61,2.38,2.38,11300],["2026-10-13",2.46,2.5,2.15,2.2,11800],["2026-10-14",2.2,2.3,2.02,2.02,14100],["2026-10-15",2.11,2.18,2.02,2.07,10300],["2026-10-16",2.16,2.2,2.05,2.14,13900],["2026-10-19",2.2,2.3,2.1,2.25,6700],["2026-10-20",2.17,2.28,2.06,2.06,7100],["2026-10-21",2.13,2.17,2.05,2.1,5300],["2026-10-22",2.06,2.17,2.06,2.12,16800],["2026-10-23",2.05,2.16,2.05,2.16,4000],["2026-10-26",2.12,2.17,2.06,2.1,6900],["2026-10-27",2.11,2.12,2.05,2.12,14500],["2026-10-28",2.05,2.07,2.05,2.07,5000],["2026-10-29",2.04,2.07,2.04,2.07,1500],["2026-10-30",2.04,2.04,1.85,1.91,17100],["2026-11-02",1.95,1.95,1.9,1.92,1300],["2026-11-03",1.95,1.95,1.87,1.87,5100],["2026-11-04",1.87,2.1,1.87,2.05,23500],["2026-11-05",2.1,2.1,1.97,2.05,6300],["2026-11-06",2.1,2.1,1.91,2.09,4000],["2026-11-09",2.01,2.1,1.91,2.01,3000],["2026-11-10",2.0,2.02,2.0,2.02,500],["2026-11-11",2.02,2.08,2.02,2.08,1000],["2026-11-12",1.9,2.04,1.88,1.93,3700],["2026-11-13",1.95,1.95,1.87,1.88,6600],["2026-11-16",1.87,1.95,1.76,1.76,11700],["2026-11-17",1.84,1.84,1.73,1.73,2500],["2026-11-18",1.68,1.7,1.6,1.64,8800],["2026-11-19",1.57,1.57,1.36,1.36,4800],["2026-11-20",1.22,1.4,1.0,1.22,39000],["2026-11-23",1.35,1.44,1.26,1.37,18900],["2026-11-24",1.39,1.39,1.21,1.29,3800],["2026-11-25",1.39,1.39,1.21,1.36,8100],["2026-11-27",1.47,1.47,1.36,1.36,735]];
+const DATANOTE = "";
+</script>
+<script src="intra/ATCX.js?v=2026112788"></script>
+<script src="assets/chart.js?v=aa49b450"></script><!--kb-theme-js--><script>(function(){var bs=document.querySelectorAll('button.kb-theme[data-kb]');
+for(var i=0;i<bs.length;i++)bs[i].addEventListener('click',function(){var b=this,d=document.documentElement,
+cur=d.getAttribute('data-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'),n=cur==='dark'?'light':'dark';
+d.setAttribute('data-theme',n);try{localStorage.setItem('fdb-theme',n)}catch(e){}
+var f=document.querySelectorAll('iframe');for(var j=0;j<f.length;j++){try{f[j].contentWindow.postMessage({chartTheme:n},'*')}catch(e){}}
+var k=b.getAttribute('data-kb');
+if(k==='reload')location.reload();
+else if(k==='msg')window.postMessage({chartTheme:n},'*');
+else if(k==='fn'&&typeof window.__kbRedraw==='function')window.__kbRedraw();});})();</script><!--/kb-theme-js--><!--mobile-fix-spacer--><div class="mf-spacer" aria-hidden="true"></div><!--/mobile-fix-spacer--></body></html>
