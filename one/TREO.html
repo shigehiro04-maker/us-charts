@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8"><!--kb-theme:v3--><script>(function(){var d=document.documentElement,
+m=/[?&#]theme=(dark|light)/.exec(location.search+location.hash),t=m&&m[1];
+if(!t){try{t=localStorage.getItem('fdb-theme')}catch(e){}}
+if(t==='dark'||t==='light')d.setAttribute('data-theme',t);
+try{if(window.top!==window.self)d.classList.add('kb-embed')}catch(e){d.classList.add('kb-embed')}})();</script>
+<style id="kb-theme">
+:root{--kb-fg:#1f1f1e;--kb-line:#d6d5ce;--kb-hover:rgba(0,0,0,.05)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--kb-fg:#ecebe6;--kb-line:#3b3b38;--kb-hover:rgba(255,255,255,.08)}}
+:root[data-theme="dark"]{--kb-fg:#ecebe6;--kb-line:#3b3b38;--kb-hover:rgba(255,255,255,.08)}
+/* スイッチ本体（トラック） */
+:root{--kb-trk:#e8e7e1;--kb-knob:#fff;--kb-ico:#d08a00;--kb-dim:#a9a79f}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--kb-trk:#2b2b29;--kb-knob:#45453f;--kb-ico:#f3d36a;--kb-dim:#6f6e68}}
+:root[data-theme="dark"]{--kb-trk:#2b2b29;--kb-knob:#45453f;--kb-ico:#f3d36a;--kb-dim:#6f6e68}
+:root button.kb-theme.kb-theme{-webkit-appearance:none;appearance:none;position:relative;display:inline-block;box-sizing:border-box;
+width:54px;height:30px;min-width:54px;min-height:0;padding:0;border:1px solid var(--kb-line);border-radius:15px;background:var(--kb-trk);
+color:var(--kb-fg);font-size:0;line-height:0;cursor:pointer;box-shadow:inset 0 1px 2px rgba(0,0,0,.08);vertical-align:middle;flex-shrink:0;
+overflow:hidden;-webkit-tap-highlight-color:transparent;transition:background .3s,border-color .3s}
+:root button.kb-theme.kb-theme:focus-visible{outline:2px solid #2a78d6;outline-offset:2px}
+:root button.kb-theme.kb-theme svg{display:block;width:100%;height:100%}
+/* 両端の小さなアイコン（つまみが無い側だけ見える） */
+:root button.kb-theme.kb-theme .kb-trk{position:absolute;top:50%;width:13px;height:13px;margin-top:-6.5px;color:var(--kb-dim);transition:opacity .3s}
+:root button.kb-theme.kb-theme .kb-l{left:7px;opacity:0}
+:root button.kb-theme.kb-theme .kb-r{right:7px;opacity:1}
+/* つまみ */
+:root button.kb-theme.kb-theme .kb-knob{position:absolute;top:2px;left:2px;width:24px;height:24px;border-radius:50%;background:var(--kb-knob);
+color:var(--kb-ico);box-shadow:0 1px 3px rgba(0,0,0,.25),0 0 0 .5px rgba(0,0,0,.06);transform:translateX(0);
+transition:transform .32s cubic-bezier(.3,1.35,.5,1),background .3s,color .3s}
+:root button.kb-theme.kb-theme:active .kb-knob{width:28px}
+:root button.kb-theme.kb-theme .kb-knob svg{position:absolute;inset:0;margin:auto;width:15px;height:15px;transition:opacity .25s,transform .35s}
+:root button.kb-theme.kb-theme .kb-knob .kb-sun{opacity:1;transform:none}
+:root button.kb-theme.kb-theme .kb-knob .kb-moon{opacity:0;transform:rotate(-90deg) scale(.4)}
+/* ダーク表示中：つまみを右へ */
+@media (prefers-color-scheme:dark){
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-knob{transform:translateX(24px)}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme:active .kb-knob{transform:translateX(20px)}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-knob .kb-sun{opacity:0;transform:rotate(90deg) scale(.4)}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-knob .kb-moon{opacity:1;transform:none}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-l{opacity:1}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-r{opacity:0}}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-knob{transform:translateX(24px)}
+:root[data-theme="dark"] button.kb-theme.kb-theme:active .kb-knob{transform:translateX(20px)}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-knob .kb-sun{opacity:0;transform:rotate(90deg) scale(.4)}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-knob .kb-moon{opacity:1;transform:none}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-l{opacity:1}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-r{opacity:0}
+@media (prefers-reduced-motion:reduce){:root button.kb-theme.kb-theme *{transition:none!important}}
+/* 全ページ共通の置き場所：ページ右上の角 */
+:root button.kb-theme.kb-theme.kb-corner{position:absolute;top:12px;right:16px;z-index:60;margin:0;float:none}
+@media (max-width:700px){:root button.kb-theme.kb-theme.kb-corner{top:10px;right:12px}}
+/* 右上のスイッチの下に見えない「よけ」を置き、見出しの文字やボタンがスイッチと重ならないようにする */
+.kb-spacer{float:right;width:84px;height:46px;pointer-events:none}
+@media (max-width:700px){.kb-spacer{width:76px;height:44px}}
+html.kb-embed .kb-spacer{display:none}
+html.kb-embed button.kb-theme[data-kb]{display:none}
+
+</style><!--/kb-theme-->
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tactical Resources Corp.（TREO） | 株式分析ダッシュボード</title>
+<script>(function(){let t;try{t=localStorage.getItem('fdb-theme')}catch(e){}if(t)document.documentElement.setAttribute('data-theme',t);})();</script>
+<link rel="stylesheet" href="assets/one.css?v=202611200946">
+<!--site-icon:v3--><link rel="icon" type="image/svg+xml" href="/us-charts/icon-black.svg?v=3" media="(prefers-color-scheme: light)"><link rel="icon" type="image/svg+xml" href="/us-charts/icon-white.svg?v=3" media="(prefers-color-scheme: dark)"><link rel="apple-touch-icon" href="/us-charts/apple-touch-icon.png?v=3"><!--/site-icon--><!--mobile-fix:v1--><style id="mobile-fix">
+.mf-spacer{display:none}
+html.mf-sa .mf-spacer{display:block;height:calc(env(safe-area-inset-bottom,0px) + 110px)}
+html.mf-sa .detail .inner{padding-bottom:calc(env(safe-area-inset-bottom,0px) + 140px)}
+</style><script>(function(){try{if(window.top!==window.self)return;
+var sa=navigator.standalone===true||matchMedia('(display-mode: standalone)').matches;
+var touch=matchMedia('(pointer: coarse)').matches;
+if(sa||touch)document.documentElement.classList.add('mf-sa');}catch(e){}})();</script><!--/mobile-fix--><!--pc-wide:v1--><style id="pc-wide">@media (min-width:1280px){body>.wrap,body>main,body>div.wrap{max-width:1680px!important}}</style><!--/pc-wide--></head>
+<body><!--kb-btn--><button class="tbtn kb-theme kb-corner" id="theme" type="button" aria-label="明暗を切り替え（ライト／ダーク）" title="明暗を切り替え（ライト／ダーク）"><span class="kb-trk kb-l"><svg class="kb-sun" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="12" cy="12" r="4.3"/><path d="M12 2.2v2.3M12 19.5v2.3M2.2 12h2.3M19.5 12h2.3M5.1 5.1l1.6 1.6M17.3 17.3l1.6 1.6M5.1 18.9l1.6-1.6M17.3 6.7l1.6-1.6"/></svg></span><span class="kb-trk kb-r"><svg class="kb-moon" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M20.2 14.6A8.4 8.4 0 0 1 9.4 3.8a.6.6 0 0 0-.8-.7A9.2 9.2 0 1 0 20.9 15.4a.6.6 0 0 0-.7-.8z"/></svg></span><span class="kb-knob"><svg class="kb-sun" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="12" cy="12" r="4.3"/><path d="M12 2.2v2.3M12 19.5v2.3M2.2 12h2.3M19.5 12h2.3M5.1 5.1l1.6 1.6M17.3 17.3l1.6 1.6M5.1 18.9l1.6-1.6M17.3 6.7l1.6-1.6"/></svg><svg class="kb-moon" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M20.2 14.6A8.4 8.4 0 0 1 9.4 3.8a.6.6 0 0 0-.8-.7A9.2 9.2 0 1 0 20.9 15.4a.6.6 0 0 0-.7-.8z"/></svg></span></button><div class="kb-spacer" aria-hidden="true"></div><!--/kb-btn-->
+<div class="wrap">
+<header>
+  <h1 id="h-name"></h1><span class="cd" id="h-code"></span>
+  <span class="px" id="h-px"></span><span class="chg" id="h-chg"></span>
+  <span class="meta" id="h-meta"></span>
+  <span class="sp"><button class="tbtn" id="watchbtn" hidden>☆ 監視銘柄に追加</button><a class="tbtn" href="../index.html" style="text-decoration:none">トップ</a><a class="tbtn" href="index.html" style="text-decoration:none">銘柄一覧</a></span>
+</header>
+<div class="wbox" id="wbox" hidden></div>
+<div class="valline" id="valline" hidden></div>
+<p class="biz" id="biz"></p>
+<p class="bizlink" id="bizlink" hidden></p>
+<p class="empline" id="empline" hidden></p>
+
+<section class="card" id="sigcard">
+  <div class="hero">
+    <div>
+      <div class="big" id="big"></div>
+      <div class="n1" id="notes"></div>
+      <div class="plan" id="plan"></div>
+    </div>
+    <div class="quad" id="quad"></div>
+  </div>
+  <div class="sigfoot"><button class="tgl" id="sig-tgl" aria-expanded="false"><span class="tri">▾</span> 内訳・推移</button></div>
+  <div class="sigdet" id="sigdet" hidden>
+    <div><h5>テクニカルの内訳</h5><div id="partsT"></div></div>
+    <div><h5>ファンダメンタルの内訳</h5><div id="partsF"></div></div>
+    <div><h5>テクニカルスコアの推移</h5><div class="spk" id="spk"></div></div>
+  </div>
+</section>
+
+<div class="grid">
+  <div class="lcol">
+  <section class="card" id="chartcard">
+    <div class="bar">
+      <h2 style="margin:0">チャート</h2>
+      <div class="seg" id="rng"><button data-n="63">3ヶ月</button><button data-n="126" class="on">6ヶ月</button><button data-n="250">1年</button><button data-n="750">3年</button></div>
+      <div class="lg" id="lg-ind"></div>
+      <div class="lg" id="lg-vp"></div>
+      <button class="tgl" id="ch-tgl" aria-expanded="false" style="margin-left:auto"><span class="tri">▾</span> 指標を選ぶ</button>
+    </div>
+    <div id="ch-det" hidden>
+      <div id="indsel"></div>
+      <div class="lg" style="margin:4px 0 2px">
+        <label><input type="checkbox" id="cb-vp" checked>価格帯別出来高</label>
+        <label><input type="checkbox" id="cb-mk" checked>売買サイン</label>
+        <label><input type="checkbox" id="cb-lv" checked>IN・利確・損切り</label>
+      </div>
+      <div class="lg sgopt" id="sgopt"><span class="sgh">売買サイン</span><span class="sgkinds" id="sgkinds"></span></div>
+      <div class="lg sgopt" id="sgopt2"><span class="sgh">表示</span>
+        <div class="seg" id="sgstyle"><button type="button" data-st="label">ラベル（買・売）</button><button type="button" data-st="tri">大きい三角</button></div>
+        <label><input type="checkbox" id="sgvl">縦線も引く</label>
+        <button type="button" class="sgbtn" id="sgdef">既定に戻す</button><button type="button" class="sgbtn" id="sgnone">すべて外す</button>
+      </div>
+      <div class="lvbar" id="lvbar"></div>
+    </div>
+    <div id="chart"></div>
+  </section>
+  <section class="card" id="bscard"><div class="bsgrid"><div class="fp" id="fp-bs"></div><div class="fp" id="fp-holders"></div></div></section>
+  </div>
+
+  <div class="rcol">
+  <section class="card" id="jkcard">
+    <h2><span style="white-space:nowrap">需給</span> <span class="hint" id="jk-hint"></span><a class="jklink" id="jk-link" href="#">空売りの内訳 ›</a></h2>
+    <div class="jkg" id="jkg"></div>
+    <div class="jkf" id="jkf"></div>
+  </section>
+  <section class="card" id="fundcard">
+    <h2>ファンダメンタル <span class="hint" id="f-hint"></span></h2>
+    <div class="jcards" id="jcards"></div>
+    <div class="fgrid" id="fgrid"><div class="fp" id="fp-annual"></div><div class="fp" id="fp-cf"></div><div class="fp" id="fp-q"></div><div class="fp" id="fp-div"></div></div>
+    <div class="meta" id="fmeta"></div>
+  </section>
+  </div>
+</div>
+<section class="card" id="ancard" hidden>
+  <h2><span style="white-space:nowrap">アナリスト予想</span> <span class="hint" id="an-hint"></span><a class="jklink" id="an-link" href="../fundamentals.html#analyst">アナリスト予想ランキング ›</a></h2>
+  <div class="angrid"><div id="an-t"></div><div id="an-b"></div><div class="ancs" id="an-cw"><div id="an-cs"></div><div id="an-ct"></div></div><div id="an-c"></div></div>
+  <div class="anfoot"><button class="tgl" id="an-tgl" aria-expanded="false"><span class="tri">▾</span> <span class="pc">アナリストごとの目標株価・投資判断</span><span class="sp">業績予想・決算サプライズ・アナリスト別</span></button></div>
+  <div id="an-det" hidden><div id="an-u"></div></div>
+</section>
+<section class="card" id="cocard" hidden>
+  <h2><span style="white-space:nowrap">同業他社・関連企業</span> <span class="hint" id="co-hint"></span></h2>
+  <div class="cogrid"><div id="co-peer"></div><div id="co-rel"></div></div>
+</section>
+<footer><span></span><span id="gen"></span></footer>
+</div>
+<div id="tip"></div>
+<script src="assets/watch.js"></script>
+<script>const DATA={"info":{"code":"TREO","name":"Tactical Resources Corp.","market":"NASDAQ","sector":"素材","date":"2026-11-19","price":1.99,"chg":-0.24,"chgp":-10.762331838565022,"biz":"レアアースの探鉱開発の会社。","url":"https://tacticalresources.com","fdate":"2026-07-31"},"px":{"show":750,"d":["2026-08-20","2026-08-21","2026-08-24","2026-08-25","2026-08-26","2026-08-27","2026-08-28","2026-08-31","2026-09-01","2026-09-02","2026-09-03","2026-09-04","2026-09-08","2026-09-09","2026-09-10","2026-09-11","2026-09-14","2026-09-15","2026-09-16","2026-09-17","2026-09-18","2026-09-21","2026-09-22","2026-09-23","2026-09-24","2026-09-25","2026-09-28","2026-09-29","2026-09-30","2026-10-01","2026-10-02","2026-10-05","2026-10-06","2026-10-07","2026-10-08","2026-10-09","2026-10-12","2026-10-13","2026-10-14","2026-10-15","2026-10-16","2026-10-19","2026-10-20","2026-10-21","2026-10-22","2026-10-23","2026-10-26","2026-10-27","2026-10-28","2026-10-29","2026-10-30","2026-11-02","2026-11-03","2026-11-04","2026-11-05","2026-11-06","2026-11-09","2026-11-10","2026-11-11","2026-11-12","2026-11-13","2026-11-16","2026-11-17","2026-11-18","2026-11-19"],"o":[8.3,7.1,6.9,5.8,4.5,4.5,4.8,5.2,5.3,5.1,5,5,5,4.9,4.9,5,5.2,4.8,4.7,4.7,4.2,4.1,4,4,3.9,3.8,3.6,2.7,3,3.1,3.1,3,2.6,3,2.8,2.5,2.5,2.3,2.1,2,1.9,1.9,1.9,1.8,1.8,1.6,1.5,1.4,1.7,2.1,1.8,1.8,1.7,1.7,1.6,1.8,1.7,2,2.9,2.8,3.3,4.1,3.1,2.6,2.3],"h":[9.2,7.7,7,5.8,4.6,4.7,5.4,5.9,5.4,5.6,5.3,5.1,5.2,5.1,5,5.4,5.2,5.1,4.9,4.9,4.2,4.2,4.7,4.1,3.9,4,3.6,3.3,3.2,3.2,3.1,3.1,3.1,3.5,2.8,2.5,2.9,2.5,2.2,2.1,1.9,2,2,1.9,1.8,1.7,1.5,1.7,2,2.2,1.9,2,1.8,1.8,1.7,2,2,2.8,3,3.3,4,4.8,3.4,2.7,2.6],"l":[6.2,6.2,5.1,4.6,4.2,4.5,4.7,5,5,4.5,4.8,4.8,4.8,4.9,4.8,5,4.8,4.6,4.5,3.6,4,4,4,4,3.7,3.5,2.7,2.7,2.9,3,2.9,2.6,2.6,2.7,2.6,2.2,2.3,2,2,1.9,1.6,1.9,1.7,1.8,1.6,1.5,1.4,1.4,1.6,1.8,1.8,1.6,1.6,1.5,1.6,1.6,1.6,2,2.7,2.8,3.1,3.1,2.8,2.1,1.9],"c":[7.2,7.1,5.6,4.8,4.4,4.7,5.2,5.3,5,4.8,4.8,5,4.8,5,4.9,5.3,4.9,4.6,4.5,4,4,4.1,4,4,3.8,3.5,2.7,3,3,3.1,3,2.6,3,2.7,2.6,2.5,2.3,2.2,2.1,1.9,1.9,1.9,1.8,1.8,1.6,1.5,1.4,1.6,2,1.9,1.8,1.8,1.6,1.6,1.7,1.6,2,2.6,2.9,3.3,3.9,3.1,2.8,2.2,2],"v":[54300,40500,32700,31700,29900,13900,27800,29400,21200,705100,23100,69700,75000,26300,63000,39000,140900,42500,22100,123400,35800,18500,70000,5700,20900,17200,39200,35000,35700,9200,8700,43600,51100,126300,27700,27500,54200,135300,25300,35700,73300,33500,82400,13900,26800,43300,29700,88500,125000,91400,17900,41300,29800,29200,32000,15800,82900,612100,180800,267800,220600,564100,110300,140800,52011]},"fy":[{"fy":"2023-07","sales":0.0,"op":-1794541.929449,"ni":-1979435.86107,"opm":null,"ocf":-1340239.59685,"fcf":-1340239.59685,"eqr":69.43,"roe":-254.69556734417148,"per":null},{"fy":"2024-07","sales":0.0,"op":-1424571.878249,"ni":-2589704.141157,"opm":null,"ocf":-913951.137808,"fcf":-913951.137808,"eqr":-614.51,"roe":158.82223497381312,"per":null},{"fy":"2025-07","sales":0.0,"op":-1985152.0,"ni":-4717108.0,"opm":null,"ocf":-305643.0,"fcf":-305643.0,"eqr":-1665.19,"roe":89.87782078807155,"per":null},{"fy":"2026-07","sales":0.0,"op":-1316584.0,"ni":-2932330.0,"opm":null,"ocf":-849848.0,"fcf":-849848.0,"eqr":-1252.47,"roe":42.61920479653364,"per":null}],"extra":{"mcap":0.4410299,"ev_ebitda":null,"fscore":4.0,"payout":null,"beta":null,"cagr":null,"dy":0.0,"roe":null,"opm":null,"eqr":-1252.47,"per":-15.04,"pbr":-6.41,"sec_per":17.93,"sec_pbr":1.95,"sec_roe":12.353347108847007,"sec_opm":14.645,"sec_eqr":57.43,"rank":"","nsec":"292"},"kb":{"annual":[{"fy":"23/7期","fyEnd":"2023-07-31","fc":null,"disc":null,"rev":0.0,"op":-1.795,"odp":-1.979,"ni":-1.979,"opm":null,"ocf":-1.34,"icf":-0.047,"fcf":0.489,"cash":0.849,"frcf":-1.387,"dps":0.0,"payout":null,"eps":-1.06},{"fy":"24/7期","fyEnd":"2024-07-31","fc":null,"disc":null,"rev":0.0,"op":-1.425,"odp":-2.594,"ni":-2.59,"opm":null,"ocf":-0.914,"icf":0.0,"fcf":0.134,"cash":0.033,"frcf":-0.914,"dps":0.0,"payout":null,"eps":-1.44},{"fy":"25/7期","fyEnd":"2025-07-31","fc":null,"disc":null,"rev":0.0,"op":-1.985,"odp":-4.717,"ni":-4.717,"opm":null,"ocf":-0.306,"icf":null,"fcf":0.33,"cash":0.046,"frcf":null,"dps":0.0,"payout":null,"eps":-2.64},{"fy":"26/7期","fyEnd":"2026-07-31","fc":null,"disc":null,"rev":0.0,"op":-1.317,"odp":-2.932,"ni":-2.932,"opm":null,"ocf":-0.85,"icf":null,"fcf":1.091,"cash":0.282,"frcf":null,"dps":0.0,"payout":null,"eps":-1.44}],"fc":null,"quarters":[{"fy":"25/07","fyEnd":"2025-07-31","perEnd":"2025-07-31","perSt":null,"rev":0.0,"op":-0.223,"odp":-0.765,"ni":-0.755,"opm":null},{"fy":"25/10","fyEnd":"2025-10-31","perEnd":"2025-10-31","perSt":null,"rev":0.0,"op":-0.185,"odp":-0.75,"ni":-0.75,"opm":null},{"fy":"26/01","fyEnd":"2026-01-31","perEnd":"2026-01-31","perSt":null,"rev":0.0,"op":-0.185,"odp":-0.505,"ni":-0.505,"opm":null},{"fy":"26/04","fyEnd":"2026-04-30","perEnd":"2026-04-30","perSt":null,"rev":0.0,"op":-0.245,"odp":-0.528,"ni":-0.528,"opm":null},{"fy":"26/07","fyEnd":"2026-07-31","perEnd":"2026-07-31","perSt":null,"rev":0.0,"op":-0.698,"odp":-1.134,"ni":-1.134,"opm":null}],"odpName":"税引前利益","holders":{"asof":"2026-09-30","filed":"2026-09-30","issued":13612034.0,"treasury":0,"holders":[["UBS Group AG",869,0.0001],["Mainstream Capital Management LLC                          ",14,0.0]]},"bs":[{"fy":"23/7","fyEnd":"2023-07-31","std":"US","ta":1.119,"tl":0.342,"na":0.777,"noCA":false,"cash":0.849,"recv":0.11,"inv":null,"oca":0.0,"ppe":0.002,"onca":0.158,"pay":0.094,"ocl":0.0,"ncl":0.249,"eq":0.777,"oeq":0.0},{"fy":"24/7","fyEnd":"2024-07-31","std":"US","ta":0.265,"tl":1.896,"na":-1.631,"noCA":false,"cash":0.033,"recv":0.081,"inv":null,"oca":0.0,"ppe":0.0,"onca":0.152,"pay":null,"ocl":1.486,"ncl":0.41,"eq":-1.631,"oeq":0.0,"neg":true},{"fy":"25/7","fyEnd":"2025-07-31","std":"US","ta":0.315,"tl":5.564,"na":-5.248,"noCA":false,"cash":0.046,"recv":0.074,"inv":null,"oca":0.043,"ppe":0.0,"onca":0.152,"pay":null,"ocl":4.865,"ncl":0.699,"eq":-5.248,"oeq":0.0,"neg":true},{"fy":"26/7","fyEnd":"2026-07-31","std":"US","ta":0.549,"tl":7.43,"na":-6.88,"noCA":false,"cash":0.282,"recv":0.134,"inv":null,"oca":0.133,"ppe":null,"onca":0.0,"pay":null,"ocl":7.43,"ncl":0.0,"eq":-6.88,"oeq":0.0,"neg":true}]},"srow":{"c":"TREO","n":"Tactical Resources Corp.","m":"NASDAQ","s":"素材","d":"2026-11-19","p":1.99,"chg":-10.76,"ts":-41,"tt":null,"to":23,"lv":null,"tc":[null,-1,null,null,-0.22,0.32,0.13,0.34],"tr":[-4.8,null,null,1,4.17,0,null,1,43.6,44,59,1.81,null,null,156.8],"te":[],"hp0":1.42,"hpk":0.00392392,"hp":[844,974,999,920,849,874,925,869,900,887,981,887,816,787,658,660,673,652,652,594,543,334,390,403,423,398,308,395,334,291,262,232,191,173,135,117,117,94,87,56,23,0,56,143,122,87,84,59,59,61,56,140,298,367,479,640,418,354,206,145],"hs":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,-53,-53,-52,-51,-50,-50,-50,-50,-52,-51,-49,-51,-51,-52,-53,-52,-58,-44,-41,-40,-40,-43,-44,-42,-41],"fs":-48,"fc":[null,null,null,-1,-0.11,-0.32],"fr":[-15,-6.41,null,"評価不能",null,null,null,null,null,null,-1252.5,1,4,-1.9,0,0,null],"ff":["赤字"],"fp":"2026-07-31","dv":null,"mc":70},"smeta":{"tw":{"hi52":0.25,"lv":0.25,"ma":0.15,"ichi":0.1,"macd":0.05,"rsi":0.05,"bb":0.05,"vol":0.1},"fw":{"val":0.55,"prof":0.1,"grow":0.05,"safe":0.1,"fs":0.1,"cash":0.1},"levels":{"t":[40,15,-15,-30],"f":[45,20,-5,-20],"tr":[50,20,-20,-50],"os":[70,35,-35,-70],"ad":[60,40,-40,-60]},"names":["良好","やや良好","中立","弱い","避ける"]},"jk":{"score":40.0,"ratio":null,"buy":null,"sell":null,"dbuy":null,"dsell":null,"days":null,"pl":null,"lend":null,"short":null,"sp":null,"si":84167.0,"sic":952.9,"dtc":1.6,"inst":0.0,"ins":24.9,"judge":"売り圧力","memo":"空売りが急増","asof":"2026-10-30","flag":"","kind":""},"val":null,"shape":null,"an":null,"co":{"cur":"ドル","ind":"Other Industrial Metals & Mining","emp":{},"peers":[["TREO","Tactical Resources Corp.",0.4,-15,-6.41,null,null,0,null],["USAR","USA Rare Earth, Inc.",25.8,-7.9,5.23,-65.9,-3621.6,0,null],["APXC","Apex Critical Metals Corp.",0.7,-6.7,2.8,-41.7,null,0,null],["REA","Rare Earths Americas, Inc.",1.4,-13.7,5.2,-37.9,null,0.4,null],["AREC","American Resources Corporation",0.9,1.7,1.0,58.5,null,0,null]],"rel":[],"rec":[]},"gen":"2026-11-20 09:47"};</script>
+<script src="assets/one.js?v=202611200946"></script>
+<!--mobile-fix-spacer--><div class="mf-spacer" aria-hidden="true"></div><!--/mobile-fix-spacer--></body>
+</html>

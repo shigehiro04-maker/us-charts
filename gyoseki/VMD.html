@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8"><!--kb-theme:v3--><script>(function(){var d=document.documentElement,
+m=/[?&#]theme=(dark|light)/.exec(location.search+location.hash),t=m&&m[1];
+if(!t){try{t=localStorage.getItem('fdb-theme')}catch(e){}}
+if(t==='dark'||t==='light')d.setAttribute('data-theme',t);
+try{if(window.top!==window.self)d.classList.add('kb-embed')}catch(e){d.classList.add('kb-embed')}})();</script>
+<style id="kb-theme">
+:root{--kb-fg:#1f1f1e;--kb-line:#d6d5ce;--kb-hover:rgba(0,0,0,.05)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--kb-fg:#ecebe6;--kb-line:#3b3b38;--kb-hover:rgba(255,255,255,.08)}}
+:root[data-theme="dark"]{--kb-fg:#ecebe6;--kb-line:#3b3b38;--kb-hover:rgba(255,255,255,.08)}
+/* スイッチ本体（トラック） */
+:root{--kb-trk:#e8e7e1;--kb-knob:#fff;--kb-ico:#d08a00;--kb-dim:#a9a79f}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--kb-trk:#2b2b29;--kb-knob:#45453f;--kb-ico:#f3d36a;--kb-dim:#6f6e68}}
+:root[data-theme="dark"]{--kb-trk:#2b2b29;--kb-knob:#45453f;--kb-ico:#f3d36a;--kb-dim:#6f6e68}
+:root button.kb-theme.kb-theme{-webkit-appearance:none;appearance:none;position:relative;display:inline-block;box-sizing:border-box;
+width:54px;height:30px;min-width:54px;min-height:0;padding:0;border:1px solid var(--kb-line);border-radius:15px;background:var(--kb-trk);
+color:var(--kb-fg);font-size:0;line-height:0;cursor:pointer;box-shadow:inset 0 1px 2px rgba(0,0,0,.08);vertical-align:middle;flex-shrink:0;
+overflow:hidden;-webkit-tap-highlight-color:transparent;transition:background .3s,border-color .3s}
+:root button.kb-theme.kb-theme:focus-visible{outline:2px solid #2a78d6;outline-offset:2px}
+:root button.kb-theme.kb-theme svg{display:block;width:100%;height:100%}
+/* 両端の小さなアイコン（つまみが無い側だけ見える） */
+:root button.kb-theme.kb-theme .kb-trk{position:absolute;top:50%;width:13px;height:13px;margin-top:-6.5px;color:var(--kb-dim);transition:opacity .3s}
+:root button.kb-theme.kb-theme .kb-l{left:7px;opacity:0}
+:root button.kb-theme.kb-theme .kb-r{right:7px;opacity:1}
+/* つまみ */
+:root button.kb-theme.kb-theme .kb-knob{position:absolute;top:2px;left:2px;width:24px;height:24px;border-radius:50%;background:var(--kb-knob);
+color:var(--kb-ico);box-shadow:0 1px 3px rgba(0,0,0,.25),0 0 0 .5px rgba(0,0,0,.06);transform:translateX(0);
+transition:transform .32s cubic-bezier(.3,1.35,.5,1),background .3s,color .3s}
+:root button.kb-theme.kb-theme:active .kb-knob{width:28px}
+:root button.kb-theme.kb-theme .kb-knob svg{position:absolute;inset:0;margin:auto;width:15px;height:15px;transition:opacity .25s,transform .35s}
+:root button.kb-theme.kb-theme .kb-knob .kb-sun{opacity:1;transform:none}
+:root button.kb-theme.kb-theme .kb-knob .kb-moon{opacity:0;transform:rotate(-90deg) scale(.4)}
+/* ダーク表示中：つまみを右へ */
+@media (prefers-color-scheme:dark){
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-knob{transform:translateX(24px)}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme:active .kb-knob{transform:translateX(20px)}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-knob .kb-sun{opacity:0;transform:rotate(90deg) scale(.4)}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-knob .kb-moon{opacity:1;transform:none}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-l{opacity:1}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-r{opacity:0}}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-knob{transform:translateX(24px)}
+:root[data-theme="dark"] button.kb-theme.kb-theme:active .kb-knob{transform:translateX(20px)}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-knob .kb-sun{opacity:0;transform:rotate(90deg) scale(.4)}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-knob .kb-moon{opacity:1;transform:none}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-l{opacity:1}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-r{opacity:0}
+@media (prefers-reduced-motion:reduce){:root button.kb-theme.kb-theme *{transition:none!important}}
+/* 全ページ共通の置き場所：ページ右上の角 */
+:root button.kb-theme.kb-theme.kb-corner{position:absolute;top:12px;right:16px;z-index:60;margin:0;float:none}
+@media (max-width:700px){:root button.kb-theme.kb-theme.kb-corner{top:10px;right:12px}}
+/* 右上のスイッチの下に見えない「よけ」を置き、見出しの文字やボタンがスイッチと重ならないようにする */
+.kb-spacer{float:right;width:84px;height:46px;pointer-events:none}
+@media (max-width:700px){.kb-spacer{width:76px;height:44px}}
+html.kb-embed .kb-spacer{display:none}
+html.kb-embed button.kb-theme[data-kb]{display:none}
+
+</style><!--/kb-theme-->
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Viemed Healthcare, Inc.（VMD）業績ダッシュボード</title>
+<link rel="stylesheet" href="assets/style.css">
+<!--site-icon:v3--><link rel="icon" type="image/svg+xml" href="/us-charts/icon-black.svg?v=3" media="(prefers-color-scheme: light)"><link rel="icon" type="image/svg+xml" href="/us-charts/icon-white.svg?v=3" media="(prefers-color-scheme: dark)"><link rel="apple-touch-icon" href="/us-charts/apple-touch-icon.png?v=3"><!--/site-icon--><!--mobile-fix:v1--><style id="mobile-fix">
+.mf-spacer{display:none}
+html.mf-sa .mf-spacer{display:block;height:calc(env(safe-area-inset-bottom,0px) + 110px)}
+html.mf-sa .detail .inner{padding-bottom:calc(env(safe-area-inset-bottom,0px) + 140px)}
+</style><script>(function(){try{if(window.top!==window.self)return;
+var sa=navigator.standalone===true||matchMedia('(display-mode: standalone)').matches;
+var touch=matchMedia('(pointer: coarse)').matches;
+if(sa||touch)document.documentElement.classList.add('mf-sa');}catch(e){}})();</script><!--/mobile-fix--><!--pc-wide:v1--><style id="pc-wide">@media (min-width:1280px){body>.wrap,body>main,body>div.wrap{max-width:1680px!important}}</style><!--/pc-wide--></head>
+<body><!--kb-btn--><button class="kb-theme kb-corner" id="kbTheme" type="button" data-kb="reload" aria-label="明暗を切り替え（ライト／ダーク）" title="明暗を切り替え（ライト／ダーク）"><span class="kb-trk kb-l"><svg class="kb-sun" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="12" cy="12" r="4.3"/><path d="M12 2.2v2.3M12 19.5v2.3M2.2 12h2.3M19.5 12h2.3M5.1 5.1l1.6 1.6M17.3 17.3l1.6 1.6M5.1 18.9l1.6-1.6M17.3 6.7l1.6-1.6"/></svg></span><span class="kb-trk kb-r"><svg class="kb-moon" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M20.2 14.6A8.4 8.4 0 0 1 9.4 3.8a.6.6 0 0 0-.8-.7A9.2 9.2 0 1 0 20.9 15.4a.6.6 0 0 0-.7-.8z"/></svg></span><span class="kb-knob"><svg class="kb-sun" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="12" cy="12" r="4.3"/><path d="M12 2.2v2.3M12 19.5v2.3M2.2 12h2.3M19.5 12h2.3M5.1 5.1l1.6 1.6M17.3 17.3l1.6 1.6M5.1 18.9l1.6-1.6M17.3 6.7l1.6-1.6"/></svg><svg class="kb-moon" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M20.2 14.6A8.4 8.4 0 0 1 9.4 3.8a.6.6 0 0 0-.8-.7A9.2 9.2 0 1 0 20.9 15.4a.6.6 0 0 0-.7-.8z"/></svg></span></button><div class="kb-spacer" aria-hidden="true"></div><!--/kb-btn-->
+<div class="wrap">
+  <header class="mast">
+    <div class="eyebrow"><a href="../fundamentals.html" style="color:inherit">← 東証スクリーニング</a></div>
+    <h1>Viemed Healthcare, Inc.<span class="code">VMD</span></h1>
+    <div class="slip" id="slip"></div>
+    <p class="biz">在宅医療機器・呼吸器ケアのビーモッド・メディカル。</p><p class="site"><a href="https://www.viemed.com" target="_blank" rel="noopener noreferrer"><b>公式サイト ↗</b><span>www.viemed.com</span></a></p>
+  </header>
+
+  <section class="cards" id="cards" aria-label="判定サマリー"></section>
+
+  <section class="grid">
+    <div class="panel" id="p-annual"></div>
+    <div class="panel" id="p-cf"></div>
+    <div class="panel" id="p-q"></div>
+    <div class="panel" id="p-div"></div>
+    <div class="panel full" id="p-bs"></div>
+    <div class="panel full" id="p-holders"></div>
+  </section>
+
+  <details class="more">
+    <summary>通期の数値をすべて見る</summary>
+    <div class="inner" id="t-annual"></div>
+  </details>
+  <details class="more">
+    <summary>判定の基準と注記</summary>
+    <div class="inner foot"><ol>
+      <li>直近の通期決算を、同じ業種の中央値と比べて判定しています。▲＝良い側　●＝並み　▼＝注意。</li>
+      <li>成長性：売上高の年平均成長率が5%以上で増収。利益が初年度を下回ると増収減益。</li>
+      <li>収益性：営業利益率が業種中央値の1.2倍以上で高い、0.6倍未満で低い。</li>
+      <li>財務安全性：自己資本比率が50%以上か業種の1.3倍以上で厚い、20%未満で薄め（業種並みなら標準）。</li>
+      <li>資本効率：ROE 10%以上で高い、5%未満で低い。</li>
+      <li>割安度：PERとPBRがともに業種中央値を下回ると割安、ともに上回ると割高。</li>
+      <li>売上総利益・粗利率は売上原価データがある期のみ表示し、データの無い系列・列は出しません。</li>
+      <li>グラフ：通期・配当の右端の薄い棒は会社予想（J-Quants 決算短信サマリーの最新値）。折れ線は右軸（%）。</li>
+      <li>経常利益は J-Quants の決算短信サマリーから取得（日本基準のみ。取得範囲は直近約2年）。IFRS・米国基準は税引前利益で表示します。</li>
+      <li>貸借対照表は年次決算（10-K）の連結貸借対照表を Yahoo Finance から取得し、区分にまとめたもの。外国企業は最新の為替でドルに換算しています。</li>
+      <li>株主構成は 13F（運用資産1億ドル超の機関投資家が四半期ごとに出す保有報告）の上位10社を、発行済株式数に対する割合で描画（Yahoo Finance 経由）。その他は上位10社以外の合計です。</li>
+      <li>四半期決算は累計値の差分から単独四半期を算出。フリーCFは営業CF＋投資CF。配当性向は一株配当÷EPS。</li>
+      <li>出所：~/株分析 の fundamentals/（通期）。株価・時価総額は取得日時点。生成 2026-11-20</li>
+    </ol></div>
+  </details>
+</div>
+<script src="assets/app.js"></script>
+<script>renderCompany({"code":"VMD","name":"Viemed Healthcare, Inc.","market":"NASDAQ","sector":"ヘルスケア","quote":{"price":8.61,"priceDate":"2026-11-19","mcap":326.26,"per":21.85,"pbr":2.3,"psr":1.21,"yld":0.0,"asof":"2026-11-20"},"annual":[{"fy":"22/12期","fyEnd":"2022-12-31","y":2022,"rev":138.832,"gp":84.68,"op":8.598,"pbt":8.99,"ni":6.222,"ta":117.043,"se":97.094,"eq":0.8295999999999999,"cr":2.1071,"ocf":27.748,"icf":-23.976,"fcf":-15.266,"freecf":4.85,"ibd":0.694,"cash":16.914,"ebitda":24.817,"eps":0.16,"bps":2.55,"dps":0.0,"opm":0.0619309669240521,"nim":0.04481675694364412,"gpm":0.6099458338135301,"roe":0.06408222959194183,"roa":0.053159949762053266,"odp":8.99,"payout":0.0,"frcf":3.772000000000002},{"fy":"23/12期","fyEnd":"2023-12-31","y":2023,"rev":183.008,"gp":112.783,"op":14.975,"pbt":14.391,"ni":10.243,"ta":154.895,"se":113.895,"eq":0.7353000000000001,"cr":1.1943000000000001,"ocf":45.212,"icf":-52.113,"fcf":2.826,"freecf":19.119,"ibd":10.324,"cash":12.839,"ebitda":36.677,"eps":0.27,"bps":2.96,"dps":0.0,"opm":0.08182702395523693,"nim":0.05597023080958209,"gpm":0.6162736055254415,"roe":0.08993371087405067,"roa":0.06612866780722425,"odp":14.391,"payout":0.0,"frcf":-6.900999999999996},{"fy":"24/12期","fyEnd":"2024-12-31","y":2024,"rev":224.257,"gp":133.203,"op":15.995,"pbt":16.17,"ni":11.265,"ta":177.069,"se":131.393,"eq":0.742,"cr":1.4166999999999998,"ocf":39.089,"icf":-30.699,"fcf":-3.689,"freecf":1.318,"ibd":6.866,"cash":17.54,"ebitda":42.314,"eps":0.29,"bps":3.36,"dps":0.0,"opm":0.0713244179668862,"nim":0.050232545695340615,"gpm":0.5939747700183272,"roe":0.08573516092942547,"roa":0.0636192670653813,"odp":16.17,"payout":0.0,"frcf":8.389999999999997},{"fy":"25/12期","fyEnd":"2025-12-31","y":2025,"rev":270.28,"gp":155.458,"op":20.71,"pbt":21.767,"ni":14.934,"ta":199.154,"se":141.545,"eq":0.7106999999999999,"cr":1.1811,"ocf":51.916,"icf":-50.166,"fcf":-5.789,"freecf":11.931,"ibd":15.948,"cash":13.501,"ebitda":51.562,"eps":0.38,"bps":3.72,"dps":0.0,"opm":0.07662424152730503,"nim":0.05525381086280894,"gpm":0.5751738937398254,"roe":0.10550708255325163,"roa":0.07498719583839641,"odp":21.767,"payout":0.0,"frcf":1.75}],"peer":{"n":1040,"opm":-0.28575151114632014,"nim":-0.31152344732453807,"eq":0.5763499999999999,"roe":-0.29623219210883134,"gpm":0.5981180160752794,"per":24.195,"pbr":2.14,"yld":0.0},"fc":null,"quarters":[{"fy":"25/09","fyEnd":"2025-09-30","perEnd":"2025-09-30","perSt":null,"rev":71.914,"op":6.118,"odp":5.135,"ni":3.513,"opm":0.08507383819562256},{"fy":"25/12","fyEnd":"2025-12-31","perEnd":"2025-12-31","perSt":null,"rev":76.181,"op":8.66,"odp":8.007,"ni":5.639,"opm":0.11367663853191741},{"fy":"26/03","fyEnd":"2026-03-31","perEnd":"2026-03-31","perSt":null,"rev":75.414,"op":4.652,"odp":3.991,"ni":2.582,"opm":0.06168615906860795},{"fy":"26/06","fyEnd":"2026-06-30","perEnd":"2026-06-30","perSt":null,"rev":78.097,"op":5.059,"odp":4.051,"ni":2.764,"opm":0.0647784165845039},{"fy":"26/09","fyEnd":"2026-09-30","perEnd":"2026-09-30","perSt":null,"rev":80.673,"op":7.374,"odp":6.785,"ni":4.638,"opm":0.09140604663270238}],"odpName":"税引前利益","holders":{"asof":"2026-09-30","filed":"2026-09-30","issued":37893094.0,"treasury":0,"holders":[["Blackrock Inc.",4788307,0.1264],["Forager Capital Management, LLC",2141184,0.0565],["Vanguard Capital Management LLC",1321676,0.0349],["Goldman Sachs Group Inc",1222534,0.0323],["Geode Capital Management, LLC",1171828,0.030899999999999997],["Ameriprise Financial, Inc.",1006195,0.026600000000000002],["Arrowstreet Capital, Limited Partnership",786269,0.0207],["State Street Corporation",762097,0.020099999999999996],["Nantahala Capital Management, LLC",632445,0.0167],["PanAgora Asset Management, Inc.",538625,0.014199999999999999]]},"bs":[{"fy":"22/12","fyEnd":"2022-12-31","std":"US","ta":117.043,"tl":19.949,"na":97.094,"noCA":false,"cash":16.914,"recv":15.379,"inv":3.574,"oca":3.875,"ppe":68.437,"onca":8.864,"pay":4.904,"ocl":13.957,"ncl":1.088,"eq":97.094,"oeq":0.0},{"fy":"23/12","fyEnd":"2023-12-31","std":"US","ta":154.895,"tl":41.0,"na":113.895,"noCA":false,"cash":12.839,"recv":18.451,"inv":4.628,"oca":2.449,"ppe":76.852,"onca":39.676,"pay":7.41,"ocl":24.714,"ncl":8.876,"eq":113.895,"oeq":0.0},{"fy":"24/12","fyEnd":"2024-12-31","std":"US","ta":177.069,"tl":43.768,"na":133.301,"noCA":false,"cash":17.54,"recv":24.911,"inv":4.32,"oca":6.109,"ppe":79.16,"onca":45.029,"pay":9.338,"ocl":27.988,"ncl":6.442,"eq":131.393,"oeq":1.908},{"fy":"25/12","fyEnd":"2025-12-31","std":"US","ta":199.154,"tl":55.633,"na":143.521,"noCA":false,"cash":13.501,"recv":25.586,"inv":5.047,"oca":4.359,"ppe":82.355,"onca":68.306,"pay":12.328,"ocl":28.728,"ncl":14.577,"eq":141.545,"oeq":1.976}]});</script>
+<!--kb-theme-js--><script>(function(){var bs=document.querySelectorAll('button.kb-theme[data-kb]');
+for(var i=0;i<bs.length;i++)bs[i].addEventListener('click',function(){var b=this,d=document.documentElement,
+cur=d.getAttribute('data-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'),n=cur==='dark'?'light':'dark';
+d.setAttribute('data-theme',n);try{localStorage.setItem('fdb-theme',n)}catch(e){}
+var f=document.querySelectorAll('iframe');for(var j=0;j<f.length;j++){try{f[j].contentWindow.postMessage({chartTheme:n},'*')}catch(e){}}
+var k=b.getAttribute('data-kb');
+if(k==='reload')location.reload();
+else if(k==='msg')window.postMessage({chartTheme:n},'*');
+else if(k==='fn'&&typeof window.__kbRedraw==='function')window.__kbRedraw();});})();</script><!--/kb-theme-js--><!--mobile-fix-spacer--><div class="mf-spacer" aria-hidden="true"></div><!--/mobile-fix-spacer--></body>
+</html>

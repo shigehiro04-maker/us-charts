@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8"><!--kb-theme:v3--><script>(function(){var d=document.documentElement,
+m=/[?&#]theme=(dark|light)/.exec(location.search+location.hash),t=m&&m[1];
+if(!t){try{t=localStorage.getItem('fdb-theme')}catch(e){}}
+if(t==='dark'||t==='light')d.setAttribute('data-theme',t);
+try{if(window.top!==window.self)d.classList.add('kb-embed')}catch(e){d.classList.add('kb-embed')}})();</script>
+<style id="kb-theme">
+:root{--kb-fg:#1f1f1e;--kb-line:#d6d5ce;--kb-hover:rgba(0,0,0,.05)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--kb-fg:#ecebe6;--kb-line:#3b3b38;--kb-hover:rgba(255,255,255,.08)}}
+:root[data-theme="dark"]{--kb-fg:#ecebe6;--kb-line:#3b3b38;--kb-hover:rgba(255,255,255,.08)}
+/* スイッチ本体（トラック） */
+:root{--kb-trk:#e8e7e1;--kb-knob:#fff;--kb-ico:#d08a00;--kb-dim:#a9a79f}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--kb-trk:#2b2b29;--kb-knob:#45453f;--kb-ico:#f3d36a;--kb-dim:#6f6e68}}
+:root[data-theme="dark"]{--kb-trk:#2b2b29;--kb-knob:#45453f;--kb-ico:#f3d36a;--kb-dim:#6f6e68}
+:root button.kb-theme.kb-theme{-webkit-appearance:none;appearance:none;position:relative;display:inline-block;box-sizing:border-box;
+width:54px;height:30px;min-width:54px;min-height:0;padding:0;border:1px solid var(--kb-line);border-radius:15px;background:var(--kb-trk);
+color:var(--kb-fg);font-size:0;line-height:0;cursor:pointer;box-shadow:inset 0 1px 2px rgba(0,0,0,.08);vertical-align:middle;flex-shrink:0;
+overflow:hidden;-webkit-tap-highlight-color:transparent;transition:background .3s,border-color .3s}
+:root button.kb-theme.kb-theme:focus-visible{outline:2px solid #2a78d6;outline-offset:2px}
+:root button.kb-theme.kb-theme svg{display:block;width:100%;height:100%}
+/* 両端の小さなアイコン（つまみが無い側だけ見える） */
+:root button.kb-theme.kb-theme .kb-trk{position:absolute;top:50%;width:13px;height:13px;margin-top:-6.5px;color:var(--kb-dim);transition:opacity .3s}
+:root button.kb-theme.kb-theme .kb-l{left:7px;opacity:0}
+:root button.kb-theme.kb-theme .kb-r{right:7px;opacity:1}
+/* つまみ */
+:root button.kb-theme.kb-theme .kb-knob{position:absolute;top:2px;left:2px;width:24px;height:24px;border-radius:50%;background:var(--kb-knob);
+color:var(--kb-ico);box-shadow:0 1px 3px rgba(0,0,0,.25),0 0 0 .5px rgba(0,0,0,.06);transform:translateX(0);
+transition:transform .32s cubic-bezier(.3,1.35,.5,1),background .3s,color .3s}
+:root button.kb-theme.kb-theme:active .kb-knob{width:28px}
+:root button.kb-theme.kb-theme .kb-knob svg{position:absolute;inset:0;margin:auto;width:15px;height:15px;transition:opacity .25s,transform .35s}
+:root button.kb-theme.kb-theme .kb-knob .kb-sun{opacity:1;transform:none}
+:root button.kb-theme.kb-theme .kb-knob .kb-moon{opacity:0;transform:rotate(-90deg) scale(.4)}
+/* ダーク表示中：つまみを右へ */
+@media (prefers-color-scheme:dark){
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-knob{transform:translateX(24px)}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme:active .kb-knob{transform:translateX(20px)}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-knob .kb-sun{opacity:0;transform:rotate(90deg) scale(.4)}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-knob .kb-moon{opacity:1;transform:none}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-l{opacity:1}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-r{opacity:0}}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-knob{transform:translateX(24px)}
+:root[data-theme="dark"] button.kb-theme.kb-theme:active .kb-knob{transform:translateX(20px)}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-knob .kb-sun{opacity:0;transform:rotate(90deg) scale(.4)}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-knob .kb-moon{opacity:1;transform:none}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-l{opacity:1}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-r{opacity:0}
+@media (prefers-reduced-motion:reduce){:root button.kb-theme.kb-theme *{transition:none!important}}
+/* 全ページ共通の置き場所：ページ右上の角 */
+:root button.kb-theme.kb-theme.kb-corner{position:absolute;top:12px;right:16px;z-index:60;margin:0;float:none}
+@media (max-width:700px){:root button.kb-theme.kb-theme.kb-corner{top:10px;right:12px}}
+/* 右上のスイッチの下に見えない「よけ」を置き、見出しの文字やボタンがスイッチと重ならないようにする */
+.kb-spacer{float:right;width:84px;height:46px;pointer-events:none}
+@media (max-width:700px){.kb-spacer{width:76px;height:44px}}
+html.kb-embed .kb-spacer{display:none}
+html.kb-embed button.kb-theme[data-kb]{display:none}
+
+</style><!--/kb-theme-->
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>First Watch Restaurant Group, Inc.（FWRG）業績ダッシュボード</title>
+<link rel="stylesheet" href="assets/style.css">
+<!--site-icon:v3--><link rel="icon" type="image/svg+xml" href="/us-charts/icon-black.svg?v=3" media="(prefers-color-scheme: light)"><link rel="icon" type="image/svg+xml" href="/us-charts/icon-white.svg?v=3" media="(prefers-color-scheme: dark)"><link rel="apple-touch-icon" href="/us-charts/apple-touch-icon.png?v=3"><!--/site-icon--><!--mobile-fix:v1--><style id="mobile-fix">
+.mf-spacer{display:none}
+html.mf-sa .mf-spacer{display:block;height:calc(env(safe-area-inset-bottom,0px) + 110px)}
+html.mf-sa .detail .inner{padding-bottom:calc(env(safe-area-inset-bottom,0px) + 140px)}
+</style><script>(function(){try{if(window.top!==window.self)return;
+var sa=navigator.standalone===true||matchMedia('(display-mode: standalone)').matches;
+var touch=matchMedia('(pointer: coarse)').matches;
+if(sa||touch)document.documentElement.classList.add('mf-sa');}catch(e){}})();</script><!--/mobile-fix--><!--pc-wide:v1--><style id="pc-wide">@media (min-width:1280px){body>.wrap,body>main,body>div.wrap{max-width:1680px!important}}</style><!--/pc-wide--></head>
+<body><!--kb-btn--><button class="kb-theme kb-corner" id="kbTheme" type="button" data-kb="reload" aria-label="明暗を切り替え（ライト／ダーク）" title="明暗を切り替え（ライト／ダーク）"><span class="kb-trk kb-l"><svg class="kb-sun" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="12" cy="12" r="4.3"/><path d="M12 2.2v2.3M12 19.5v2.3M2.2 12h2.3M19.5 12h2.3M5.1 5.1l1.6 1.6M17.3 17.3l1.6 1.6M5.1 18.9l1.6-1.6M17.3 6.7l1.6-1.6"/></svg></span><span class="kb-trk kb-r"><svg class="kb-moon" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M20.2 14.6A8.4 8.4 0 0 1 9.4 3.8a.6.6 0 0 0-.8-.7A9.2 9.2 0 1 0 20.9 15.4a.6.6 0 0 0-.7-.8z"/></svg></span><span class="kb-knob"><svg class="kb-sun" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="12" cy="12" r="4.3"/><path d="M12 2.2v2.3M12 19.5v2.3M2.2 12h2.3M19.5 12h2.3M5.1 5.1l1.6 1.6M17.3 17.3l1.6 1.6M5.1 18.9l1.6-1.6M17.3 6.7l1.6-1.6"/></svg><svg class="kb-moon" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M20.2 14.6A8.4 8.4 0 0 1 9.4 3.8a.6.6 0 0 0-.8-.7A9.2 9.2 0 1 0 20.9 15.4a.6.6 0 0 0-.7-.8z"/></svg></span></button><div class="kb-spacer" aria-hidden="true"></div><!--/kb-btn-->
+<div class="wrap">
+  <header class="mast">
+    <div class="eyebrow"><a href="../fundamentals.html" style="color:inherit">← 東証スクリーニング</a></div>
+    <h1>First Watch Restaurant Group, Inc.<span class="code">FWRG</span></h1>
+    <div class="slip" id="slip"></div>
+    <p class="biz">朝食・ブランチのレストランチェーン「ファースト・ウォッチ」。</p><p class="site"><a href="https://www.firstwatch.com" target="_blank" rel="noopener noreferrer"><b>公式サイト ↗</b><span>www.firstwatch.com</span></a></p>
+  </header>
+
+  <section class="cards" id="cards" aria-label="判定サマリー"></section>
+
+  <section class="grid">
+    <div class="panel" id="p-annual"></div>
+    <div class="panel" id="p-cf"></div>
+    <div class="panel" id="p-q"></div>
+    <div class="panel" id="p-div"></div>
+    <div class="panel full" id="p-bs"></div>
+    <div class="panel full" id="p-holders"></div>
+  </section>
+
+  <details class="more">
+    <summary>通期の数値をすべて見る</summary>
+    <div class="inner" id="t-annual"></div>
+  </details>
+  <details class="more">
+    <summary>判定の基準と注記</summary>
+    <div class="inner foot"><ol>
+      <li>直近の通期決算を、同じ業種の中央値と比べて判定しています。▲＝良い側　●＝並み　▼＝注意。</li>
+      <li>成長性：売上高の年平均成長率が5%以上で増収。利益が初年度を下回ると増収減益。</li>
+      <li>収益性：営業利益率が業種中央値の1.2倍以上で高い、0.6倍未満で低い。</li>
+      <li>財務安全性：自己資本比率が50%以上か業種の1.3倍以上で厚い、20%未満で薄め（業種並みなら標準）。</li>
+      <li>資本効率：ROE 10%以上で高い、5%未満で低い。</li>
+      <li>割安度：PERとPBRがともに業種中央値を下回ると割安、ともに上回ると割高。</li>
+      <li>売上総利益・粗利率は売上原価データがある期のみ表示し、データの無い系列・列は出しません。</li>
+      <li>グラフ：通期・配当の右端の薄い棒は会社予想（J-Quants 決算短信サマリーの最新値）。折れ線は右軸（%）。</li>
+      <li>経常利益は J-Quants の決算短信サマリーから取得（日本基準のみ。取得範囲は直近約2年）。IFRS・米国基準は税引前利益で表示します。</li>
+      <li>貸借対照表は年次決算（10-K）の連結貸借対照表を Yahoo Finance から取得し、区分にまとめたもの。外国企業は最新の為替でドルに換算しています。</li>
+      <li>株主構成は 13F（運用資産1億ドル超の機関投資家が四半期ごとに出す保有報告）の上位10社を、発行済株式数に対する割合で描画（Yahoo Finance 経由）。その他は上位10社以外の合計です。</li>
+      <li>四半期決算は累計値の差分から単独四半期を算出。フリーCFは営業CF＋投資CF。配当性向は一株配当÷EPS。</li>
+      <li>出所：~/株分析 の fundamentals/（通期）。株価・時価総額は取得日時点。生成 2026-11-20</li>
+    </ol></div>
+  </details>
+</div>
+<script src="assets/app.js"></script>
+<script>renderCompany({"code":"FWRG","name":"First Watch Restaurant Group, Inc.","market":"NASDAQ","sector":"一般消費財","quote":{"price":11.605,"priceDate":"2026-11-19","mcap":716.336,"per":36.86,"pbr":1.14,"psr":0.59,"yld":0.0,"asof":"2026-11-20"},"annual":[{"fy":"22/12期","fyEnd":"2022-12-31","y":2022,"rev":730.162,"gp":139.535,"op":20.346,"pbt":12.591,"ni":6.907,"ta":1104.446,"se":523.135,"eq":0.47369999999999995,"cr":0.6729999999999999,"ocf":62.937,"icf":-63.111,"fcf":-2.018,"freecf":-0.393,"ibd":507.35,"cash":49.672,"ebitda":52.053,"eps":0.12,"bps":8.84,"dps":0.0,"opm":0.027865049126084347,"nim":0.009459544594213339,"gpm":0.19110142680665385,"roe":0.01320309289189215,"roa":0.0062538141294368405,"odp":12.591,"payout":0.0,"frcf":-0.1739999999999995},{"fy":"23/12期","fyEnd":"2023-12-31","y":2023,"rev":891.551,"gp":190.117,"op":45.773,"pbt":36.075,"ni":25.385,"ta":1267.045,"se":561.284,"eq":0.44299999999999995,"cr":0.6187,"ocf":95.338,"icf":-123.37,"fcf":28.07,"freecf":11.848,"ibd":606.966,"cash":49.632,"ebitda":85.361,"eps":0.43,"bps":9.37,"dps":0.0,"opm":0.05134086552535974,"nim":0.02847285236626957,"gpm":0.2132429889036073,"roe":0.04522665887500802,"roa":0.02003480539365216,"odp":36.075,"payout":0.0,"frcf":-28.03200000000001},{"fy":"24/12期","fyEnd":"2024-12-31","y":2024,"rev":1015.91,"gp":213.004,"op":42.019,"pbt":28.026,"ni":18.925,"ta":1514.356,"se":595.389,"eq":0.3932,"cr":0.4035,"ocf":115.673,"icf":-206.653,"fcf":74.331,"freecf":-12.342,"ibd":809.551,"cash":33.312,"ebitda":98.381,"eps":0.31,"bps":9.81,"dps":0.0,"opm":0.04136094732801134,"nim":0.018628618676851297,"gpm":0.20966817926784853,"roe":0.03178594162807845,"roa":0.01249706145714746,"odp":28.026,"payout":0.0,"frcf":-90.97999999999999},{"fy":"25/12期","fyEnd":"2025-12-31","y":2025,"rev":1222.501,"gp":234.453,"op":30.492,"pbt":12.133,"ni":19.432,"ta":1742.029,"se":626.279,"eq":0.35950000000000004,"cr":0.293,"ocf":125.912,"icf":-213.764,"fcf":75.786,"freecf":-31.844,"ibd":1008.668,"cash":21.246,"ebitda":103.843,"eps":0.32,"bps":10.24,"dps":0.0,"opm":0.02494231088563527,"nim":0.015895283521240474,"gpm":0.19178143821559246,"roe":0.031027704904683054,"roa":0.011154808559444188,"odp":12.133,"payout":0.0,"frcf":-87.852}],"peer":{"n":513,"opm":0.044633670637876266,"nim":0.018194223334091427,"eq":0.3586,"roe":0.05090040426313855,"gpm":0.33373272292160494,"per":19.62,"pbr":1.6949999999999998,"yld":0.0},"fc":null,"quarters":[{"fy":"25/09","fyEnd":"2025-09-30","perEnd":"2025-09-30","perSt":null,"rev":316.022,"op":10.653,"odp":5.674,"ni":2.991,"opm":0.0337096784401086},{"fy":"25/12","fyEnd":"2025-12-31","perEnd":"2025-12-31","perSt":null,"rev":316.352,"op":9.485,"odp":4.42,"ni":15.164,"opm":0.029982424640906332},{"fy":"26/03","fyEnd":"2026-03-31","perEnd":"2026-03-31","perSt":null,"rev":330.959,"op":2.328,"odp":-3.434,"ni":-2.685,"opm":0.007034103922238102},{"fy":"26/06","fyEnd":"2026-06-30","perEnd":"2026-06-30","perSt":null,"rev":354.672,"op":8.573,"odp":3.368,"ni":2.339,"opm":0.02417162899806018},{"fy":"26/09","fyEnd":"2026-09-30","perEnd":"2026-09-30","perSt":null,"rev":349.861,"op":12.538,"odp":6.477,"ni":4.787,"opm":0.03583708958700741}],"odpName":"税引前利益","holders":{"asof":"2026-09-30","filed":"2026-09-30","issued":61726533.0,"treasury":0,"holders":[["Blackrock Inc.",4534132,0.0735],["Manufacturers Life Insurance Co.",3823982,0.062],["Dimensional Fund Advisors LP",2904654,0.0471],["Bank Of New York Mellon Corporation",2784217,0.0451],["Vanguard Capital Management LLC",2453594,0.0397],["Millennium Management Llc",2192811,0.0355],["Stephens Investment Management Group LLC",2141315,0.0347],["Neuberger Berman Group, LLC",2069037,0.0335],["GW&K Investment Management, LLC",2055560,0.0333],["Geode Capital Management, LLC",1649223,0.026699999999999998]]},"bs":[{"fy":"22/12","fyEnd":"2022-12-31","std":"US","ta":1104.446,"tl":581.311,"na":523.135,"noCA":false,"cash":49.672,"recv":2.05,"inv":5.028,"oca":10.538,"ppe":547.49,"onca":489.668,"pay":7.59,"ocl":92.39,"ncl":481.331,"eq":523.135,"oeq":0.0},{"fy":"23/12","fyEnd":"2023-12-31","std":"US","ta":1267.045,"tl":705.761,"na":561.284,"noCA":false,"cash":49.632,"recv":2.949,"inv":5.381,"oca":13.228,"ppe":683.083,"onca":512.772,"pay":6.324,"ocl":108.749,"ncl":590.688,"eq":561.284,"oeq":0.0},{"fy":"24/12","fyEnd":"2024-12-31","std":"US","ta":1514.356,"tl":918.967,"na":595.389,"noCA":false,"cash":33.312,"recv":2.432,"inv":6.117,"oca":14.015,"ppe":889.068,"onca":569.412,"pay":6.961,"ocl":131.511,"ncl":780.495,"eq":595.389,"oeq":0.0},{"fy":"25/12","fyEnd":"2025-12-31","std":"US","ta":1742.029,"tl":1115.75,"na":626.279,"noCA":false,"cash":21.246,"recv":2.975,"inv":7.174,"oca":17.685,"ppe":1092.999,"onca":599.95,"pay":8.701,"ocl":158.798,"ncl":948.251,"eq":626.279,"oeq":0.0}]});</script>
+<!--kb-theme-js--><script>(function(){var bs=document.querySelectorAll('button.kb-theme[data-kb]');
+for(var i=0;i<bs.length;i++)bs[i].addEventListener('click',function(){var b=this,d=document.documentElement,
+cur=d.getAttribute('data-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'),n=cur==='dark'?'light':'dark';
+d.setAttribute('data-theme',n);try{localStorage.setItem('fdb-theme',n)}catch(e){}
+var f=document.querySelectorAll('iframe');for(var j=0;j<f.length;j++){try{f[j].contentWindow.postMessage({chartTheme:n},'*')}catch(e){}}
+var k=b.getAttribute('data-kb');
+if(k==='reload')location.reload();
+else if(k==='msg')window.postMessage({chartTheme:n},'*');
+else if(k==='fn'&&typeof window.__kbRedraw==='function')window.__kbRedraw();});})();</script><!--/kb-theme-js--><!--mobile-fix-spacer--><div class="mf-spacer" aria-hidden="true"></div><!--/mobile-fix-spacer--></body>
+</html>

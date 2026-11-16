@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8"><!--kb-theme:v3--><script>(function(){var d=document.documentElement,
+m=/[?&#]theme=(dark|light)/.exec(location.search+location.hash),t=m&&m[1];
+if(!t){try{t=localStorage.getItem('fdb-theme')}catch(e){}}
+if(t==='dark'||t==='light')d.setAttribute('data-theme',t);
+try{if(window.top!==window.self)d.classList.add('kb-embed')}catch(e){d.classList.add('kb-embed')}})();</script>
+<style id="kb-theme">
+:root{--kb-fg:#1f1f1e;--kb-line:#d6d5ce;--kb-hover:rgba(0,0,0,.05)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--kb-fg:#ecebe6;--kb-line:#3b3b38;--kb-hover:rgba(255,255,255,.08)}}
+:root[data-theme="dark"]{--kb-fg:#ecebe6;--kb-line:#3b3b38;--kb-hover:rgba(255,255,255,.08)}
+/* スイッチ本体（トラック） */
+:root{--kb-trk:#e8e7e1;--kb-knob:#fff;--kb-ico:#d08a00;--kb-dim:#a9a79f}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--kb-trk:#2b2b29;--kb-knob:#45453f;--kb-ico:#f3d36a;--kb-dim:#6f6e68}}
+:root[data-theme="dark"]{--kb-trk:#2b2b29;--kb-knob:#45453f;--kb-ico:#f3d36a;--kb-dim:#6f6e68}
+:root button.kb-theme.kb-theme{-webkit-appearance:none;appearance:none;position:relative;display:inline-block;box-sizing:border-box;
+width:54px;height:30px;min-width:54px;min-height:0;padding:0;border:1px solid var(--kb-line);border-radius:15px;background:var(--kb-trk);
+color:var(--kb-fg);font-size:0;line-height:0;cursor:pointer;box-shadow:inset 0 1px 2px rgba(0,0,0,.08);vertical-align:middle;flex-shrink:0;
+overflow:hidden;-webkit-tap-highlight-color:transparent;transition:background .3s,border-color .3s}
+:root button.kb-theme.kb-theme:focus-visible{outline:2px solid #2a78d6;outline-offset:2px}
+:root button.kb-theme.kb-theme svg{display:block;width:100%;height:100%}
+/* 両端の小さなアイコン（つまみが無い側だけ見える） */
+:root button.kb-theme.kb-theme .kb-trk{position:absolute;top:50%;width:13px;height:13px;margin-top:-6.5px;color:var(--kb-dim);transition:opacity .3s}
+:root button.kb-theme.kb-theme .kb-l{left:7px;opacity:0}
+:root button.kb-theme.kb-theme .kb-r{right:7px;opacity:1}
+/* つまみ */
+:root button.kb-theme.kb-theme .kb-knob{position:absolute;top:2px;left:2px;width:24px;height:24px;border-radius:50%;background:var(--kb-knob);
+color:var(--kb-ico);box-shadow:0 1px 3px rgba(0,0,0,.25),0 0 0 .5px rgba(0,0,0,.06);transform:translateX(0);
+transition:transform .32s cubic-bezier(.3,1.35,.5,1),background .3s,color .3s}
+:root button.kb-theme.kb-theme:active .kb-knob{width:28px}
+:root button.kb-theme.kb-theme .kb-knob svg{position:absolute;inset:0;margin:auto;width:15px;height:15px;transition:opacity .25s,transform .35s}
+:root button.kb-theme.kb-theme .kb-knob .kb-sun{opacity:1;transform:none}
+:root button.kb-theme.kb-theme .kb-knob .kb-moon{opacity:0;transform:rotate(-90deg) scale(.4)}
+/* ダーク表示中：つまみを右へ */
+@media (prefers-color-scheme:dark){
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-knob{transform:translateX(24px)}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme:active .kb-knob{transform:translateX(20px)}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-knob .kb-sun{opacity:0;transform:rotate(90deg) scale(.4)}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-knob .kb-moon{opacity:1;transform:none}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-l{opacity:1}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-r{opacity:0}}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-knob{transform:translateX(24px)}
+:root[data-theme="dark"] button.kb-theme.kb-theme:active .kb-knob{transform:translateX(20px)}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-knob .kb-sun{opacity:0;transform:rotate(90deg) scale(.4)}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-knob .kb-moon{opacity:1;transform:none}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-l{opacity:1}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-r{opacity:0}
+@media (prefers-reduced-motion:reduce){:root button.kb-theme.kb-theme *{transition:none!important}}
+/* 全ページ共通の置き場所：ページ右上の角 */
+:root button.kb-theme.kb-theme.kb-corner{position:absolute;top:12px;right:16px;z-index:60;margin:0;float:none}
+@media (max-width:700px){:root button.kb-theme.kb-theme.kb-corner{top:10px;right:12px}}
+/* 右上のスイッチの下に見えない「よけ」を置き、見出しの文字やボタンがスイッチと重ならないようにする */
+.kb-spacer{float:right;width:84px;height:46px;pointer-events:none}
+@media (max-width:700px){.kb-spacer{width:76px;height:44px}}
+html.kb-embed .kb-spacer{display:none}
+html.kb-embed button.kb-theme[data-kb]{display:none}
+
+</style><!--/kb-theme-->
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Claritev Corporation（CTEV）業績ダッシュボード</title>
+<link rel="stylesheet" href="assets/style.css">
+<!--site-icon:v3--><link rel="icon" type="image/svg+xml" href="/us-charts/icon-black.svg?v=3" media="(prefers-color-scheme: light)"><link rel="icon" type="image/svg+xml" href="/us-charts/icon-white.svg?v=3" media="(prefers-color-scheme: dark)"><link rel="apple-touch-icon" href="/us-charts/apple-touch-icon.png?v=3"><!--/site-icon--><!--mobile-fix:v1--><style id="mobile-fix">
+.mf-spacer{display:none}
+html.mf-sa .mf-spacer{display:block;height:calc(env(safe-area-inset-bottom,0px) + 110px)}
+html.mf-sa .detail .inner{padding-bottom:calc(env(safe-area-inset-bottom,0px) + 140px)}
+</style><script>(function(){try{if(window.top!==window.self)return;
+var sa=navigator.standalone===true||matchMedia('(display-mode: standalone)').matches;
+var touch=matchMedia('(pointer: coarse)').matches;
+if(sa||touch)document.documentElement.classList.add('mf-sa');}catch(e){}})();</script><!--/mobile-fix--><!--pc-wide:v1--><style id="pc-wide">@media (min-width:1280px){body>.wrap,body>main,body>div.wrap{max-width:1680px!important}}</style><!--/pc-wide--></head>
+<body><!--kb-btn--><button class="kb-theme kb-corner" id="kbTheme" type="button" data-kb="reload" aria-label="明暗を切り替え（ライト／ダーク）" title="明暗を切り替え（ライト／ダーク）"><span class="kb-trk kb-l"><svg class="kb-sun" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="12" cy="12" r="4.3"/><path d="M12 2.2v2.3M12 19.5v2.3M2.2 12h2.3M19.5 12h2.3M5.1 5.1l1.6 1.6M17.3 17.3l1.6 1.6M5.1 18.9l1.6-1.6M17.3 6.7l1.6-1.6"/></svg></span><span class="kb-trk kb-r"><svg class="kb-moon" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M20.2 14.6A8.4 8.4 0 0 1 9.4 3.8a.6.6 0 0 0-.8-.7A9.2 9.2 0 1 0 20.9 15.4a.6.6 0 0 0-.7-.8z"/></svg></span><span class="kb-knob"><svg class="kb-sun" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="12" cy="12" r="4.3"/><path d="M12 2.2v2.3M12 19.5v2.3M2.2 12h2.3M19.5 12h2.3M5.1 5.1l1.6 1.6M17.3 17.3l1.6 1.6M5.1 18.9l1.6-1.6M17.3 6.7l1.6-1.6"/></svg><svg class="kb-moon" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M20.2 14.6A8.4 8.4 0 0 1 9.4 3.8a.6.6 0 0 0-.8-.7A9.2 9.2 0 1 0 20.9 15.4a.6.6 0 0 0-.7-.8z"/></svg></span></button><div class="kb-spacer" aria-hidden="true"></div><!--/kb-btn-->
+<div class="wrap">
+  <header class="mast">
+    <div class="eyebrow"><a href="../fundamentals.html" style="color:inherit">← 東証スクリーニング</a></div>
+    <h1>Claritev Corporation<span class="code">CTEV</span></h1>
+    <div class="slip" id="slip"></div>
+    <p class="biz">医療費の支払い・コスト管理のデータ分析の会社クラリテブ。</p><p class="site"><a href="https://www.claritev.com" target="_blank" rel="noopener noreferrer"><b>公式サイト ↗</b><span>www.claritev.com</span></a></p>
+  </header>
+
+  <section class="cards" id="cards" aria-label="判定サマリー"></section>
+
+  <section class="grid">
+    <div class="panel" id="p-annual"></div>
+    <div class="panel" id="p-cf"></div>
+    <div class="panel" id="p-q"></div>
+    <div class="panel" id="p-div"></div>
+    <div class="panel full" id="p-bs"></div>
+    <div class="panel full" id="p-holders"></div>
+  </section>
+
+  <details class="more">
+    <summary>通期の数値をすべて見る</summary>
+    <div class="inner" id="t-annual"></div>
+  </details>
+  <details class="more">
+    <summary>判定の基準と注記</summary>
+    <div class="inner foot"><ol>
+      <li>直近の通期決算を、同じ業種の中央値と比べて判定しています。▲＝良い側　●＝並み　▼＝注意。</li>
+      <li>成長性：売上高の年平均成長率が5%以上で増収。利益が初年度を下回ると増収減益。</li>
+      <li>収益性：営業利益率が業種中央値の1.2倍以上で高い、0.6倍未満で低い。</li>
+      <li>財務安全性：自己資本比率が50%以上か業種の1.3倍以上で厚い、20%未満で薄め（業種並みなら標準）。</li>
+      <li>資本効率：ROE 10%以上で高い、5%未満で低い。</li>
+      <li>割安度：PERとPBRがともに業種中央値を下回ると割安、ともに上回ると割高。</li>
+      <li>売上総利益・粗利率は売上原価データがある期のみ表示し、データの無い系列・列は出しません。</li>
+      <li>グラフ：通期・配当の右端の薄い棒は会社予想（J-Quants 決算短信サマリーの最新値）。折れ線は右軸（%）。</li>
+      <li>経常利益は J-Quants の決算短信サマリーから取得（日本基準のみ。取得範囲は直近約2年）。IFRS・米国基準は税引前利益で表示します。</li>
+      <li>貸借対照表は年次決算（10-K）の連結貸借対照表を Yahoo Finance から取得し、区分にまとめたもの。外国企業は最新の為替でドルに換算しています。</li>
+      <li>株主構成は 13F（運用資産1億ドル超の機関投資家が四半期ごとに出す保有報告）の上位10社を、発行済株式数に対する割合で描画（Yahoo Finance 経由）。その他は上位10社以外の合計です。</li>
+      <li>四半期決算は累計値の差分から単独四半期を算出。フリーCFは営業CF＋投資CF。配当性向は一株配当÷EPS。</li>
+      <li>出所：~/株分析 の fundamentals/（通期）。株価・時価総額は取得日時点。生成 2026-11-20</li>
+    </ol></div>
+  </details>
+</div>
+<script src="assets/app.js"></script>
+<script>renderCompany({"code":"CTEV","name":"Claritev Corporation","market":"NYSE","sector":"ヘルスケア","quote":{"price":19.03,"priceDate":"2026-11-19","mcap":481.68,"per":-1.69,"pbr":-2.77,"psr":0.5,"yld":0.0,"asof":"2026-11-20"},"annual":[{"fy":"22/12期","fyEnd":"2022-12-31","y":2022,"rev":1079.716,"gp":875.618,"op":334.182,"pbt":-560.743,"ni":-572.912,"ta":7371.104,"se":1790.542,"eq":0.2429,"cr":2.5405,"ocf":372.364,"icf":-104.446,"fcf":-115.738,"freecf":282.629,"ibd":4782.363,"cash":334.046,"ebitda":158.317,"eps":-36.0,"bps":112.05,"dps":0.0,"opm":0.30950916722545563,"nim":-0.5306136058000438,"gpm":0.8109706626557355,"roe":-0.31996568636759154,"roa":-0.0777240424229532,"odp":-560.743,"payout":null,"frcf":267.918},{"fy":"23/12期","fyEnd":"2023-12-31","y":2023,"rev":961.524,"gp":665.904,"op":170.921,"pbt":-107.06,"ni":-91.697,"ta":6964.687,"se":1709.124,"eq":0.24539999999999998,"cr":1.1611,"ocf":171.72,"icf":-249.792,"fcf":-180.993,"freecf":62.868,"ibd":4567.899,"cash":71.547,"ebitda":651.934,"eps":-5.69,"bps":105.45,"dps":0.0,"opm":0.1777605135181233,"nim":-0.09536631430936722,"gpm":0.6925505759606625,"roe":-0.05365146121638922,"roa":-0.013165990086848125,"odp":-107.06,"payout":null,"frcf":-78.072},{"fy":"24/12期","fyEnd":"2024-12-31","y":2024,"rev":930.624,"gp":627.174,"op":108.256,"pbt":-1770.712,"ni":-1645.831,"ta":5150.827,"se":84.022,"eq":0.0163,"cr":0.821,"ocf":107.616,"icf":-118.123,"fcf":-41.315,"freecf":-10.507,"ibd":4541.217,"cash":16.848,"ebitda":-1007.904,"eps":-101.92,"bps":5.19,"dps":0.0,"opm":0.11632624991403617,"nim":-1.7685241300460766,"gpm":0.6739284609036517,"roe":-19.588095974863723,"roa":-0.31952752441501137,"odp":-1770.712,"payout":null,"frcf":-10.507000000000005},{"fy":"25/12期","fyEnd":"2025-12-31","y":2025,"rev":965.413,"gp":649.046,"op":90.012,"pbt":-373.078,"ni":-284.282,"ta":4888.458,"se":-173.9,"eq":-0.0356,"cr":0.8584999999999999,"ocf":117.324,"icf":-121.018,"fcf":2.363,"freecf":-12.277,"ibd":4616.071,"cash":16.814,"ebitda":467.398,"eps":-17.3,"bps":-10.51,"dps":0.0,"opm":0.0932367805281263,"nim":-0.2944667204605697,"gpm":0.6722987985452858,"roe":1.6347441058079355,"roa":-0.05815371636618336,"odp":-373.078,"payout":null,"frcf":-3.6940000000000026}],"peer":{"n":1040,"opm":-0.28575151114632014,"nim":-0.31152344732453807,"eq":0.5763499999999999,"roe":-0.29623219210883134,"gpm":0.5981180160752794,"per":24.195,"pbr":2.14,"yld":0.0},"fc":null,"quarters":[{"fy":"25/09","fyEnd":"2025-09-30","perEnd":"2025-09-30","perSt":null,"rev":245.959,"op":25.842,"odp":-93.361,"ni":-69.753,"opm":0.10506629153639427},{"fy":"25/12","fyEnd":"2025-12-31","perEnd":"2025-12-31","perSt":null,"rev":246.554,"op":53.625,"odp":-106.917,"ni":-80.57,"opm":0.2174979923262247},{"fy":"26/03","fyEnd":"2026-03-31","perEnd":"2026-03-31","perSt":null,"rev":244.678,"op":18.467,"odp":-92.721,"ni":-73.56,"opm":0.07547470553135141},{"fy":"26/06","fyEnd":"2026-06-30","perEnd":"2026-06-30","perSt":null,"rev":257.478,"op":32.968,"odp":-76.649,"ni":-59.226,"opm":0.1280420074724831},{"fy":"26/09","fyEnd":"2026-09-30","perEnd":"2026-09-30","perSt":null,"rev":268.311,"op":28.697,"odp":-80.029,"ni":-61.784,"opm":0.10695424339665538}],"odpName":"税引前利益","holders":{"asof":"2026-09-30","filed":"2026-09-30","issued":17074785.0,"treasury":0,"holders":[["H&F Corporate Investors VIII, Ltd.",3887858,0.22769999999999999],["Ares Management LLC",1863105,0.1091],["Arini Capital Management Ltd",1534687,0.08990000000000001],["Public Investment Fund",1281250,0.075],["Beach Point Capital Management LP",750599,0.044000000000000004],["Blackrock Inc.",723217,0.0424],["CPV Partners, LLC",495258,0.028999999999999998],["Vanguard Capital Management LLC",423039,0.0248],["Prudential Financial, Inc.",353904,0.0207],["Geode Capital Management, LLC",241930,0.014199999999999999]]},"bs":[{"fy":"22/12","fyEnd":"2022-12-31","std":"US","ta":7371.104,"tl":5580.562,"na":1790.542,"noCA":false,"cash":334.046,"recv":78.907,"inv":null,"oca":33.784,"ppe":257.072,"onca":6667.295,"pay":13.295,"ocl":162.549,"ncl":5404.718,"eq":1790.542,"oeq":0.0},{"fy":"23/12","fyEnd":"2023-12-31","std":"US","ta":6964.687,"tl":5255.563,"na":1709.124,"noCA":false,"cash":71.547,"recv":76.558,"inv":null,"oca":45.488,"ppe":287.109,"onca":6483.985,"pay":19.59,"ocl":147.149,"ncl":5088.824,"eq":1709.124,"oeq":0.0},{"fy":"24/12","fyEnd":"2024-12-31","std":"US","ta":5150.827,"tl":5066.805,"na":84.022,"noCA":false,"cash":16.848,"recv":89.758,"inv":null,"oca":68.909,"ppe":308.746,"onca":4666.566,"pay":86.327,"ocl":127.463,"ncl":4853.015,"eq":84.022,"oeq":0.0},{"fy":"25/12","fyEnd":"2025-12-31","std":"US","ta":4888.458,"tl":5055.633,"na":-167.175,"noCA":false,"cash":16.814,"recv":127.615,"inv":null,"oca":79.938,"ppe":340.292,"onca":4323.799,"pay":60.463,"ocl":200.895,"ncl":4794.275,"eq":-167.175,"oeq":0.0,"neg":true}]});</script>
+<!--kb-theme-js--><script>(function(){var bs=document.querySelectorAll('button.kb-theme[data-kb]');
+for(var i=0;i<bs.length;i++)bs[i].addEventListener('click',function(){var b=this,d=document.documentElement,
+cur=d.getAttribute('data-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'),n=cur==='dark'?'light':'dark';
+d.setAttribute('data-theme',n);try{localStorage.setItem('fdb-theme',n)}catch(e){}
+var f=document.querySelectorAll('iframe');for(var j=0;j<f.length;j++){try{f[j].contentWindow.postMessage({chartTheme:n},'*')}catch(e){}}
+var k=b.getAttribute('data-kb');
+if(k==='reload')location.reload();
+else if(k==='msg')window.postMessage({chartTheme:n},'*');
+else if(k==='fn'&&typeof window.__kbRedraw==='function')window.__kbRedraw();});})();</script><!--/kb-theme-js--><!--mobile-fix-spacer--><div class="mf-spacer" aria-hidden="true"></div><!--/mobile-fix-spacer--></body>
+</html>

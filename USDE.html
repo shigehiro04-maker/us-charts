@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><!--kb-theme:v3--><script>(function(){var d=document.documentElement,
+m=/[?&#]theme=(dark|light)/.exec(location.search+location.hash),t=m&&m[1];
+if(!t){try{t=localStorage.getItem('fdb-theme')}catch(e){}}
+if(t==='dark'||t==='light')d.setAttribute('data-theme',t);
+try{if(window.top!==window.self)d.classList.add('kb-embed')}catch(e){d.classList.add('kb-embed')}})();</script>
+<style id="kb-theme">
+:root{--kb-fg:#1f1f1e;--kb-line:#d6d5ce;--kb-hover:rgba(0,0,0,.05)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--kb-fg:#ecebe6;--kb-line:#3b3b38;--kb-hover:rgba(255,255,255,.08)}}
+:root[data-theme="dark"]{--kb-fg:#ecebe6;--kb-line:#3b3b38;--kb-hover:rgba(255,255,255,.08)}
+/* スイッチ本体（トラック） */
+:root{--kb-trk:#e8e7e1;--kb-knob:#fff;--kb-ico:#d08a00;--kb-dim:#a9a79f}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--kb-trk:#2b2b29;--kb-knob:#45453f;--kb-ico:#f3d36a;--kb-dim:#6f6e68}}
+:root[data-theme="dark"]{--kb-trk:#2b2b29;--kb-knob:#45453f;--kb-ico:#f3d36a;--kb-dim:#6f6e68}
+:root button.kb-theme.kb-theme{-webkit-appearance:none;appearance:none;position:relative;display:inline-block;box-sizing:border-box;
+width:54px;height:30px;min-width:54px;min-height:0;padding:0;border:1px solid var(--kb-line);border-radius:15px;background:var(--kb-trk);
+color:var(--kb-fg);font-size:0;line-height:0;cursor:pointer;box-shadow:inset 0 1px 2px rgba(0,0,0,.08);vertical-align:middle;flex-shrink:0;
+overflow:hidden;-webkit-tap-highlight-color:transparent;transition:background .3s,border-color .3s}
+:root button.kb-theme.kb-theme:focus-visible{outline:2px solid #2a78d6;outline-offset:2px}
+:root button.kb-theme.kb-theme svg{display:block;width:100%;height:100%}
+/* 両端の小さなアイコン（つまみが無い側だけ見える） */
+:root button.kb-theme.kb-theme .kb-trk{position:absolute;top:50%;width:13px;height:13px;margin-top:-6.5px;color:var(--kb-dim);transition:opacity .3s}
+:root button.kb-theme.kb-theme .kb-l{left:7px;opacity:0}
+:root button.kb-theme.kb-theme .kb-r{right:7px;opacity:1}
+/* つまみ */
+:root button.kb-theme.kb-theme .kb-knob{position:absolute;top:2px;left:2px;width:24px;height:24px;border-radius:50%;background:var(--kb-knob);
+color:var(--kb-ico);box-shadow:0 1px 3px rgba(0,0,0,.25),0 0 0 .5px rgba(0,0,0,.06);transform:translateX(0);
+transition:transform .32s cubic-bezier(.3,1.35,.5,1),background .3s,color .3s}
+:root button.kb-theme.kb-theme:active .kb-knob{width:28px}
+:root button.kb-theme.kb-theme .kb-knob svg{position:absolute;inset:0;margin:auto;width:15px;height:15px;transition:opacity .25s,transform .35s}
+:root button.kb-theme.kb-theme .kb-knob .kb-sun{opacity:1;transform:none}
+:root button.kb-theme.kb-theme .kb-knob .kb-moon{opacity:0;transform:rotate(-90deg) scale(.4)}
+/* ダーク表示中：つまみを右へ */
+@media (prefers-color-scheme:dark){
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-knob{transform:translateX(24px)}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme:active .kb-knob{transform:translateX(20px)}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-knob .kb-sun{opacity:0;transform:rotate(90deg) scale(.4)}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-knob .kb-moon{opacity:1;transform:none}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-l{opacity:1}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-r{opacity:0}}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-knob{transform:translateX(24px)}
+:root[data-theme="dark"] button.kb-theme.kb-theme:active .kb-knob{transform:translateX(20px)}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-knob .kb-sun{opacity:0;transform:rotate(90deg) scale(.4)}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-knob .kb-moon{opacity:1;transform:none}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-l{opacity:1}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-r{opacity:0}
+@media (prefers-reduced-motion:reduce){:root button.kb-theme.kb-theme *{transition:none!important}}
+/* 全ページ共通の置き場所：ページ右上の角 */
+:root button.kb-theme.kb-theme.kb-corner{position:absolute;top:12px;right:16px;z-index:60;margin:0;float:none}
+@media (max-width:700px){:root button.kb-theme.kb-theme.kb-corner{top:10px;right:12px}}
+/* 右上のスイッチの下に見えない「よけ」を置き、見出しの文字やボタンがスイッチと重ならないようにする */
+.kb-spacer{float:right;width:84px;height:46px;pointer-events:none}
+@media (max-width:700px){.kb-spacer{width:76px;height:44px}}
+html.kb-embed .kb-spacer{display:none}
+html.kb-embed button.kb-theme[data-kb]{display:none}
+
+</style><!--/kb-theme-->
+<script>
+/* 親ページから ?theme=dark|light で表示を指定できる。指定が無ければOSの設定に従う。 */
+(function(){try{
+  var m=/[?&#]theme=(dark|light)/.exec(location.search+location.hash);
+  if(m)document.documentElement.setAttribute("data-theme",m[1]);
+}catch(e){}})();
+</script>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>USDE StablecoinX Inc. チャート</title>
+<link rel="stylesheet" href="assets/chart.css?v=a08d4ea5"><!--site-icon:v3--><link rel="icon" type="image/svg+xml" href="/us-charts/icon-black.svg?v=3" media="(prefers-color-scheme: light)"><link rel="icon" type="image/svg+xml" href="/us-charts/icon-white.svg?v=3" media="(prefers-color-scheme: dark)"><link rel="apple-touch-icon" href="/us-charts/apple-touch-icon.png?v=3"><!--/site-icon--><!--mobile-fix:v1--><style id="mobile-fix">
+.mf-spacer{display:none}
+html.mf-sa .mf-spacer{display:block;height:calc(env(safe-area-inset-bottom,0px) + 110px)}
+html.mf-sa .detail .inner{padding-bottom:calc(env(safe-area-inset-bottom,0px) + 140px)}
+</style><script>(function(){try{if(window.top!==window.self)return;
+var sa=navigator.standalone===true||matchMedia('(display-mode: standalone)').matches;
+var touch=matchMedia('(pointer: coarse)').matches;
+if(sa||touch)document.documentElement.classList.add('mf-sa');}catch(e){}})();</script><!--/mobile-fix--><!--pc-wide:v1--><style id="pc-wide">@media (min-width:1280px){body>.wrap,body>main,body>div.wrap{max-width:1680px!important}}</style><!--/pc-wide--></head><body><!--kb-btn--><button class="kb-theme kb-corner" id="kbTheme" type="button" data-kb="msg" aria-label="明暗を切り替え（ライト／ダーク）" title="明暗を切り替え（ライト／ダーク）"><span class="kb-trk kb-l"><svg class="kb-sun" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="12" cy="12" r="4.3"/><path d="M12 2.2v2.3M12 19.5v2.3M2.2 12h2.3M19.5 12h2.3M5.1 5.1l1.6 1.6M17.3 17.3l1.6 1.6M5.1 18.9l1.6-1.6M17.3 6.7l1.6-1.6"/></svg></span><span class="kb-trk kb-r"><svg class="kb-moon" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M20.2 14.6A8.4 8.4 0 0 1 9.4 3.8a.6.6 0 0 0-.8-.7A9.2 9.2 0 1 0 20.9 15.4a.6.6 0 0 0-.7-.8z"/></svg></span><span class="kb-knob"><svg class="kb-sun" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="12" cy="12" r="4.3"/><path d="M12 2.2v2.3M12 19.5v2.3M2.2 12h2.3M19.5 12h2.3M5.1 5.1l1.6 1.6M17.3 17.3l1.6 1.6M5.1 18.9l1.6-1.6M17.3 6.7l1.6-1.6"/></svg><svg class="kb-moon" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M20.2 14.6A8.4 8.4 0 0 1 9.4 3.8a.6.6 0 0 0-.8-.7A9.2 9.2 0 1 0 20.9 15.4a.6.6 0 0 0-.7-.8z"/></svg></span></button><div class="kb-spacer" aria-hidden="true"></div><!--/kb-btn--><div class="wrap">
+<h1><a class="back" href="./charts.html" title="一覧へ">‹</a>USDE StablecoinX Inc.<span class="mk">NASDAQ</span><span class="mk sec">金融</span></h1>
+<div class="price"><b id="last"></b><span class="chg" id="chg"></span><span class="asof" id="asof"></span><a class="dash" href="./one/USDE.html" target="_top" title="シグナル・チャート・ファンダを1画面で">ダッシュボード ›</a></div>
+<section class="biz" aria-label="会社概要"><p>デジタルドル（Ethena）のエコシステムの会社。</p><a href="https://stablecoinx.com" target="_blank" rel="noopener noreferrer"><b>公式サイト ↗</b><span>stablecoinx.com</span></a></section><div class="st" id="state"></div>
+<div class="bar">
+  <div class="seg" id="periods"></div>
+  <div class="ipick">
+    <button class="ib" data-g="tr" type="button">トレンド系<span class="cnt" id="cTR"></span><small>チャート上</small></button>
+    <button class="ib" data-g="os" type="button">オシレーター系<span class="cnt" id="cOS"></span><small>チャート下</small></button>
+    <button class="ib" data-g="sg" type="button"><span class="sgi"><b class="bu">▲</b><b class="se">▼</b></span>売買サイン<span class="cnt" id="cSG"></span></button>
+  </div>
+</div>
+<div class="ipanel" id="ipanel" hidden>
+  <div class="iph"><b id="iptitle"></b><span id="ipdesc"></span>
+    <button type="button" id="ipreset">既定に戻す</button><button type="button" id="ipnone">すべて外す</button><button type="button" id="ipclose">閉じる</button></div>
+  <div class="sgst" id="sgst" hidden>表示のしかた
+    <div class="seg" id="sgstyle"><button type="button" data-st="label">ラベル（買・売）</button><button type="button" data-st="tri">大きい三角</button></div>
+    <label><input type="checkbox" id="sgvl">サインの足に縦線も引く</label></div>
+  <div class="ics" id="ipchips"></div>
+</div>
+<div class="legend" id="legend"></div>
+<div class="chart"><canvas id="cv"></canvas><div class="vmode" id="vmode"><button type="button" data-m="v">出来高</button><button type="button" data-m="a">売買代金</button></div><div class="xh" id="xhv"></div><div class="xh" id="xhh"></div><div id="tip"></div></div>
+<details class="nt" id="ntbox"><summary>指標の計算方法</summary><p class="note" id="note"></p></details>
+</div>
+<script>
+const CODE = "USDE";
+const RAW = [["2026-06-26",7.46,8.2,3.25,3.7,436000],["2026-06-29",3.47,3.71,2.86,3.33,342300],["2026-06-30",3.01,3.24,2.75,2.75,256700],["2026-07-01",2.71,2.75,1.75,2.08,13504700],["2026-07-02",3.88,4.4,2.52,2.78,50854300],["2026-07-06",2.51,2.74,2.4,2.62,2475600],["2026-07-07",2.47,2.48,2.12,2.36,1142800],["2026-07-08",2.11,2.13,1.92,2.03,1014600],["2026-07-09",2.08,2.25,1.99,2.19,1845100],["2026-07-10",2.13,2.15,1.96,1.96,892900],["2026-07-13",1.89,2.09,1.87,1.9,571500],["2026-07-14",1.87,1.92,1.73,1.78,1465900],["2026-07-15",1.75,1.94,1.75,1.82,738800],["2026-07-16",1.83,1.98,1.78,1.92,752500],["2026-07-17",1.84,1.87,1.71,1.74,528100],["2026-07-20",1.73,1.79,1.71,1.73,357600],["2026-07-21",1.71,1.93,1.71,1.87,615100],["2026-07-22",1.82,2.06,1.8,1.87,858000],["2026-07-23",1.9,1.93,1.71,1.74,908300],["2026-07-24",1.76,1.8,1.43,1.43,1122900],["2026-07-27",1.48,1.58,1.33,1.52,524700],["2026-07-28",1.52,1.85,1.47,1.69,625200],["2026-07-29",1.64,1.67,1.43,1.51,393200],["2026-07-30",1.47,1.8,1.47,1.64,413200],["2026-07-31",1.65,1.8,1.56,1.57,441000],["2026-08-03",1.69,1.82,1.68,1.72,391500],["2026-08-04",1.82,2.09,1.8,1.98,530600],["2026-08-05",1.99,2.48,1.96,2.46,916400],["2026-08-06",2.27,2.37,2.18,2.23,210400],["2026-08-07",2.21,2.24,1.95,2.07,321700],["2026-08-10",2.02,2.23,1.87,2.16,318200],["2026-08-11",2.15,2.59,2.12,2.4,465200],["2026-08-12",2.42,2.62,2.36,2.45,206500],["2026-08-13",2.46,2.7,2.45,2.59,369700],["2026-08-14",2.59,2.95,2.51,2.93,662700],["2026-08-17",2.88,3.43,2.84,3.02,603300],["2026-08-18",3.01,3.08,2.63,2.79,376800],["2026-08-19",2.73,3.14,2.7,3.09,541200],["2026-08-20",3.23,4.13,3.23,4.0,6979500],["2026-08-21",5.04,8.79,4.46,7.41,98971200],["2026-08-24",7.8,8.1,5.8,6.27,13946600],["2026-08-25",5.47,6.49,5.47,6.06,4312500],["2026-08-26",5.81,6.16,5.5,5.98,1654100],["2026-08-27",6.5,8.5,6.05,8.07,21667400],["2026-08-28",7.24,8.46,6.7,6.76,5594600],["2026-08-31",6.76,9.25,6.5,8.87,10422200],["2026-09-01",8.15,9.09,7.61,8.36,4911100],["2026-09-02",8.07,8.07,6.9,7.5,3149300],["2026-09-03",8.11,9.01,7.51,8.77,6839600],["2026-09-04",7.87,8.23,7.4,7.93,4189400],["2026-09-08",7.76,8.15,7.12,7.61,2220000],["2026-09-09",8.01,8.43,6.98,7.24,3518900],["2026-09-10",6.73,7.33,6.6,6.66,2418100],["2026-09-11",7.1,7.98,6.86,7.26,3771200],["2026-09-14",6.96,7.53,6.76,7.44,2064300],["2026-09-15",6.96,7.1,5.9,6.12,3231900],["2026-09-16",6.06,6.29,5.87,6.2,1408700],["2026-09-17",6.61,9.48,6.36,7.71,14316900],["2026-09-18",9.54,10.56,8.51,10.19,14892300],["2026-09-21",13.05,13.79,12.2,12.6,10660800],["2026-09-22",12.99,14.19,12.88,13.54,5427300],["2026-09-23",13.22,13.74,12.56,12.87,2772600],["2026-09-24",12.77,15.49,12.67,14.22,5603000],["2026-09-25",15.53,17.5,14.34,17.25,8004600],["2026-09-28",16.56,17.07,15.51,15.56,4079800],["2026-09-29",16.1,16.4,14.05,15.32,4182400],["2026-09-30",16.04,18.11,16.0,16.08,5261500],["2026-10-01",16.04,16.6,15.5,15.51,2146400],["2026-10-02",15.27,15.32,14.08,14.15,2764000],["2026-10-05",14.36,14.96,13.53,14.96,4776300],["2026-10-06",13.95,15.11,13.9,14.33,1821600],["2026-10-07",13.55,13.92,12.8,13.82,2056500],["2026-10-08",12.94,13.1,12.07,12.79,1785600],["2026-10-09",13.27,13.28,12.25,12.3,933200],["2026-10-12",12.5,12.95,12.26,12.68,932700],["2026-10-13",12.0,12.9,11.73,12.32,999400],["2026-10-14",11.74,12.65,11.42,11.84,1499100],["2026-10-15",10.9,11.97,10.7,11.45,1155100],["2026-10-16",11.23,11.41,10.36,10.71,987000],["2026-10-19",10.58,11.15,10.06,10.21,530800],["2026-10-20",9.9,11.27,9.64,10.67,1101000],["2026-10-21",11.91,12.25,11.3,11.87,1491200],["2026-10-22",10.84,10.89,9.81,9.89,1511600],["2026-10-23",9.64,10.87,9.44,10.45,1100800],["2026-10-26",9.88,10.74,9.88,10.57,507400],["2026-10-27",10.66,11.05,9.88,10.18,689400],["2026-10-28",9.92,9.92,8.72,9.46,1340800],["2026-10-29",9.12,10.63,9.11,9.88,1014000],["2026-10-30",9.1,9.1,8.2,8.43,1141700],["2026-11-02",8.25,8.64,7.42,7.65,1031000],["2026-11-03",7.76,8.33,7.74,7.84,578100],["2026-11-04",8.11,8.88,7.91,8.16,1213100],["2026-11-05",7.57,7.7,6.38,6.58,1634900],["2026-11-06",6.7,7.06,6.32,6.43,1042400],["2026-11-09",6.19,6.24,5.75,6.08,833700],["2026-11-10",5.91,6.19,5.46,5.92,978100],["2026-11-11",6.17,6.61,6.07,6.57,1002200],["2026-11-12",5.97,6.33,5.77,6.13,672700],["2026-11-13",6.25,6.4,5.05,5.3,1162800],["2026-11-16",4.91,4.95,4.01,4.03,1630900],["2026-11-17",4.59,5.05,4.45,4.54,1971900],["2026-11-18",4.55,4.55,4.16,4.42,829800],["2026-11-19",4.48,4.58,4.18,4.32,556856]];
+const DATANOTE = "";
+</script>
+<script src="intra/USDE.js?v=20261119929"></script>
+<script src="assets/chart.js?v=aa49b450"></script><!--kb-theme-js--><script>(function(){var bs=document.querySelectorAll('button.kb-theme[data-kb]');
+for(var i=0;i<bs.length;i++)bs[i].addEventListener('click',function(){var b=this,d=document.documentElement,
+cur=d.getAttribute('data-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'),n=cur==='dark'?'light':'dark';
+d.setAttribute('data-theme',n);try{localStorage.setItem('fdb-theme',n)}catch(e){}
+var f=document.querySelectorAll('iframe');for(var j=0;j<f.length;j++){try{f[j].contentWindow.postMessage({chartTheme:n},'*')}catch(e){}}
+var k=b.getAttribute('data-kb');
+if(k==='reload')location.reload();
+else if(k==='msg')window.postMessage({chartTheme:n},'*');
+else if(k==='fn'&&typeof window.__kbRedraw==='function')window.__kbRedraw();});})();</script><!--/kb-theme-js--><!--mobile-fix-spacer--><div class="mf-spacer" aria-hidden="true"></div><!--/mobile-fix-spacer--></body></html>

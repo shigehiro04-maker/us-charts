@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><!--kb-theme:v3--><script>(function(){var d=document.documentElement,
+m=/[?&#]theme=(dark|light)/.exec(location.search+location.hash),t=m&&m[1];
+if(!t){try{t=localStorage.getItem('fdb-theme')}catch(e){}}
+if(t==='dark'||t==='light')d.setAttribute('data-theme',t);
+try{if(window.top!==window.self)d.classList.add('kb-embed')}catch(e){d.classList.add('kb-embed')}})();</script>
+<style id="kb-theme">
+:root{--kb-fg:#1f1f1e;--kb-line:#d6d5ce;--kb-hover:rgba(0,0,0,.05)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--kb-fg:#ecebe6;--kb-line:#3b3b38;--kb-hover:rgba(255,255,255,.08)}}
+:root[data-theme="dark"]{--kb-fg:#ecebe6;--kb-line:#3b3b38;--kb-hover:rgba(255,255,255,.08)}
+/* スイッチ本体（トラック） */
+:root{--kb-trk:#e8e7e1;--kb-knob:#fff;--kb-ico:#d08a00;--kb-dim:#a9a79f}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--kb-trk:#2b2b29;--kb-knob:#45453f;--kb-ico:#f3d36a;--kb-dim:#6f6e68}}
+:root[data-theme="dark"]{--kb-trk:#2b2b29;--kb-knob:#45453f;--kb-ico:#f3d36a;--kb-dim:#6f6e68}
+:root button.kb-theme.kb-theme{-webkit-appearance:none;appearance:none;position:relative;display:inline-block;box-sizing:border-box;
+width:54px;height:30px;min-width:54px;min-height:0;padding:0;border:1px solid var(--kb-line);border-radius:15px;background:var(--kb-trk);
+color:var(--kb-fg);font-size:0;line-height:0;cursor:pointer;box-shadow:inset 0 1px 2px rgba(0,0,0,.08);vertical-align:middle;flex-shrink:0;
+overflow:hidden;-webkit-tap-highlight-color:transparent;transition:background .3s,border-color .3s}
+:root button.kb-theme.kb-theme:focus-visible{outline:2px solid #2a78d6;outline-offset:2px}
+:root button.kb-theme.kb-theme svg{display:block;width:100%;height:100%}
+/* 両端の小さなアイコン（つまみが無い側だけ見える） */
+:root button.kb-theme.kb-theme .kb-trk{position:absolute;top:50%;width:13px;height:13px;margin-top:-6.5px;color:var(--kb-dim);transition:opacity .3s}
+:root button.kb-theme.kb-theme .kb-l{left:7px;opacity:0}
+:root button.kb-theme.kb-theme .kb-r{right:7px;opacity:1}
+/* つまみ */
+:root button.kb-theme.kb-theme .kb-knob{position:absolute;top:2px;left:2px;width:24px;height:24px;border-radius:50%;background:var(--kb-knob);
+color:var(--kb-ico);box-shadow:0 1px 3px rgba(0,0,0,.25),0 0 0 .5px rgba(0,0,0,.06);transform:translateX(0);
+transition:transform .32s cubic-bezier(.3,1.35,.5,1),background .3s,color .3s}
+:root button.kb-theme.kb-theme:active .kb-knob{width:28px}
+:root button.kb-theme.kb-theme .kb-knob svg{position:absolute;inset:0;margin:auto;width:15px;height:15px;transition:opacity .25s,transform .35s}
+:root button.kb-theme.kb-theme .kb-knob .kb-sun{opacity:1;transform:none}
+:root button.kb-theme.kb-theme .kb-knob .kb-moon{opacity:0;transform:rotate(-90deg) scale(.4)}
+/* ダーク表示中：つまみを右へ */
+@media (prefers-color-scheme:dark){
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-knob{transform:translateX(24px)}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme:active .kb-knob{transform:translateX(20px)}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-knob .kb-sun{opacity:0;transform:rotate(90deg) scale(.4)}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-knob .kb-moon{opacity:1;transform:none}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-l{opacity:1}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-r{opacity:0}}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-knob{transform:translateX(24px)}
+:root[data-theme="dark"] button.kb-theme.kb-theme:active .kb-knob{transform:translateX(20px)}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-knob .kb-sun{opacity:0;transform:rotate(90deg) scale(.4)}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-knob .kb-moon{opacity:1;transform:none}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-l{opacity:1}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-r{opacity:0}
+@media (prefers-reduced-motion:reduce){:root button.kb-theme.kb-theme *{transition:none!important}}
+/* 全ページ共通の置き場所：ページ右上の角 */
+:root button.kb-theme.kb-theme.kb-corner{position:absolute;top:12px;right:16px;z-index:60;margin:0;float:none}
+@media (max-width:700px){:root button.kb-theme.kb-theme.kb-corner{top:10px;right:12px}}
+/* 右上のスイッチの下に見えない「よけ」を置き、見出しの文字やボタンがスイッチと重ならないようにする */
+.kb-spacer{float:right;width:84px;height:46px;pointer-events:none}
+@media (max-width:700px){.kb-spacer{width:76px;height:44px}}
+html.kb-embed .kb-spacer{display:none}
+html.kb-embed button.kb-theme[data-kb]{display:none}
+
+</style><!--/kb-theme-->
+<script>
+/* 親ページから ?theme=dark|light で表示を指定できる。指定が無ければOSの設定に従う。 */
+(function(){try{
+  var m=/[?&#]theme=(dark|light)/.exec(location.search+location.hash);
+  if(m)document.documentElement.setAttribute("data-theme",m[1]);
+}catch(e){}})();
+</script>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ANDG Andersen Group Inc. チャート</title>
+<link rel="stylesheet" href="assets/chart.css?v=a08d4ea5"><!--site-icon:v3--><link rel="icon" type="image/svg+xml" href="/us-charts/icon-black.svg?v=3" media="(prefers-color-scheme: light)"><link rel="icon" type="image/svg+xml" href="/us-charts/icon-white.svg?v=3" media="(prefers-color-scheme: dark)"><link rel="apple-touch-icon" href="/us-charts/apple-touch-icon.png?v=3"><!--/site-icon--><!--mobile-fix:v1--><style id="mobile-fix">
+.mf-spacer{display:none}
+html.mf-sa .mf-spacer{display:block;height:calc(env(safe-area-inset-bottom,0px) + 110px)}
+html.mf-sa .detail .inner{padding-bottom:calc(env(safe-area-inset-bottom,0px) + 140px)}
+</style><script>(function(){try{if(window.top!==window.self)return;
+var sa=navigator.standalone===true||matchMedia('(display-mode: standalone)').matches;
+var touch=matchMedia('(pointer: coarse)').matches;
+if(sa||touch)document.documentElement.classList.add('mf-sa');}catch(e){}})();</script><!--/mobile-fix--><!--pc-wide:v1--><style id="pc-wide">@media (min-width:1280px){body>.wrap,body>main,body>div.wrap{max-width:1680px!important}}</style><!--/pc-wide--></head><body><!--kb-btn--><button class="kb-theme kb-corner" id="kbTheme" type="button" data-kb="msg" aria-label="明暗を切り替え（ライト／ダーク）" title="明暗を切り替え（ライト／ダーク）"><span class="kb-trk kb-l"><svg class="kb-sun" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="12" cy="12" r="4.3"/><path d="M12 2.2v2.3M12 19.5v2.3M2.2 12h2.3M19.5 12h2.3M5.1 5.1l1.6 1.6M17.3 17.3l1.6 1.6M5.1 18.9l1.6-1.6M17.3 6.7l1.6-1.6"/></svg></span><span class="kb-trk kb-r"><svg class="kb-moon" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M20.2 14.6A8.4 8.4 0 0 1 9.4 3.8a.6.6 0 0 0-.8-.7A9.2 9.2 0 1 0 20.9 15.4a.6.6 0 0 0-.7-.8z"/></svg></span><span class="kb-knob"><svg class="kb-sun" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="12" cy="12" r="4.3"/><path d="M12 2.2v2.3M12 19.5v2.3M2.2 12h2.3M19.5 12h2.3M5.1 5.1l1.6 1.6M17.3 17.3l1.6 1.6M5.1 18.9l1.6-1.6M17.3 6.7l1.6-1.6"/></svg><svg class="kb-moon" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M20.2 14.6A8.4 8.4 0 0 1 9.4 3.8a.6.6 0 0 0-.8-.7A9.2 9.2 0 1 0 20.9 15.4a.6.6 0 0 0-.7-.8z"/></svg></span></button><div class="kb-spacer" aria-hidden="true"></div><!--/kb-btn--><div class="wrap">
+<h1><a class="back" href="./charts.html" title="一覧へ">‹</a>ANDG Andersen Group Inc.<span class="mk">NYSE</span><span class="mk sec">一般消費財</span></h1>
+<div class="price"><b id="last"></b><span class="chg" id="chg"></span><span class="asof" id="asof"></span><a class="dash" href="./one/ANDG.html" target="_top" title="シグナル・チャート・ファンダを1画面で">ダッシュボード ›</a></div>
+<section class="biz" aria-label="会社概要"><p>税務・評価などの財務助言のアンダーセン。</p><a href="https://www.andersen.com" target="_blank" rel="noopener noreferrer"><b>公式サイト ↗</b><span>www.andersen.com</span></a></section><div class="st" id="state"></div>
+<div class="bar">
+  <div class="seg" id="periods"></div>
+  <div class="ipick">
+    <button class="ib" data-g="tr" type="button">トレンド系<span class="cnt" id="cTR"></span><small>チャート上</small></button>
+    <button class="ib" data-g="os" type="button">オシレーター系<span class="cnt" id="cOS"></span><small>チャート下</small></button>
+    <button class="ib" data-g="sg" type="button"><span class="sgi"><b class="bu">▲</b><b class="se">▼</b></span>売買サイン<span class="cnt" id="cSG"></span></button>
+  </div>
+</div>
+<div class="ipanel" id="ipanel" hidden>
+  <div class="iph"><b id="iptitle"></b><span id="ipdesc"></span>
+    <button type="button" id="ipreset">既定に戻す</button><button type="button" id="ipnone">すべて外す</button><button type="button" id="ipclose">閉じる</button></div>
+  <div class="sgst" id="sgst" hidden>表示のしかた
+    <div class="seg" id="sgstyle"><button type="button" data-st="label">ラベル（買・売）</button><button type="button" data-st="tri">大きい三角</button></div>
+    <label><input type="checkbox" id="sgvl">サインの足に縦線も引く</label></div>
+  <div class="ics" id="ipchips"></div>
+</div>
+<div class="legend" id="legend"></div>
+<div class="chart"><canvas id="cv"></canvas><div class="vmode" id="vmode"><button type="button" data-m="v">出来高</button><button type="button" data-m="a">売買代金</button></div><div class="xh" id="xhv"></div><div class="xh" id="xhh"></div><div id="tip"></div></div>
+<details class="nt" id="ntbox"><summary>指標の計算方法</summary><p class="note" id="note"></p></details>
+</div>
+<script>
+const CODE = "ANDG";
+const RAW = [["2025-12-17",21.0,24.48,20.0,23.5,7670200],["2025-12-18",22.56,26.99,22.08,25.4,1022500],["2025-12-19",27.17,27.51,23.25,24.42,330700],["2025-12-22",24.51,26.62,24.12,26.41,251200],["2025-12-23",26.01,26.57,24.54,24.59,247800],["2025-12-24",24.9,25.65,24.5,25.46,51000],["2025-12-26",25.43,25.7,24.0,25.36,326400],["2025-12-29",25.01,25.78,24.08,24.69,525800],["2025-12-30",24.55,26.19,24.17,25.64,562400],["2025-12-31",25.67,26.85,25.02,25.93,607300],["2026-01-02",25.82,26.25,24.14,24.38,760600],["2026-01-05",24.46,24.68,23.3,24.02,642300],["2026-01-06",23.8,24.44,23.39,23.98,639500],["2026-01-07",23.66,23.96,23.0,23.52,452600],["2026-01-08",23.35,24.34,23.03,24.25,413100],["2026-01-09",23.8,24.52,23.31,24.29,297800],["2026-01-12",23.54,24.93,22.81,23.94,588600],["2026-01-13",23.96,24.45,22.95,23.0,168000],["2026-01-14",23.35,23.98,22.17,23.6,321400],["2026-01-15",24.04,24.18,22.43,22.83,330500],["2026-01-16",23.17,24.4,22.66,23.34,297700],["2026-01-20",23.4,23.4,21.26,22.16,183300],["2026-01-21",22.2,23.73,21.79,22.88,231500],["2026-01-22",23.24,24.01,22.85,23.0,185700],["2026-01-23",23.02,23.79,22.88,23.07,102100],["2026-01-26",23.25,23.41,22.41,22.75,90000],["2026-01-27",22.67,24.25,22.54,23.56,250900],["2026-01-28",23.68,24.25,23.02,23.24,305100],["2026-01-29",23.2,23.26,21.3,21.4,245400],["2026-01-30",21.3,23.0,21.3,22.45,226300],["2026-02-02",22.2,22.62,21.38,22.41,303500],["2026-02-03",22.36,22.66,19.58,20.5,773200],["2026-02-04",20.5,21.59,19.41,21.04,480200],["2026-02-05",21.0,21.62,20.1,20.17,295200],["2026-02-06",20.31,22.0,20.31,21.42,89500],["2026-02-09",21.24,21.66,20.0,21.01,254200],["2026-02-10",20.88,21.85,20.01,20.38,434400],["2026-02-11",20.69,20.82,18.12,18.34,645300],["2026-02-12",18.28,19.67,18.14,19.27,693800],["2026-02-13",19.39,21.29,19.36,20.71,278200],["2026-02-17",20.88,21.71,20.39,21.63,224500],["2026-02-18",21.58,22.54,21.31,22.4,120000],["2026-02-19",22.11,22.75,21.72,21.82,236000],["2026-02-20",21.49,22.64,21.49,21.77,93500],["2026-02-23",21.67,22.21,19.72,20.29,409400],["2026-02-24",20.15,21.0,19.8,20.78,116600],["2026-02-25",20.79,21.85,20.39,21.69,108700],["2026-02-26",21.52,22.84,21.17,22.82,153200],["2026-02-27",22.58,23.79,22.16,23.15,184900],["2026-03-02",22.65,24.77,22.58,24.2,140900],["2026-03-03",23.84,24.73,22.76,24.42,114500],["2026-03-04",24.79,24.79,23.8,24.52,100000],["2026-03-05",24.41,25.21,24.26,24.3,83400],["2026-03-06",24.23,25.18,23.36,23.79,210600],["2026-03-09",23.45,24.36,21.96,23.94,155300],["2026-03-10",23.58,24.03,22.92,23.81,251100],["2026-03-11",23.7,24.2,22.83,23.38,93400],["2026-03-12",23.03,24.67,23.01,24.53,202000],["2026-03-13",24.68,24.78,22.01,22.84,556700],["2026-03-16",22.85,23.83,22.81,23.36,178500],["2026-03-17",23.65,25.02,23.65,24.89,318000],["2026-03-18",26.22,30.19,25.12,28.27,1358100],["2026-03-19",28.27,30.22,27.55,28.58,599200],["2026-03-20",28.75,29.36,27.28,27.9,1032000],["2026-03-23",28.69,28.69,25.69,27.57,481600],["2026-03-24",27.54,27.98,25.76,26.67,270900],["2026-03-25",27.25,28.01,26.01,26.07,381300],["2026-03-26",26.01,26.77,25.25,26.04,391600],["2026-03-27",25.93,26.4,25.0,25.41,296000],["2026-03-30",25.51,26.21,25.37,25.76,348200],["2026-03-31",26.1,27.69,26.1,27.2,726700],["2026-04-01",27.26,29.67,26.9,29.2,1084000],["2026-04-02",28.84,29.69,28.09,29.67,197800],["2026-04-06",29.54,30.12,29.13,29.17,199000],["2026-04-07",29.2,29.2,28.13,28.65,142200],["2026-04-08",29.07,29.81,28.3,28.84,276800],["2026-04-09",28.69,29.23,27.2,27.99,161900],["2026-04-10",28.0,28.64,27.01,28.25,177900],["2026-04-13",28.66,30.27,28.26,29.19,225100],["2026-04-14",29.17,31.5,28.91,31.25,323400],["2026-04-15",31.48,34.23,31.39,33.07,510500],["2026-04-16",33.12,34.66,32.63,33.24,226000],["2026-04-17",33.25,34.75,33.2,33.52,338300],["2026-04-20",33.45,34.25,33.13,33.71,222400],["2026-04-21",34.05,34.85,33.71,34.85,227100],["2026-04-22",35.35,36.5,34.9,35.96,221700],["2026-04-23",36.22,36.22,33.94,35.54,340400],["2026-04-24",35.59,36.7,34.94,35.96,239600],["2026-04-27",35.55,35.98,33.36,33.87,137100],["2026-04-28",33.97,35.91,33.78,35.59,257700],["2026-04-29",35.25,35.99,33.61,33.92,137100],["2026-04-30",34.16,36.09,33.3,35.38,224900],["2026-05-01",35.8,36.3,33.69,34.24,185100],["2026-05-04",34.3,35.79,33.79,34.28,176300],["2026-05-05",34.54,35.19,33.67,34.82,138600],["2026-05-06",34.95,35.98,33.49,35.18,204200],["2026-05-07",35.22,36.62,34.55,35.98,161900],["2026-05-08",35.84,36.62,34.83,36.51,171300],["2026-05-11",36.63,37.07,35.72,36.65,207100],["2026-05-12",36.65,37.76,35.35,36.38,516200],["2026-05-13",36.74,39.54,34.32,35.5,405400],["2026-05-14",37.52,37.52,34.1,34.98,337300],["2026-05-15",35.21,36.17,34.26,35.1,221000],["2026-05-18",35.37,37.46,35.23,37.3,331100],["2026-05-19",37.22,37.39,34.92,34.94,172700],["2026-05-20",35.06,37.87,34.67,37.51,120900],["2026-05-21",37.48,38.55,36.65,38.13,146800],["2026-05-22",37.75,40.11,37.48,38.52,190300],["2026-05-26",39.93,39.97,38.31,38.31,188200],["2026-05-27",38.74,39.23,37.31,37.44,178700],["2026-05-28",37.19,39.37,36.62,38.31,370700],["2026-05-29",38.34,38.83,36.7,37.0,202500],["2026-06-01",37.0,39.0,36.64,38.69,348700],["2026-06-02",38.21,39.99,37.6,37.66,324000],["2026-06-03",37.0,37.71,35.53,36.87,205600],["2026-06-04",37.07,40.23,36.68,40.06,232700],["2026-06-05",39.47,40.23,38.38,38.38,324500],["2026-06-08",38.42,38.5,35.75,36.08,391600],["2026-06-09",36.25,37.97,36.25,36.5,247800],["2026-06-10",36.01,37.5,35.23,36.87,383200],["2026-06-11",36.87,38.21,34.93,35.01,337400],["2026-06-12",35.69,38.05,35.04,37.78,382700],["2026-06-15",38.16,39.54,37.11,37.42,233400],["2026-06-16",37.87,38.4,36.78,37.5,236100],["2026-06-17",37.53,39.71,37.53,38.37,184900],["2026-06-18",38.01,38.3,36.35,37.17,370600],["2026-06-22",36.65,36.77,35.28,35.93,285900],["2026-06-23",35.97,37.58,34.93,37.47,142500],["2026-06-24",37.66,37.93,35.71,36.74,248900],["2026-06-25",36.76,37.79,35.73,35.79,606300],["2026-06-26",35.22,36.97,34.31,36.91,441100],["2026-06-29",37.31,38.21,36.67,37.93,859900],["2026-06-30",36.9,37.88,35.51,37.72,943700],["2026-07-01",38.12,39.5,36.35,36.88,940300],["2026-07-02",37.21,38.55,35.91,36.36,571700],["2026-07-06",36.49,38.17,36.15,37.91,257500],["2026-07-07",38.48,41.43,37.26,40.51,685100],["2026-07-08",40.36,41.48,38.53,39.4,194000],["2026-07-09",39.64,43.55,38.83,43.46,481300],["2026-07-10",43.28,44.31,41.0,42.93,462100],["2026-07-13",42.26,43.31,41.55,41.97,184800],["2026-07-14",42.13,43.82,41.85,42.91,163700],["2026-07-15",42.9,43.69,42.02,42.22,183900],["2026-07-16",42.5,43.31,42.3,42.81,123800],["2026-07-17",43.14,45.0,42.5,44.45,598400],["2026-07-20",44.52,44.85,41.96,42.58,266200],["2026-07-21",42.13,43.67,42.1,42.8,176900],["2026-07-22",42.75,42.75,40.66,41.42,215300],["2026-07-23",41.6,43.47,40.31,43.37,316700],["2026-07-24",43.65,44.22,42.38,42.82,499000],["2026-07-27",43.33,48.32,43.33,46.94,918100],["2026-07-28",47.12,47.81,45.71,46.55,489400],["2026-07-29",46.74,47.31,45.17,46.12,361300],["2026-07-30",46.49,46.91,44.54,46.08,316400],["2026-07-31",45.71,47.6,45.0,47.33,415800],["2026-08-03",47.45,47.9,46.83,47.68,174200],["2026-08-04",46.82,49.3,46.4,48.59,448300],["2026-08-05",49.35,50.41,48.71,49.75,316900],["2026-08-06",50.0,50.48,48.82,49.0,226800],["2026-08-07",49.57,50.37,48.69,49.68,259100],["2026-08-10",49.38,50.43,48.15,49.12,430800],["2026-08-11",49.54,50.02,48.44,48.47,243700],["2026-08-12",48.32,50.76,48.32,50.0,456600],["2026-08-13",45.37,48.99,44.11,48.3,854700],["2026-08-14",49.46,49.46,47.51,48.89,284300],["2026-08-17",48.31,49.08,47.03,49.0,189100],["2026-08-18",45.24,46.3,44.57,45.75,476600],["2026-08-19",45.45,46.3,44.95,45.02,561600],["2026-08-20",45.51,50.46,45.51,50.32,3237500],["2026-08-21",50.6,50.72,49.33,50.16,769100],["2026-08-24",50.53,51.44,49.0,49.99,748900],["2026-08-25",50.46,52.31,50.41,52.21,572900],["2026-08-26",52.52,53.37,51.68,53.13,400800],["2026-08-27",53.56,56.61,53.45,56.56,594000],["2026-08-28",56.46,57.13,55.22,55.72,310800],["2026-08-31",56.52,56.52,54.73,55.74,311400],["2026-09-01",55.75,57.17,55.53,55.72,397000],["2026-09-02",55.73,57.31,55.7,56.12,294500],["2026-09-03",56.2,57.62,56.2,57.45,171100],["2026-09-04",56.96,57.45,55.89,56.26,762600],["2026-09-08",56.01,56.02,53.79,53.85,326300],["2026-09-09",53.67,54.89,53.33,54.49,369800],["2026-09-10",54.58,54.58,52.88,53.19,434200],["2026-09-11",54.61,54.61,52.99,53.65,301700],["2026-09-14",54.47,56.65,53.52,56.4,330700],["2026-09-15",55.77,56.0,54.0,54.21,184600],["2026-09-16",54.75,55.99,54.24,55.01,286100],["2026-09-17",55.42,55.99,54.66,54.82,233200],["2026-09-18",55.32,55.39,54.47,54.99,747300],["2026-09-21",55.0,55.28,53.97,54.65,334800],["2026-09-22",54.52,55.12,52.43,53.17,393300],["2026-09-23",53.19,54.38,52.03,53.95,1081200],["2026-09-24",53.48,54.05,51.31,53.37,476600],["2026-09-25",54.02,55.51,52.89,52.96,568500],["2026-09-28",52.43,53.65,51.47,52.78,573700],["2026-09-29",52.53,56.02,52.37,55.47,1033000],["2026-09-30",55.75,56.09,53.91,54.4,696000],["2026-10-01",54.69,58.0,54.13,57.36,1270200],["2026-10-02",57.55,58.18,56.52,57.14,685500],["2026-10-05",57.18,57.34,55.94,56.0,231000],["2026-10-06",56.56,57.7,56.22,57.12,249800],["2026-10-07",56.07,57.08,54.96,55.34,170100],["2026-10-08",55.78,56.44,54.57,56.24,185300],["2026-10-09",56.15,57.0,55.56,56.82,176700],["2026-10-12",56.09,57.88,56.09,57.66,143100],["2026-10-13",57.61,58.7,57.61,58.06,213700],["2026-10-14",57.99,58.2,56.56,57.29,136900],["2026-10-15",56.71,60.16,56.71,58.95,275100],["2026-10-16",59.74,59.98,57.73,58.27,250300],["2026-10-19",58.39,60.21,57.91,58.65,183600],["2026-10-20",59.04,61.29,59.04,60.65,319800],["2026-10-21",60.74,61.72,60.63,60.92,270500],["2026-10-22",61.66,64.14,60.44,63.54,449700],["2026-10-23",63.75,64.75,62.89,63.39,465300],["2026-10-26",64.2,65.94,63.5,64.18,395100],["2026-10-27",64.2,64.2,62.4,63.62,157100],["2026-10-28",63.87,64.57,61.85,62.93,437600],["2026-10-29",63.44,65.8,63.44,64.87,427400],["2026-10-30",65.63,66.06,63.95,65.55,382100],["2026-11-02",65.62,67.26,64.58,65.82,388200],["2026-11-03",65.62,67.06,64.41,65.68,345500],["2026-11-04",65.83,68.11,64.18,67.46,632100],["2026-11-05",67.12,68.41,66.14,66.27,793100],["2026-11-06",66.3,68.32,64.43,65.0,1175000],["2026-11-09",65.61,67.01,64.25,65.8,862000],["2026-11-10",65.14,66.27,63.85,65.77,980500],["2026-11-11",66.06,66.5,64.46,65.84,412200],["2026-11-12",65.81,66.93,65.21,65.42,607400],["2026-11-13",62.82,63.87,58.5,60.06,1027700],["2026-11-16",60.25,63.39,60.25,62.85,555700],["2026-11-17",62.96,64.21,61.51,63.08,696800],["2026-11-18",63.15,63.58,61.05,61.47,440700],["2026-11-19",61.78,61.4,56.58,57.62,562264]];
+const DATANOTE = "";
+</script>
+<script src="intra/ANDG.js?v=20261119920"></script>
+<script src="assets/chart.js?v=aa49b450"></script><!--kb-theme-js--><script>(function(){var bs=document.querySelectorAll('button.kb-theme[data-kb]');
+for(var i=0;i<bs.length;i++)bs[i].addEventListener('click',function(){var b=this,d=document.documentElement,
+cur=d.getAttribute('data-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'),n=cur==='dark'?'light':'dark';
+d.setAttribute('data-theme',n);try{localStorage.setItem('fdb-theme',n)}catch(e){}
+var f=document.querySelectorAll('iframe');for(var j=0;j<f.length;j++){try{f[j].contentWindow.postMessage({chartTheme:n},'*')}catch(e){}}
+var k=b.getAttribute('data-kb');
+if(k==='reload')location.reload();
+else if(k==='msg')window.postMessage({chartTheme:n},'*');
+else if(k==='fn'&&typeof window.__kbRedraw==='function')window.__kbRedraw();});})();</script><!--/kb-theme-js--><!--mobile-fix-spacer--><div class="mf-spacer" aria-hidden="true"></div><!--/mobile-fix-spacer--></body></html>

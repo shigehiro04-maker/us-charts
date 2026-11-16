@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8"><!--kb-theme:v3--><script>(function(){var d=document.documentElement,
+m=/[?&#]theme=(dark|light)/.exec(location.search+location.hash),t=m&&m[1];
+if(!t){try{t=localStorage.getItem('fdb-theme')}catch(e){}}
+if(t==='dark'||t==='light')d.setAttribute('data-theme',t);
+try{if(window.top!==window.self)d.classList.add('kb-embed')}catch(e){d.classList.add('kb-embed')}})();</script>
+<style id="kb-theme">
+:root{--kb-fg:#1f1f1e;--kb-line:#d6d5ce;--kb-hover:rgba(0,0,0,.05)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--kb-fg:#ecebe6;--kb-line:#3b3b38;--kb-hover:rgba(255,255,255,.08)}}
+:root[data-theme="dark"]{--kb-fg:#ecebe6;--kb-line:#3b3b38;--kb-hover:rgba(255,255,255,.08)}
+/* スイッチ本体（トラック） */
+:root{--kb-trk:#e8e7e1;--kb-knob:#fff;--kb-ico:#d08a00;--kb-dim:#a9a79f}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--kb-trk:#2b2b29;--kb-knob:#45453f;--kb-ico:#f3d36a;--kb-dim:#6f6e68}}
+:root[data-theme="dark"]{--kb-trk:#2b2b29;--kb-knob:#45453f;--kb-ico:#f3d36a;--kb-dim:#6f6e68}
+:root button.kb-theme.kb-theme{-webkit-appearance:none;appearance:none;position:relative;display:inline-block;box-sizing:border-box;
+width:54px;height:30px;min-width:54px;min-height:0;padding:0;border:1px solid var(--kb-line);border-radius:15px;background:var(--kb-trk);
+color:var(--kb-fg);font-size:0;line-height:0;cursor:pointer;box-shadow:inset 0 1px 2px rgba(0,0,0,.08);vertical-align:middle;flex-shrink:0;
+overflow:hidden;-webkit-tap-highlight-color:transparent;transition:background .3s,border-color .3s}
+:root button.kb-theme.kb-theme:focus-visible{outline:2px solid #2a78d6;outline-offset:2px}
+:root button.kb-theme.kb-theme svg{display:block;width:100%;height:100%}
+/* 両端の小さなアイコン（つまみが無い側だけ見える） */
+:root button.kb-theme.kb-theme .kb-trk{position:absolute;top:50%;width:13px;height:13px;margin-top:-6.5px;color:var(--kb-dim);transition:opacity .3s}
+:root button.kb-theme.kb-theme .kb-l{left:7px;opacity:0}
+:root button.kb-theme.kb-theme .kb-r{right:7px;opacity:1}
+/* つまみ */
+:root button.kb-theme.kb-theme .kb-knob{position:absolute;top:2px;left:2px;width:24px;height:24px;border-radius:50%;background:var(--kb-knob);
+color:var(--kb-ico);box-shadow:0 1px 3px rgba(0,0,0,.25),0 0 0 .5px rgba(0,0,0,.06);transform:translateX(0);
+transition:transform .32s cubic-bezier(.3,1.35,.5,1),background .3s,color .3s}
+:root button.kb-theme.kb-theme:active .kb-knob{width:28px}
+:root button.kb-theme.kb-theme .kb-knob svg{position:absolute;inset:0;margin:auto;width:15px;height:15px;transition:opacity .25s,transform .35s}
+:root button.kb-theme.kb-theme .kb-knob .kb-sun{opacity:1;transform:none}
+:root button.kb-theme.kb-theme .kb-knob .kb-moon{opacity:0;transform:rotate(-90deg) scale(.4)}
+/* ダーク表示中：つまみを右へ */
+@media (prefers-color-scheme:dark){
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-knob{transform:translateX(24px)}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme:active .kb-knob{transform:translateX(20px)}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-knob .kb-sun{opacity:0;transform:rotate(90deg) scale(.4)}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-knob .kb-moon{opacity:1;transform:none}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-l{opacity:1}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-r{opacity:0}}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-knob{transform:translateX(24px)}
+:root[data-theme="dark"] button.kb-theme.kb-theme:active .kb-knob{transform:translateX(20px)}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-knob .kb-sun{opacity:0;transform:rotate(90deg) scale(.4)}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-knob .kb-moon{opacity:1;transform:none}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-l{opacity:1}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-r{opacity:0}
+@media (prefers-reduced-motion:reduce){:root button.kb-theme.kb-theme *{transition:none!important}}
+/* 全ページ共通の置き場所：ページ右上の角 */
+:root button.kb-theme.kb-theme.kb-corner{position:absolute;top:12px;right:16px;z-index:60;margin:0;float:none}
+@media (max-width:700px){:root button.kb-theme.kb-theme.kb-corner{top:10px;right:12px}}
+/* 右上のスイッチの下に見えない「よけ」を置き、見出しの文字やボタンがスイッチと重ならないようにする */
+.kb-spacer{float:right;width:84px;height:46px;pointer-events:none}
+@media (max-width:700px){.kb-spacer{width:76px;height:44px}}
+html.kb-embed .kb-spacer{display:none}
+html.kb-embed button.kb-theme[data-kb]{display:none}
+
+</style><!--/kb-theme-->
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Natural Grocers by Vitamin Cottage, Inc.（NGVC）業績ダッシュボード</title>
+<link rel="stylesheet" href="assets/style.css">
+<!--site-icon:v3--><link rel="icon" type="image/svg+xml" href="/us-charts/icon-black.svg?v=3" media="(prefers-color-scheme: light)"><link rel="icon" type="image/svg+xml" href="/us-charts/icon-white.svg?v=3" media="(prefers-color-scheme: dark)"><link rel="apple-touch-icon" href="/us-charts/apple-touch-icon.png?v=3"><!--/site-icon--><!--mobile-fix:v1--><style id="mobile-fix">
+.mf-spacer{display:none}
+html.mf-sa .mf-spacer{display:block;height:calc(env(safe-area-inset-bottom,0px) + 110px)}
+html.mf-sa .detail .inner{padding-bottom:calc(env(safe-area-inset-bottom,0px) + 140px)}
+</style><script>(function(){try{if(window.top!==window.self)return;
+var sa=navigator.standalone===true||matchMedia('(display-mode: standalone)').matches;
+var touch=matchMedia('(pointer: coarse)').matches;
+if(sa||touch)document.documentElement.classList.add('mf-sa');}catch(e){}})();</script><!--/mobile-fix--><!--pc-wide:v1--><style id="pc-wide">@media (min-width:1280px){body>.wrap,body>main,body>div.wrap{max-width:1680px!important}}</style><!--/pc-wide--></head>
+<body><!--kb-btn--><button class="kb-theme kb-corner" id="kbTheme" type="button" data-kb="reload" aria-label="明暗を切り替え（ライト／ダーク）" title="明暗を切り替え（ライト／ダーク）"><span class="kb-trk kb-l"><svg class="kb-sun" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="12" cy="12" r="4.3"/><path d="M12 2.2v2.3M12 19.5v2.3M2.2 12h2.3M19.5 12h2.3M5.1 5.1l1.6 1.6M17.3 17.3l1.6 1.6M5.1 18.9l1.6-1.6M17.3 6.7l1.6-1.6"/></svg></span><span class="kb-trk kb-r"><svg class="kb-moon" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M20.2 14.6A8.4 8.4 0 0 1 9.4 3.8a.6.6 0 0 0-.8-.7A9.2 9.2 0 1 0 20.9 15.4a.6.6 0 0 0-.7-.8z"/></svg></span><span class="kb-knob"><svg class="kb-sun" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="12" cy="12" r="4.3"/><path d="M12 2.2v2.3M12 19.5v2.3M2.2 12h2.3M19.5 12h2.3M5.1 5.1l1.6 1.6M17.3 17.3l1.6 1.6M5.1 18.9l1.6-1.6M17.3 6.7l1.6-1.6"/></svg><svg class="kb-moon" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M20.2 14.6A8.4 8.4 0 0 1 9.4 3.8a.6.6 0 0 0-.8-.7A9.2 9.2 0 1 0 20.9 15.4a.6.6 0 0 0-.7-.8z"/></svg></span></button><div class="kb-spacer" aria-hidden="true"></div><!--/kb-btn-->
+<div class="wrap">
+  <header class="mast">
+    <div class="eyebrow"><a href="../fundamentals.html" style="color:inherit">← 東証スクリーニング</a></div>
+    <h1>Natural Grocers by Vitamin Cottage, Inc.<span class="code">NGVC</span></h1>
+    <div class="slip" id="slip"></div>
+    <p class="biz">自然食品スーパー「ナチュラル・グローサーズ」。</p><p class="site"><a href="https://www.naturalgrocers.com" target="_blank" rel="noopener noreferrer"><b>公式サイト ↗</b><span>www.naturalgrocers.com</span></a></p>
+  </header>
+
+  <section class="cards" id="cards" aria-label="判定サマリー"></section>
+
+  <section class="grid">
+    <div class="panel" id="p-annual"></div>
+    <div class="panel" id="p-cf"></div>
+    <div class="panel" id="p-q"></div>
+    <div class="panel" id="p-div"></div>
+    <div class="panel full" id="p-bs"></div>
+    <div class="panel full" id="p-holders"></div>
+  </section>
+
+  <details class="more">
+    <summary>通期の数値をすべて見る</summary>
+    <div class="inner" id="t-annual"></div>
+  </details>
+  <details class="more">
+    <summary>判定の基準と注記</summary>
+    <div class="inner foot"><ol>
+      <li>直近の通期決算を、同じ業種の中央値と比べて判定しています。▲＝良い側　●＝並み　▼＝注意。</li>
+      <li>成長性：売上高の年平均成長率が5%以上で増収。利益が初年度を下回ると増収減益。</li>
+      <li>収益性：営業利益率が業種中央値の1.2倍以上で高い、0.6倍未満で低い。</li>
+      <li>財務安全性：自己資本比率が50%以上か業種の1.3倍以上で厚い、20%未満で薄め（業種並みなら標準）。</li>
+      <li>資本効率：ROE 10%以上で高い、5%未満で低い。</li>
+      <li>割安度：PERとPBRがともに業種中央値を下回ると割安、ともに上回ると割高。</li>
+      <li>売上総利益・粗利率は売上原価データがある期のみ表示し、データの無い系列・列は出しません。</li>
+      <li>グラフ：通期・配当の右端の薄い棒は会社予想（J-Quants 決算短信サマリーの最新値）。折れ線は右軸（%）。</li>
+      <li>経常利益は J-Quants の決算短信サマリーから取得（日本基準のみ。取得範囲は直近約2年）。IFRS・米国基準は税引前利益で表示します。</li>
+      <li>貸借対照表は年次決算（10-K）の連結貸借対照表を Yahoo Finance から取得し、区分にまとめたもの。外国企業は最新の為替でドルに換算しています。</li>
+      <li>株主構成は 13F（運用資産1億ドル超の機関投資家が四半期ごとに出す保有報告）の上位10社を、発行済株式数に対する割合で描画（Yahoo Finance 経由）。その他は上位10社以外の合計です。</li>
+      <li>四半期決算は累計値の差分から単独四半期を算出。フリーCFは営業CF＋投資CF。配当性向は一株配当÷EPS。</li>
+      <li>出所：~/株分析 の fundamentals/（通期）。株価・時価総額は取得日時点。生成 2026-11-20</li>
+    </ol></div>
+  </details>
+</div>
+<script src="assets/app.js"></script>
+<script>renderCompany({"code":"NGVC","name":"Natural Grocers by Vitamin Cottage, Inc.","market":"NYSE","sector":"生活必需品","quote":{"price":27.15,"priceDate":"2026-11-19","mcap":625.702,"per":13.47,"pbr":2.95,"psr":0.47,"yld":0.0176,"asof":"2026-11-20"},"annual":[{"fy":"22/9期","fyEnd":"2022-09-30","y":2022,"rev":1089.625,"gp":304.881,"op":31.262,"pbt":27.784,"ni":21.365,"ta":663.108,"se":155.812,"eq":0.235,"cr":1.0212999999999999,"ocf":39.693,"icf":-31.143,"fcf":-20.189,"freecf":8.249,"ibd":393.374,"cash":12.039,"ebitda":58.061,"eps":0.94,"bps":6.87,"dps":0.3996,"opm":0.028690604565790985,"nim":0.019607663186876217,"gpm":0.27980360215670524,"roe":0.1371203758375478,"roa":0.03221948762494194,"odp":27.784,"payout":0.42510638297872344,"frcf":8.549999999999997},{"fy":"23/9期","fyEnd":"2023-09-30","y":2023,"rev":1140.568,"gp":326.931,"op":33.676,"pbt":28.37,"ni":23.243,"ta":669.185,"se":170.841,"eq":0.2553,"cr":0.9904000000000001,"ocf":64.606,"icf":-37.95,"fcf":-20.353,"freecf":26.513,"ibd":370.178,"cash":18.342,"ebitda":60.575,"eps":1.02,"bps":7.51,"dps":0.3997,"opm":0.029525639856632837,"nim":0.020378443021371807,"gpm":0.28663876244116965,"roe":0.1360504796857897,"roa":0.034733294978219774,"odp":28.37,"payout":0.3918627450980392,"frcf":26.65599999999999},{"fy":"24/9期","fyEnd":"2024-09-30","y":2024,"rev":1241.585,"gp":364.81,"op":48.699,"pbt":42.801,"ni":33.935,"ta":655.476,"se":174.254,"eq":0.2658,"cr":0.8959999999999999,"ocf":73.76,"icf":-38.6,"fcf":-44.631,"freecf":35.08,"ibd":346.507,"cash":8.871,"ebitda":77.907,"eps":1.49,"bps":7.61,"dps":1.3922,"opm":0.03922325092522864,"nim":0.027331999017385037,"gpm":0.29382603688027803,"roe":0.1947444534989154,"roa":0.051771537020424856,"odp":42.801,"payout":0.9343624161073826,"frcf":35.160000000000004},{"fy":"25/9期","fyEnd":"2025-09-30","y":2025,"rev":1330.836,"gp":397.877,"op":63.033,"pbt":58.927,"ni":46.444,"ta":670.504,"se":212.395,"eq":0.31679999999999997,"cr":1.0585,"ocf":55.304,"icf":-30.971,"fcf":-16.088,"freecf":23.925,"ibd":332.019,"cash":17.116,"ebitda":93.804,"eps":2.02,"bps":9.25,"dps":0.4796,"opm":0.04736346176388376,"nim":0.03489836463696504,"gpm":0.2989677165330664,"roe":0.21866804774123685,"roa":0.06926729743595862,"odp":58.927,"payout":0.23742574257425744,"frcf":24.333000000000002}],"peer":{"n":236,"opm":0.04937533105231361,"nim":0.017292623328025402,"eq":0.4005,"roe":0.07931602684704654,"gpm":0.3358794270398747,"per":19.28,"pbr":1.8,"yld":0.0},"fc":null,"quarters":[{"fy":"25/06","fyEnd":"2025-06-30","perEnd":"2025-06-30","perSt":null,"rev":328.705,"op":15.611,"odp":14.893,"ni":11.605,"opm":0.04749243242421016},{"fy":"25/09","fyEnd":"2025-09-30","perEnd":"2025-09-30","perSt":null,"rev":336.141,"op":15.668,"odp":14.806,"ni":11.8,"opm":0.04661139224313606},{"fy":"25/12","fyEnd":"2025-12-31","perEnd":"2025-12-31","perSt":null,"rev":335.579,"op":15.015,"odp":13.934,"ni":11.334,"opm":0.04474356261863823},{"fy":"26/03","fyEnd":"2026-03-31","perEnd":"2026-03-31","perSt":null,"rev":337.376,"op":18.745,"odp":17.473,"ni":13.434,"opm":0.05556115432040217},{"fy":"26/06","fyEnd":"2026-06-30","perEnd":"2026-06-30","perSt":null,"rev":334.739,"op":16.284,"odp":14.333,"ni":11.073,"opm":0.04864685620737351}],"odpName":"税引前利益","holders":{"asof":"2026-09-30","filed":"2026-09-30","issued":23046115.0,"treasury":0,"holders":[["Royce & Associates LP",1007048,0.0437],["Blackrock Inc.",991823,0.043],["Dimensional Fund Advisors LP",699810,0.0304],["American Century Companies Inc",652774,0.028300000000000002],["Vanguard Capital Management LLC",534646,0.0232],["Morgan Stanley",472225,0.020499999999999997],["Two Sigma Investments, LP",337311,0.0146],["AQR Capital Management, LLC",298071,0.0129],["Geode Capital Management, LLC",296257,0.0129],["Vanguard Portfolio Management LLC",295763,0.0128]]},"bs":[{"fy":"22/9","fyEnd":"2022-09-30","std":"US","ta":663.108,"tl":507.296,"na":155.812,"noCA":false,"cash":12.039,"recv":10.496,"inv":113.756,"oca":4.369,"ppe":507.865,"onca":14.583,"pay":71.283,"ocl":66.445,"ncl":369.568,"eq":155.812,"oeq":0.0},{"fy":"23/9","fyEnd":"2023-09-30","std":"US","ta":669.185,"tl":498.344,"na":170.841,"noCA":false,"cash":18.342,"recv":10.797,"inv":119.26,"oca":4.151,"ppe":502.111,"onca":14.524,"pay":80.675,"ocl":73.354,"ncl":344.315,"eq":170.841,"oeq":0.0},{"fy":"24/9","fyEnd":"2024-09-30","std":"US","ta":655.476,"tl":481.222,"na":174.254,"noCA":false,"cash":8.871,"recv":12.61,"inv":120.672,"oca":4.905,"ppe":494.472,"onca":13.946,"pay":88.397,"ocl":75.733,"ncl":317.092,"eq":174.254,"oeq":0.0},{"fy":"25/9","fyEnd":"2025-09-30","std":"US","ta":670.504,"tl":458.109,"na":212.395,"noCA":false,"cash":17.116,"recv":11.966,"inv":132.968,"oca":6.025,"ppe":485.222,"onca":17.207,"pay":80.991,"ocl":77.792,"ncl":299.326,"eq":212.395,"oeq":0.0}]});</script>
+<!--kb-theme-js--><script>(function(){var bs=document.querySelectorAll('button.kb-theme[data-kb]');
+for(var i=0;i<bs.length;i++)bs[i].addEventListener('click',function(){var b=this,d=document.documentElement,
+cur=d.getAttribute('data-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'),n=cur==='dark'?'light':'dark';
+d.setAttribute('data-theme',n);try{localStorage.setItem('fdb-theme',n)}catch(e){}
+var f=document.querySelectorAll('iframe');for(var j=0;j<f.length;j++){try{f[j].contentWindow.postMessage({chartTheme:n},'*')}catch(e){}}
+var k=b.getAttribute('data-kb');
+if(k==='reload')location.reload();
+else if(k==='msg')window.postMessage({chartTheme:n},'*');
+else if(k==='fn'&&typeof window.__kbRedraw==='function')window.__kbRedraw();});})();</script><!--/kb-theme-js--><!--mobile-fix-spacer--><div class="mf-spacer" aria-hidden="true"></div><!--/mobile-fix-spacer--></body>
+</html>

@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><!--kb-theme:v3--><script>(function(){var d=document.documentElement,
+m=/[?&#]theme=(dark|light)/.exec(location.search+location.hash),t=m&&m[1];
+if(!t){try{t=localStorage.getItem('fdb-theme')}catch(e){}}
+if(t==='dark'||t==='light')d.setAttribute('data-theme',t);
+try{if(window.top!==window.self)d.classList.add('kb-embed')}catch(e){d.classList.add('kb-embed')}})();</script>
+<style id="kb-theme">
+:root{--kb-fg:#1f1f1e;--kb-line:#d6d5ce;--kb-hover:rgba(0,0,0,.05)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--kb-fg:#ecebe6;--kb-line:#3b3b38;--kb-hover:rgba(255,255,255,.08)}}
+:root[data-theme="dark"]{--kb-fg:#ecebe6;--kb-line:#3b3b38;--kb-hover:rgba(255,255,255,.08)}
+/* スイッチ本体（トラック） */
+:root{--kb-trk:#e8e7e1;--kb-knob:#fff;--kb-ico:#d08a00;--kb-dim:#a9a79f}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--kb-trk:#2b2b29;--kb-knob:#45453f;--kb-ico:#f3d36a;--kb-dim:#6f6e68}}
+:root[data-theme="dark"]{--kb-trk:#2b2b29;--kb-knob:#45453f;--kb-ico:#f3d36a;--kb-dim:#6f6e68}
+:root button.kb-theme.kb-theme{-webkit-appearance:none;appearance:none;position:relative;display:inline-block;box-sizing:border-box;
+width:54px;height:30px;min-width:54px;min-height:0;padding:0;border:1px solid var(--kb-line);border-radius:15px;background:var(--kb-trk);
+color:var(--kb-fg);font-size:0;line-height:0;cursor:pointer;box-shadow:inset 0 1px 2px rgba(0,0,0,.08);vertical-align:middle;flex-shrink:0;
+overflow:hidden;-webkit-tap-highlight-color:transparent;transition:background .3s,border-color .3s}
+:root button.kb-theme.kb-theme:focus-visible{outline:2px solid #2a78d6;outline-offset:2px}
+:root button.kb-theme.kb-theme svg{display:block;width:100%;height:100%}
+/* 両端の小さなアイコン（つまみが無い側だけ見える） */
+:root button.kb-theme.kb-theme .kb-trk{position:absolute;top:50%;width:13px;height:13px;margin-top:-6.5px;color:var(--kb-dim);transition:opacity .3s}
+:root button.kb-theme.kb-theme .kb-l{left:7px;opacity:0}
+:root button.kb-theme.kb-theme .kb-r{right:7px;opacity:1}
+/* つまみ */
+:root button.kb-theme.kb-theme .kb-knob{position:absolute;top:2px;left:2px;width:24px;height:24px;border-radius:50%;background:var(--kb-knob);
+color:var(--kb-ico);box-shadow:0 1px 3px rgba(0,0,0,.25),0 0 0 .5px rgba(0,0,0,.06);transform:translateX(0);
+transition:transform .32s cubic-bezier(.3,1.35,.5,1),background .3s,color .3s}
+:root button.kb-theme.kb-theme:active .kb-knob{width:28px}
+:root button.kb-theme.kb-theme .kb-knob svg{position:absolute;inset:0;margin:auto;width:15px;height:15px;transition:opacity .25s,transform .35s}
+:root button.kb-theme.kb-theme .kb-knob .kb-sun{opacity:1;transform:none}
+:root button.kb-theme.kb-theme .kb-knob .kb-moon{opacity:0;transform:rotate(-90deg) scale(.4)}
+/* ダーク表示中：つまみを右へ */
+@media (prefers-color-scheme:dark){
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-knob{transform:translateX(24px)}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme:active .kb-knob{transform:translateX(20px)}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-knob .kb-sun{opacity:0;transform:rotate(90deg) scale(.4)}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-knob .kb-moon{opacity:1;transform:none}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-l{opacity:1}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-r{opacity:0}}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-knob{transform:translateX(24px)}
+:root[data-theme="dark"] button.kb-theme.kb-theme:active .kb-knob{transform:translateX(20px)}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-knob .kb-sun{opacity:0;transform:rotate(90deg) scale(.4)}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-knob .kb-moon{opacity:1;transform:none}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-l{opacity:1}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-r{opacity:0}
+@media (prefers-reduced-motion:reduce){:root button.kb-theme.kb-theme *{transition:none!important}}
+/* 全ページ共通の置き場所：ページ右上の角 */
+:root button.kb-theme.kb-theme.kb-corner{position:absolute;top:12px;right:16px;z-index:60;margin:0;float:none}
+@media (max-width:700px){:root button.kb-theme.kb-theme.kb-corner{top:10px;right:12px}}
+/* 右上のスイッチの下に見えない「よけ」を置き、見出しの文字やボタンがスイッチと重ならないようにする */
+.kb-spacer{float:right;width:84px;height:46px;pointer-events:none}
+@media (max-width:700px){.kb-spacer{width:76px;height:44px}}
+html.kb-embed .kb-spacer{display:none}
+html.kb-embed button.kb-theme[data-kb]{display:none}
+
+</style><!--/kb-theme-->
+<script>
+/* 親ページから ?theme=dark|light で表示を指定できる。指定が無ければOSの設定に従う。 */
+(function(){try{
+  var m=/[?&#]theme=(dark|light)/.exec(location.search+location.hash);
+  if(m)document.documentElement.setAttribute("data-theme",m[1]);
+}catch(e){}})();
+</script>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>HONA Honeywell Aerospace Inc. チャート</title>
+<link rel="stylesheet" href="assets/chart.css?v=a08d4ea5"><!--site-icon:v3--><link rel="icon" type="image/svg+xml" href="/us-charts/icon-black.svg?v=3" media="(prefers-color-scheme: light)"><link rel="icon" type="image/svg+xml" href="/us-charts/icon-white.svg?v=3" media="(prefers-color-scheme: dark)"><link rel="apple-touch-icon" href="/us-charts/apple-touch-icon.png?v=3"><!--/site-icon--><!--mobile-fix:v1--><style id="mobile-fix">
+.mf-spacer{display:none}
+html.mf-sa .mf-spacer{display:block;height:calc(env(safe-area-inset-bottom,0px) + 110px)}
+html.mf-sa .detail .inner{padding-bottom:calc(env(safe-area-inset-bottom,0px) + 140px)}
+</style><script>(function(){try{if(window.top!==window.self)return;
+var sa=navigator.standalone===true||matchMedia('(display-mode: standalone)').matches;
+var touch=matchMedia('(pointer: coarse)').matches;
+if(sa||touch)document.documentElement.classList.add('mf-sa');}catch(e){}})();</script><!--/mobile-fix--><!--pc-wide:v1--><style id="pc-wide">@media (min-width:1280px){body>.wrap,body>main,body>div.wrap{max-width:1680px!important}}</style><!--/pc-wide--></head><body><!--kb-btn--><button class="kb-theme kb-corner" id="kbTheme" type="button" data-kb="msg" aria-label="明暗を切り替え（ライト／ダーク）" title="明暗を切り替え（ライト／ダーク）"><span class="kb-trk kb-l"><svg class="kb-sun" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="12" cy="12" r="4.3"/><path d="M12 2.2v2.3M12 19.5v2.3M2.2 12h2.3M19.5 12h2.3M5.1 5.1l1.6 1.6M17.3 17.3l1.6 1.6M5.1 18.9l1.6-1.6M17.3 6.7l1.6-1.6"/></svg></span><span class="kb-trk kb-r"><svg class="kb-moon" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M20.2 14.6A8.4 8.4 0 0 1 9.4 3.8a.6.6 0 0 0-.8-.7A9.2 9.2 0 1 0 20.9 15.4a.6.6 0 0 0-.7-.8z"/></svg></span><span class="kb-knob"><svg class="kb-sun" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="12" cy="12" r="4.3"/><path d="M12 2.2v2.3M12 19.5v2.3M2.2 12h2.3M19.5 12h2.3M5.1 5.1l1.6 1.6M17.3 17.3l1.6 1.6M5.1 18.9l1.6-1.6M17.3 6.7l1.6-1.6"/></svg><svg class="kb-moon" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M20.2 14.6A8.4 8.4 0 0 1 9.4 3.8a.6.6 0 0 0-.8-.7A9.2 9.2 0 1 0 20.9 15.4a.6.6 0 0 0-.7-.8z"/></svg></span></button><div class="kb-spacer" aria-hidden="true"></div><!--/kb-btn--><div class="wrap">
+<h1><a class="back" href="./charts.html" title="一覧へ">‹</a>HONA Honeywell Aerospace Inc.<span class="mk">NASDAQ</span><span class="mk sec">資本財</span></h1>
+<div class="price"><b id="last"></b><span class="chg" id="chg"></span><span class="asof" id="asof"></span><a class="dash" href="./one/HONA.html" target="_top" title="シグナル・チャート・ファンダを1画面で">ダッシュボード ›</a></div>
+<section class="biz" aria-label="会社概要"><p>ハネウェルから分社した航空機用の電子機器・エンジン・制御システムの会社。</p><a href="https://www.honeywellaerospace.com" target="_blank" rel="noopener noreferrer"><b>公式サイト ↗</b><span>www.honeywellaerospace.com</span></a></section><div class="st" id="state"></div>
+<div class="bar">
+  <div class="seg" id="periods"></div>
+  <div class="ipick">
+    <button class="ib" data-g="tr" type="button">トレンド系<span class="cnt" id="cTR"></span><small>チャート上</small></button>
+    <button class="ib" data-g="os" type="button">オシレーター系<span class="cnt" id="cOS"></span><small>チャート下</small></button>
+    <button class="ib" data-g="sg" type="button"><span class="sgi"><b class="bu">▲</b><b class="se">▼</b></span>売買サイン<span class="cnt" id="cSG"></span></button>
+  </div>
+</div>
+<div class="ipanel" id="ipanel" hidden>
+  <div class="iph"><b id="iptitle"></b><span id="ipdesc"></span>
+    <button type="button" id="ipreset">既定に戻す</button><button type="button" id="ipnone">すべて外す</button><button type="button" id="ipclose">閉じる</button></div>
+  <div class="sgst" id="sgst" hidden>表示のしかた
+    <div class="seg" id="sgstyle"><button type="button" data-st="label">ラベル（買・売）</button><button type="button" data-st="tri">大きい三角</button></div>
+    <label><input type="checkbox" id="sgvl">サインの足に縦線も引く</label></div>
+  <div class="ics" id="ipchips"></div>
+</div>
+<div class="legend" id="legend"></div>
+<div class="chart"><canvas id="cv"></canvas><div class="vmode" id="vmode"><button type="button" data-m="v">出来高</button><button type="button" data-m="a">売買代金</button></div><div class="xh" id="xhv"></div><div class="xh" id="xhh"></div><div id="tip"></div></div>
+<details class="nt" id="ntbox"><summary>指標の計算方法</summary><p class="note" id="note"></p></details>
+</div>
+<script>
+const CODE = "HONA";
+const RAW = [["2026-06-15",200.0,200.0,200.0,200.0,400],["2026-06-16",297.5,297.5,269.95,269.95,7300],["2026-06-17",285.0,295.41,269.95,269.95,11700],["2026-06-18",277.7,277.7,256.01,267.8,2800],["2026-06-22",273.99,280.0,261.03,261.03,9500],["2026-06-23",255.1,256.57,245.0,245.0,8400],["2026-06-24",245.0,259.0,245.0,245.0,29600],["2026-06-25",258.45,258.45,221.0,221.01,44000],["2026-06-26",229.75,238.19,206.01,221.01,3493900],["2026-06-29",230.0,239.98,212.5,220.19,8471200],["2026-06-30",220.85,227.99,214.5,221.08,5986300],["2026-07-01",212.92,231.73,212.57,227.29,6509700],["2026-07-02",229.99,248.73,221.5,247.15,5557200],["2026-07-06",249.01,266.62,236.7,237.7,7550800],["2026-07-07",237.93,246.02,233.64,238.14,4866100],["2026-07-08",230.59,235.95,223.03,224.35,4156700],["2026-07-09",225.67,230.9,217.25,223.12,3395200],["2026-07-10",222.78,228.95,218.85,220.75,1926200],["2026-07-13",220.67,221.59,210.23,213.05,2956700],["2026-07-14",213.05,215.98,205.56,207.51,3334200],["2026-07-15",203.15,215.5,203.0,212.55,2107800],["2026-07-16",211.7,215.79,204.2,208.37,2878500],["2026-07-17",207.52,217.83,205.01,211.63,2548500],["2026-07-20",207.28,210.0,198.88,202.47,3279200],["2026-07-21",202.86,203.5,195.16,200.14,3221200],["2026-07-22",200.3,208.7,199.01,207.78,2348800],["2026-07-23",200.59,208.64,193.33,195.87,3436200],["2026-07-24",198.29,204.91,192.03,204.07,2709400],["2026-07-27",206.33,211.79,202.98,210.83,1850500],["2026-07-28",208.85,219.2,208.85,215.9,2215400],["2026-07-29",215.9,215.9,203.84,205.19,2102500],["2026-07-30",205.29,205.29,198.88,204.32,2174100],["2026-07-31",202.31,209.77,202.01,206.74,2319000],["2026-08-03",203.99,211.0,199.48,208.27,3328300],["2026-08-04",211.03,217.06,207.4,216.48,2816300],["2026-08-05",219.42,222.54,203.64,203.64,4401500],["2026-08-06",155.0,167.31,150.03,156.47,20631100],["2026-08-07",156.24,168.88,154.01,168.51,8048300],["2026-08-10",163.35,165.49,159.01,163.09,4798200],["2026-08-11",161.99,170.17,161.23,165.93,4337300],["2026-08-12",168.91,173.0,166.84,167.8,4087500],["2026-08-13",166.8,171.2,165.11,169.81,2508000],["2026-08-14",169.69,171.49,165.03,166.36,3418100],["2026-08-17",166.0,166.53,161.25,161.56,3566100],["2026-08-18",160.87,164.61,160.39,160.76,4707000],["2026-08-19",165.95,176.25,164.26,170.37,7279600],["2026-08-20",170.0,172.94,164.99,165.89,3035200],["2026-08-21",166.77,168.44,164.23,164.73,4053400],["2026-08-24",164.6,166.85,160.89,161.2,3110500],["2026-08-25",161.89,163.82,159.11,160.36,2556300],["2026-08-26",160.51,167.57,160.29,164.01,3731300],["2026-08-27",162.16,163.92,158.9,160.75,3048200],["2026-08-28",160.85,163.58,158.8,162.37,2540400],["2026-08-31",161.0,161.21,155.97,158.11,4261800],["2026-09-01",158.29,159.25,153.63,154.24,2667900],["2026-09-02",154.31,154.79,151.97,152.55,2770500],["2026-09-03",152.44,155.88,150.88,154.96,3905400],["2026-09-04",155.0,161.29,154.03,161.01,3167300],["2026-09-08",158.64,160.35,154.78,155.42,4516100],["2026-09-09",154.5,155.03,150.97,151.58,3178800],["2026-09-10",150.03,155.34,149.19,153.75,3155000],["2026-09-11",154.68,158.44,154.35,158.26,2516700],["2026-09-14",154.0,165.0,154.0,164.08,4121500],["2026-09-15",163.55,164.62,158.1,158.5,5280900],["2026-09-16",159.73,166.21,158.82,164.18,4624900],["2026-09-17",169.74,169.74,164.75,167.13,7623300],["2026-09-18",166.99,167.15,162.0,163.6,13256000],["2026-09-21",163.85,170.32,163.0,169.03,3974700],["2026-09-22",168.98,169.27,166.03,167.32,3873700],["2026-09-23",166.7,168.5,161.57,163.33,2976400],["2026-09-24",161.57,163.97,158.29,158.46,2765500],["2026-09-25",159.01,160.97,156.74,158.78,2285000],["2026-09-28",157.31,158.0,151.85,152.32,3699400],["2026-09-29",151.81,156.1,151.39,155.44,2542800],["2026-09-30",155.6,156.89,153.42,154.97,2384600],["2026-10-01",155.17,155.99,152.26,154.07,2582600],["2026-10-02",155.37,156.92,153.52,154.63,1782900],["2026-10-05",153.88,156.15,152.2,155.74,2501100],["2026-10-06",156.19,160.0,154.95,157.39,2017100],["2026-10-07",154.8,155.69,151.15,153.07,1985200],["2026-10-08",151.73,154.3,149.88,154.01,3264100],["2026-10-09",154.27,158.42,152.56,157.94,2937200],["2026-10-12",156.84,159.2,156.07,157.27,1604800],["2026-10-13",157.33,159.63,155.1,158.18,1433400],["2026-10-14",157.06,158.82,154.84,156.35,2155900],["2026-10-15",157.58,164.5,156.09,162.72,2433400],["2026-10-16",163.85,169.89,162.74,167.69,5085800],["2026-10-19",168.71,168.99,162.04,162.1,2436300],["2026-10-20",162.36,164.48,158.07,159.52,3090600],["2026-10-21",159.6,163.25,159.18,162.07,1913200],["2026-10-22",161.69,164.11,160.0,162.63,2919000],["2026-10-23",159.98,167.45,155.17,162.92,3360300],["2026-10-26",163.75,168.63,163.67,168.23,2632300],["2026-10-27",168.13,168.73,165.23,167.5,2517200],["2026-10-28",165.56,177.04,163.28,176.6,5342400],["2026-10-29",165.78,165.78,152.63,159.65,7433700],["2026-10-30",158.2,161.1,150.95,153.78,5241300],["2026-11-02",156.88,161.31,156.41,157.57,3977400],["2026-11-03",159.37,160.91,155.85,157.12,3292600],["2026-11-04",158.13,162.05,154.09,156.01,4974500],["2026-11-05",155.4,157.79,148.14,149.23,3722600],["2026-11-06",148.93,153.86,147.05,152.55,2611600],["2026-11-09",155.49,166.9,154.08,164.37,3956200],["2026-11-10",163.05,167.47,162.62,166.07,2694200],["2026-11-11",166.07,169.24,164.97,169.12,2289700],["2026-11-12",167.88,170.22,165.71,165.83,2642900],["2026-11-13",166.23,167.35,162.78,165.01,2853700],["2026-11-16",164.48,167.58,162.34,163.36,2402400],["2026-11-17",162.04,167.7,160.26,160.64,2972400],["2026-11-18",161.46,162.02,155.57,157.85,2959700],["2026-11-19",158.24,159.26,154.02,155.84,3930657]];
+const DATANOTE = "";
+</script>
+<script src="intra/HONA.js?v=20261119936"></script>
+<script src="assets/chart.js?v=aa49b450"></script><!--kb-theme-js--><script>(function(){var bs=document.querySelectorAll('button.kb-theme[data-kb]');
+for(var i=0;i<bs.length;i++)bs[i].addEventListener('click',function(){var b=this,d=document.documentElement,
+cur=d.getAttribute('data-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'),n=cur==='dark'?'light':'dark';
+d.setAttribute('data-theme',n);try{localStorage.setItem('fdb-theme',n)}catch(e){}
+var f=document.querySelectorAll('iframe');for(var j=0;j<f.length;j++){try{f[j].contentWindow.postMessage({chartTheme:n},'*')}catch(e){}}
+var k=b.getAttribute('data-kb');
+if(k==='reload')location.reload();
+else if(k==='msg')window.postMessage({chartTheme:n},'*');
+else if(k==='fn'&&typeof window.__kbRedraw==='function')window.__kbRedraw();});})();</script><!--/kb-theme-js--><!--mobile-fix-spacer--><div class="mf-spacer" aria-hidden="true"></div><!--/mobile-fix-spacer--></body></html>

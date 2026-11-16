@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8"><!--kb-theme:v3--><script>(function(){var d=document.documentElement,
+m=/[?&#]theme=(dark|light)/.exec(location.search+location.hash),t=m&&m[1];
+if(!t){try{t=localStorage.getItem('fdb-theme')}catch(e){}}
+if(t==='dark'||t==='light')d.setAttribute('data-theme',t);
+try{if(window.top!==window.self)d.classList.add('kb-embed')}catch(e){d.classList.add('kb-embed')}})();</script>
+<style id="kb-theme">
+:root{--kb-fg:#1f1f1e;--kb-line:#d6d5ce;--kb-hover:rgba(0,0,0,.05)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--kb-fg:#ecebe6;--kb-line:#3b3b38;--kb-hover:rgba(255,255,255,.08)}}
+:root[data-theme="dark"]{--kb-fg:#ecebe6;--kb-line:#3b3b38;--kb-hover:rgba(255,255,255,.08)}
+/* スイッチ本体（トラック） */
+:root{--kb-trk:#e8e7e1;--kb-knob:#fff;--kb-ico:#d08a00;--kb-dim:#a9a79f}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--kb-trk:#2b2b29;--kb-knob:#45453f;--kb-ico:#f3d36a;--kb-dim:#6f6e68}}
+:root[data-theme="dark"]{--kb-trk:#2b2b29;--kb-knob:#45453f;--kb-ico:#f3d36a;--kb-dim:#6f6e68}
+:root button.kb-theme.kb-theme{-webkit-appearance:none;appearance:none;position:relative;display:inline-block;box-sizing:border-box;
+width:54px;height:30px;min-width:54px;min-height:0;padding:0;border:1px solid var(--kb-line);border-radius:15px;background:var(--kb-trk);
+color:var(--kb-fg);font-size:0;line-height:0;cursor:pointer;box-shadow:inset 0 1px 2px rgba(0,0,0,.08);vertical-align:middle;flex-shrink:0;
+overflow:hidden;-webkit-tap-highlight-color:transparent;transition:background .3s,border-color .3s}
+:root button.kb-theme.kb-theme:focus-visible{outline:2px solid #2a78d6;outline-offset:2px}
+:root button.kb-theme.kb-theme svg{display:block;width:100%;height:100%}
+/* 両端の小さなアイコン（つまみが無い側だけ見える） */
+:root button.kb-theme.kb-theme .kb-trk{position:absolute;top:50%;width:13px;height:13px;margin-top:-6.5px;color:var(--kb-dim);transition:opacity .3s}
+:root button.kb-theme.kb-theme .kb-l{left:7px;opacity:0}
+:root button.kb-theme.kb-theme .kb-r{right:7px;opacity:1}
+/* つまみ */
+:root button.kb-theme.kb-theme .kb-knob{position:absolute;top:2px;left:2px;width:24px;height:24px;border-radius:50%;background:var(--kb-knob);
+color:var(--kb-ico);box-shadow:0 1px 3px rgba(0,0,0,.25),0 0 0 .5px rgba(0,0,0,.06);transform:translateX(0);
+transition:transform .32s cubic-bezier(.3,1.35,.5,1),background .3s,color .3s}
+:root button.kb-theme.kb-theme:active .kb-knob{width:28px}
+:root button.kb-theme.kb-theme .kb-knob svg{position:absolute;inset:0;margin:auto;width:15px;height:15px;transition:opacity .25s,transform .35s}
+:root button.kb-theme.kb-theme .kb-knob .kb-sun{opacity:1;transform:none}
+:root button.kb-theme.kb-theme .kb-knob .kb-moon{opacity:0;transform:rotate(-90deg) scale(.4)}
+/* ダーク表示中：つまみを右へ */
+@media (prefers-color-scheme:dark){
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-knob{transform:translateX(24px)}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme:active .kb-knob{transform:translateX(20px)}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-knob .kb-sun{opacity:0;transform:rotate(90deg) scale(.4)}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-knob .kb-moon{opacity:1;transform:none}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-l{opacity:1}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-r{opacity:0}}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-knob{transform:translateX(24px)}
+:root[data-theme="dark"] button.kb-theme.kb-theme:active .kb-knob{transform:translateX(20px)}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-knob .kb-sun{opacity:0;transform:rotate(90deg) scale(.4)}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-knob .kb-moon{opacity:1;transform:none}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-l{opacity:1}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-r{opacity:0}
+@media (prefers-reduced-motion:reduce){:root button.kb-theme.kb-theme *{transition:none!important}}
+/* 全ページ共通の置き場所：ページ右上の角 */
+:root button.kb-theme.kb-theme.kb-corner{position:absolute;top:12px;right:16px;z-index:60;margin:0;float:none}
+@media (max-width:700px){:root button.kb-theme.kb-theme.kb-corner{top:10px;right:12px}}
+/* 右上のスイッチの下に見えない「よけ」を置き、見出しの文字やボタンがスイッチと重ならないようにする */
+.kb-spacer{float:right;width:84px;height:46px;pointer-events:none}
+@media (max-width:700px){.kb-spacer{width:76px;height:44px}}
+html.kb-embed .kb-spacer{display:none}
+html.kb-embed button.kb-theme[data-kb]{display:none}
+
+</style><!--/kb-theme-->
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Borr Drilling Limited（BORR）業績ダッシュボード</title>
+<link rel="stylesheet" href="assets/style.css">
+<!--site-icon:v3--><link rel="icon" type="image/svg+xml" href="/us-charts/icon-black.svg?v=3" media="(prefers-color-scheme: light)"><link rel="icon" type="image/svg+xml" href="/us-charts/icon-white.svg?v=3" media="(prefers-color-scheme: dark)"><link rel="apple-touch-icon" href="/us-charts/apple-touch-icon.png?v=3"><!--/site-icon--><!--mobile-fix:v1--><style id="mobile-fix">
+.mf-spacer{display:none}
+html.mf-sa .mf-spacer{display:block;height:calc(env(safe-area-inset-bottom,0px) + 110px)}
+html.mf-sa .detail .inner{padding-bottom:calc(env(safe-area-inset-bottom,0px) + 140px)}
+</style><script>(function(){try{if(window.top!==window.self)return;
+var sa=navigator.standalone===true||matchMedia('(display-mode: standalone)').matches;
+var touch=matchMedia('(pointer: coarse)').matches;
+if(sa||touch)document.documentElement.classList.add('mf-sa');}catch(e){}})();</script><!--/mobile-fix--><!--pc-wide:v1--><style id="pc-wide">@media (min-width:1280px){body>.wrap,body>main,body>div.wrap{max-width:1680px!important}}</style><!--/pc-wide--></head>
+<body><!--kb-btn--><button class="kb-theme kb-corner" id="kbTheme" type="button" data-kb="reload" aria-label="明暗を切り替え（ライト／ダーク）" title="明暗を切り替え（ライト／ダーク）"><span class="kb-trk kb-l"><svg class="kb-sun" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="12" cy="12" r="4.3"/><path d="M12 2.2v2.3M12 19.5v2.3M2.2 12h2.3M19.5 12h2.3M5.1 5.1l1.6 1.6M17.3 17.3l1.6 1.6M5.1 18.9l1.6-1.6M17.3 6.7l1.6-1.6"/></svg></span><span class="kb-trk kb-r"><svg class="kb-moon" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M20.2 14.6A8.4 8.4 0 0 1 9.4 3.8a.6.6 0 0 0-.8-.7A9.2 9.2 0 1 0 20.9 15.4a.6.6 0 0 0-.7-.8z"/></svg></span><span class="kb-knob"><svg class="kb-sun" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="12" cy="12" r="4.3"/><path d="M12 2.2v2.3M12 19.5v2.3M2.2 12h2.3M19.5 12h2.3M5.1 5.1l1.6 1.6M17.3 17.3l1.6 1.6M5.1 18.9l1.6-1.6M17.3 6.7l1.6-1.6"/></svg><svg class="kb-moon" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M20.2 14.6A8.4 8.4 0 0 1 9.4 3.8a.6.6 0 0 0-.8-.7A9.2 9.2 0 1 0 20.9 15.4a.6.6 0 0 0-.7-.8z"/></svg></span></button><div class="kb-spacer" aria-hidden="true"></div><!--/kb-btn-->
+<div class="wrap">
+  <header class="mast">
+    <div class="eyebrow"><a href="../fundamentals.html" style="color:inherit">← 東証スクリーニング</a></div>
+    <h1>Borr Drilling Limited<span class="code">BORR</span></h1>
+    <div class="slip" id="slip"></div>
+    <p class="biz">浅海の海洋石油掘削のボル・ドリリング。</p><p class="site"><a href="https://borrdrilling.com" target="_blank" rel="noopener noreferrer"><b>公式サイト ↗</b><span>borrdrilling.com</span></a></p>
+  </header>
+
+  <section class="cards" id="cards" aria-label="判定サマリー"></section>
+
+  <section class="grid">
+    <div class="panel" id="p-annual"></div>
+    <div class="panel" id="p-cf"></div>
+    <div class="panel" id="p-q"></div>
+    <div class="panel" id="p-div"></div>
+    <div class="panel full" id="p-bs"></div>
+    <div class="panel full" id="p-holders"></div>
+  </section>
+
+  <details class="more">
+    <summary>通期の数値をすべて見る</summary>
+    <div class="inner" id="t-annual"></div>
+  </details>
+  <details class="more">
+    <summary>判定の基準と注記</summary>
+    <div class="inner foot"><ol>
+      <li>直近の通期決算を、同じ業種の中央値と比べて判定しています。▲＝良い側　●＝並み　▼＝注意。</li>
+      <li>成長性：売上高の年平均成長率が5%以上で増収。利益が初年度を下回ると増収減益。</li>
+      <li>収益性：営業利益率が業種中央値の1.2倍以上で高い、0.6倍未満で低い。</li>
+      <li>財務安全性：自己資本比率が50%以上か業種の1.3倍以上で厚い、20%未満で薄め（業種並みなら標準）。</li>
+      <li>資本効率：ROE 10%以上で高い、5%未満で低い。</li>
+      <li>割安度：PERとPBRがともに業種中央値を下回ると割安、ともに上回ると割高。</li>
+      <li>売上総利益・粗利率は売上原価データがある期のみ表示し、データの無い系列・列は出しません。</li>
+      <li>グラフ：通期・配当の右端の薄い棒は会社予想（J-Quants 決算短信サマリーの最新値）。折れ線は右軸（%）。</li>
+      <li>経常利益は J-Quants の決算短信サマリーから取得（日本基準のみ。取得範囲は直近約2年）。IFRS・米国基準は税引前利益で表示します。</li>
+      <li>貸借対照表は年次決算（10-K）の連結貸借対照表を Yahoo Finance から取得し、区分にまとめたもの。外国企業は最新の為替でドルに換算しています。</li>
+      <li>株主構成は 13F（運用資産1億ドル超の機関投資家が四半期ごとに出す保有報告）の上位10社を、発行済株式数に対する割合で描画（Yahoo Finance 経由）。その他は上位10社以外の合計です。</li>
+      <li>四半期決算は累計値の差分から単独四半期を算出。フリーCFは営業CF＋投資CF。配当性向は一株配当÷EPS。</li>
+      <li>出所：~/株分析 の fundamentals/（通期）。株価・時価総額は取得日時点。生成 2026-11-20</li>
+    </ol></div>
+  </details>
+</div>
+<script src="assets/app.js"></script>
+<script>renderCompany({"code":"BORR","name":"Borr Drilling Limited","market":"NYSE","sector":"エネルギー","quote":{"price":3.27,"priceDate":"2026-11-19","mcap":1011.289,"per":22.47,"pbr":0.83,"psr":0.99,"yld":0.0046,"asof":"2026-11-20"},"annual":[{"fy":"22/12期","fyEnd":"2022-12-31","y":2022,"rev":443.8,"gp":327.3,"op":25.6,"pbt":-274.4,"ni":-292.8,"ta":3001.7,"se":897.8,"eq":0.2991,"cr":0.4693,"ocf":62.5,"icf":-82.6,"fcf":92.6,"freecf":-20.8,"ibd":1637.5,"cash":108.0,"ebitda":-32.5,"eps":-1.64,"bps":3.92,"dps":0.0,"opm":0.05768364127985579,"nim":-0.6597566471383506,"gpm":0.7374943668319063,"roe":-0.3261305413232346,"roa":-0.09754472465602826,"odp":-274.4,"payout":null,"frcf":-20.099999999999994},{"fy":"23/12期","fyEnd":"2023-12-31","y":2023,"rev":771.6,"gp":654.2,"op":249.8,"pbt":56.1,"ni":22.1,"ta":3080.1,"se":984.0,"eq":0.3195,"cr":1.1373,"ocf":-50.7,"icf":-104.2,"fcf":139.0,"freecf":-164.7,"ibd":1702.2,"cash":102.5,"ebitda":331.9,"eps":0.09,"bps":3.9,"dps":0.0,"opm":0.3237428719543805,"nim":0.02864178330741317,"gpm":0.8478486262312079,"roe":0.022459349593495936,"roa":0.007175091717801371,"odp":56.1,"payout":0.0,"frcf":-154.9},{"fy":"24/12期","fyEnd":"2024-12-31","y":2024,"rev":1010.6,"gp":879.4,"op":373.8,"pbt":140.3,"ni":82.1,"ta":3419.6,"se":993.3,"eq":0.2905,"cr":1.2612,"ocf":77.3,"icf":-409.4,"fcf":292.0,"freecf":-332.1,"ibd":2110.6,"cash":61.6,"ebitda":473.0,"eps":0.33,"bps":4.06,"dps":0.3115,"opm":0.36987927963585987,"nim":0.08123886799920839,"gpm":0.8701761329903027,"roe":0.08265378032819894,"roa":0.024008655983155925,"odp":140.3,"payout":0.9439393939393939,"frcf":-332.09999999999997},{"fy":"25/12期","fyEnd":"2025-12-31","y":2025,"rev":1020.8,"gp":872.8,"op":321.8,"pbt":85.9,"ni":45.0,"ta":3625.6,"se":1222.6,"eq":0.3372,"cr":2.191,"ocf":251.9,"icf":-124.5,"fcf":190.8,"freecf":127.4,"ibd":2150.3,"cash":379.7,"ebitda":451.6,"eps":0.17,"bps":3.98,"dps":0.0153,"opm":0.315242946708464,"nim":0.04408307210031348,"gpm":0.8550156739811913,"roe":0.036806805169311306,"roa":0.012411738746690203,"odp":85.9,"payout":0.09,"frcf":127.4}],"peer":{"n":221,"opm":0.12166066060460946,"nim":0.05969508337920461,"eq":0.4805,"roe":0.0625,"gpm":0.2869990807681797,"per":18.095,"pbr":1.57,"yld":0.013300000000000001},"fc":null,"quarters":[{"fy":"25/06","fyEnd":"2025-06-30","perEnd":"2025-06-30","perSt":null,"rev":267.7,"op":96.5,"odp":39.9,"ni":35.1,"opm":0.36047814717967874},{"fy":"25/09","fyEnd":"2025-09-30","perEnd":"2025-09-30","perSt":null,"rev":277.1,"op":98.2,"odp":39.1,"ni":27.8,"opm":0.3543846986647419},{"fy":"25/12","fyEnd":"2025-12-31","perEnd":"2025-12-31","perSt":null,"rev":259.4,"op":67.3,"odp":11.2,"ni":-1.0,"opm":0.2594448727833462},{"fy":"26/03","fyEnd":"2026-03-31","perEnd":"2026-03-31","perSt":null,"rev":247.0,"op":46.0,"odp":-17.9,"ni":-29.0,"opm":0.1862348178137652},{"fy":"26/06","fyEnd":"2026-06-30","perEnd":"2026-06-30","perSt":null,"rev":232.3,"op":0.2,"odp":-230.5,"ni":-241.4,"opm":0.0008609556607834697}],"odpName":"税引前利益","holders":{"asof":"2026-09-30","filed":"2026-09-30","issued":309262741.0,"treasury":0,"holders":[["Blackrock Inc.",14686129,0.0466],["Shaw D.E. & Co., Inc.",7248907,0.023],["Sona Asset Management (US) LLC",6050000,0.0192],["UBS Group AG",5787548,0.0183],["Goldman Sachs Group Inc",5465185,0.0173],["Dimensional Fund Advisors LP",5222660,0.0166],["State Street Corporation",4352212,0.0138],["Geode Capital Management, LLC",3156376,0.01],["Capital International Investors",2975334,0.009399999999999999],["Barclays Plc",2933413,0.009300000000000001]]},"bs":[{"fy":"22/12","fyEnd":"2022-12-31","std":"US","ta":3001.7,"tl":2103.9,"na":897.8,"noCA":false,"cash":108.0,"recv":43.0,"inv":null,"oca":198.9,"ppe":2598.2,"onca":53.6,"pay":47.7,"ocl":697.9,"ncl":1358.3,"eq":897.8,"oeq":0.0},{"fy":"23/12","fyEnd":"2023-12-31","std":"US","ta":3080.1,"tl":2096.1,"na":984.0,"noCA":false,"cash":102.5,"recv":56.2,"inv":null,"oca":251.2,"ppe":2588.3,"onca":81.9,"pay":35.5,"ocl":324.9,"ncl":1735.7,"eq":984.0,"oeq":0.0},{"fy":"24/12","fyEnd":"2024-12-31","std":"US","ta":3419.6,"tl":2426.3,"na":993.3,"noCA":false,"cash":61.6,"recv":184.3,"inv":2.5,"oca":268.2,"ppe":2826.0,"onca":77.0,"pay":81.6,"ocl":328.0,"ncl":2016.7,"eq":993.3,"oeq":0.0},{"fy":"25/12","fyEnd":"2025-12-31","std":"US","ta":3625.6,"tl":2403.0,"na":1222.6,"noCA":false,"cash":379.7,"recv":191.8,"inv":2.1,"oca":194.8,"ppe":2780.7,"onca":76.5,"pay":33.8,"ocl":316.9,"ncl":2052.3,"eq":1222.6,"oeq":0.0}]});</script>
+<!--kb-theme-js--><script>(function(){var bs=document.querySelectorAll('button.kb-theme[data-kb]');
+for(var i=0;i<bs.length;i++)bs[i].addEventListener('click',function(){var b=this,d=document.documentElement,
+cur=d.getAttribute('data-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'),n=cur==='dark'?'light':'dark';
+d.setAttribute('data-theme',n);try{localStorage.setItem('fdb-theme',n)}catch(e){}
+var f=document.querySelectorAll('iframe');for(var j=0;j<f.length;j++){try{f[j].contentWindow.postMessage({chartTheme:n},'*')}catch(e){}}
+var k=b.getAttribute('data-kb');
+if(k==='reload')location.reload();
+else if(k==='msg')window.postMessage({chartTheme:n},'*');
+else if(k==='fn'&&typeof window.__kbRedraw==='function')window.__kbRedraw();});})();</script><!--/kb-theme-js--><!--mobile-fix-spacer--><div class="mf-spacer" aria-hidden="true"></div><!--/mobile-fix-spacer--></body>
+</html>

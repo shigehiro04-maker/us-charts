@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8"><!--kb-theme:v3--><script>(function(){var d=document.documentElement,
+m=/[?&#]theme=(dark|light)/.exec(location.search+location.hash),t=m&&m[1];
+if(!t){try{t=localStorage.getItem('fdb-theme')}catch(e){}}
+if(t==='dark'||t==='light')d.setAttribute('data-theme',t);
+try{if(window.top!==window.self)d.classList.add('kb-embed')}catch(e){d.classList.add('kb-embed')}})();</script>
+<style id="kb-theme">
+:root{--kb-fg:#1f1f1e;--kb-line:#d6d5ce;--kb-hover:rgba(0,0,0,.05)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--kb-fg:#ecebe6;--kb-line:#3b3b38;--kb-hover:rgba(255,255,255,.08)}}
+:root[data-theme="dark"]{--kb-fg:#ecebe6;--kb-line:#3b3b38;--kb-hover:rgba(255,255,255,.08)}
+/* スイッチ本体（トラック） */
+:root{--kb-trk:#e8e7e1;--kb-knob:#fff;--kb-ico:#d08a00;--kb-dim:#a9a79f}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--kb-trk:#2b2b29;--kb-knob:#45453f;--kb-ico:#f3d36a;--kb-dim:#6f6e68}}
+:root[data-theme="dark"]{--kb-trk:#2b2b29;--kb-knob:#45453f;--kb-ico:#f3d36a;--kb-dim:#6f6e68}
+:root button.kb-theme.kb-theme{-webkit-appearance:none;appearance:none;position:relative;display:inline-block;box-sizing:border-box;
+width:54px;height:30px;min-width:54px;min-height:0;padding:0;border:1px solid var(--kb-line);border-radius:15px;background:var(--kb-trk);
+color:var(--kb-fg);font-size:0;line-height:0;cursor:pointer;box-shadow:inset 0 1px 2px rgba(0,0,0,.08);vertical-align:middle;flex-shrink:0;
+overflow:hidden;-webkit-tap-highlight-color:transparent;transition:background .3s,border-color .3s}
+:root button.kb-theme.kb-theme:focus-visible{outline:2px solid #2a78d6;outline-offset:2px}
+:root button.kb-theme.kb-theme svg{display:block;width:100%;height:100%}
+/* 両端の小さなアイコン（つまみが無い側だけ見える） */
+:root button.kb-theme.kb-theme .kb-trk{position:absolute;top:50%;width:13px;height:13px;margin-top:-6.5px;color:var(--kb-dim);transition:opacity .3s}
+:root button.kb-theme.kb-theme .kb-l{left:7px;opacity:0}
+:root button.kb-theme.kb-theme .kb-r{right:7px;opacity:1}
+/* つまみ */
+:root button.kb-theme.kb-theme .kb-knob{position:absolute;top:2px;left:2px;width:24px;height:24px;border-radius:50%;background:var(--kb-knob);
+color:var(--kb-ico);box-shadow:0 1px 3px rgba(0,0,0,.25),0 0 0 .5px rgba(0,0,0,.06);transform:translateX(0);
+transition:transform .32s cubic-bezier(.3,1.35,.5,1),background .3s,color .3s}
+:root button.kb-theme.kb-theme:active .kb-knob{width:28px}
+:root button.kb-theme.kb-theme .kb-knob svg{position:absolute;inset:0;margin:auto;width:15px;height:15px;transition:opacity .25s,transform .35s}
+:root button.kb-theme.kb-theme .kb-knob .kb-sun{opacity:1;transform:none}
+:root button.kb-theme.kb-theme .kb-knob .kb-moon{opacity:0;transform:rotate(-90deg) scale(.4)}
+/* ダーク表示中：つまみを右へ */
+@media (prefers-color-scheme:dark){
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-knob{transform:translateX(24px)}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme:active .kb-knob{transform:translateX(20px)}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-knob .kb-sun{opacity:0;transform:rotate(90deg) scale(.4)}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-knob .kb-moon{opacity:1;transform:none}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-l{opacity:1}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-r{opacity:0}}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-knob{transform:translateX(24px)}
+:root[data-theme="dark"] button.kb-theme.kb-theme:active .kb-knob{transform:translateX(20px)}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-knob .kb-sun{opacity:0;transform:rotate(90deg) scale(.4)}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-knob .kb-moon{opacity:1;transform:none}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-l{opacity:1}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-r{opacity:0}
+@media (prefers-reduced-motion:reduce){:root button.kb-theme.kb-theme *{transition:none!important}}
+/* 全ページ共通の置き場所：ページ右上の角 */
+:root button.kb-theme.kb-theme.kb-corner{position:absolute;top:12px;right:16px;z-index:60;margin:0;float:none}
+@media (max-width:700px){:root button.kb-theme.kb-theme.kb-corner{top:10px;right:12px}}
+/* 右上のスイッチの下に見えない「よけ」を置き、見出しの文字やボタンがスイッチと重ならないようにする */
+.kb-spacer{float:right;width:84px;height:46px;pointer-events:none}
+@media (max-width:700px){.kb-spacer{width:76px;height:44px}}
+html.kb-embed .kb-spacer{display:none}
+html.kb-embed button.kb-theme[data-kb]{display:none}
+
+</style><!--/kb-theme-->
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>British American Tobacco  Industries, p.l.c.（BTI）業績ダッシュボード</title>
+<link rel="stylesheet" href="assets/style.css">
+<!--site-icon:v3--><link rel="icon" type="image/svg+xml" href="/us-charts/icon-black.svg?v=3" media="(prefers-color-scheme: light)"><link rel="icon" type="image/svg+xml" href="/us-charts/icon-white.svg?v=3" media="(prefers-color-scheme: dark)"><link rel="apple-touch-icon" href="/us-charts/apple-touch-icon.png?v=3"><!--/site-icon--><!--mobile-fix:v1--><style id="mobile-fix">
+.mf-spacer{display:none}
+html.mf-sa .mf-spacer{display:block;height:calc(env(safe-area-inset-bottom,0px) + 110px)}
+html.mf-sa .detail .inner{padding-bottom:calc(env(safe-area-inset-bottom,0px) + 140px)}
+</style><script>(function(){try{if(window.top!==window.self)return;
+var sa=navigator.standalone===true||matchMedia('(display-mode: standalone)').matches;
+var touch=matchMedia('(pointer: coarse)').matches;
+if(sa||touch)document.documentElement.classList.add('mf-sa');}catch(e){}})();</script><!--/mobile-fix--><!--pc-wide:v1--><style id="pc-wide">@media (min-width:1280px){body>.wrap,body>main,body>div.wrap{max-width:1680px!important}}</style><!--/pc-wide--></head>
+<body><!--kb-btn--><button class="kb-theme kb-corner" id="kbTheme" type="button" data-kb="reload" aria-label="明暗を切り替え（ライト／ダーク）" title="明暗を切り替え（ライト／ダーク）"><span class="kb-trk kb-l"><svg class="kb-sun" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="12" cy="12" r="4.3"/><path d="M12 2.2v2.3M12 19.5v2.3M2.2 12h2.3M19.5 12h2.3M5.1 5.1l1.6 1.6M17.3 17.3l1.6 1.6M5.1 18.9l1.6-1.6M17.3 6.7l1.6-1.6"/></svg></span><span class="kb-trk kb-r"><svg class="kb-moon" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M20.2 14.6A8.4 8.4 0 0 1 9.4 3.8a.6.6 0 0 0-.8-.7A9.2 9.2 0 1 0 20.9 15.4a.6.6 0 0 0-.7-.8z"/></svg></span><span class="kb-knob"><svg class="kb-sun" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="12" cy="12" r="4.3"/><path d="M12 2.2v2.3M12 19.5v2.3M2.2 12h2.3M19.5 12h2.3M5.1 5.1l1.6 1.6M17.3 17.3l1.6 1.6M5.1 18.9l1.6-1.6M17.3 6.7l1.6-1.6"/></svg><svg class="kb-moon" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M20.2 14.6A8.4 8.4 0 0 1 9.4 3.8a.6.6 0 0 0-.8-.7A9.2 9.2 0 1 0 20.9 15.4a.6.6 0 0 0-.7-.8z"/></svg></span></button><div class="kb-spacer" aria-hidden="true"></div><!--/kb-btn-->
+<div class="wrap">
+  <header class="mast">
+    <div class="eyebrow"><a href="../fundamentals.html" style="color:inherit">← 東証スクリーニング</a></div>
+    <h1>British American Tobacco  Industries, p.l.c.<span class="code">BTI</span></h1>
+    <div class="slip" id="slip"></div>
+    <p class="biz">英国のたばこ大手ブリティッシュ・アメリカン・タバコ。紙巻きたばこと加熱式・電子たばこ。</p><p class="site"><a href="https://www.bat.com" target="_blank" rel="noopener noreferrer"><b>公式サイト ↗</b><span>www.bat.com</span></a></p>
+  </header>
+
+  <section class="cards" id="cards" aria-label="判定サマリー"></section>
+
+  <section class="grid">
+    <div class="panel" id="p-annual"></div>
+    <div class="panel" id="p-cf"></div>
+    <div class="panel" id="p-q"></div>
+    <div class="panel" id="p-div"></div>
+    <div class="panel full" id="p-bs"></div>
+    <div class="panel full" id="p-holders"></div>
+  </section>
+
+  <details class="more">
+    <summary>通期の数値をすべて見る</summary>
+    <div class="inner" id="t-annual"></div>
+  </details>
+  <details class="more">
+    <summary>判定の基準と注記</summary>
+    <div class="inner foot"><ol>
+      <li>直近の通期決算を、同じ業種の中央値と比べて判定しています。▲＝良い側　●＝並み　▼＝注意。</li>
+      <li>成長性：売上高の年平均成長率が5%以上で増収。利益が初年度を下回ると増収減益。</li>
+      <li>収益性：営業利益率が業種中央値の1.2倍以上で高い、0.6倍未満で低い。</li>
+      <li>財務安全性：自己資本比率が50%以上か業種の1.3倍以上で厚い、20%未満で薄め（業種並みなら標準）。</li>
+      <li>資本効率：ROE 10%以上で高い、5%未満で低い。</li>
+      <li>割安度：PERとPBRがともに業種中央値を下回ると割安、ともに上回ると割高。</li>
+      <li>売上総利益・粗利率は売上原価データがある期のみ表示し、データの無い系列・列は出しません。</li>
+      <li>グラフ：通期・配当の右端の薄い棒は会社予想（J-Quants 決算短信サマリーの最新値）。折れ線は右軸（%）。</li>
+      <li>経常利益は J-Quants の決算短信サマリーから取得（日本基準のみ。取得範囲は直近約2年）。IFRS・米国基準は税引前利益で表示します。</li>
+      <li>貸借対照表は年次決算（10-K）の連結貸借対照表を Yahoo Finance から取得し、区分にまとめたもの。外国企業は最新の為替でドルに換算しています。</li>
+      <li>株主構成は 13F（運用資産1億ドル超の機関投資家が四半期ごとに出す保有報告）の上位10社を、発行済株式数に対する割合で描画（Yahoo Finance 経由）。その他は上位10社以外の合計です。</li>
+      <li>四半期決算は累計値の差分から単独四半期を算出。フリーCFは営業CF＋投資CF。配当性向は一株配当÷EPS。</li>
+      <li>出所：~/株分析 の fundamentals/（通期）。株価・時価総額は取得日時点。生成 2026-11-20</li>
+    </ol></div>
+  </details>
+</div>
+<script src="assets/app.js"></script>
+<script>renderCompany({"code":"BTI","name":"British American Tobacco  Industries, p.l.c.","market":"NYSE","sector":"生活必需品","quote":{"price":57.47,"priceDate":"2026-11-19","mcap":123446.075,"per":12.28,"pbr":1.97,"psr":3.68,"yld":0.0555,"asof":"2026-11-20"},"annual":[{"fy":"22/12期","fyEnd":"2022-12-31","y":2022,"rev":36200.96,"gp":30239.681,"op":18691.503,"pbt":12205.306,"ni":8661.788,"ta":200994.85,"se":98658.251,"eq":0.49079999999999996,"cr":0.8631,"ocf":13605.958,"icf":-922.859,"fcf":-11621.483,"freecf":12747.241,"ibd":56469.832,"cash":2997.657,"ebitda":16090.479,"eps":3.8354298337182375,"bps":44.244890231971475,"dps":2.885211910067702,"opm":0.5163261692507602,"nim":0.2392695663319426,"gpm":0.8353281515186338,"roe":0.0877958803465916,"roa":0.04309457680134591,"odp":12205.306,"payout":0.7522525597269625,"frcf":12683.099},{"fy":"23/12期","fyEnd":"2023-12-31","y":2023,"rev":35714.004,"gp":29638.84,"op":-11169.871,"pbt":-22333.197,"ni":-18865.602,"ta":155401.668,"se":68809.967,"eq":0.4428,"cr":0.9051,"ocf":14024.845,"icf":-387.47,"fcf":-12192.216,"freecf":13238.124,"ibd":52007.381,"cash":3879.937,"ebitda":11553.414,"eps":-8.469362124285665,"bps":30.853611324484252,"dps":2.9667638823000044,"opm":-0.3127588550418485,"nim":-0.5282410227651876,"gpm":0.8298940662043942,"roe":-0.2741696126667231,"roa":-0.1213989672234406,"odp":-22333.197,"payout":null,"frcf":13637.375},{"fy":"24/12期","fyEnd":"2024-12-31","y":2024,"rev":33860.431,"gp":28053.617,"op":13918.814,"pbt":4631.314,"ni":3961.096,"ta":155641.219,"se":64983.701,"eq":0.4175,"cr":0.7626000000000001,"ocf":13253.832,"icf":1799.903,"fcf":-13917.505,"freecf":12457.947,"ibd":48368.305,"cash":4449.36,"ebitda":11024.57,"eps":1.7933579768580157,"bps":29.505320290788077,"dps":3.098320434616961,"opm":0.4110642891698573,"nim":0.11698303544925345,"gpm":0.8285073807831921,"roe":0.06095522321820359,"roa":0.025450173324586975,"odp":4631.314,"payout":1.727664233576642,"frcf":15053.735},{"fy":"25/12期","fyEnd":"2025-12-31","y":2025,"rev":33524.013,"gp":27992.093,"op":15261.869,"pbt":12905.632,"ni":10049.35,"ta":143062.842,"se":62736.113,"eq":0.4385,"cr":0.8733,"ocf":8301.808,"icf":1815.611,"fcf":-11469.637,"freecf":7380.257,"ibd":45907.346,"cash":4592.044,"ebitda":18399.591,"eps":4.594661677935499,"bps":28.8639002844666,"dps":3.1548701168069364,"opm":0.4552518518591435,"nim":0.29976572315492184,"gpm":0.8349863424763617,"roe":0.16018445388862393,"roa":0.07024430564576649,"odp":12905.632,"payout":0.6866381766381766,"frcf":10117.419000000002}],"peer":{"n":236,"opm":0.04937533105231361,"nim":0.017292623328025402,"eq":0.4005,"roe":0.07931602684704654,"gpm":0.3358794270398747,"per":19.28,"pbr":1.8,"yld":0.0},"fc":null,"quarters":[],"odpName":"税引前利益","holders":{"asof":"2026-09-30","filed":"2026-09-30","issued":2148008956.0,"treasury":0,"holders":[["Capital International Investors",49134401,0.022799999999999997],["FMR, LLC",46959107,0.0218],["Capital Research Global Investors",30330845,0.0141],["GQG Partners LLC",24566708,0.011399999999999999],["Blackrock Inc.",20161366,0.009399999999999999],["Bank of America Corporation",10534980,0.0049],["Capital World Investors",9737992,0.0045000000000000005],["Morgan Stanley",7707052,0.0036],["Orbis Allan Gray Ltd",7385374,0.0034000000000000002],["JPMORGAN CHASE & CO",5390955,0.0025]]},"bs":[{"fy":"22/12","fyEnd":"2022-12-31","std":"US","ta":200994.85,"tl":101888.913,"na":99105.936,"noCA":false,"cash":2997.657,"recv":5716.492,"inv":7423.455,"oca":4033.092,"ppe":6371.002,"onca":174453.152,"pay":13677.954,"ocl":9691.988,"ncl":78518.971,"eq":98658.251,"oeq":447.685},{"fy":"23/12","fyEnd":"2023-12-31","std":"US","ta":155401.668,"tl":86109.981,"na":69291.687,"noCA":false,"cash":3879.937,"recv":4739.963,"inv":6463.943,"oca":3485.921,"ppe":5999.241,"onca":130832.663,"pay":12697.498,"ocl":7818.779,"ncl":65593.704,"eq":68809.967,"oeq":481.72},{"fy":"24/12","fyEnd":"2024-12-31","std":"US","ta":155641.219,"tl":90196.743,"na":65444.476,"noCA":false,"cash":4449.36,"recv":4717.71,"inv":6042.438,"oca":3501.63,"ppe":5732.2,"onca":131197.881,"pay":12501.145,"ocl":12033.825,"ncl":65661.773,"eq":64983.701,"oeq":460.775},{"fy":"25/12","fyEnd":"2025-12-31","std":"US","ta":143062.842,"tl":80040.054,"na":63022.788,"noCA":false,"cash":4592.044,"recv":4976.896,"inv":5736.127,"oca":1298.548,"ppe":5868.339,"onca":120590.888,"pay":12210.542,"ocl":6801.671,"ncl":61027.841,"eq":62736.113,"oeq":286.675}]});</script>
+<!--kb-theme-js--><script>(function(){var bs=document.querySelectorAll('button.kb-theme[data-kb]');
+for(var i=0;i<bs.length;i++)bs[i].addEventListener('click',function(){var b=this,d=document.documentElement,
+cur=d.getAttribute('data-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'),n=cur==='dark'?'light':'dark';
+d.setAttribute('data-theme',n);try{localStorage.setItem('fdb-theme',n)}catch(e){}
+var f=document.querySelectorAll('iframe');for(var j=0;j<f.length;j++){try{f[j].contentWindow.postMessage({chartTheme:n},'*')}catch(e){}}
+var k=b.getAttribute('data-kb');
+if(k==='reload')location.reload();
+else if(k==='msg')window.postMessage({chartTheme:n},'*');
+else if(k==='fn'&&typeof window.__kbRedraw==='function')window.__kbRedraw();});})();</script><!--/kb-theme-js--><!--mobile-fix-spacer--><div class="mf-spacer" aria-hidden="true"></div><!--/mobile-fix-spacer--></body>
+</html>

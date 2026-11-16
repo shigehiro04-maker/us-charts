@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><!--kb-theme:v3--><script>(function(){var d=document.documentElement,
+m=/[?&#]theme=(dark|light)/.exec(location.search+location.hash),t=m&&m[1];
+if(!t){try{t=localStorage.getItem('fdb-theme')}catch(e){}}
+if(t==='dark'||t==='light')d.setAttribute('data-theme',t);
+try{if(window.top!==window.self)d.classList.add('kb-embed')}catch(e){d.classList.add('kb-embed')}})();</script>
+<style id="kb-theme">
+:root{--kb-fg:#1f1f1e;--kb-line:#d6d5ce;--kb-hover:rgba(0,0,0,.05)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--kb-fg:#ecebe6;--kb-line:#3b3b38;--kb-hover:rgba(255,255,255,.08)}}
+:root[data-theme="dark"]{--kb-fg:#ecebe6;--kb-line:#3b3b38;--kb-hover:rgba(255,255,255,.08)}
+/* スイッチ本体（トラック） */
+:root{--kb-trk:#e8e7e1;--kb-knob:#fff;--kb-ico:#d08a00;--kb-dim:#a9a79f}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--kb-trk:#2b2b29;--kb-knob:#45453f;--kb-ico:#f3d36a;--kb-dim:#6f6e68}}
+:root[data-theme="dark"]{--kb-trk:#2b2b29;--kb-knob:#45453f;--kb-ico:#f3d36a;--kb-dim:#6f6e68}
+:root button.kb-theme.kb-theme{-webkit-appearance:none;appearance:none;position:relative;display:inline-block;box-sizing:border-box;
+width:54px;height:30px;min-width:54px;min-height:0;padding:0;border:1px solid var(--kb-line);border-radius:15px;background:var(--kb-trk);
+color:var(--kb-fg);font-size:0;line-height:0;cursor:pointer;box-shadow:inset 0 1px 2px rgba(0,0,0,.08);vertical-align:middle;flex-shrink:0;
+overflow:hidden;-webkit-tap-highlight-color:transparent;transition:background .3s,border-color .3s}
+:root button.kb-theme.kb-theme:focus-visible{outline:2px solid #2a78d6;outline-offset:2px}
+:root button.kb-theme.kb-theme svg{display:block;width:100%;height:100%}
+/* 両端の小さなアイコン（つまみが無い側だけ見える） */
+:root button.kb-theme.kb-theme .kb-trk{position:absolute;top:50%;width:13px;height:13px;margin-top:-6.5px;color:var(--kb-dim);transition:opacity .3s}
+:root button.kb-theme.kb-theme .kb-l{left:7px;opacity:0}
+:root button.kb-theme.kb-theme .kb-r{right:7px;opacity:1}
+/* つまみ */
+:root button.kb-theme.kb-theme .kb-knob{position:absolute;top:2px;left:2px;width:24px;height:24px;border-radius:50%;background:var(--kb-knob);
+color:var(--kb-ico);box-shadow:0 1px 3px rgba(0,0,0,.25),0 0 0 .5px rgba(0,0,0,.06);transform:translateX(0);
+transition:transform .32s cubic-bezier(.3,1.35,.5,1),background .3s,color .3s}
+:root button.kb-theme.kb-theme:active .kb-knob{width:28px}
+:root button.kb-theme.kb-theme .kb-knob svg{position:absolute;inset:0;margin:auto;width:15px;height:15px;transition:opacity .25s,transform .35s}
+:root button.kb-theme.kb-theme .kb-knob .kb-sun{opacity:1;transform:none}
+:root button.kb-theme.kb-theme .kb-knob .kb-moon{opacity:0;transform:rotate(-90deg) scale(.4)}
+/* ダーク表示中：つまみを右へ */
+@media (prefers-color-scheme:dark){
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-knob{transform:translateX(24px)}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme:active .kb-knob{transform:translateX(20px)}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-knob .kb-sun{opacity:0;transform:rotate(90deg) scale(.4)}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-knob .kb-moon{opacity:1;transform:none}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-l{opacity:1}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-r{opacity:0}}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-knob{transform:translateX(24px)}
+:root[data-theme="dark"] button.kb-theme.kb-theme:active .kb-knob{transform:translateX(20px)}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-knob .kb-sun{opacity:0;transform:rotate(90deg) scale(.4)}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-knob .kb-moon{opacity:1;transform:none}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-l{opacity:1}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-r{opacity:0}
+@media (prefers-reduced-motion:reduce){:root button.kb-theme.kb-theme *{transition:none!important}}
+/* 全ページ共通の置き場所：ページ右上の角 */
+:root button.kb-theme.kb-theme.kb-corner{position:absolute;top:12px;right:16px;z-index:60;margin:0;float:none}
+@media (max-width:700px){:root button.kb-theme.kb-theme.kb-corner{top:10px;right:12px}}
+/* 右上のスイッチの下に見えない「よけ」を置き、見出しの文字やボタンがスイッチと重ならないようにする */
+.kb-spacer{float:right;width:84px;height:46px;pointer-events:none}
+@media (max-width:700px){.kb-spacer{width:76px;height:44px}}
+html.kb-embed .kb-spacer{display:none}
+html.kb-embed button.kb-theme[data-kb]{display:none}
+
+</style><!--/kb-theme-->
+<script>
+/* 親ページから ?theme=dark|light で表示を指定できる。指定が無ければOSの設定に従う。 */
+(function(){try{
+  var m=/[?&#]theme=(dark|light)/.exec(location.search+location.hash);
+  if(m)document.documentElement.setAttribute("data-theme",m[1]);
+}catch(e){}})();
+</script>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ASBH American Savings Bank, N.A. チャート</title>
+<link rel="stylesheet" href="assets/chart.css?v=a08d4ea5"><!--site-icon:v3--><link rel="icon" type="image/svg+xml" href="/us-charts/icon-black.svg?v=3" media="(prefers-color-scheme: light)"><link rel="icon" type="image/svg+xml" href="/us-charts/icon-white.svg?v=3" media="(prefers-color-scheme: dark)"><link rel="apple-touch-icon" href="/us-charts/apple-touch-icon.png?v=3"><!--/site-icon--><!--mobile-fix:v1--><style id="mobile-fix">
+.mf-spacer{display:none}
+html.mf-sa .mf-spacer{display:block;height:calc(env(safe-area-inset-bottom,0px) + 110px)}
+html.mf-sa .detail .inner{padding-bottom:calc(env(safe-area-inset-bottom,0px) + 140px)}
+</style><script>(function(){try{if(window.top!==window.self)return;
+var sa=navigator.standalone===true||matchMedia('(display-mode: standalone)').matches;
+var touch=matchMedia('(pointer: coarse)').matches;
+if(sa||touch)document.documentElement.classList.add('mf-sa');}catch(e){}})();</script><!--/mobile-fix--><!--pc-wide:v1--><style id="pc-wide">@media (min-width:1280px){body>.wrap,body>main,body>div.wrap{max-width:1680px!important}}</style><!--/pc-wide--></head><body><!--kb-btn--><button class="kb-theme kb-corner" id="kbTheme" type="button" data-kb="msg" aria-label="明暗を切り替え（ライト／ダーク）" title="明暗を切り替え（ライト／ダーク）"><span class="kb-trk kb-l"><svg class="kb-sun" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="12" cy="12" r="4.3"/><path d="M12 2.2v2.3M12 19.5v2.3M2.2 12h2.3M19.5 12h2.3M5.1 5.1l1.6 1.6M17.3 17.3l1.6 1.6M5.1 18.9l1.6-1.6M17.3 6.7l1.6-1.6"/></svg></span><span class="kb-trk kb-r"><svg class="kb-moon" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M20.2 14.6A8.4 8.4 0 0 1 9.4 3.8a.6.6 0 0 0-.8-.7A9.2 9.2 0 1 0 20.9 15.4a.6.6 0 0 0-.7-.8z"/></svg></span><span class="kb-knob"><svg class="kb-sun" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="12" cy="12" r="4.3"/><path d="M12 2.2v2.3M12 19.5v2.3M2.2 12h2.3M19.5 12h2.3M5.1 5.1l1.6 1.6M17.3 17.3l1.6 1.6M5.1 18.9l1.6-1.6M17.3 6.7l1.6-1.6"/></svg><svg class="kb-moon" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M20.2 14.6A8.4 8.4 0 0 1 9.4 3.8a.6.6 0 0 0-.8-.7A9.2 9.2 0 1 0 20.9 15.4a.6.6 0 0 0-.7-.8z"/></svg></span></button><div class="kb-spacer" aria-hidden="true"></div><!--/kb-btn--><div class="wrap">
+<h1><a class="back" href="./charts.html" title="一覧へ">‹</a>ASBH American Savings Bank, N.A.<span class="mk">NYSE</span><span class="mk sec">金融</span></h1>
+<div class="price"><b id="last"></b><span class="chg" id="chg"></span><span class="asof" id="asof"></span><a class="dash" href="./one/ASBH.html" target="_top" title="シグナル・チャート・ファンダを1画面で">ダッシュボード ›</a></div>
+<section class="biz" aria-label="会社概要"><p>米国の国法銀行。</p><a href="https://www.asbhawaii.com" target="_blank" rel="noopener noreferrer"><b>公式サイト ↗</b><span>www.asbhawaii.com</span></a></section><div class="st" id="state"></div>
+<div class="bar">
+  <div class="seg" id="periods"></div>
+  <div class="ipick">
+    <button class="ib" data-g="tr" type="button">トレンド系<span class="cnt" id="cTR"></span><small>チャート上</small></button>
+    <button class="ib" data-g="os" type="button">オシレーター系<span class="cnt" id="cOS"></span><small>チャート下</small></button>
+    <button class="ib" data-g="sg" type="button"><span class="sgi"><b class="bu">▲</b><b class="se">▼</b></span>売買サイン<span class="cnt" id="cSG"></span></button>
+  </div>
+</div>
+<div class="ipanel" id="ipanel" hidden>
+  <div class="iph"><b id="iptitle"></b><span id="ipdesc"></span>
+    <button type="button" id="ipreset">既定に戻す</button><button type="button" id="ipnone">すべて外す</button><button type="button" id="ipclose">閉じる</button></div>
+  <div class="sgst" id="sgst" hidden>表示のしかた
+    <div class="seg" id="sgstyle"><button type="button" data-st="label">ラベル（買・売）</button><button type="button" data-st="tri">大きい三角</button></div>
+    <label><input type="checkbox" id="sgvl">サインの足に縦線も引く</label></div>
+  <div class="ics" id="ipchips"></div>
+</div>
+<div class="legend" id="legend"></div>
+<div class="chart"><canvas id="cv"></canvas><div class="vmode" id="vmode"><button type="button" data-m="v">出来高</button><button type="button" data-m="a">売買代金</button></div><div class="xh" id="xhv"></div><div class="xh" id="xhh"></div><div id="tip"></div></div>
+<details class="nt" id="ntbox"><summary>指標の計算方法</summary><p class="note" id="note"></p></details>
+</div>
+<script>
+const CODE = "ASBH";
+const RAW = [["2026-09-16",16.77,17.21,16.32,16.77,1655800],["2026-09-17",17.38,17.76,16.79,17.26,532500],["2026-09-18",17.71,17.76,17.26,17.33,183300],["2026-09-21",17.42,18.24,17.42,18.08,206900],["2026-09-22",18.25,19.0,18.25,18.5,394600],["2026-09-23",18.48,18.93,17.97,18.0,159100],["2026-09-24",18.18,18.3,17.82,18.08,197200],["2026-09-25",17.97,18.69,17.78,18.05,55100],["2026-09-28",17.88,18.13,17.47,17.8,133500],["2026-09-29",17.84,18.33,17.61,18.11,233100],["2026-09-30",18.07,18.17,17.36,17.65,149700],["2026-10-01",17.56,17.91,17.2,17.59,155800],["2026-10-02",17.59,17.95,17.03,17.26,171400],["2026-10-05",17.3,17.75,17.03,17.67,140000],["2026-10-06",17.91,18.39,17.77,17.77,101100],["2026-10-07",17.75,17.81,17.12,17.3,111100],["2026-10-08",17.18,17.51,16.98,16.98,32200],["2026-10-09",17.02,17.9,17.02,17.59,55700],["2026-10-12",17.57,17.91,17.41,17.82,80300],["2026-10-13",17.82,18.05,17.59,17.9,72400],["2026-10-14",17.8,18.15,17.55,17.81,97400],["2026-10-15",17.83,18.0,17.07,17.7,130300],["2026-10-16",17.86,18.54,17.17,17.9,149900],["2026-10-19",17.93,18.01,17.64,17.8,103200],["2026-10-20",17.65,18.59,17.65,18.19,305300],["2026-10-21",18.04,19.24,17.99,18.93,338900],["2026-10-22",19.01,19.71,18.81,19.29,465600],["2026-10-23",19.45,19.57,18.93,19.1,177800],["2026-10-26",19.35,19.35,18.77,18.91,109500],["2026-10-27",19.07,19.24,18.73,18.85,82300],["2026-10-28",18.92,18.92,18.5,18.62,125000],["2026-10-29",18.64,18.68,18.31,18.68,113900],["2026-10-30",18.74,18.74,17.87,18.2,134300],["2026-11-02",18.55,19.7,18.55,19.24,588800],["2026-11-03",19.32,19.4,18.91,19.12,124800],["2026-11-04",19.46,19.78,19.24,19.77,118200],["2026-11-05",19.73,20.13,19.25,19.56,109500],["2026-11-06",19.74,20.17,19.16,19.74,165800],["2026-11-09",19.84,20.77,19.84,20.22,191000],["2026-11-10",20.16,20.4,19.65,20.16,179000],["2026-11-11",20.38,20.38,19.77,20.23,146000],["2026-11-12",20.33,21.39,19.68,20.96,404500],["2026-11-13",21.11,21.79,20.79,21.13,359100],["2026-11-16",21.42,22.51,21.4,21.94,660900],["2026-11-17",21.89,21.96,21.13,21.13,341600],["2026-11-18",20.88,21.37,19.07,20.0,614100],["2026-11-19",19.95,20.79,19.97,20.33,379465]];
+const DATANOTE = "";
+</script>
+<script src="intra/ASBH.js?v=20261119745"></script>
+<script src="assets/chart.js?v=aa49b450"></script><!--kb-theme-js--><script>(function(){var bs=document.querySelectorAll('button.kb-theme[data-kb]');
+for(var i=0;i<bs.length;i++)bs[i].addEventListener('click',function(){var b=this,d=document.documentElement,
+cur=d.getAttribute('data-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'),n=cur==='dark'?'light':'dark';
+d.setAttribute('data-theme',n);try{localStorage.setItem('fdb-theme',n)}catch(e){}
+var f=document.querySelectorAll('iframe');for(var j=0;j<f.length;j++){try{f[j].contentWindow.postMessage({chartTheme:n},'*')}catch(e){}}
+var k=b.getAttribute('data-kb');
+if(k==='reload')location.reload();
+else if(k==='msg')window.postMessage({chartTheme:n},'*');
+else if(k==='fn'&&typeof window.__kbRedraw==='function')window.__kbRedraw();});})();</script><!--/kb-theme-js--><!--mobile-fix-spacer--><div class="mf-spacer" aria-hidden="true"></div><!--/mobile-fix-spacer--></body></html>

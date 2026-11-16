@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8"><!--kb-theme:v3--><script>(function(){var d=document.documentElement,
+m=/[?&#]theme=(dark|light)/.exec(location.search+location.hash),t=m&&m[1];
+if(!t){try{t=localStorage.getItem('fdb-theme')}catch(e){}}
+if(t==='dark'||t==='light')d.setAttribute('data-theme',t);
+try{if(window.top!==window.self)d.classList.add('kb-embed')}catch(e){d.classList.add('kb-embed')}})();</script>
+<style id="kb-theme">
+:root{--kb-fg:#1f1f1e;--kb-line:#d6d5ce;--kb-hover:rgba(0,0,0,.05)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--kb-fg:#ecebe6;--kb-line:#3b3b38;--kb-hover:rgba(255,255,255,.08)}}
+:root[data-theme="dark"]{--kb-fg:#ecebe6;--kb-line:#3b3b38;--kb-hover:rgba(255,255,255,.08)}
+/* スイッチ本体（トラック） */
+:root{--kb-trk:#e8e7e1;--kb-knob:#fff;--kb-ico:#d08a00;--kb-dim:#a9a79f}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--kb-trk:#2b2b29;--kb-knob:#45453f;--kb-ico:#f3d36a;--kb-dim:#6f6e68}}
+:root[data-theme="dark"]{--kb-trk:#2b2b29;--kb-knob:#45453f;--kb-ico:#f3d36a;--kb-dim:#6f6e68}
+:root button.kb-theme.kb-theme{-webkit-appearance:none;appearance:none;position:relative;display:inline-block;box-sizing:border-box;
+width:54px;height:30px;min-width:54px;min-height:0;padding:0;border:1px solid var(--kb-line);border-radius:15px;background:var(--kb-trk);
+color:var(--kb-fg);font-size:0;line-height:0;cursor:pointer;box-shadow:inset 0 1px 2px rgba(0,0,0,.08);vertical-align:middle;flex-shrink:0;
+overflow:hidden;-webkit-tap-highlight-color:transparent;transition:background .3s,border-color .3s}
+:root button.kb-theme.kb-theme:focus-visible{outline:2px solid #2a78d6;outline-offset:2px}
+:root button.kb-theme.kb-theme svg{display:block;width:100%;height:100%}
+/* 両端の小さなアイコン（つまみが無い側だけ見える） */
+:root button.kb-theme.kb-theme .kb-trk{position:absolute;top:50%;width:13px;height:13px;margin-top:-6.5px;color:var(--kb-dim);transition:opacity .3s}
+:root button.kb-theme.kb-theme .kb-l{left:7px;opacity:0}
+:root button.kb-theme.kb-theme .kb-r{right:7px;opacity:1}
+/* つまみ */
+:root button.kb-theme.kb-theme .kb-knob{position:absolute;top:2px;left:2px;width:24px;height:24px;border-radius:50%;background:var(--kb-knob);
+color:var(--kb-ico);box-shadow:0 1px 3px rgba(0,0,0,.25),0 0 0 .5px rgba(0,0,0,.06);transform:translateX(0);
+transition:transform .32s cubic-bezier(.3,1.35,.5,1),background .3s,color .3s}
+:root button.kb-theme.kb-theme:active .kb-knob{width:28px}
+:root button.kb-theme.kb-theme .kb-knob svg{position:absolute;inset:0;margin:auto;width:15px;height:15px;transition:opacity .25s,transform .35s}
+:root button.kb-theme.kb-theme .kb-knob .kb-sun{opacity:1;transform:none}
+:root button.kb-theme.kb-theme .kb-knob .kb-moon{opacity:0;transform:rotate(-90deg) scale(.4)}
+/* ダーク表示中：つまみを右へ */
+@media (prefers-color-scheme:dark){
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-knob{transform:translateX(24px)}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme:active .kb-knob{transform:translateX(20px)}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-knob .kb-sun{opacity:0;transform:rotate(90deg) scale(.4)}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-knob .kb-moon{opacity:1;transform:none}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-l{opacity:1}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-r{opacity:0}}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-knob{transform:translateX(24px)}
+:root[data-theme="dark"] button.kb-theme.kb-theme:active .kb-knob{transform:translateX(20px)}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-knob .kb-sun{opacity:0;transform:rotate(90deg) scale(.4)}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-knob .kb-moon{opacity:1;transform:none}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-l{opacity:1}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-r{opacity:0}
+@media (prefers-reduced-motion:reduce){:root button.kb-theme.kb-theme *{transition:none!important}}
+/* 全ページ共通の置き場所：ページ右上の角 */
+:root button.kb-theme.kb-theme.kb-corner{position:absolute;top:12px;right:16px;z-index:60;margin:0;float:none}
+@media (max-width:700px){:root button.kb-theme.kb-theme.kb-corner{top:10px;right:12px}}
+/* 右上のスイッチの下に見えない「よけ」を置き、見出しの文字やボタンがスイッチと重ならないようにする */
+.kb-spacer{float:right;width:84px;height:46px;pointer-events:none}
+@media (max-width:700px){.kb-spacer{width:76px;height:44px}}
+html.kb-embed .kb-spacer{display:none}
+html.kb-embed button.kb-theme[data-kb]{display:none}
+
+</style><!--/kb-theme-->
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Zedge, Inc.（ZDGE）業績ダッシュボード</title>
+<link rel="stylesheet" href="assets/style.css">
+<!--site-icon:v3--><link rel="icon" type="image/svg+xml" href="/us-charts/icon-black.svg?v=3" media="(prefers-color-scheme: light)"><link rel="icon" type="image/svg+xml" href="/us-charts/icon-white.svg?v=3" media="(prefers-color-scheme: dark)"><link rel="apple-touch-icon" href="/us-charts/apple-touch-icon.png?v=3"><!--/site-icon--><!--mobile-fix:v1--><style id="mobile-fix">
+.mf-spacer{display:none}
+html.mf-sa .mf-spacer{display:block;height:calc(env(safe-area-inset-bottom,0px) + 110px)}
+html.mf-sa .detail .inner{padding-bottom:calc(env(safe-area-inset-bottom,0px) + 140px)}
+</style><script>(function(){try{if(window.top!==window.self)return;
+var sa=navigator.standalone===true||matchMedia('(display-mode: standalone)').matches;
+var touch=matchMedia('(pointer: coarse)').matches;
+if(sa||touch)document.documentElement.classList.add('mf-sa');}catch(e){}})();</script><!--/mobile-fix--><!--pc-wide:v1--><style id="pc-wide">@media (min-width:1280px){body>.wrap,body>main,body>div.wrap{max-width:1680px!important}}</style><!--/pc-wide--></head>
+<body><!--kb-btn--><button class="kb-theme kb-corner" id="kbTheme" type="button" data-kb="reload" aria-label="明暗を切り替え（ライト／ダーク）" title="明暗を切り替え（ライト／ダーク）"><span class="kb-trk kb-l"><svg class="kb-sun" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="12" cy="12" r="4.3"/><path d="M12 2.2v2.3M12 19.5v2.3M2.2 12h2.3M19.5 12h2.3M5.1 5.1l1.6 1.6M17.3 17.3l1.6 1.6M5.1 18.9l1.6-1.6M17.3 6.7l1.6-1.6"/></svg></span><span class="kb-trk kb-r"><svg class="kb-moon" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M20.2 14.6A8.4 8.4 0 0 1 9.4 3.8a.6.6 0 0 0-.8-.7A9.2 9.2 0 1 0 20.9 15.4a.6.6 0 0 0-.7-.8z"/></svg></span><span class="kb-knob"><svg class="kb-sun" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="12" cy="12" r="4.3"/><path d="M12 2.2v2.3M12 19.5v2.3M2.2 12h2.3M19.5 12h2.3M5.1 5.1l1.6 1.6M17.3 17.3l1.6 1.6M5.1 18.9l1.6-1.6M17.3 6.7l1.6-1.6"/></svg><svg class="kb-moon" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M20.2 14.6A8.4 8.4 0 0 1 9.4 3.8a.6.6 0 0 0-.8-.7A9.2 9.2 0 1 0 20.9 15.4a.6.6 0 0 0-.7-.8z"/></svg></span></button><div class="kb-spacer" aria-hidden="true"></div><!--/kb-btn-->
+<div class="wrap">
+  <header class="mast">
+    <div class="eyebrow"><a href="../fundamentals.html" style="color:inherit">← 東証スクリーニング</a></div>
+    <h1>Zedge, Inc.<span class="code">ZDGE</span></h1>
+    <div class="slip" id="slip"></div>
+    <p class="biz">デジタル市場・ゲームのゼッジ。</p><p class="site"><a href="https://www.zedge.net" target="_blank" rel="noopener noreferrer"><b>公式サイト ↗</b><span>www.zedge.net</span></a></p>
+  </header>
+
+  <section class="cards" id="cards" aria-label="判定サマリー"></section>
+
+  <section class="grid">
+    <div class="panel" id="p-annual"></div>
+    <div class="panel" id="p-cf"></div>
+    <div class="panel" id="p-q"></div>
+    <div class="panel" id="p-div"></div>
+    <div class="panel full" id="p-bs"></div>
+    <div class="panel full" id="p-holders"></div>
+  </section>
+
+  <details class="more">
+    <summary>通期の数値をすべて見る</summary>
+    <div class="inner" id="t-annual"></div>
+  </details>
+  <details class="more">
+    <summary>判定の基準と注記</summary>
+    <div class="inner foot"><ol>
+      <li>直近の通期決算を、同じ業種の中央値と比べて判定しています。▲＝良い側　●＝並み　▼＝注意。</li>
+      <li>成長性：売上高の年平均成長率が5%以上で増収。利益が初年度を下回ると増収減益。</li>
+      <li>収益性：営業利益率が業種中央値の1.2倍以上で高い、0.6倍未満で低い。</li>
+      <li>財務安全性：自己資本比率が50%以上か業種の1.3倍以上で厚い、20%未満で薄め（業種並みなら標準）。</li>
+      <li>資本効率：ROE 10%以上で高い、5%未満で低い。</li>
+      <li>割安度：PERとPBRがともに業種中央値を下回ると割安、ともに上回ると割高。</li>
+      <li>売上総利益・粗利率は売上原価データがある期のみ表示し、データの無い系列・列は出しません。</li>
+      <li>グラフ：通期・配当の右端の薄い棒は会社予想（J-Quants 決算短信サマリーの最新値）。折れ線は右軸（%）。</li>
+      <li>経常利益は J-Quants の決算短信サマリーから取得（日本基準のみ。取得範囲は直近約2年）。IFRS・米国基準は税引前利益で表示します。</li>
+      <li>貸借対照表は年次決算（10-K）の連結貸借対照表を Yahoo Finance から取得し、区分にまとめたもの。外国企業は最新の為替でドルに換算しています。</li>
+      <li>株主構成は 13F（運用資産1億ドル超の機関投資家が四半期ごとに出す保有報告）の上位10社を、発行済株式数に対する割合で描画（Yahoo Finance 経由）。その他は上位10社以外の合計です。</li>
+      <li>四半期決算は累計値の差分から単独四半期を算出。フリーCFは営業CF＋投資CF。配当性向は一株配当÷EPS。</li>
+      <li>出所：~/株分析 の fundamentals/（通期）。株価・時価総額は取得日時点。生成 2026-11-20</li>
+    </ol></div>
+  </details>
+</div>
+<script src="assets/app.js"></script>
+<script>renderCompany({"code":"ZDGE","name":"Zedge, Inc.","market":"NYSE American","sector":"通信サービス","quote":{"price":2.69,"priceDate":"2026-11-19","mcap":41.756,"per":-318.75,"pbr":1.74,"psr":1.32,"yld":0.0225,"asof":"2026-11-20"},"annual":[{"fy":"23/7期","fyEnd":"2023-07-31","y":2023,"rev":27.241,"gp":24.999,"op":-0.127,"pbt":-6.564,"ni":-6.102,"ta":46.831,"se":38.864,"eq":0.8299,"cr":3.7467,"ocf":3.162,"icf":-2.422,"fcf":0.387,"freecf":1.702,"ibd":2.332,"cash":18.125,"ebitda":3.142,"eps":-0.43,"bps":2.71,"dps":0.0,"opm":-0.004662090231636137,"nim":-0.22400058734995046,"gpm":0.917697588194266,"roe":-0.15700905722519556,"roa":-0.130298306677201,"odp":-6.564,"payout":null,"frcf":0.7399999999999998},{"fy":"24/7期","fyEnd":"2024-07-31","y":2024,"rev":30.091,"gp":28.232,"op":0.153,"pbt":-11.369,"ni":-9.171,"ta":38.195,"se":30.896,"eq":0.8089,"cr":3.8394999999999997,"ocf":5.85,"icf":-1.194,"fcf":-2.643,"freecf":4.656,"ibd":0.203,"cash":19.998,"ebitda":2.607,"eps":-0.65,"bps":2.15,"dps":0.0,"opm":0.00508457678375594,"nim":-0.30477551427337074,"gpm":0.9382207304509653,"roe":-0.2968345416882444,"roa":-0.2401099620369158,"odp":-11.369,"payout":null,"frcf":4.656},{"fy":"25/7期","fyEnd":"2025-07-31","y":2025,"rev":27.616,"gp":null,"op":null,"pbt":null,"ni":null,"ta":null,"se":null,"eq":null,"cr":null,"ocf":null,"icf":null,"fcf":null,"freecf":null,"ibd":null,"cash":null,"ebitda":null,"eps":null,"bps":null,"dps":null,"opm":null,"nim":null,"gpm":null,"roe":null,"roa":null,"odp":null,"payout":null,"frcf":null},{"fy":"26/7期","fyEnd":"2026-07-31","y":2026,"rev":31.626,"gp":29.397,"op":3.079,"pbt":-0.266,"ni":-0.131,"ta":33.919,"se":24.021,"eq":0.7081999999999999,"cr":3.0587999999999997,"ocf":4.555,"icf":-0.344,"fcf":-2.608,"freecf":4.211,"ibd":0.279,"cash":20.335,"ebitda":3.786,"eps":-0.01,"bps":1.86,"dps":0.0727,"opm":0.09735660532473282,"nim":-0.004142161512679441,"gpm":0.9295200151773856,"roe":-0.005453561467049665,"roa":-0.0038621421622099714,"odp":-0.266,"payout":null,"frcf":4.210999999999999}],"peer":{"n":247,"opm":0.0238922515930214,"nim":-0.02315959672817196,"eq":0.4211,"roe":0.014958094498618374,"gpm":0.5335828274991252,"per":15.58,"pbr":1.3450000000000002,"yld":0.0},"fc":null,"quarters":[{"fy":"25/04","fyEnd":"2025-04-30","perEnd":"2025-04-30","perSt":null,"rev":7.757,"op":0.737,"odp":0.273,"ni":0.185,"opm":0.09501095784452752},{"fy":"25/10","fyEnd":"2025-10-31","perEnd":"2025-10-31","perSt":null,"rev":7.61,"op":0.914,"odp":1.021,"ni":0.788,"opm":0.12010512483574244},{"fy":"26/01","fyEnd":"2026-01-31","perEnd":"2026-01-31","perSt":null,"rev":8.254,"op":0.823,"odp":-2.906,"ni":-2.289,"opm":0.09970923188756967},{"fy":"26/04","fyEnd":"2026-04-30","perEnd":"2026-04-30","perSt":null,"rev":7.992,"op":1.074,"odp":1.183,"ni":0.926,"opm":0.13438438438438438},{"fy":"26/07","fyEnd":"2026-07-31","perEnd":"2026-07-31","perSt":null,"rev":7.77,"op":0.258,"odp":0.436,"ni":0.444,"opm":0.03320463320463321}],"odpName":"税引前利益","holders":{"asof":"2026-09-30","filed":"2026-09-30","issued":15522789.0,"treasury":0,"holders":[["Renaissance Technologies, LLC",532222,0.0355],["Vanguard Capital Management LLC",519339,0.0346],["Citadel Advisors Llc",136088,0.0091],["Geode Capital Management, LLC",119934,0.008],["Dimensional Fund Advisors LP",101532,0.0068000000000000005],["Kahn Brothers Group Inc.",78126,0.0052],["Vanguard Fiduciary Trust Co",72588,0.0048],["GSA Capital Partners LLP",67961,0.0045000000000000005],["Bank Of New York Mellon Corporation",63239,0.0042],["Jane Street Group, LLC",56700,0.0038]]},"bs":[{"fy":"22/7","fyEnd":"2022-07-31","std":"US","ta":54.626,"tl":10.438,"na":44.188,"noCA":false,"cash":17.085,"recv":2.411,"inv":null,"oca":0.396,"ppe":1.66,"onca":33.074,"pay":1.18,"ocl":7.477,"ncl":1.781,"eq":44.188,"oeq":0.0},{"fy":"23/7","fyEnd":"2023-07-31","std":"US","ta":46.831,"tl":7.967,"na":38.864,"noCA":false,"cash":18.125,"recv":2.883,"inv":null,"oca":0.569,"ppe":2.186,"onca":23.068,"pay":0.669,"ocl":5.09,"ncl":2.208,"eq":38.864,"oeq":0.0},{"fy":"24/7","fyEnd":"2024-07-31","std":"US","ta":38.195,"tl":7.299,"na":30.896,"noCA":false,"cash":19.998,"recv":3.406,"inv":null,"oca":0.593,"ppe":2.306,"onca":11.892,"pay":1.113,"ocl":5.137,"ncl":1.049,"eq":30.896,"oeq":0.0},{"fy":"26/7","fyEnd":"2026-07-31","std":"US","ta":33.919,"tl":9.898,"na":24.021,"noCA":false,"cash":20.335,"recv":3.371,"inv":null,"oca":0.44,"ppe":1.159,"onca":8.614,"pay":1.268,"ocl":6.626,"ncl":2.004,"eq":24.021,"oeq":0.0}]});</script>
+<!--kb-theme-js--><script>(function(){var bs=document.querySelectorAll('button.kb-theme[data-kb]');
+for(var i=0;i<bs.length;i++)bs[i].addEventListener('click',function(){var b=this,d=document.documentElement,
+cur=d.getAttribute('data-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'),n=cur==='dark'?'light':'dark';
+d.setAttribute('data-theme',n);try{localStorage.setItem('fdb-theme',n)}catch(e){}
+var f=document.querySelectorAll('iframe');for(var j=0;j<f.length;j++){try{f[j].contentWindow.postMessage({chartTheme:n},'*')}catch(e){}}
+var k=b.getAttribute('data-kb');
+if(k==='reload')location.reload();
+else if(k==='msg')window.postMessage({chartTheme:n},'*');
+else if(k==='fn'&&typeof window.__kbRedraw==='function')window.__kbRedraw();});})();</script><!--/kb-theme-js--><!--mobile-fix-spacer--><div class="mf-spacer" aria-hidden="true"></div><!--/mobile-fix-spacer--></body>
+</html>

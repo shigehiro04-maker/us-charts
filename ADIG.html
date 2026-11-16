@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><!--kb-theme:v3--><script>(function(){var d=document.documentElement,
+m=/[?&#]theme=(dark|light)/.exec(location.search+location.hash),t=m&&m[1];
+if(!t){try{t=localStorage.getItem('fdb-theme')}catch(e){}}
+if(t==='dark'||t==='light')d.setAttribute('data-theme',t);
+try{if(window.top!==window.self)d.classList.add('kb-embed')}catch(e){d.classList.add('kb-embed')}})();</script>
+<style id="kb-theme">
+:root{--kb-fg:#1f1f1e;--kb-line:#d6d5ce;--kb-hover:rgba(0,0,0,.05)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--kb-fg:#ecebe6;--kb-line:#3b3b38;--kb-hover:rgba(255,255,255,.08)}}
+:root[data-theme="dark"]{--kb-fg:#ecebe6;--kb-line:#3b3b38;--kb-hover:rgba(255,255,255,.08)}
+/* スイッチ本体（トラック） */
+:root{--kb-trk:#e8e7e1;--kb-knob:#fff;--kb-ico:#d08a00;--kb-dim:#a9a79f}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--kb-trk:#2b2b29;--kb-knob:#45453f;--kb-ico:#f3d36a;--kb-dim:#6f6e68}}
+:root[data-theme="dark"]{--kb-trk:#2b2b29;--kb-knob:#45453f;--kb-ico:#f3d36a;--kb-dim:#6f6e68}
+:root button.kb-theme.kb-theme{-webkit-appearance:none;appearance:none;position:relative;display:inline-block;box-sizing:border-box;
+width:54px;height:30px;min-width:54px;min-height:0;padding:0;border:1px solid var(--kb-line);border-radius:15px;background:var(--kb-trk);
+color:var(--kb-fg);font-size:0;line-height:0;cursor:pointer;box-shadow:inset 0 1px 2px rgba(0,0,0,.08);vertical-align:middle;flex-shrink:0;
+overflow:hidden;-webkit-tap-highlight-color:transparent;transition:background .3s,border-color .3s}
+:root button.kb-theme.kb-theme:focus-visible{outline:2px solid #2a78d6;outline-offset:2px}
+:root button.kb-theme.kb-theme svg{display:block;width:100%;height:100%}
+/* 両端の小さなアイコン（つまみが無い側だけ見える） */
+:root button.kb-theme.kb-theme .kb-trk{position:absolute;top:50%;width:13px;height:13px;margin-top:-6.5px;color:var(--kb-dim);transition:opacity .3s}
+:root button.kb-theme.kb-theme .kb-l{left:7px;opacity:0}
+:root button.kb-theme.kb-theme .kb-r{right:7px;opacity:1}
+/* つまみ */
+:root button.kb-theme.kb-theme .kb-knob{position:absolute;top:2px;left:2px;width:24px;height:24px;border-radius:50%;background:var(--kb-knob);
+color:var(--kb-ico);box-shadow:0 1px 3px rgba(0,0,0,.25),0 0 0 .5px rgba(0,0,0,.06);transform:translateX(0);
+transition:transform .32s cubic-bezier(.3,1.35,.5,1),background .3s,color .3s}
+:root button.kb-theme.kb-theme:active .kb-knob{width:28px}
+:root button.kb-theme.kb-theme .kb-knob svg{position:absolute;inset:0;margin:auto;width:15px;height:15px;transition:opacity .25s,transform .35s}
+:root button.kb-theme.kb-theme .kb-knob .kb-sun{opacity:1;transform:none}
+:root button.kb-theme.kb-theme .kb-knob .kb-moon{opacity:0;transform:rotate(-90deg) scale(.4)}
+/* ダーク表示中：つまみを右へ */
+@media (prefers-color-scheme:dark){
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-knob{transform:translateX(24px)}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme:active .kb-knob{transform:translateX(20px)}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-knob .kb-sun{opacity:0;transform:rotate(90deg) scale(.4)}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-knob .kb-moon{opacity:1;transform:none}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-l{opacity:1}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-r{opacity:0}}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-knob{transform:translateX(24px)}
+:root[data-theme="dark"] button.kb-theme.kb-theme:active .kb-knob{transform:translateX(20px)}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-knob .kb-sun{opacity:0;transform:rotate(90deg) scale(.4)}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-knob .kb-moon{opacity:1;transform:none}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-l{opacity:1}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-r{opacity:0}
+@media (prefers-reduced-motion:reduce){:root button.kb-theme.kb-theme *{transition:none!important}}
+/* 全ページ共通の置き場所：ページ右上の角 */
+:root button.kb-theme.kb-theme.kb-corner{position:absolute;top:12px;right:16px;z-index:60;margin:0;float:none}
+@media (max-width:700px){:root button.kb-theme.kb-theme.kb-corner{top:10px;right:12px}}
+/* 右上のスイッチの下に見えない「よけ」を置き、見出しの文字やボタンがスイッチと重ならないようにする */
+.kb-spacer{float:right;width:84px;height:46px;pointer-events:none}
+@media (max-width:700px){.kb-spacer{width:76px;height:44px}}
+html.kb-embed .kb-spacer{display:none}
+html.kb-embed button.kb-theme[data-kb]{display:none}
+
+</style><!--/kb-theme-->
+<script>
+/* 親ページから ?theme=dark|light で表示を指定できる。指定が無ければOSの設定に従う。 */
+(function(){try{
+  var m=/[?&#]theme=(dark|light)/.exec(location.search+location.hash);
+  if(m)document.documentElement.setAttribute("data-theme",m[1]);
+}catch(e){}})();
+</script>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ADIG ADI Global Distribution Inc. チャート</title>
+<link rel="stylesheet" href="assets/chart.css?v=a08d4ea5"><!--site-icon:v3--><link rel="icon" type="image/svg+xml" href="/us-charts/icon-black.svg?v=3" media="(prefers-color-scheme: light)"><link rel="icon" type="image/svg+xml" href="/us-charts/icon-white.svg?v=3" media="(prefers-color-scheme: dark)"><link rel="apple-touch-icon" href="/us-charts/apple-touch-icon.png?v=3"><!--/site-icon--><!--mobile-fix:v1--><style id="mobile-fix">
+.mf-spacer{display:none}
+html.mf-sa .mf-spacer{display:block;height:calc(env(safe-area-inset-bottom,0px) + 110px)}
+html.mf-sa .detail .inner{padding-bottom:calc(env(safe-area-inset-bottom,0px) + 140px)}
+</style><script>(function(){try{if(window.top!==window.self)return;
+var sa=navigator.standalone===true||matchMedia('(display-mode: standalone)').matches;
+var touch=matchMedia('(pointer: coarse)').matches;
+if(sa||touch)document.documentElement.classList.add('mf-sa');}catch(e){}})();</script><!--/mobile-fix--><!--pc-wide:v1--><style id="pc-wide">@media (min-width:1280px){body>.wrap,body>main,body>div.wrap{max-width:1680px!important}}</style><!--/pc-wide--></head><body><!--kb-btn--><button class="kb-theme kb-corner" id="kbTheme" type="button" data-kb="msg" aria-label="明暗を切り替え（ライト／ダーク）" title="明暗を切り替え（ライト／ダーク）"><span class="kb-trk kb-l"><svg class="kb-sun" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="12" cy="12" r="4.3"/><path d="M12 2.2v2.3M12 19.5v2.3M2.2 12h2.3M19.5 12h2.3M5.1 5.1l1.6 1.6M17.3 17.3l1.6 1.6M5.1 18.9l1.6-1.6M17.3 6.7l1.6-1.6"/></svg></span><span class="kb-trk kb-r"><svg class="kb-moon" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M20.2 14.6A8.4 8.4 0 0 1 9.4 3.8a.6.6 0 0 0-.8-.7A9.2 9.2 0 1 0 20.9 15.4a.6.6 0 0 0-.7-.8z"/></svg></span><span class="kb-knob"><svg class="kb-sun" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="12" cy="12" r="4.3"/><path d="M12 2.2v2.3M12 19.5v2.3M2.2 12h2.3M19.5 12h2.3M5.1 5.1l1.6 1.6M17.3 17.3l1.6 1.6M5.1 18.9l1.6-1.6M17.3 6.7l1.6-1.6"/></svg><svg class="kb-moon" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M20.2 14.6A8.4 8.4 0 0 1 9.4 3.8a.6.6 0 0 0-.8-.7A9.2 9.2 0 1 0 20.9 15.4a.6.6 0 0 0-.7-.8z"/></svg></span></button><div class="kb-spacer" aria-hidden="true"></div><!--/kb-btn--><div class="wrap">
+<h1><a class="back" href="./charts.html" title="一覧へ">‹</a>ADIG ADI Global Distribution Inc.<span class="mk">NYSE</span><span class="mk sec">情報技術</span></h1>
+<div class="price"><b id="last"></b><span class="chg" id="chg"></span><span class="asof" id="asof"></span><a class="dash" href="./one/ADIG.html" target="_top" title="シグナル・チャート・ファンダを1画面で">ダッシュボード ›</a></div>
+<section class="biz" aria-label="会社概要"><p>防犯・AV・スマートホーム製品の卸の会社。</p><a href="https://www.adiglobal.com" target="_blank" rel="noopener noreferrer"><b>公式サイト ↗</b><span>www.adiglobal.com</span></a></section><div class="st" id="state"></div>
+<div class="bar">
+  <div class="seg" id="periods"></div>
+  <div class="ipick">
+    <button class="ib" data-g="tr" type="button">トレンド系<span class="cnt" id="cTR"></span><small>チャート上</small></button>
+    <button class="ib" data-g="os" type="button">オシレーター系<span class="cnt" id="cOS"></span><small>チャート下</small></button>
+    <button class="ib" data-g="sg" type="button"><span class="sgi"><b class="bu">▲</b><b class="se">▼</b></span>売買サイン<span class="cnt" id="cSG"></span></button>
+  </div>
+</div>
+<div class="ipanel" id="ipanel" hidden>
+  <div class="iph"><b id="iptitle"></b><span id="ipdesc"></span>
+    <button type="button" id="ipreset">既定に戻す</button><button type="button" id="ipnone">すべて外す</button><button type="button" id="ipclose">閉じる</button></div>
+  <div class="sgst" id="sgst" hidden>表示のしかた
+    <div class="seg" id="sgstyle"><button type="button" data-st="label">ラベル（買・売）</button><button type="button" data-st="tri">大きい三角</button></div>
+    <label><input type="checkbox" id="sgvl">サインの足に縦線も引く</label></div>
+  <div class="ics" id="ipchips"></div>
+</div>
+<div class="legend" id="legend"></div>
+<div class="chart"><canvas id="cv"></canvas><div class="vmode" id="vmode"><button type="button" data-m="v">出来高</button><button type="button" data-m="a">売買代金</button></div><div class="xh" id="xhv"></div><div class="xh" id="xhh"></div><div id="tip"></div></div>
+<details class="nt" id="ntbox"><summary>指標の計算方法</summary><p class="note" id="note"></p></details>
+</div>
+<script>
+const CODE = "ADIG";
+const RAW = [["2026-07-30",22.0,22.0,21.0,21.0,1100],["2026-07-31",19.9,20.12,19.9,20.12,400],["2026-08-03",21.73,23.58,21.73,22.06,11700],["2026-08-04",21.25,26.0,21.0,22.0,2805800],["2026-08-05",22.67,25.75,22.01,24.98,1511000],["2026-08-06",26.12,27.23,25.75,26.3,1272200],["2026-08-07",26.31,27.46,26.31,27.03,819100],["2026-08-10",28.34,28.91,27.18,28.27,3017800],["2026-08-11",29.49,30.99,27.03,27.92,1507300],["2026-08-12",28.62,29.18,25.02,25.24,1220300],["2026-08-13",23.82,26.58,22.57,25.82,1925800],["2026-08-14",25.56,25.56,21.17,21.24,2516800],["2026-08-17",21.41,22.34,20.56,21.43,1689500],["2026-08-18",21.15,21.67,20.21,20.5,1569300],["2026-08-19",20.82,21.96,20.26,21.36,958800],["2026-08-20",21.16,23.24,21.16,22.59,1500500],["2026-08-21",22.47,23.49,21.09,21.12,985500],["2026-08-24",21.23,23.16,21.23,22.1,754300],["2026-08-25",21.79,23.05,21.79,22.27,763800],["2026-08-26",21.78,22.31,20.8,21.59,994700],["2026-08-27",21.98,22.33,21.18,21.88,610400],["2026-08-28",22.1,22.38,21.54,22.11,712800],["2026-08-31",22.19,22.65,21.22,21.87,1136900],["2026-09-01",21.86,22.42,20.09,20.34,1144700],["2026-09-02",20.41,21.61,20.39,21.28,1005900],["2026-09-03",21.49,21.88,20.21,20.42,636000],["2026-09-04",20.39,21.33,20.39,20.65,384900],["2026-09-08",20.5,21.34,20.26,20.89,679400],["2026-09-09",20.63,21.0,20.17,20.66,652800],["2026-09-10",20.25,21.52,20.25,21.41,505000],["2026-09-11",21.43,21.61,20.33,20.53,713800],["2026-09-14",20.65,21.11,20.16,20.35,635100],["2026-09-15",20.46,20.67,20.03,20.44,856900],["2026-09-16",20.33,21.67,20.33,20.99,768900],["2026-09-17",21.39,22.31,21.39,21.64,828900],["2026-09-18",21.45,21.45,20.41,20.7,1214400],["2026-09-21",21.07,21.38,20.6,20.92,663200],["2026-09-22",20.92,21.54,20.71,21.02,838200],["2026-09-23",21.11,21.47,20.42,20.68,462900],["2026-09-24",20.52,20.62,20.01,20.46,747000],["2026-09-25",20.74,20.85,19.53,19.55,573300],["2026-09-28",19.53,20.41,17.88,18.53,737000],["2026-09-29",18.79,19.46,18.39,19.0,630000],["2026-09-30",18.94,19.09,17.35,17.92,1993800],["2026-10-01",17.99,18.21,17.11,17.98,689300],["2026-10-02",18.32,18.65,17.83,17.83,550300],["2026-10-05",17.7,18.05,17.37,17.62,679900],["2026-10-06",17.91,18.29,17.6,17.82,663700],["2026-10-07",17.47,17.81,17.23,17.53,452300],["2026-10-08",17.26,17.81,16.77,17.2,583700],["2026-10-09",17.23,17.87,16.79,16.8,313200],["2026-10-12",16.6,17.37,16.49,16.95,559000],["2026-10-13",16.59,17.0,16.12,16.51,452200],["2026-10-14",16.16,16.34,15.0,15.5,709000],["2026-10-15",15.45,15.86,15.0,15.7,571900],["2026-10-16",15.6,16.01,15.3,15.48,458500],["2026-10-19",15.73,16.9,15.09,15.22,405100],["2026-10-20",15.26,16.01,15.09,15.97,420300],["2026-10-21",16.05,16.87,16.05,16.55,464600],["2026-10-22",16.83,16.86,16.21,16.48,378000],["2026-10-23",16.66,16.66,15.87,16.23,336900],["2026-10-26",16.37,16.74,16.08,16.36,336500],["2026-10-27",16.47,17.56,16.42,17.37,536300],["2026-10-28",17.19,17.58,16.94,17.31,475700],["2026-10-29",17.38,17.97,17.38,17.69,367200],["2026-10-30",16.64,17.79,16.48,17.48,531900],["2026-11-02",17.79,18.77,17.6,18.68,536100],["2026-11-03",18.8,19.2,18.29,18.44,579700],["2026-11-04",18.91,19.51,18.13,18.91,613300],["2026-11-05",19.05,19.08,17.93,18.42,736900],["2026-11-06",18.25,18.72,18.01,18.32,526500],["2026-11-09",18.83,19.7,18.75,19.36,344500],["2026-11-10",19.28,19.73,18.99,19.07,377700],["2026-11-11",19.43,19.84,19.18,19.58,455800],["2026-11-12",15.46,15.72,9.79,9.82,5695500],["2026-11-13",9.7,10.15,9.06,10.09,2605600],["2026-11-16",9.83,9.95,9.0,9.3,2438700],["2026-11-17",9.95,10.38,9.45,9.47,2119100],["2026-11-18",9.3,9.46,8.92,9.0,1736500],["2026-11-19",9.02,9.28,8.51,8.9,1737254]];
+const DATANOTE = "";
+</script>
+<script src="intra/ADIG.js?v=20261119923"></script>
+<script src="assets/chart.js?v=aa49b450"></script><!--kb-theme-js--><script>(function(){var bs=document.querySelectorAll('button.kb-theme[data-kb]');
+for(var i=0;i<bs.length;i++)bs[i].addEventListener('click',function(){var b=this,d=document.documentElement,
+cur=d.getAttribute('data-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'),n=cur==='dark'?'light':'dark';
+d.setAttribute('data-theme',n);try{localStorage.setItem('fdb-theme',n)}catch(e){}
+var f=document.querySelectorAll('iframe');for(var j=0;j<f.length;j++){try{f[j].contentWindow.postMessage({chartTheme:n},'*')}catch(e){}}
+var k=b.getAttribute('data-kb');
+if(k==='reload')location.reload();
+else if(k==='msg')window.postMessage({chartTheme:n},'*');
+else if(k==='fn'&&typeof window.__kbRedraw==='function')window.__kbRedraw();});})();</script><!--/kb-theme-js--><!--mobile-fix-spacer--><div class="mf-spacer" aria-hidden="true"></div><!--/mobile-fix-spacer--></body></html>

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8"><!--kb-theme:v3--><script>(function(){var d=document.documentElement,
+m=/[?&#]theme=(dark|light)/.exec(location.search+location.hash),t=m&&m[1];
+if(!t){try{t=localStorage.getItem('fdb-theme')}catch(e){}}
+if(t==='dark'||t==='light')d.setAttribute('data-theme',t);
+try{if(window.top!==window.self)d.classList.add('kb-embed')}catch(e){d.classList.add('kb-embed')}})();</script>
+<style id="kb-theme">
+:root{--kb-fg:#1f1f1e;--kb-line:#d6d5ce;--kb-hover:rgba(0,0,0,.05)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--kb-fg:#ecebe6;--kb-line:#3b3b38;--kb-hover:rgba(255,255,255,.08)}}
+:root[data-theme="dark"]{--kb-fg:#ecebe6;--kb-line:#3b3b38;--kb-hover:rgba(255,255,255,.08)}
+/* スイッチ本体（トラック） */
+:root{--kb-trk:#e8e7e1;--kb-knob:#fff;--kb-ico:#d08a00;--kb-dim:#a9a79f}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--kb-trk:#2b2b29;--kb-knob:#45453f;--kb-ico:#f3d36a;--kb-dim:#6f6e68}}
+:root[data-theme="dark"]{--kb-trk:#2b2b29;--kb-knob:#45453f;--kb-ico:#f3d36a;--kb-dim:#6f6e68}
+:root button.kb-theme.kb-theme{-webkit-appearance:none;appearance:none;position:relative;display:inline-block;box-sizing:border-box;
+width:54px;height:30px;min-width:54px;min-height:0;padding:0;border:1px solid var(--kb-line);border-radius:15px;background:var(--kb-trk);
+color:var(--kb-fg);font-size:0;line-height:0;cursor:pointer;box-shadow:inset 0 1px 2px rgba(0,0,0,.08);vertical-align:middle;flex-shrink:0;
+overflow:hidden;-webkit-tap-highlight-color:transparent;transition:background .3s,border-color .3s}
+:root button.kb-theme.kb-theme:focus-visible{outline:2px solid #2a78d6;outline-offset:2px}
+:root button.kb-theme.kb-theme svg{display:block;width:100%;height:100%}
+/* 両端の小さなアイコン（つまみが無い側だけ見える） */
+:root button.kb-theme.kb-theme .kb-trk{position:absolute;top:50%;width:13px;height:13px;margin-top:-6.5px;color:var(--kb-dim);transition:opacity .3s}
+:root button.kb-theme.kb-theme .kb-l{left:7px;opacity:0}
+:root button.kb-theme.kb-theme .kb-r{right:7px;opacity:1}
+/* つまみ */
+:root button.kb-theme.kb-theme .kb-knob{position:absolute;top:2px;left:2px;width:24px;height:24px;border-radius:50%;background:var(--kb-knob);
+color:var(--kb-ico);box-shadow:0 1px 3px rgba(0,0,0,.25),0 0 0 .5px rgba(0,0,0,.06);transform:translateX(0);
+transition:transform .32s cubic-bezier(.3,1.35,.5,1),background .3s,color .3s}
+:root button.kb-theme.kb-theme:active .kb-knob{width:28px}
+:root button.kb-theme.kb-theme .kb-knob svg{position:absolute;inset:0;margin:auto;width:15px;height:15px;transition:opacity .25s,transform .35s}
+:root button.kb-theme.kb-theme .kb-knob .kb-sun{opacity:1;transform:none}
+:root button.kb-theme.kb-theme .kb-knob .kb-moon{opacity:0;transform:rotate(-90deg) scale(.4)}
+/* ダーク表示中：つまみを右へ */
+@media (prefers-color-scheme:dark){
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-knob{transform:translateX(24px)}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme:active .kb-knob{transform:translateX(20px)}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-knob .kb-sun{opacity:0;transform:rotate(90deg) scale(.4)}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-knob .kb-moon{opacity:1;transform:none}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-l{opacity:1}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-r{opacity:0}}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-knob{transform:translateX(24px)}
+:root[data-theme="dark"] button.kb-theme.kb-theme:active .kb-knob{transform:translateX(20px)}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-knob .kb-sun{opacity:0;transform:rotate(90deg) scale(.4)}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-knob .kb-moon{opacity:1;transform:none}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-l{opacity:1}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-r{opacity:0}
+@media (prefers-reduced-motion:reduce){:root button.kb-theme.kb-theme *{transition:none!important}}
+/* 全ページ共通の置き場所：ページ右上の角 */
+:root button.kb-theme.kb-theme.kb-corner{position:absolute;top:12px;right:16px;z-index:60;margin:0;float:none}
+@media (max-width:700px){:root button.kb-theme.kb-theme.kb-corner{top:10px;right:12px}}
+/* 右上のスイッチの下に見えない「よけ」を置き、見出しの文字やボタンがスイッチと重ならないようにする */
+.kb-spacer{float:right;width:84px;height:46px;pointer-events:none}
+@media (max-width:700px){.kb-spacer{width:76px;height:44px}}
+html.kb-embed .kb-spacer{display:none}
+html.kb-embed button.kb-theme[data-kb]{display:none}
+
+</style><!--/kb-theme-->
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Generate Biomedicines, Inc.（GENB） | 株式分析ダッシュボード</title>
+<script>(function(){let t;try{t=localStorage.getItem('fdb-theme')}catch(e){}if(t)document.documentElement.setAttribute('data-theme',t);})();</script>
+<link rel="stylesheet" href="assets/one.css?v=202611200946">
+<!--site-icon:v3--><link rel="icon" type="image/svg+xml" href="/us-charts/icon-black.svg?v=3" media="(prefers-color-scheme: light)"><link rel="icon" type="image/svg+xml" href="/us-charts/icon-white.svg?v=3" media="(prefers-color-scheme: dark)"><link rel="apple-touch-icon" href="/us-charts/apple-touch-icon.png?v=3"><!--/site-icon--><!--mobile-fix:v1--><style id="mobile-fix">
+.mf-spacer{display:none}
+html.mf-sa .mf-spacer{display:block;height:calc(env(safe-area-inset-bottom,0px) + 110px)}
+html.mf-sa .detail .inner{padding-bottom:calc(env(safe-area-inset-bottom,0px) + 140px)}
+</style><script>(function(){try{if(window.top!==window.self)return;
+var sa=navigator.standalone===true||matchMedia('(display-mode: standalone)').matches;
+var touch=matchMedia('(pointer: coarse)').matches;
+if(sa||touch)document.documentElement.classList.add('mf-sa');}catch(e){}})();</script><!--/mobile-fix--><!--pc-wide:v1--><style id="pc-wide">@media (min-width:1280px){body>.wrap,body>main,body>div.wrap{max-width:1680px!important}}</style><!--/pc-wide--></head>
+<body><!--kb-btn--><button class="tbtn kb-theme kb-corner" id="theme" type="button" aria-label="明暗を切り替え（ライト／ダーク）" title="明暗を切り替え（ライト／ダーク）"><span class="kb-trk kb-l"><svg class="kb-sun" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="12" cy="12" r="4.3"/><path d="M12 2.2v2.3M12 19.5v2.3M2.2 12h2.3M19.5 12h2.3M5.1 5.1l1.6 1.6M17.3 17.3l1.6 1.6M5.1 18.9l1.6-1.6M17.3 6.7l1.6-1.6"/></svg></span><span class="kb-trk kb-r"><svg class="kb-moon" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M20.2 14.6A8.4 8.4 0 0 1 9.4 3.8a.6.6 0 0 0-.8-.7A9.2 9.2 0 1 0 20.9 15.4a.6.6 0 0 0-.7-.8z"/></svg></span><span class="kb-knob"><svg class="kb-sun" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="12" cy="12" r="4.3"/><path d="M12 2.2v2.3M12 19.5v2.3M2.2 12h2.3M19.5 12h2.3M5.1 5.1l1.6 1.6M17.3 17.3l1.6 1.6M5.1 18.9l1.6-1.6M17.3 6.7l1.6-1.6"/></svg><svg class="kb-moon" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M20.2 14.6A8.4 8.4 0 0 1 9.4 3.8a.6.6 0 0 0-.8-.7A9.2 9.2 0 1 0 20.9 15.4a.6.6 0 0 0-.7-.8z"/></svg></span></button><div class="kb-spacer" aria-hidden="true"></div><!--/kb-btn-->
+<div class="wrap">
+<header>
+  <h1 id="h-name"></h1><span class="cd" id="h-code"></span>
+  <span class="px" id="h-px"></span><span class="chg" id="h-chg"></span>
+  <span class="meta" id="h-meta"></span>
+  <span class="sp"><button class="tbtn" id="watchbtn" hidden>☆ 監視銘柄に追加</button><a class="tbtn" href="../index.html" style="text-decoration:none">トップ</a><a class="tbtn" href="index.html" style="text-decoration:none">銘柄一覧</a></span>
+</header>
+<div class="wbox" id="wbox" hidden></div>
+<div class="valline" id="valline" hidden></div>
+<p class="biz" id="biz"></p>
+<p class="bizlink" id="bizlink" hidden></p>
+<p class="empline" id="empline" hidden></p>
+
+<section class="card" id="sigcard">
+  <div class="hero">
+    <div>
+      <div class="big" id="big"></div>
+      <div class="n1" id="notes"></div>
+      <div class="plan" id="plan"></div>
+    </div>
+    <div class="quad" id="quad"></div>
+  </div>
+  <div class="sigfoot"><button class="tgl" id="sig-tgl" aria-expanded="false"><span class="tri">▾</span> 内訳・推移</button></div>
+  <div class="sigdet" id="sigdet" hidden>
+    <div><h5>テクニカルの内訳</h5><div id="partsT"></div></div>
+    <div><h5>ファンダメンタルの内訳</h5><div id="partsF"></div></div>
+    <div><h5>テクニカルスコアの推移</h5><div class="spk" id="spk"></div></div>
+  </div>
+</section>
+
+<div class="grid">
+  <div class="lcol">
+  <section class="card" id="chartcard">
+    <div class="bar">
+      <h2 style="margin:0">チャート</h2>
+      <div class="seg" id="rng"><button data-n="63">3ヶ月</button><button data-n="126" class="on">6ヶ月</button><button data-n="250">1年</button><button data-n="750">3年</button></div>
+      <div class="lg" id="lg-ind"></div>
+      <div class="lg" id="lg-vp"></div>
+      <button class="tgl" id="ch-tgl" aria-expanded="false" style="margin-left:auto"><span class="tri">▾</span> 指標を選ぶ</button>
+    </div>
+    <div id="ch-det" hidden>
+      <div id="indsel"></div>
+      <div class="lg" style="margin:4px 0 2px">
+        <label><input type="checkbox" id="cb-vp" checked>価格帯別出来高</label>
+        <label><input type="checkbox" id="cb-mk" checked>売買サイン</label>
+        <label><input type="checkbox" id="cb-lv" checked>IN・利確・損切り</label>
+      </div>
+      <div class="lg sgopt" id="sgopt"><span class="sgh">売買サイン</span><span class="sgkinds" id="sgkinds"></span></div>
+      <div class="lg sgopt" id="sgopt2"><span class="sgh">表示</span>
+        <div class="seg" id="sgstyle"><button type="button" data-st="label">ラベル（買・売）</button><button type="button" data-st="tri">大きい三角</button></div>
+        <label><input type="checkbox" id="sgvl">縦線も引く</label>
+        <button type="button" class="sgbtn" id="sgdef">既定に戻す</button><button type="button" class="sgbtn" id="sgnone">すべて外す</button>
+      </div>
+      <div class="lvbar" id="lvbar"></div>
+    </div>
+    <div id="chart"></div>
+  </section>
+  <section class="card" id="bscard"><div class="bsgrid"><div class="fp" id="fp-bs"></div><div class="fp" id="fp-holders"></div></div></section>
+  </div>
+
+  <div class="rcol">
+  <section class="card" id="jkcard">
+    <h2><span style="white-space:nowrap">需給</span> <span class="hint" id="jk-hint"></span><a class="jklink" id="jk-link" href="#">空売りの内訳 ›</a></h2>
+    <div class="jkg" id="jkg"></div>
+    <div class="jkf" id="jkf"></div>
+  </section>
+  <section class="card" id="fundcard">
+    <h2>ファンダメンタル <span class="hint" id="f-hint"></span></h2>
+    <div class="jcards" id="jcards"></div>
+    <div class="fgrid" id="fgrid"><div class="fp" id="fp-annual"></div><div class="fp" id="fp-cf"></div><div class="fp" id="fp-q"></div><div class="fp" id="fp-div"></div></div>
+    <div class="meta" id="fmeta"></div>
+  </section>
+  </div>
+</div>
+<section class="card" id="ancard" hidden>
+  <h2><span style="white-space:nowrap">アナリスト予想</span> <span class="hint" id="an-hint"></span><a class="jklink" id="an-link" href="../fundamentals.html#analyst">アナリスト予想ランキング ›</a></h2>
+  <div class="angrid"><div id="an-t"></div><div id="an-b"></div><div class="ancs" id="an-cw"><div id="an-cs"></div><div id="an-ct"></div></div><div id="an-c"></div></div>
+  <div class="anfoot"><button class="tgl" id="an-tgl" aria-expanded="false"><span class="tri">▾</span> <span class="pc">アナリストごとの目標株価・投資判断</span><span class="sp">業績予想・決算サプライズ・アナリスト別</span></button></div>
+  <div id="an-det" hidden><div id="an-u"></div></div>
+</section>
+<section class="card" id="cocard" hidden>
+  <h2><span style="white-space:nowrap">同業他社・関連企業</span> <span class="hint" id="co-hint"></span></h2>
+  <div class="cogrid"><div id="co-peer"></div><div id="co-rel"></div></div>
+</section>
+<footer><span></span><span id="gen"></span></footer>
+</div>
+<div id="tip"></div>
+<script src="assets/watch.js"></script>
+<script>const DATA={"info":{"code":"GENB","name":"Generate Biomedicines, Inc.","market":"NASDAQ","sector":"ヘルスケア","date":"2026-11-19","price":10.37,"chg":-0.010000000000001563,"chgp":-0.09633911368016919,"biz":"重症喘息向けの長時間作用型抗体を開発するバイオ企業。","url":"https://generatebiomedicines.com","fdate":"2025-12-31"},"px":{"show":750,"d":["2026-02-27","2026-03-02","2026-03-03","2026-03-04","2026-03-05","2026-03-06","2026-03-09","2026-03-10","2026-03-11","2026-03-12","2026-03-13","2026-03-16","2026-03-17","2026-03-18","2026-03-19","2026-03-20","2026-03-23","2026-03-24","2026-03-25","2026-03-26","2026-03-27","2026-03-30","2026-03-31","2026-04-01","2026-04-02","2026-04-06","2026-04-07","2026-04-08","2026-04-09","2026-04-10","2026-04-13","2026-04-14","2026-04-15","2026-04-16","2026-04-17","2026-04-20","2026-04-21","2026-04-22","2026-04-23","2026-04-24","2026-04-27","2026-04-28","2026-04-29","2026-04-30","2026-05-01","2026-05-04","2026-05-05","2026-05-06","2026-05-07","2026-05-08","2026-05-11","2026-05-12","2026-05-13","2026-05-14","2026-05-15","2026-05-18","2026-05-19","2026-05-20","2026-05-21","2026-05-22","2026-05-26","2026-05-27","2026-05-28","2026-05-29","2026-06-01","2026-06-02","2026-06-03","2026-06-04","2026-06-05","2026-06-08","2026-06-09","2026-06-10","2026-06-11","2026-06-12","2026-06-15","2026-06-16","2026-06-17","2026-06-18","2026-06-22","2026-06-23","2026-06-24","2026-06-25","2026-06-26","2026-06-29","2026-06-30","2026-07-01","2026-07-02","2026-07-06","2026-07-07","2026-07-08","2026-07-09","2026-07-10","2026-07-13","2026-07-14","2026-07-15","2026-07-16","2026-07-17","2026-07-20","2026-07-21","2026-07-22","2026-07-23","2026-07-24","2026-07-27","2026-07-28","2026-07-29","2026-07-30","2026-07-31","2026-08-03","2026-08-04","2026-08-05","2026-08-06","2026-08-07","2026-08-10","2026-08-11","2026-08-12","2026-08-13","2026-08-14","2026-08-17","2026-08-18","2026-08-19","2026-08-20","2026-08-21","2026-08-24","2026-08-25","2026-08-26","2026-08-27","2026-08-28","2026-08-31","2026-09-01","2026-09-02","2026-09-03","2026-09-04","2026-09-08","2026-09-09","2026-09-10","2026-09-11","2026-09-14","2026-09-15","2026-09-16","2026-09-17","2026-09-18","2026-09-21","2026-09-22","2026-09-23","2026-09-24","2026-09-25","2026-09-28","2026-09-29","2026-09-30","2026-10-01","2026-10-02","2026-10-05","2026-10-06","2026-10-07","2026-10-08","2026-10-09","2026-10-12","2026-10-13","2026-10-14","2026-10-15","2026-10-16","2026-10-19","2026-10-20","2026-10-21","2026-10-22","2026-10-23","2026-10-26","2026-10-27","2026-10-28","2026-10-29","2026-10-30","2026-11-02","2026-11-03","2026-11-04","2026-11-05","2026-11-06","2026-11-09","2026-11-10","2026-11-11","2026-11-12","2026-11-13","2026-11-16","2026-11-17","2026-11-18","2026-11-19"],"o":[15,12,12.4,12.4,11.3,12.3,12.1,12.2,12.2,12.5,13.3,13.1,12,12.3,12,12.1,12.1,12.6,12.1,12,12.9,11.5,11.7,12.8,13.2,13.8,12.1,12.1,12,11.7,11.7,13,12.9,12.6,12.6,12.4,12.2,12.5,12.9,12.9,12.9,12.4,12.5,12.5,12.6,13,14.5,15.4,14.8,13.8,13.7,14.4,15.6,16.4,15.2,15.2,13.1,12.6,13.6,14.4,14.8,13.4,13,13.3,13.1,12.9,12.1,12.9,14.7,13.2,12.8,13.1,13.2,12.9,12.7,13.5,13.4,14.1,14.3,15.4,15.4,16.4,16.2,17.1,16.9,16.7,16.5,17.7,16.9,15.7,15.8,15.4,14,14.4,14.3,13.9,13.3,13.7,13.6,14.2,13.5,13.9,13.6,13.6,13.2,13.1,13.8,14.1,14.4,14.3,14.1,14.7,14.7,14.5,14.2,15.2,15,15.6,15.5,16.5,16.8,16.1,16.7,17.7,20,17.1,15.8,15.3,15.1,15.8,16.4,16.4,16.4,15.8,15.3,15.4,15.7,15.8,16.1,16,17.2,17.5,17.7,17.4,16.4,16,15.2,14.9,15.5,14.8,13.9,13.7,14,13.6,13.5,14.1,14.3,13.8,12.6,12.5,13,12.2,12.5,13,13,12.8,12.5,12.3,13.9,15.4,14.9,14.6,13.3,14.3,14,12.9,13.2,14,14,12.6,12.6,11.9,10.5,9.9,10.5],"h":[15.3,13.9,12.9,12.4,12.6,12.3,12.3,12.7,12.8,13.4,13.7,13.1,12.4,12.8,12.4,12.6,12.8,12.8,12.8,13.2,13.1,12.2,12.7,13.7,14.2,14,12.6,12.3,12.1,11.7,13,13.4,13.1,12.9,12.9,12.5,12.8,13.1,13.1,13.1,13.4,12.9,12.8,13.2,13.2,14.9,15.5,15.9,15.4,14.7,14.9,15.6,16.8,16.6,16.1,15.7,13.3,13.5,14.4,15.2,15,13.6,13.5,13.4,13.4,13,12.9,15.1,14.9,13.2,13.4,14,13.3,13.1,13.8,13.5,14.4,14.7,16.2,15.8,16.8,17.4,17,18,18.2,17.2,17.6,17.9,17.3,16.3,16.2,15.4,14.6,14.4,14.4,14,13.9,14.2,14.6,14.4,13.9,14.1,14.2,14,13.7,14.3,14.1,14.4,14.7,15.2,14.1,14.7,14.9,14.6,15.3,15.5,15.7,15.8,16.6,17.6,16.9,16.7,18,22.7,20.1,17.5,16.3,15.6,16,16.8,16.6,16.6,16.4,16.2,16.1,15.9,16.4,16.3,16.4,17.8,17.3,17.7,18,17.6,16.5,16.1,15.3,15.5,15.6,15,14.3,14.1,14.2,14,14.1,14.9,14.4,13.8,12.9,13.2,13.2,12.8,13.1,13.2,13.4,12.9,12.6,13.4,15.4,16.5,15.6,14.6,14.2,14.3,14.1,13.2,14.4,14.6,14,13.3,12.7,12.1,10.8,10.5,10.8],"l":[11.4,12,11.1,11,11.1,11.2,11.6,11.6,11.7,12.1,12.8,11.9,11.6,11.5,11.8,12,12.1,11.9,11.8,11.8,11.1,11.3,11.2,12.5,13,12,11.8,11.6,11.4,11.1,11.5,12.6,12.4,12.3,12.2,12,11.8,12.5,12.7,12.5,12.2,12.3,12,12.5,12.5,12.8,14.4,14.8,13.6,13.4,13.5,14.4,15.3,15.4,14.9,12.8,12.3,12.2,13.4,14.3,13.1,12.8,12.7,12.8,12.7,11.9,11.9,12.8,12.5,12.6,12.7,13.1,12.9,12.2,12.6,13,13.3,13.8,14.3,15,15.1,16,15.9,16.4,16.3,16.2,16.5,16.8,16.2,15.6,15.5,14,13.7,14.1,13.4,13.4,13.2,13.6,13.4,13.8,13.5,13.2,13.5,12.5,13,13.1,13.5,13.7,14.2,14.2,13,14,14.2,14.2,14.1,14.9,14.6,15,15.5,16.1,15.7,15.9,16,17.4,15.9,15.7,14.7,14.8,14.9,15.7,16,16,15.4,15.2,15,15.3,15.4,15.6,15.6,16,16.5,17.1,17.3,16.5,15.4,15,14.6,14.7,15,13.8,13.3,13.4,13.6,13.3,13.1,13.9,13.8,12.2,12.1,12.4,11.8,12.1,12.4,12.8,12.5,12.2,12.2,12.2,13.7,15.3,14.2,13.2,13.3,13.4,12.5,12.5,12.9,13.6,13.5,11.5,11.8,10.4,9.7,9.7,10.2],"c":[12.7,12.2,11.9,11.6,12.4,11.2,12.2,12.2,12.7,13.3,13.1,12,12.4,11.8,12.3,12.3,12.5,12,11.8,12.8,11.4,11.5,12.5,13.3,13.8,12.1,11.8,11.9,11.5,11.4,12.8,12.9,12.5,12.6,12.4,12.1,12.7,13,12.9,12.8,12.4,12.5,12.4,12.6,13.2,14.5,15.4,15.3,13.6,13.7,14.4,15.5,16.2,15.5,16,13,12.4,13,14,14.5,13.3,13.1,13.1,13.1,13,12,12.9,14.7,12.9,12.8,13.2,13.2,12.9,12.4,13.6,13.4,13.9,14.5,15.9,15.4,16.2,16.4,16.5,16.9,16.9,16.5,17.4,16.9,16.2,15.9,15.7,14.3,14.3,14.2,14.1,13.7,13.6,13.6,14.4,13.9,13.8,13.4,13.7,13.1,13.1,14,14,14.3,14.3,14.5,13.9,14.3,14.7,14.3,15.1,15,15.6,15.7,16.1,17,16,16.1,17.7,20.4,16.1,15.8,15.3,15.3,15.8,16.3,16.3,16.4,15.9,15.5,15.4,15.7,16,16.2,15.7,17.1,17.1,17.4,17.5,16.5,16,15.2,14.9,15.4,15,13.8,13.7,13.9,13.8,13.6,14,14.3,13.8,12.3,12.5,13.1,12.1,12.6,12.9,13.1,12.8,12.4,12.3,13.2,15.4,15.8,14.5,13.2,13.8,14.2,12.6,13.1,14.2,13.8,13.5,12.6,12.1,10.5,9.8,10.4,10.4],"v":[6218800,1458600,1143600,1100900,1041800,837000,810900,824300,776200,845800,695600,338300,310500,283600,459100,520800,305700,428400,472900,451800,298100,227000,335200,389400,460800,385000,236700,390100,205400,346100,377600,366100,411300,291400,271000,447200,620400,329400,323100,279500,258300,352700,283600,202300,189800,339500,289700,204600,318100,291600,358900,292900,483600,326200,1442600,1811100,687600,860700,1001400,782200,1038700,598800,454000,441100,679000,1223300,762300,2513000,1637200,817200,615500,382500,511600,688500,619000,631800,802100,2604800,1250600,832000,671800,843300,4095300,1706600,1333600,964400,833200,1042100,921800,804300,504000,885800,531700,393400,664400,393000,343700,421700,603000,271200,262000,322000,290400,1457100,748100,356900,318600,275200,304100,440600,842900,505800,523200,443900,750200,503200,310800,745900,580300,1390000,952700,830800,2498800,4687100,3850000,2856600,2353200,1551900,1048800,892500,963900,724700,1257800,977900,1008300,666000,1533400,959200,1509100,2204800,1402900,1393700,1306100,1424700,1438100,1266700,1135300,594600,733200,1391800,1262600,1119600,1169800,926300,1155700,903100,675900,930700,1951000,974900,1074700,675300,521700,420800,498800,308300,340800,757400,3940400,1762100,1169100,744700,724100,636300,1302700,632100,668500,529800,455700,1608200,811300,1316300,869200,1049700,835382]},"fy":[{"fy":"2024-12","sales":20459000.0,"op":-196939000.0,"ni":-213777000.0,"opm":-962.6,"ocf":-117750000.0,"fcf":-121197000.0,"eqr":-83.84,"roe":49.19853907424071,"per":null},{"fy":"2025-12","sales":31893000.0,"op":-235065000.0,"ni":-249523000.0,"opm":-737.04,"ocf":-200619000.0,"fcf":-204133000.0,"eqr":-186.55,"roe":40.50928218324093,"per":null}],"extra":{"mcap":13.31014761,"ev_ebitda":null,"fscore":null,"payout":null,"beta":null,"cagr":55.93,"dy":0.0,"roe":null,"opm":-737.04,"eqr":-186.55,"per":-5.33,"pbr":-2.16,"sec_per":24.195,"sec_pbr":2.32,"sec_roe":12.985737640644762,"sec_opm":13.67,"sec_eqr":64.9,"rank":"541.0","nsec":"1040"},"kb":{"annual":[{"fy":"24/12期","fyEnd":"2024-12-31","fc":null,"disc":null,"rev":20.459,"op":-196.939,"odp":-181.172,"ni":-213.777,"opm":-9.626032552910699,"ocf":-117.75,"icf":-57.725,"fcf":91.327,"cash":393.627,"frcf":-175.475,"dps":0.0,"payout":null,"eps":-2.09},{"fy":"25/12期","fyEnd":"2025-12-31","fc":null,"disc":null,"rev":31.893,"op":-235.065,"odp":-222.802,"ni":-249.523,"opm":-7.370426112313046,"ocf":-200.619,"icf":116.767,"fcf":28.059,"cash":221.498,"frcf":-83.852,"dps":0.0,"payout":null,"eps":-2.18}],"fc":null,"quarters":[{"fy":"25/03","fyEnd":"2025-03-31","perEnd":"2025-03-31","perSt":null,"rev":8.818,"op":-48.154,"odp":-44.258,"ni":-53.277,"opm":-5.460875481968701},{"fy":"25/06","fyEnd":"2025-06-30","perEnd":"2025-06-30","perSt":null,"rev":10.13,"op":-60.15,"odp":-56.698,"ni":-64.022,"opm":-5.937808489634747},{"fy":"26/03","fyEnd":"2026-03-31","perEnd":"2026-03-31","perSt":null,"rev":7.224,"op":-64.112,"odp":-61.686,"ni":-69.195,"opm":-8.87486157253599},{"fy":"26/06","fyEnd":"2026-06-30","perEnd":"2026-06-30","perSt":null,"rev":6.314,"op":-71.614,"odp":-67.202,"ni":-67.255,"opm":-11.342096927462782}],"odpName":"税引前利益","holders":{"asof":"2026-09-30","filed":"2026-09-30","issued":128352436.0,"treasury":0,"holders":[["Flagship Pioneering LLC",62673117,0.48829999999999996],["FMR, LLC",7186203,0.055999999999999994],["Capital World Investors",4215632,0.032799999999999996],["Braidwell LP                          ",3283844,0.0256],["Price (T.Rowe) Associates Inc",2156627,0.0168],["NORGES BANK",2094616,0.0163],["Arch Venture Management, Llc",1944426,0.0151],["Banque Pictet & Cie SA",1773043,0.0138],["Harbourvest Partners, LLC",1722210,0.0134],["Blackrock Inc.",1659966,0.0129]]},"bs":[{"fy":"24/12","fyEnd":"2024-12-31","std":"US","ta":518.259,"tl":953.349,"na":-435.09,"noCA":false,"cash":393.627,"recv":0.308,"inv":null,"oca":13.556,"ppe":101.068,"onca":9.7,"pay":5.667,"ocl":80.959,"ncl":866.723,"eq":-435.09,"oeq":0.0,"neg":true},{"fy":"25/12","fyEnd":"2025-12-31","std":"US","ta":330.182,"tl":953.379,"na":-623.197,"noCA":false,"cash":221.498,"recv":0.0,"inv":null,"oca":12.867,"ppe":89.011,"onca":6.806,"pay":3.837,"ocl":78.366,"ncl":871.176,"eq":-623.197,"oeq":0.0,"neg":true}]},"srow":{"c":"GENB","n":"Generate Biomedicines, Inc.","m":"NASDAQ","s":"ヘルスケア","d":"2026-11-19","p":10.37,"chg":-0.1,"ts":-65,"tt":-55,"to":73,"lv":{"atr":1.09,"atrp":10.5,"mode":"wait","trig":12.85,"trigB":5,"t1":12.85,"t1B":5,"t2":14.26,"t2B":109,"trail":7.65,"trailB":7,"hot":0},"tc":[-1,-1,-0.74,-0.81,-0.55,0.68,0.78,-0.01],"tr":[-19.2,-28.8,null,0,-3.3,0,-1,-1,36.5,11,50,1.03,45.7,22.7,81.4],"te":["MACD売り転換（4日前）"],"hp0":9.84,"hpk":0.00762763,"hp":[777,720,712,780,844,852,859,794,745,728,771,808,833,766,954,957,989,999,876,806,696,665,732,679,519,505,534,519,489,544,590,524,317,351,422,295,357,401,429,387,337,329,442,726,777,606,442,526,566,358,422,569,517,479,358,292,85,0,71,69],"hs":[-35,-43,-45,-39,-34,-31,-30,-38,-43,-46,-42,-39,-37,-43,-30,-28,-26,-26,-38,-42,-52,-54,-51,-56,-62,-63,-63,-64,-63,-62,-62,-63,-64,-64,-67,-68,-69,-71,-68,-68,-67,-67,-68,-57,-47,-51,-54,-54,-51,-54,-54,-50,-49,-51,-58,-59,-62,-64,-64,-65],"fs":-71,"fc":[null,-1,1,-1,null,-1],"fr":[-5.3,-2.16,null,"評価不能",null,1,-737,55.9,55.9,5,-186.6,1,null,-15.3,0,0,null],"ff":["赤字"],"fp":"2025-12-31","dv":48.6,"mc":2127},"smeta":{"tw":{"hi52":0.25,"lv":0.25,"ma":0.15,"ichi":0.1,"macd":0.05,"rsi":0.05,"bb":0.05,"vol":0.1},"fw":{"val":0.55,"prof":0.1,"grow":0.05,"safe":0.1,"fs":0.1,"cash":0.1},"levels":{"t":[40,15,-15,-30],"f":[45,20,-5,-20],"tr":[50,20,-20,-50],"os":[70,35,-35,-70],"ad":[60,40,-40,-60]},"names":["良好","やや良好","中立","弱い","避ける"]},"jk":{"score":25.0,"ratio":null,"buy":null,"sell":null,"dbuy":null,"dsell":null,"days":null,"pl":null,"lend":null,"short":12.15,"sp":12.15,"si":9084724.0,"sic":22.5,"dtc":8.47,"inst":80.6,"ins":14.0,"judge":"売り圧力","memo":"空売りが多い・空売りが急増","asof":"2026-10-30","flag":"","kind":""},"val":null,"shape":{"r":4,"k":1,"name":"まだ下落","s":-41.9,"q":-5.1},"an":{"target":{"mean":27.0,"median":27.0,"high":30.0,"low":22.0},"n":5,"rec_mean":1.33333,"rec":[["0m",2,4,0,0,0],["-1m",2,4,0,0,0],["-2m",2,4,0,0,0],["-3m",2,4,0,0,0]],"cur":"USD","cur_rev":"USD","est":{"0q":{"end":"2026-12-31","eps":-0.67,"eps_lo":-0.69,"eps_hi":-0.65,"eps_n":3,"eps_ya":null,"eps_g":null,"rev":9000000,"rev_lo":8000000,"rev_hi":10000000,"rev_n":2,"rev_ya":null,"rev_g":null,"t":[-0.67,-0.562,-0.5675,-0.5675,-0.61],"up7":0,"up30":1,"dn7":0,"dn30":2},"+1q":{"end":"2027-03-31","eps":-0.59,"eps_lo":-0.71,"eps_hi":-0.43,"eps_n":3,"eps_ya":-1.07,"eps_g":44.9,"rev":2000000,"rev_lo":0,"rev_hi":4000000,"rev_n":2,"rev_ya":7224000,"rev_g":-72.3,"t":[-0.59,-0.54667,-0.53,-0.53,-0.53],"up7":1,"up30":1,"dn7":0,"dn30":0},"0y":{"end":"2026-12-31","eps":-2.445,"eps_lo":-2.5,"eps_hi":-2.4,"eps_n":4,"eps_ya":null,"eps_g":null,"rev":24820800,"rev_lo":22008000,"rev_hi":27800000,"rev_n":5,"rev_ya":null,"rev_g":null,"t":[-2.445,-2.272,-2.3,-2.3,-2.35333],"up7":0,"up30":2,"dn7":0,"dn30":2},"+1y":{"end":"2027-12-31","eps":-2.38,"eps_lo":-2.73,"eps_hi":-1.53,"eps_n":5,"eps_ya":-2.445,"eps_g":2.7,"rev":23999000,"rev_lo":0,"rev_hi":40000000,"rev_n":6,"rev_ya":24820800,"rev_g":-3.3,"t":[-2.38,-2.242,-2.28,-2.28,-2.28],"up7":0,"up30":0,"dn7":2,"dn30":2}},"hist":[["2026-03-31",-0.50667,-1.07,-111.2],["2026-06-30",-0.4925,-0.52,-5.6],["2026-09-30",-0.5475,-0.68,-24.2]],"ud":[["2026-10-05","HC Wainwright & Co.","Buy","Buy","reit",30.0,30.0],["2026-09-08","HC Wainwright & Co.","Buy","Buy","reit",30.0,30.0],["2026-08-28","HC Wainwright & Co.","Buy","Buy","main",25.0,30.0],["2026-05-14","Morgan Stanley","Overweight","Overweight","main",20.0,22.0],["2026-05-08","HC Wainwright & Co.","Buy","Buy","main",16.0,25.0],["2026-04-13","HC Wainwright & Co.","","Buy","init",null,16.0],["2026-03-24","Goldman Sachs","","Buy","init",null,26.0],["2026-03-24","Morgan Stanley","","Overweight","init",null,20.0],["2026-03-24","Piper Sandler","","Overweight","init",null,24.0],["2026-03-24","Cantor Fitzgerald","","Overweight","init",null,null],["2026-03-24","Guggenheim","","Buy","init",null,30.0]],"fetched":"2026-11-14","pc":"USD"},"co":{"cur":"ドル","ind":"Biotechnology","emp":{"emp":312.0},"peers":[["GENB","Generate Biomedicines, Inc.",13.3,-5.3,-2.16,null,-737,0,null],["BBTX","Bambusa Therapeutics, Inc.",7.9,-19.3,-16.11,null,null,0,null],["MANE","Veradermics, Incorporated",52.5,-63,-43.37,null,null,0,null],["PBLS","Parabilis Medicines, Inc.",34.1,-18.3,-206.52,null,null,0,null],["ZBIO","Zenas BioPharma, Inc.",17,-4.5,7.01,-156,-2113.8,0,null]],"rel":[],"rec":[]},"gen":"2026-11-20 09:46"};</script>
+<script src="assets/one.js?v=202611200946"></script>
+<!--mobile-fix-spacer--><div class="mf-spacer" aria-hidden="true"></div><!--/mobile-fix-spacer--></body>
+</html>

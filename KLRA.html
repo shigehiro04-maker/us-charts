@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><!--kb-theme:v3--><script>(function(){var d=document.documentElement,
+m=/[?&#]theme=(dark|light)/.exec(location.search+location.hash),t=m&&m[1];
+if(!t){try{t=localStorage.getItem('fdb-theme')}catch(e){}}
+if(t==='dark'||t==='light')d.setAttribute('data-theme',t);
+try{if(window.top!==window.self)d.classList.add('kb-embed')}catch(e){d.classList.add('kb-embed')}})();</script>
+<style id="kb-theme">
+:root{--kb-fg:#1f1f1e;--kb-line:#d6d5ce;--kb-hover:rgba(0,0,0,.05)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--kb-fg:#ecebe6;--kb-line:#3b3b38;--kb-hover:rgba(255,255,255,.08)}}
+:root[data-theme="dark"]{--kb-fg:#ecebe6;--kb-line:#3b3b38;--kb-hover:rgba(255,255,255,.08)}
+/* スイッチ本体（トラック） */
+:root{--kb-trk:#e8e7e1;--kb-knob:#fff;--kb-ico:#d08a00;--kb-dim:#a9a79f}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--kb-trk:#2b2b29;--kb-knob:#45453f;--kb-ico:#f3d36a;--kb-dim:#6f6e68}}
+:root[data-theme="dark"]{--kb-trk:#2b2b29;--kb-knob:#45453f;--kb-ico:#f3d36a;--kb-dim:#6f6e68}
+:root button.kb-theme.kb-theme{-webkit-appearance:none;appearance:none;position:relative;display:inline-block;box-sizing:border-box;
+width:54px;height:30px;min-width:54px;min-height:0;padding:0;border:1px solid var(--kb-line);border-radius:15px;background:var(--kb-trk);
+color:var(--kb-fg);font-size:0;line-height:0;cursor:pointer;box-shadow:inset 0 1px 2px rgba(0,0,0,.08);vertical-align:middle;flex-shrink:0;
+overflow:hidden;-webkit-tap-highlight-color:transparent;transition:background .3s,border-color .3s}
+:root button.kb-theme.kb-theme:focus-visible{outline:2px solid #2a78d6;outline-offset:2px}
+:root button.kb-theme.kb-theme svg{display:block;width:100%;height:100%}
+/* 両端の小さなアイコン（つまみが無い側だけ見える） */
+:root button.kb-theme.kb-theme .kb-trk{position:absolute;top:50%;width:13px;height:13px;margin-top:-6.5px;color:var(--kb-dim);transition:opacity .3s}
+:root button.kb-theme.kb-theme .kb-l{left:7px;opacity:0}
+:root button.kb-theme.kb-theme .kb-r{right:7px;opacity:1}
+/* つまみ */
+:root button.kb-theme.kb-theme .kb-knob{position:absolute;top:2px;left:2px;width:24px;height:24px;border-radius:50%;background:var(--kb-knob);
+color:var(--kb-ico);box-shadow:0 1px 3px rgba(0,0,0,.25),0 0 0 .5px rgba(0,0,0,.06);transform:translateX(0);
+transition:transform .32s cubic-bezier(.3,1.35,.5,1),background .3s,color .3s}
+:root button.kb-theme.kb-theme:active .kb-knob{width:28px}
+:root button.kb-theme.kb-theme .kb-knob svg{position:absolute;inset:0;margin:auto;width:15px;height:15px;transition:opacity .25s,transform .35s}
+:root button.kb-theme.kb-theme .kb-knob .kb-sun{opacity:1;transform:none}
+:root button.kb-theme.kb-theme .kb-knob .kb-moon{opacity:0;transform:rotate(-90deg) scale(.4)}
+/* ダーク表示中：つまみを右へ */
+@media (prefers-color-scheme:dark){
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-knob{transform:translateX(24px)}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme:active .kb-knob{transform:translateX(20px)}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-knob .kb-sun{opacity:0;transform:rotate(90deg) scale(.4)}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-knob .kb-moon{opacity:1;transform:none}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-l{opacity:1}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-r{opacity:0}}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-knob{transform:translateX(24px)}
+:root[data-theme="dark"] button.kb-theme.kb-theme:active .kb-knob{transform:translateX(20px)}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-knob .kb-sun{opacity:0;transform:rotate(90deg) scale(.4)}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-knob .kb-moon{opacity:1;transform:none}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-l{opacity:1}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-r{opacity:0}
+@media (prefers-reduced-motion:reduce){:root button.kb-theme.kb-theme *{transition:none!important}}
+/* 全ページ共通の置き場所：ページ右上の角 */
+:root button.kb-theme.kb-theme.kb-corner{position:absolute;top:12px;right:16px;z-index:60;margin:0;float:none}
+@media (max-width:700px){:root button.kb-theme.kb-theme.kb-corner{top:10px;right:12px}}
+/* 右上のスイッチの下に見えない「よけ」を置き、見出しの文字やボタンがスイッチと重ならないようにする */
+.kb-spacer{float:right;width:84px;height:46px;pointer-events:none}
+@media (max-width:700px){.kb-spacer{width:76px;height:44px}}
+html.kb-embed .kb-spacer{display:none}
+html.kb-embed button.kb-theme[data-kb]{display:none}
+
+</style><!--/kb-theme-->
+<script>
+/* 親ページから ?theme=dark|light で表示を指定できる。指定が無ければOSの設定に従う。 */
+(function(){try{
+  var m=/[?&#]theme=(dark|light)/.exec(location.search+location.hash);
+  if(m)document.documentElement.setAttribute("data-theme",m[1]);
+}catch(e){}})();
+</script>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>KLRA Kailera Therapeutics, Inc. チャート</title>
+<link rel="stylesheet" href="assets/chart.css?v=a08d4ea5"><!--site-icon:v3--><link rel="icon" type="image/svg+xml" href="/us-charts/icon-black.svg?v=3" media="(prefers-color-scheme: light)"><link rel="icon" type="image/svg+xml" href="/us-charts/icon-white.svg?v=3" media="(prefers-color-scheme: dark)"><link rel="apple-touch-icon" href="/us-charts/apple-touch-icon.png?v=3"><!--/site-icon--><!--mobile-fix:v1--><style id="mobile-fix">
+.mf-spacer{display:none}
+html.mf-sa .mf-spacer{display:block;height:calc(env(safe-area-inset-bottom,0px) + 110px)}
+html.mf-sa .detail .inner{padding-bottom:calc(env(safe-area-inset-bottom,0px) + 140px)}
+</style><script>(function(){try{if(window.top!==window.self)return;
+var sa=navigator.standalone===true||matchMedia('(display-mode: standalone)').matches;
+var touch=matchMedia('(pointer: coarse)').matches;
+if(sa||touch)document.documentElement.classList.add('mf-sa');}catch(e){}})();</script><!--/mobile-fix--><!--pc-wide:v1--><style id="pc-wide">@media (min-width:1280px){body>.wrap,body>main,body>div.wrap{max-width:1680px!important}}</style><!--/pc-wide--></head><body><!--kb-btn--><button class="kb-theme kb-corner" id="kbTheme" type="button" data-kb="msg" aria-label="明暗を切り替え（ライト／ダーク）" title="明暗を切り替え（ライト／ダーク）"><span class="kb-trk kb-l"><svg class="kb-sun" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="12" cy="12" r="4.3"/><path d="M12 2.2v2.3M12 19.5v2.3M2.2 12h2.3M19.5 12h2.3M5.1 5.1l1.6 1.6M17.3 17.3l1.6 1.6M5.1 18.9l1.6-1.6M17.3 6.7l1.6-1.6"/></svg></span><span class="kb-trk kb-r"><svg class="kb-moon" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M20.2 14.6A8.4 8.4 0 0 1 9.4 3.8a.6.6 0 0 0-.8-.7A9.2 9.2 0 1 0 20.9 15.4a.6.6 0 0 0-.7-.8z"/></svg></span><span class="kb-knob"><svg class="kb-sun" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="12" cy="12" r="4.3"/><path d="M12 2.2v2.3M12 19.5v2.3M2.2 12h2.3M19.5 12h2.3M5.1 5.1l1.6 1.6M17.3 17.3l1.6 1.6M5.1 18.9l1.6-1.6M17.3 6.7l1.6-1.6"/></svg><svg class="kb-moon" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M20.2 14.6A8.4 8.4 0 0 1 9.4 3.8a.6.6 0 0 0-.8-.7A9.2 9.2 0 1 0 20.9 15.4a.6.6 0 0 0-.7-.8z"/></svg></span></button><div class="kb-spacer" aria-hidden="true"></div><!--/kb-btn--><div class="wrap">
+<h1><a class="back" href="./charts.html" title="一覧へ">‹</a>KLRA Kailera Therapeutics, Inc.<span class="mk">NASDAQ</span><span class="mk sec">ヘルスケア</span></h1>
+<div class="price"><b id="last"></b><span class="chg" id="chg"></span><span class="asof" id="asof"></span><a class="dash" href="./one/KLRA.html" target="_top" title="シグナル・チャート・ファンダを1画面で">ダッシュボード ›</a></div>
+<section class="biz" aria-label="会社概要"><p>肥満症の治療薬を開発する臨床段階のバイオ企業。</p><a href="https://www.kailera.com" target="_blank" rel="noopener noreferrer"><b>公式サイト ↗</b><span>www.kailera.com</span></a></section><div class="st" id="state"></div>
+<div class="bar">
+  <div class="seg" id="periods"></div>
+  <div class="ipick">
+    <button class="ib" data-g="tr" type="button">トレンド系<span class="cnt" id="cTR"></span><small>チャート上</small></button>
+    <button class="ib" data-g="os" type="button">オシレーター系<span class="cnt" id="cOS"></span><small>チャート下</small></button>
+    <button class="ib" data-g="sg" type="button"><span class="sgi"><b class="bu">▲</b><b class="se">▼</b></span>売買サイン<span class="cnt" id="cSG"></span></button>
+  </div>
+</div>
+<div class="ipanel" id="ipanel" hidden>
+  <div class="iph"><b id="iptitle"></b><span id="ipdesc"></span>
+    <button type="button" id="ipreset">既定に戻す</button><button type="button" id="ipnone">すべて外す</button><button type="button" id="ipclose">閉じる</button></div>
+  <div class="sgst" id="sgst" hidden>表示のしかた
+    <div class="seg" id="sgstyle"><button type="button" data-st="label">ラベル（買・売）</button><button type="button" data-st="tri">大きい三角</button></div>
+    <label><input type="checkbox" id="sgvl">サインの足に縦線も引く</label></div>
+  <div class="ics" id="ipchips"></div>
+</div>
+<div class="legend" id="legend"></div>
+<div class="chart"><canvas id="cv"></canvas><div class="vmode" id="vmode"><button type="button" data-m="v">出来高</button><button type="button" data-m="a">売買代金</button></div><div class="xh" id="xhv"></div><div class="xh" id="xhh"></div><div id="tip"></div></div>
+<details class="nt" id="ntbox"><summary>指標の計算方法</summary><p class="note" id="note"></p></details>
+</div>
+<script>
+const CODE = "KLRA";
+const RAW = [["2026-04-17",26.0,27.5,23.7,26.0,8114300],["2026-04-20",26.5,28.23,23.69,24.61,1341000],["2026-04-21",24.87,25.79,23.7,25.22,843100],["2026-04-22",25.17,25.75,23.65,24.3,891900],["2026-04-23",24.25,25.48,24.13,25.08,3995800],["2026-04-24",24.7,25.3,22.1,22.47,1209800],["2026-04-27",22.26,23.64,20.87,23.51,1070500],["2026-04-28",23.27,24.32,22.95,23.82,461400],["2026-04-29",23.95,25.0,23.28,24.76,681100],["2026-04-30",24.51,25.41,24.12,25.0,462500],["2026-05-01",25.02,25.55,24.04,25.15,551200],["2026-05-04",24.95,25.32,24.22,25.09,729900],["2026-05-05",25.01,25.5,23.8,24.26,425200],["2026-05-06",24.22,25.7,23.88,24.7,531200],["2026-05-07",24.66,24.74,22.44,22.47,279900],["2026-05-08",22.52,24.27,21.22,21.47,446200],["2026-05-11",21.52,23.2,21.52,22.93,482900],["2026-05-12",23.41,23.62,22.13,22.3,359200],["2026-05-13",22.5,23.39,21.0,21.11,349600],["2026-05-14",21.18,21.91,20.9,21.5,340400],["2026-05-15",21.04,21.77,20.75,21.04,482200],["2026-05-18",21.04,21.15,19.11,19.55,602000],["2026-05-19",19.53,20.38,19.01,19.62,347900],["2026-05-20",19.63,20.79,19.58,20.07,234700],["2026-05-21",20.07,21.26,19.74,21.08,362100],["2026-05-22",21.2,21.72,20.95,21.17,340900],["2026-05-26",21.32,21.82,20.92,21.57,484800],["2026-05-27",21.95,22.69,20.63,21.91,479400],["2026-05-28",22.03,23.3,21.41,22.94,397100],["2026-05-29",23.0,24.19,22.77,22.94,555900],["2026-06-01",22.89,23.66,22.29,23.18,299200],["2026-06-02",23.2,23.98,22.3,22.59,443600],["2026-06-03",22.44,23.23,22.02,22.38,422300],["2026-06-04",22.16,22.93,20.97,20.99,489800],["2026-06-05",21.17,21.91,18.85,19.37,450700],["2026-06-08",19.53,20.77,19.29,19.7,722600],["2026-06-09",19.68,20.22,19.11,19.64,577000],["2026-06-10",19.29,20.26,19.01,19.14,368600],["2026-06-11",19.14,19.89,19.1,19.54,376900],["2026-06-12",19.63,20.33,18.69,18.89,411600],["2026-06-15",19.32,20.02,19.1,19.67,404000],["2026-06-16",19.83,20.31,18.5,18.55,723300],["2026-06-17",18.62,20.39,18.62,19.13,746900],["2026-06-18",19.38,20.49,19.21,19.9,4355800],["2026-06-22",20.12,22.94,20.12,22.88,715900],["2026-06-23",22.55,22.62,21.37,21.37,531400],["2026-06-24",21.44,22.86,21.08,21.37,474000],["2026-06-25",21.37,21.45,20.2,20.66,426500],["2026-06-26",20.27,21.09,19.53,20.83,7448100],["2026-06-29",20.85,21.97,20.5,21.67,581700],["2026-06-30",21.77,22.21,20.89,22.03,858400],["2026-07-01",22.0,22.39,20.3,20.82,1345800],["2026-07-02",20.84,22.1,20.75,21.99,392300],["2026-07-06",22.01,23.41,21.62,23.3,482600],["2026-07-07",23.3,23.82,19.9,22.24,1648200],["2026-07-08",21.75,22.34,20.31,21.76,812800],["2026-07-09",21.49,21.7,20.58,21.01,701600],["2026-07-10",21.0,22.05,20.12,20.68,558300],["2026-07-13",20.51,20.51,19.36,19.97,525300],["2026-07-14",20.0,20.1,19.0,19.01,309000],["2026-07-15",19.07,19.37,18.67,19.3,285900],["2026-07-16",19.27,19.72,17.98,18.32,397900],["2026-07-17",17.9,18.87,17.61,18.55,342900],["2026-07-20",18.74,18.98,17.87,17.91,381500],["2026-07-21",17.8,18.59,17.5,18.41,421800],["2026-07-22",18.4,18.76,17.73,17.79,646800],["2026-07-23",18.0,18.34,16.77,17.4,609500],["2026-07-24",17.47,18.03,16.76,17.69,672900],["2026-07-27",18.1,18.27,17.17,17.48,567800],["2026-07-28",17.54,17.67,16.68,16.74,539500],["2026-07-29",16.66,18.76,16.51,16.88,526500],["2026-07-30",16.99,17.26,16.5,17.05,568900],["2026-07-31",17.1,17.44,16.39,16.94,414100],["2026-08-03",17.06,17.59,16.71,17.32,357500],["2026-08-04",17.42,18.33,17.33,18.11,400500],["2026-08-05",18.22,18.52,17.89,18.17,296700],["2026-08-06",17.96,18.9,17.95,18.87,178300],["2026-08-07",19.08,19.29,18.38,18.66,276200],["2026-08-10",18.63,19.06,18.44,18.98,276600],["2026-08-11",19.1,19.51,18.39,18.87,231100],["2026-08-12",18.9,19.06,18.23,18.59,246500],["2026-08-13",18.62,19.28,17.66,17.97,453800],["2026-08-14",17.93,18.39,17.47,17.94,336000],["2026-08-17",18.11,19.21,17.9,18.51,644900],["2026-08-18",18.35,18.89,17.5,17.83,1297600],["2026-08-19",17.81,18.5,17.66,18.32,2077600],["2026-08-20",18.2,18.37,17.17,17.46,544900],["2026-08-21",17.52,17.96,17.0,17.17,436800],["2026-08-24",17.14,17.16,16.37,16.54,549500],["2026-08-25",16.75,18.19,16.54,17.75,1323900],["2026-08-26",17.71,18.47,17.37,18.44,785300],["2026-08-27",18.31,18.78,17.76,18.53,439600],["2026-08-28",18.26,18.26,16.19,16.21,532000],["2026-08-31",16.26,16.64,15.15,15.4,1144000],["2026-09-01",15.21,17.06,15.15,16.41,1200800],["2026-09-02",16.39,16.82,15.59,15.85,737300],["2026-09-03",15.95,16.51,15.5,15.74,642500],["2026-09-04",15.6,16.44,15.57,16.23,523300],["2026-09-08",15.79,16.63,15.62,16.43,1000500],["2026-09-09",16.27,16.32,14.76,14.84,743700],["2026-09-10",14.58,14.98,14.51,14.91,661400],["2026-09-11",15.1,15.4,13.9,13.94,815400],["2026-09-14",13.91,14.12,13.56,13.75,872400],["2026-09-15",13.71,13.98,13.32,13.45,726400],["2026-09-16",13.55,13.68,12.47,12.7,1134500],["2026-09-17",13.07,13.21,12.63,12.92,1036200],["2026-09-18",12.98,13.23,12.36,12.83,3164400],["2026-09-21",12.95,13.04,11.84,11.99,1050200],["2026-09-22",12.46,12.95,12.05,12.79,1230000],["2026-09-23",12.76,13.22,12.56,13.13,1631800],["2026-09-24",12.85,13.12,11.77,11.98,2761200],["2026-09-25",11.8,12.33,11.1,11.22,1722600],["2026-09-28",11.3,11.52,11.07,11.12,1433500],["2026-09-29",11.1,11.31,10.83,10.99,694100],["2026-09-30",11.16,11.67,10.86,11.42,1368800],["2026-10-01",11.39,11.76,10.57,11.03,2187200],["2026-10-02",11.23,11.4,10.29,10.39,1280900],["2026-10-05",10.48,11.04,9.85,10.84,1811900],["2026-10-06",10.95,11.24,10.32,10.83,1452000],["2026-10-07",10.77,11.12,10.5,10.53,1091700],["2026-10-08",10.42,10.42,9.76,10.0,1532200],["2026-10-09",10.13,11.81,9.98,11.61,2181200],["2026-10-12",11.39,11.7,10.98,11.33,1220400],["2026-10-13",11.31,11.44,10.72,10.77,1106600],["2026-10-14",10.64,10.99,10.44,10.74,1304800],["2026-10-15",10.61,11.76,10.5,11.71,1174300],["2026-10-16",11.75,11.79,11.16,11.25,1299400],["2026-10-19",11.34,11.69,11.18,11.43,896600],["2026-10-20",11.43,13.06,11.43,12.89,1580000],["2026-10-21",12.91,13.22,12.7,12.92,1282800],["2026-10-22",12.8,13.34,12.56,13.27,855500],["2026-10-23",13.18,13.18,12.46,12.85,1560600],["2026-10-26",12.85,13.14,12.62,12.77,588900],["2026-10-27",12.78,13.27,12.47,13.13,841700],["2026-10-28",13.04,13.44,12.73,13.42,877100],["2026-10-29",13.49,13.83,13.3,13.41,1037500],["2026-10-30",13.27,13.4,12.53,12.86,868400],["2026-11-02",12.94,13.03,11.96,12.15,881400],["2026-11-03",12.32,13.03,12.3,12.58,775900],["2026-11-04",13.02,13.19,12.15,12.8,651300],["2026-11-05",13.3,13.3,11.88,12.17,842200],["2026-11-06",12.29,13.26,11.97,12.97,733000],["2026-11-09",13.42,14.33,13.01,13.7,1393700],["2026-11-10",13.89,14.89,13.39,14.24,1182700],["2026-11-11",14.3,14.62,14.0,14.38,610000],["2026-11-12",14.31,14.31,13.19,13.21,563100],["2026-11-13",13.21,13.62,12.78,13.27,567000],["2026-11-16",12.91,13.31,12.47,12.57,962800],["2026-11-17",12.57,12.68,11.86,12.2,510100],["2026-11-18",12.17,12.51,11.79,11.79,418800],["2026-11-19",11.86,12.06,11.28,11.58,473966]];
+const DATANOTE = "";
+</script>
+<script src="intra/KLRA.js?v=20261119914"></script>
+<script src="assets/chart.js?v=aa49b450"></script><!--kb-theme-js--><script>(function(){var bs=document.querySelectorAll('button.kb-theme[data-kb]');
+for(var i=0;i<bs.length;i++)bs[i].addEventListener('click',function(){var b=this,d=document.documentElement,
+cur=d.getAttribute('data-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'),n=cur==='dark'?'light':'dark';
+d.setAttribute('data-theme',n);try{localStorage.setItem('fdb-theme',n)}catch(e){}
+var f=document.querySelectorAll('iframe');for(var j=0;j<f.length;j++){try{f[j].contentWindow.postMessage({chartTheme:n},'*')}catch(e){}}
+var k=b.getAttribute('data-kb');
+if(k==='reload')location.reload();
+else if(k==='msg')window.postMessage({chartTheme:n},'*');
+else if(k==='fn'&&typeof window.__kbRedraw==='function')window.__kbRedraw();});})();</script><!--/kb-theme-js--><!--mobile-fix-spacer--><div class="mf-spacer" aria-hidden="true"></div><!--/mobile-fix-spacer--></body></html>

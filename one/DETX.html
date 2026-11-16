@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8"><!--kb-theme:v3--><script>(function(){var d=document.documentElement,
+m=/[?&#]theme=(dark|light)/.exec(location.search+location.hash),t=m&&m[1];
+if(!t){try{t=localStorage.getItem('fdb-theme')}catch(e){}}
+if(t==='dark'||t==='light')d.setAttribute('data-theme',t);
+try{if(window.top!==window.self)d.classList.add('kb-embed')}catch(e){d.classList.add('kb-embed')}})();</script>
+<style id="kb-theme">
+:root{--kb-fg:#1f1f1e;--kb-line:#d6d5ce;--kb-hover:rgba(0,0,0,.05)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--kb-fg:#ecebe6;--kb-line:#3b3b38;--kb-hover:rgba(255,255,255,.08)}}
+:root[data-theme="dark"]{--kb-fg:#ecebe6;--kb-line:#3b3b38;--kb-hover:rgba(255,255,255,.08)}
+/* スイッチ本体（トラック） */
+:root{--kb-trk:#e8e7e1;--kb-knob:#fff;--kb-ico:#d08a00;--kb-dim:#a9a79f}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--kb-trk:#2b2b29;--kb-knob:#45453f;--kb-ico:#f3d36a;--kb-dim:#6f6e68}}
+:root[data-theme="dark"]{--kb-trk:#2b2b29;--kb-knob:#45453f;--kb-ico:#f3d36a;--kb-dim:#6f6e68}
+:root button.kb-theme.kb-theme{-webkit-appearance:none;appearance:none;position:relative;display:inline-block;box-sizing:border-box;
+width:54px;height:30px;min-width:54px;min-height:0;padding:0;border:1px solid var(--kb-line);border-radius:15px;background:var(--kb-trk);
+color:var(--kb-fg);font-size:0;line-height:0;cursor:pointer;box-shadow:inset 0 1px 2px rgba(0,0,0,.08);vertical-align:middle;flex-shrink:0;
+overflow:hidden;-webkit-tap-highlight-color:transparent;transition:background .3s,border-color .3s}
+:root button.kb-theme.kb-theme:focus-visible{outline:2px solid #2a78d6;outline-offset:2px}
+:root button.kb-theme.kb-theme svg{display:block;width:100%;height:100%}
+/* 両端の小さなアイコン（つまみが無い側だけ見える） */
+:root button.kb-theme.kb-theme .kb-trk{position:absolute;top:50%;width:13px;height:13px;margin-top:-6.5px;color:var(--kb-dim);transition:opacity .3s}
+:root button.kb-theme.kb-theme .kb-l{left:7px;opacity:0}
+:root button.kb-theme.kb-theme .kb-r{right:7px;opacity:1}
+/* つまみ */
+:root button.kb-theme.kb-theme .kb-knob{position:absolute;top:2px;left:2px;width:24px;height:24px;border-radius:50%;background:var(--kb-knob);
+color:var(--kb-ico);box-shadow:0 1px 3px rgba(0,0,0,.25),0 0 0 .5px rgba(0,0,0,.06);transform:translateX(0);
+transition:transform .32s cubic-bezier(.3,1.35,.5,1),background .3s,color .3s}
+:root button.kb-theme.kb-theme:active .kb-knob{width:28px}
+:root button.kb-theme.kb-theme .kb-knob svg{position:absolute;inset:0;margin:auto;width:15px;height:15px;transition:opacity .25s,transform .35s}
+:root button.kb-theme.kb-theme .kb-knob .kb-sun{opacity:1;transform:none}
+:root button.kb-theme.kb-theme .kb-knob .kb-moon{opacity:0;transform:rotate(-90deg) scale(.4)}
+/* ダーク表示中：つまみを右へ */
+@media (prefers-color-scheme:dark){
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-knob{transform:translateX(24px)}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme:active .kb-knob{transform:translateX(20px)}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-knob .kb-sun{opacity:0;transform:rotate(90deg) scale(.4)}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-knob .kb-moon{opacity:1;transform:none}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-l{opacity:1}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-r{opacity:0}}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-knob{transform:translateX(24px)}
+:root[data-theme="dark"] button.kb-theme.kb-theme:active .kb-knob{transform:translateX(20px)}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-knob .kb-sun{opacity:0;transform:rotate(90deg) scale(.4)}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-knob .kb-moon{opacity:1;transform:none}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-l{opacity:1}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-r{opacity:0}
+@media (prefers-reduced-motion:reduce){:root button.kb-theme.kb-theme *{transition:none!important}}
+/* 全ページ共通の置き場所：ページ右上の角 */
+:root button.kb-theme.kb-theme.kb-corner{position:absolute;top:12px;right:16px;z-index:60;margin:0;float:none}
+@media (max-width:700px){:root button.kb-theme.kb-theme.kb-corner{top:10px;right:12px}}
+/* 右上のスイッチの下に見えない「よけ」を置き、見出しの文字やボタンがスイッチと重ならないようにする */
+.kb-spacer{float:right;width:84px;height:46px;pointer-events:none}
+@media (max-width:700px){.kb-spacer{width:76px;height:44px}}
+html.kb-embed .kb-spacer{display:none}
+html.kb-embed button.kb-theme[data-kb]{display:none}
+
+</style><!--/kb-theme-->
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Liberty Defense Holdings, Ltd.（DETX） | 株式分析ダッシュボード</title>
+<script>(function(){let t;try{t=localStorage.getItem('fdb-theme')}catch(e){}if(t)document.documentElement.setAttribute('data-theme',t);})();</script>
+<link rel="stylesheet" href="assets/one.css?v=202611200946">
+<!--site-icon:v3--><link rel="icon" type="image/svg+xml" href="/us-charts/icon-black.svg?v=3" media="(prefers-color-scheme: light)"><link rel="icon" type="image/svg+xml" href="/us-charts/icon-white.svg?v=3" media="(prefers-color-scheme: dark)"><link rel="apple-touch-icon" href="/us-charts/apple-touch-icon.png?v=3"><!--/site-icon--><!--mobile-fix:v1--><style id="mobile-fix">
+.mf-spacer{display:none}
+html.mf-sa .mf-spacer{display:block;height:calc(env(safe-area-inset-bottom,0px) + 110px)}
+html.mf-sa .detail .inner{padding-bottom:calc(env(safe-area-inset-bottom,0px) + 140px)}
+</style><script>(function(){try{if(window.top!==window.self)return;
+var sa=navigator.standalone===true||matchMedia('(display-mode: standalone)').matches;
+var touch=matchMedia('(pointer: coarse)').matches;
+if(sa||touch)document.documentElement.classList.add('mf-sa');}catch(e){}})();</script><!--/mobile-fix--><!--pc-wide:v1--><style id="pc-wide">@media (min-width:1280px){body>.wrap,body>main,body>div.wrap{max-width:1680px!important}}</style><!--/pc-wide--></head>
+<body><!--kb-btn--><button class="tbtn kb-theme kb-corner" id="theme" type="button" aria-label="明暗を切り替え（ライト／ダーク）" title="明暗を切り替え（ライト／ダーク）"><span class="kb-trk kb-l"><svg class="kb-sun" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="12" cy="12" r="4.3"/><path d="M12 2.2v2.3M12 19.5v2.3M2.2 12h2.3M19.5 12h2.3M5.1 5.1l1.6 1.6M17.3 17.3l1.6 1.6M5.1 18.9l1.6-1.6M17.3 6.7l1.6-1.6"/></svg></span><span class="kb-trk kb-r"><svg class="kb-moon" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M20.2 14.6A8.4 8.4 0 0 1 9.4 3.8a.6.6 0 0 0-.8-.7A9.2 9.2 0 1 0 20.9 15.4a.6.6 0 0 0-.7-.8z"/></svg></span><span class="kb-knob"><svg class="kb-sun" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="12" cy="12" r="4.3"/><path d="M12 2.2v2.3M12 19.5v2.3M2.2 12h2.3M19.5 12h2.3M5.1 5.1l1.6 1.6M17.3 17.3l1.6 1.6M5.1 18.9l1.6-1.6M17.3 6.7l1.6-1.6"/></svg><svg class="kb-moon" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M20.2 14.6A8.4 8.4 0 0 1 9.4 3.8a.6.6 0 0 0-.8-.7A9.2 9.2 0 1 0 20.9 15.4a.6.6 0 0 0-.7-.8z"/></svg></span></button><div class="kb-spacer" aria-hidden="true"></div><!--/kb-btn-->
+<div class="wrap">
+<header>
+  <h1 id="h-name"></h1><span class="cd" id="h-code"></span>
+  <span class="px" id="h-px"></span><span class="chg" id="h-chg"></span>
+  <span class="meta" id="h-meta"></span>
+  <span class="sp"><button class="tbtn" id="watchbtn" hidden>☆ 監視銘柄に追加</button><a class="tbtn" href="../index.html" style="text-decoration:none">トップ</a><a class="tbtn" href="index.html" style="text-decoration:none">銘柄一覧</a></span>
+</header>
+<div class="wbox" id="wbox" hidden></div>
+<div class="valline" id="valline" hidden></div>
+<p class="biz" id="biz"></p>
+<p class="bizlink" id="bizlink" hidden></p>
+<p class="empline" id="empline" hidden></p>
+
+<section class="card" id="sigcard">
+  <div class="hero">
+    <div>
+      <div class="big" id="big"></div>
+      <div class="n1" id="notes"></div>
+      <div class="plan" id="plan"></div>
+    </div>
+    <div class="quad" id="quad"></div>
+  </div>
+  <div class="sigfoot"><button class="tgl" id="sig-tgl" aria-expanded="false"><span class="tri">▾</span> 内訳・推移</button></div>
+  <div class="sigdet" id="sigdet" hidden>
+    <div><h5>テクニカルの内訳</h5><div id="partsT"></div></div>
+    <div><h5>ファンダメンタルの内訳</h5><div id="partsF"></div></div>
+    <div><h5>テクニカルスコアの推移</h5><div class="spk" id="spk"></div></div>
+  </div>
+</section>
+
+<div class="grid">
+  <div class="lcol">
+  <section class="card" id="chartcard">
+    <div class="bar">
+      <h2 style="margin:0">チャート</h2>
+      <div class="seg" id="rng"><button data-n="63">3ヶ月</button><button data-n="126" class="on">6ヶ月</button><button data-n="250">1年</button><button data-n="750">3年</button></div>
+      <div class="lg" id="lg-ind"></div>
+      <div class="lg" id="lg-vp"></div>
+      <button class="tgl" id="ch-tgl" aria-expanded="false" style="margin-left:auto"><span class="tri">▾</span> 指標を選ぶ</button>
+    </div>
+    <div id="ch-det" hidden>
+      <div id="indsel"></div>
+      <div class="lg" style="margin:4px 0 2px">
+        <label><input type="checkbox" id="cb-vp" checked>価格帯別出来高</label>
+        <label><input type="checkbox" id="cb-mk" checked>売買サイン</label>
+        <label><input type="checkbox" id="cb-lv" checked>IN・利確・損切り</label>
+      </div>
+      <div class="lg sgopt" id="sgopt"><span class="sgh">売買サイン</span><span class="sgkinds" id="sgkinds"></span></div>
+      <div class="lg sgopt" id="sgopt2"><span class="sgh">表示</span>
+        <div class="seg" id="sgstyle"><button type="button" data-st="label">ラベル（買・売）</button><button type="button" data-st="tri">大きい三角</button></div>
+        <label><input type="checkbox" id="sgvl">縦線も引く</label>
+        <button type="button" class="sgbtn" id="sgdef">既定に戻す</button><button type="button" class="sgbtn" id="sgnone">すべて外す</button>
+      </div>
+      <div class="lvbar" id="lvbar"></div>
+    </div>
+    <div id="chart"></div>
+  </section>
+  <section class="card" id="bscard"><div class="bsgrid"><div class="fp" id="fp-bs"></div><div class="fp" id="fp-holders"></div></div></section>
+  </div>
+
+  <div class="rcol">
+  <section class="card" id="jkcard">
+    <h2><span style="white-space:nowrap">需給</span> <span class="hint" id="jk-hint"></span><a class="jklink" id="jk-link" href="#">空売りの内訳 ›</a></h2>
+    <div class="jkg" id="jkg"></div>
+    <div class="jkf" id="jkf"></div>
+  </section>
+  <section class="card" id="fundcard">
+    <h2>ファンダメンタル <span class="hint" id="f-hint"></span></h2>
+    <div class="jcards" id="jcards"></div>
+    <div class="fgrid" id="fgrid"><div class="fp" id="fp-annual"></div><div class="fp" id="fp-cf"></div><div class="fp" id="fp-q"></div><div class="fp" id="fp-div"></div></div>
+    <div class="meta" id="fmeta"></div>
+  </section>
+  </div>
+</div>
+<section class="card" id="ancard" hidden>
+  <h2><span style="white-space:nowrap">アナリスト予想</span> <span class="hint" id="an-hint"></span><a class="jklink" id="an-link" href="../fundamentals.html#analyst">アナリスト予想ランキング ›</a></h2>
+  <div class="angrid"><div id="an-t"></div><div id="an-b"></div><div class="ancs" id="an-cw"><div id="an-cs"></div><div id="an-ct"></div></div><div id="an-c"></div></div>
+  <div class="anfoot"><button class="tgl" id="an-tgl" aria-expanded="false"><span class="tri">▾</span> <span class="pc">アナリストごとの目標株価・投資判断</span><span class="sp">業績予想・決算サプライズ・アナリスト別</span></button></div>
+  <div id="an-det" hidden><div id="an-u"></div></div>
+</section>
+<section class="card" id="cocard" hidden>
+  <h2><span style="white-space:nowrap">同業他社・関連企業</span> <span class="hint" id="co-hint"></span></h2>
+  <div class="cogrid"><div id="co-peer"></div><div id="co-rel"></div></div>
+</section>
+<footer><span></span><span id="gen"></span></footer>
+</div>
+<div id="tip"></div>
+<script src="assets/watch.js"></script>
+<script>const DATA={"info":{"code":"DETX","name":"Liberty Defense Holdings, Ltd.","market":"NASDAQ","sector":"資本財","date":"2026-11-19","price":0.98,"chg":0.04999999999999993,"chgp":5.376344086021498,"biz":"製品の開発・販売の会社。","url":"https://www.libertydefense.com","fdate":"2025-12-31"},"px":{"show":750,"d":["2026-04-21","2026-04-22","2026-04-23","2026-04-24","2026-04-27","2026-04-28","2026-04-29","2026-04-30","2026-05-01","2026-05-04","2026-05-05","2026-05-06","2026-05-07","2026-05-08","2026-05-11","2026-05-12","2026-05-13","2026-05-14","2026-05-15","2026-05-18","2026-05-19","2026-05-20","2026-05-21","2026-05-22","2026-05-26","2026-05-27","2026-05-28","2026-05-29","2026-06-01","2026-06-02","2026-06-03","2026-06-04","2026-06-05","2026-06-08","2026-06-09","2026-06-10","2026-06-11","2026-06-12","2026-06-15","2026-06-16","2026-06-17","2026-06-18","2026-06-22","2026-06-23","2026-06-24","2026-06-25","2026-06-26","2026-06-29","2026-06-30","2026-07-01","2026-07-02","2026-07-06","2026-07-07","2026-07-08","2026-07-09","2026-07-10","2026-07-13","2026-07-14","2026-07-15","2026-07-16","2026-07-17","2026-07-20","2026-07-21","2026-07-22","2026-07-23","2026-07-24","2026-07-27","2026-07-28","2026-07-29","2026-07-30","2026-07-31","2026-08-03","2026-08-04","2026-08-05","2026-08-06","2026-08-07","2026-08-10","2026-08-11","2026-08-12","2026-08-13","2026-08-14","2026-08-17","2026-08-18","2026-08-19","2026-08-20","2026-08-21","2026-08-24","2026-08-25","2026-08-26","2026-08-27","2026-08-28","2026-08-31","2026-09-01","2026-09-02","2026-09-03","2026-09-04","2026-09-08","2026-09-09","2026-09-10","2026-09-11","2026-09-14","2026-09-15","2026-09-16","2026-09-17","2026-09-18","2026-09-21","2026-09-22","2026-09-23","2026-09-24","2026-09-25","2026-09-28","2026-09-29","2026-09-30","2026-10-01","2026-10-02","2026-10-05","2026-10-06","2026-10-07","2026-10-08","2026-10-09","2026-10-12","2026-10-13","2026-10-14","2026-10-15","2026-10-16","2026-10-19","2026-10-20","2026-10-21","2026-10-22","2026-10-23","2026-10-26","2026-10-27","2026-10-28","2026-10-29","2026-10-30","2026-11-02","2026-11-03","2026-11-04","2026-11-05","2026-11-06","2026-11-09","2026-11-10","2026-11-11","2026-11-12","2026-11-13","2026-11-16","2026-11-17","2026-11-18","2026-11-19"],"o":[4.1,4.5,4.4,4.8,4.6,4.4,4.1,3.9,3.9,4.2,4.5,4.4,4.4,4.3,4.5,4.3,4.2,4,4.1,4.2,4,3.9,4.1,4,4,4.4,4.8,4.4,4.8,4.6,4.4,4.4,4,4.2,4.1,4.2,4,4.2,4.1,4.2,4.2,4.2,4.1,4,4.1,3.9,4,4,4.1,4,4.1,4,3.9,3.8,3.8,4,3.8,3.7,3.5,3.2,3.3,3.3,3.4,3.4,3.3,3.4,3.3,3.3,3.1,3.4,3.1,3.1,3.1,3.3,3.2,3,3,3.6,3.7,3.7,3.7,3.6,3.8,3.7,3.6,3.4,3.8,3.7,3.4,3.5,3.4,3.5,3.6,3.5,3.4,2.6,2.1,2.2,2.2,2.3,2.3,2.2,2.2,2.1,2.3,2.1,2.1,2.3,2.2,2.2,2.1,2.3,2.1,2,2.2,2,2,2,2,1.9,1.8,1.9,1.6,1.5,1.4,1.4,1.5,1.5,1.6,1.6,1.7,1.6,1.7,1.7,1.6,1.5,1.5,1.3,1.3,1.3,1.3,1.1,1.2,1.2,1.2,1.2,0.9,1,0.9],"h":[7,5,4.8,4.8,4.8,4.4,4.1,4.1,4.2,4.8,4.7,4.6,4.7,4.8,4.5,4.5,4.4,4.4,4.3,4.3,4.4,4.2,4.3,4.3,4.4,4.7,4.8,4.8,4.8,4.9,4.8,4.5,4.4,4.4,4.5,4.2,4.3,4.4,4.5,4.5,4.4,4.2,4.2,4.2,4.1,4.1,4.2,4.2,4.2,4.2,4.2,4.1,4.1,3.9,3.9,4,3.9,3.9,3.6,3.4,3.4,3.4,3.4,3.4,3.4,3.4,3.4,3.3,3.2,3.4,3.3,3.2,3.3,3.3,3.2,3.2,4.2,3.9,3.8,3.8,3.8,3.9,3.9,3.8,3.9,3.8,3.9,3.7,3.8,3.5,3.8,3.7,3.6,3.6,3.9,3,2.2,2.6,2.5,2.5,2.4,2.4,2.4,2.4,2.4,2.4,2.2,2.3,2.4,2.3,2.3,2.3,2.1,2.2,2.2,2.2,2.1,2,2,1.9,2,1.9,1.9,1.5,1.9,1.7,1.6,1.6,1.6,1.8,1.8,1.8,1.7,1.7,1.6,1.6,1.6,1.4,1.4,1.3,1.3,1.3,1.3,1.2,1.3,1.2,1.2,1.1,1.1],"l":[4.1,3.9,4.3,4.5,4.2,4,3.8,3.9,3.9,4.2,4.3,4.3,4.3,4.2,4.3,4.2,3.9,3.7,3.8,4,3.9,3.8,3.9,3.9,3.7,4.4,4.2,4.2,4.4,4.3,4.4,4.2,4,4.1,4.1,4,4,4,4,4,4.1,4.1,4,3.9,3.9,3.9,4,4,4,4,4,3.9,3.8,3.8,3.8,3.8,3.6,3.5,3.3,3.2,3.2,3.2,3.3,3.2,3.2,3.3,3.2,3.1,3.1,3.1,3,2.8,3,3,3,3,3,3.5,3.5,3.5,3.6,3.3,3.6,3.7,3.4,3.4,3.7,3.3,3.4,3.4,3.4,3.4,3.4,3.4,2.5,1.9,2.1,2.2,2.2,2.3,2.2,2.1,2.1,2.1,2.1,2,2.1,2,2.1,2.1,2.1,2,2,1.9,2,2,1.9,1.9,1.8,1.7,1.8,1.6,1.4,1.4,1.4,1.4,1.4,1.5,1.4,1.4,1.6,1.5,1.5,1.6,1.5,1.4,1.3,1.2,1.2,1.1,1.2,1.1,1.2,1.1,1.2,0.9,0.9,0.9,0.9],"c":[5.7,4.6,4.7,4.6,4.4,4.1,4.1,4,4.1,4.5,4.5,4.3,4.3,4.5,4.4,4.3,3.9,4.2,4.2,4.1,3.9,4,4.1,4,4.2,4.7,4.3,4.5,4.4,4.5,4.5,4.2,4.2,4.2,4.2,4,4.1,4.2,4.2,4.3,4.2,4.1,4.1,4,4,4,4,4,4,4,4,3.9,3.9,3.8,3.8,3.8,3.6,3.5,3.3,3.3,3.3,3.4,3.4,3.2,3.4,3.3,3.3,3.1,3.1,3.1,3,3,3.3,3.1,3,3,3.7,3.7,3.8,3.8,3.6,3.6,3.6,3.7,3.4,3.7,3.7,3.6,3.5,3.5,3.5,3.5,3.4,3.6,2.6,2.2,2.2,2.4,2.3,2.3,2.3,2.2,2.2,2.3,2.2,2.1,2.2,2,2.1,2.1,2.2,2.1,2.1,2.1,2.1,2,2,2,1.9,1.8,1.9,1.6,1.5,1.5,1.4,1.5,1.5,1.5,1.6,1.7,1.7,1.7,1.6,1.7,1.5,1.5,1.3,1.3,1.3,1.2,1.2,1.2,1.2,1.2,1.2,0.9,1,0.9,1],"v":[54800,1418600,278400,76500,74800,82200,50400,31300,44000,146300,35000,16500,13100,38100,13700,21900,28300,71500,43500,15500,50300,29200,24200,33800,102200,56100,64900,34100,20400,69900,30300,83500,27100,15700,24900,26400,42600,22700,17900,28600,13500,15300,25400,27400,29800,34400,19600,8500,10300,20300,9700,16100,17000,13100,5900,6300,12900,12700,13700,10300,8800,23400,25100,3200,3300,2400,9100,2400,4000,6900,13800,32900,37200,10700,3300,5200,137500,16000,7400,4600,3000,32300,12600,4500,8300,7700,5900,6200,5000,4800,2600,10500,4100,6700,185800,241200,36800,83300,23200,11700,8700,15300,14800,15400,12000,18100,14900,12000,14500,8600,10000,24700,13100,25100,7200,6500,21400,11700,17400,3600,11900,25900,87000,19400,145700,31800,43800,33100,29500,19500,24800,25200,11100,20600,10500,26200,19700,11500,11800,20700,21200,7200,19300,6100,4900,85900,18500,34600,8779]},"fy":[{"fy":"2022-12","sales":0.0,"op":-12177556.0,"ni":-12159414.0,"opm":null,"ocf":-8855940.0,"fcf":-9781419.0,"eqr":65.62,"roe":-297.2245321787951,"per":null},{"fy":"2023-12","sales":1492557.0,"op":-9107343.0,"ni":-9369043.0,"opm":-610.18,"ocf":-5537021.0,"fcf":-5758116.0,"eqr":-13.11,"roe":1225.5734097966936,"per":null},{"fy":"2024-12","sales":2438546.0,"op":-7433864.0,"ni":-8845163.0,"opm":-304.85,"ocf":-6469264.0,"fcf":-6590481.0,"eqr":-10.49,"roe":1157.0184400094706,"per":null},{"fy":"2025-12","sales":1498328.0,"op":-13465894.0,"ni":-14132177.0,"opm":-898.73,"ocf":-11349079.0,"fcf":-11436198.0,"eqr":-39.66,"roe":558.1238946860415,"per":null}],"extra":{"mcap":0.05568343,"ev_ebitda":null,"fscore":2.0,"payout":null,"beta":null,"cagr":null,"dy":0.0,"roe":null,"opm":-898.73,"eqr":-39.66,"per":-0.39,"pbr":-2.2,"sec_per":24.98,"sec_pbr":2.3449999999999998,"sec_roe":13.905546569633442,"sec_opm":10.195,"sec_eqr":45.885,"rank":"693.0","nsec":"714"},"kb":{"annual":[{"fy":"22/12期","fyEnd":"2022-12-31","fc":null,"disc":null,"rev":0.0,"op":-12.178,"odp":-12.159,"ni":-12.159,"opm":null,"ocf":-8.856,"icf":-0.925,"fcf":9.302,"cash":0.677,"frcf":-9.781,"dps":0.0,"payout":null,"eps":-58.5},{"fy":"23/12期","fyEnd":"2023-12-31","fc":null,"disc":null,"rev":1.493,"op":-9.107,"odp":-9.369,"ni":-9.369,"opm":-6.099799062290689,"ocf":-5.537,"icf":-0.221,"fcf":5.07,"cash":0.001,"frcf":-5.758,"dps":0.0,"payout":null,"eps":-32.85},{"fy":"24/12期","fyEnd":"2024-12-31","fc":null,"disc":null,"rev":2.439,"op":-7.434,"odp":-8.845,"ni":-8.845,"opm":-3.047970479704797,"ocf":-6.469,"icf":-0.121,"fcf":7.782,"cash":1.153,"frcf":-6.59,"dps":0.0,"payout":null,"eps":-23.19},{"fy":"25/12期","fyEnd":"2025-12-31","fc":null,"disc":null,"rev":1.498,"op":-13.466,"odp":-14.132,"ni":-14.132,"opm":-8.98931909212283,"ocf":-11.349,"icf":-0.087,"fcf":10.373,"cash":0.319,"frcf":-11.436,"dps":0.0,"payout":null,"eps":-10.49}],"fc":null,"quarters":[{"fy":"25/06","fyEnd":"2025-06-30","perEnd":"2025-06-30","perSt":null,"rev":0.43,"op":-3.571,"odp":-3.758,"ni":-3.758,"opm":-8.304651162790698},{"fy":"25/09","fyEnd":"2025-09-30","perEnd":"2025-09-30","perSt":null,"rev":0.374,"op":-2.622,"odp":-2.77,"ni":-2.77,"opm":-7.010695187165775},{"fy":"25/12","fyEnd":"2025-12-31","perEnd":"2025-12-31","perSt":null,"rev":-0.361,"op":-3.661,"odp":-3.82,"ni":-3.82,"opm":10.141274238227147},{"fy":"26/03","fyEnd":"2026-03-31","perEnd":"2026-03-31","perSt":null,"rev":0.919,"op":-2.57,"odp":-2.719,"ni":-2.719,"opm":-2.79651795429815},{"fy":"26/06","fyEnd":"2026-06-30","perEnd":"2026-06-30","perSt":null,"rev":0.042,"op":-3.485,"odp":-2.21,"ni":-2.21,"opm":-82.97619047619047}],"odpName":"税引前利益","holders":{"asof":"2026-09-30","filed":"2026-09-30","issued":5681983.0,"treasury":0,"holders":[["AWM Investment Company, Inc.",514300,0.09050000000000001],["Bleichroeder LP",277777,0.0489],["Salvus Wealth Management, LLC",21290,0.0037],["Citadel Advisors Llc",15523,0.0027],["Morgan Stanley",3206,0.0006],["Federation Des Caisses Desjardins Du Quebec",1619,0.0003],["Royal Bank of Canada",1394,0.0002],["National Bank of Canada/FI/",437,0.0001],["UBS Group AG",470,0.0001],["Game Plan Financial Advisors, Llc",426,0.0001]]},"bs":[{"fy":"22/12","fyEnd":"2022-12-31","std":"US","ta":6.234,"tl":2.143,"na":4.091,"noCA":false,"cash":0.677,"recv":0.055,"inv":0.486,"oca":0.277,"ppe":1.002,"onca":3.737,"pay":1.476,"ocl":0.153,"ncl":0.514,"eq":4.091,"oeq":0.0},{"fy":"23/12","fyEnd":"2023-12-31","std":"US","ta":5.832,"tl":6.596,"na":-0.764,"noCA":false,"cash":0.001,"recv":0.025,"inv":1.255,"oca":0.24,"ppe":1.044,"onca":3.267,"pay":3.863,"ocl":2.094,"ncl":0.639,"eq":-0.764,"oeq":0.0,"neg":true},{"fy":"24/12","fyEnd":"2024-12-31","std":"US","ta":7.287,"tl":8.051,"na":-0.764,"noCA":false,"cash":1.153,"recv":0.255,"inv":0.868,"oca":1.679,"ppe":0.76,"onca":2.572,"pay":2.407,"ocl":4.2,"ncl":1.444,"eq":-0.764,"oeq":0.0,"neg":true},{"fy":"25/12","fyEnd":"2025-12-31","std":"US","ta":6.385,"tl":8.917,"na":-2.532,"noCA":false,"cash":0.319,"recv":0.585,"inv":1.19,"oca":1.62,"ppe":0.672,"onca":1.999,"pay":2.547,"ocl":6.069,"ncl":0.301,"eq":-2.532,"oeq":0.0,"neg":true}]},"srow":{"c":"DETX","n":"Liberty Defense Holdings, Ltd.","m":"NASDAQ","s":"資本財","d":"2026-11-19","p":0.98,"chg":5.38,"ts":-75,"tt":-83,"to":82,"lv":{"atr":0.2137,"atrp":21.8,"mode":"wait","trig":1.3588,"trigB":5,"t1":1.3588,"t1B":5,"t2":1.83,"t2B":377,"trail":0.4457,"trailB":7,"hot":0},"tc":[-1,-1,-0.96,-0.97,-0.11,1,0.65,-0.84],"tr":[-27.9,-56.1,null,0,-1.11,1,-1,-1,28.9,18,29,1.1,14,7,103.7],"te":["MACD売り転換（3日前）","RSI売られすぎ"],"hp0":0.93,"hpk":0.00263263,"hp":[980,961,984,927,999,634,467,490,558,524,520,536,494,494,520,471,448,467,425,444,448,479,460,444,441,448,425,391,406,368,330,349,239,228,201,194,209,217,217,258,296,289,300,258,304,228,209,148,144,137,110,118,110,95,87,103,0,23,0,19],"hs":[-26,-26,-25,-25,-20,-43,-56,-63,-62,-62,-61,-60,-63,-62,-65,-65,-67,-67,-67,-66,-66,-66,-67,-66,-66,-63,-50,-53,-63,-61,-71,-71,-73,-77,-78,-78,-77,-76,-75,-74,-74,-74,-73,-72,-72,-72,-73,-72,-74,-74,-74,-74,-74,-71,-71,-64,-70,-73,-74,-75],"fs":-90,"fc":[null,-1,-1,-1,-0.56,-1],"fr":[-0.4,-2.2,null,"評価不能",null,1,-898.7,-38.6,null,null,-39.7,1,2,-205.4,0,0,null],"ff":["赤字"],"fp":"2025-12-31","dv":25.2,"mc":9},"smeta":{"tw":{"hi52":0.25,"lv":0.25,"ma":0.15,"ichi":0.1,"macd":0.05,"rsi":0.05,"bb":0.05,"vol":0.1},"fw":{"val":0.55,"prof":0.1,"grow":0.05,"safe":0.1,"fs":0.1,"cash":0.1},"levels":{"t":[40,15,-15,-30],"f":[45,20,-5,-20],"tr":[50,20,-20,-50],"os":[70,35,-35,-70],"ad":[60,40,-40,-60]},"names":["良好","やや良好","中立","弱い","避ける"]},"jk":{"score":40.0,"ratio":null,"buy":null,"sell":null,"dbuy":null,"dsell":null,"days":null,"pl":null,"lend":null,"short":null,"sp":null,"si":6812.0,"sic":46.9,"dtc":0.24,"inst":37.2,"ins":13.6,"judge":"売り圧力","memo":"空売りが急増","asof":"2026-10-30","flag":"","kind":""},"val":null,"shape":{"r":4,"k":2,"name":"下落","s":-127.6,"q":-1.7},"an":null,"co":{"cur":"ドル","ind":"Security & Protection Services","emp":{},"peers":[["DETX","Liberty Defense Holdings, Ltd.",0.1,-0.4,-2.2,null,-898.7,0,null],["MGRX","Mangoceuticals, Inc.",0,-0.2,0.29,-143.5,-4200.5,0,null],["CUPR","Cuprina Holdings (Cayman) Limited",0.1,-3.2,2.93,-92.4,-9154.6,0,null],["KPRX","Kiora Pharmaceuticals, Inc.",0.1,-0.6,0.37,-67.2,null,0,null],["FBLG","FibroBiologics, Inc.",0.1,-0.3,0.95,-302.9,null,0,null]],"rel":[],"rec":[]},"gen":"2026-11-20 09:46"};</script>
+<script src="assets/one.js?v=202611200946"></script>
+<!--mobile-fix-spacer--><div class="mf-spacer" aria-hidden="true"></div><!--/mobile-fix-spacer--></body>
+</html>

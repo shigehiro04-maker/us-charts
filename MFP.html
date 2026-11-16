@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><!--kb-theme:v3--><script>(function(){var d=document.documentElement,
+m=/[?&#]theme=(dark|light)/.exec(location.search+location.hash),t=m&&m[1];
+if(!t){try{t=localStorage.getItem('fdb-theme')}catch(e){}}
+if(t==='dark'||t==='light')d.setAttribute('data-theme',t);
+try{if(window.top!==window.self)d.classList.add('kb-embed')}catch(e){d.classList.add('kb-embed')}})();</script>
+<style id="kb-theme">
+:root{--kb-fg:#1f1f1e;--kb-line:#d6d5ce;--kb-hover:rgba(0,0,0,.05)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--kb-fg:#ecebe6;--kb-line:#3b3b38;--kb-hover:rgba(255,255,255,.08)}}
+:root[data-theme="dark"]{--kb-fg:#ecebe6;--kb-line:#3b3b38;--kb-hover:rgba(255,255,255,.08)}
+/* スイッチ本体（トラック） */
+:root{--kb-trk:#e8e7e1;--kb-knob:#fff;--kb-ico:#d08a00;--kb-dim:#a9a79f}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--kb-trk:#2b2b29;--kb-knob:#45453f;--kb-ico:#f3d36a;--kb-dim:#6f6e68}}
+:root[data-theme="dark"]{--kb-trk:#2b2b29;--kb-knob:#45453f;--kb-ico:#f3d36a;--kb-dim:#6f6e68}
+:root button.kb-theme.kb-theme{-webkit-appearance:none;appearance:none;position:relative;display:inline-block;box-sizing:border-box;
+width:54px;height:30px;min-width:54px;min-height:0;padding:0;border:1px solid var(--kb-line);border-radius:15px;background:var(--kb-trk);
+color:var(--kb-fg);font-size:0;line-height:0;cursor:pointer;box-shadow:inset 0 1px 2px rgba(0,0,0,.08);vertical-align:middle;flex-shrink:0;
+overflow:hidden;-webkit-tap-highlight-color:transparent;transition:background .3s,border-color .3s}
+:root button.kb-theme.kb-theme:focus-visible{outline:2px solid #2a78d6;outline-offset:2px}
+:root button.kb-theme.kb-theme svg{display:block;width:100%;height:100%}
+/* 両端の小さなアイコン（つまみが無い側だけ見える） */
+:root button.kb-theme.kb-theme .kb-trk{position:absolute;top:50%;width:13px;height:13px;margin-top:-6.5px;color:var(--kb-dim);transition:opacity .3s}
+:root button.kb-theme.kb-theme .kb-l{left:7px;opacity:0}
+:root button.kb-theme.kb-theme .kb-r{right:7px;opacity:1}
+/* つまみ */
+:root button.kb-theme.kb-theme .kb-knob{position:absolute;top:2px;left:2px;width:24px;height:24px;border-radius:50%;background:var(--kb-knob);
+color:var(--kb-ico);box-shadow:0 1px 3px rgba(0,0,0,.25),0 0 0 .5px rgba(0,0,0,.06);transform:translateX(0);
+transition:transform .32s cubic-bezier(.3,1.35,.5,1),background .3s,color .3s}
+:root button.kb-theme.kb-theme:active .kb-knob{width:28px}
+:root button.kb-theme.kb-theme .kb-knob svg{position:absolute;inset:0;margin:auto;width:15px;height:15px;transition:opacity .25s,transform .35s}
+:root button.kb-theme.kb-theme .kb-knob .kb-sun{opacity:1;transform:none}
+:root button.kb-theme.kb-theme .kb-knob .kb-moon{opacity:0;transform:rotate(-90deg) scale(.4)}
+/* ダーク表示中：つまみを右へ */
+@media (prefers-color-scheme:dark){
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-knob{transform:translateX(24px)}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme:active .kb-knob{transform:translateX(20px)}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-knob .kb-sun{opacity:0;transform:rotate(90deg) scale(.4)}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-knob .kb-moon{opacity:1;transform:none}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-l{opacity:1}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-r{opacity:0}}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-knob{transform:translateX(24px)}
+:root[data-theme="dark"] button.kb-theme.kb-theme:active .kb-knob{transform:translateX(20px)}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-knob .kb-sun{opacity:0;transform:rotate(90deg) scale(.4)}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-knob .kb-moon{opacity:1;transform:none}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-l{opacity:1}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-r{opacity:0}
+@media (prefers-reduced-motion:reduce){:root button.kb-theme.kb-theme *{transition:none!important}}
+/* 全ページ共通の置き場所：ページ右上の角 */
+:root button.kb-theme.kb-theme.kb-corner{position:absolute;top:12px;right:16px;z-index:60;margin:0;float:none}
+@media (max-width:700px){:root button.kb-theme.kb-theme.kb-corner{top:10px;right:12px}}
+/* 右上のスイッチの下に見えない「よけ」を置き、見出しの文字やボタンがスイッチと重ならないようにする */
+.kb-spacer{float:right;width:84px;height:46px;pointer-events:none}
+@media (max-width:700px){.kb-spacer{width:76px;height:44px}}
+html.kb-embed .kb-spacer{display:none}
+html.kb-embed button.kb-theme[data-kb]{display:none}
+
+</style><!--/kb-theme-->
+<script>
+/* 親ページから ?theme=dark|light で表示を指定できる。指定が無ければOSの設定に従う。 */
+(function(){try{
+  var m=/[?&#]theme=(dark|light)/.exec(location.search+location.hash);
+  if(m)document.documentElement.setAttribute("data-theme",m[1]);
+}catch(e){}})();
+</script>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MFP Midera Food Processing, Inc. チャート</title>
+<link rel="stylesheet" href="assets/chart.css?v=a08d4ea5"><!--site-icon:v3--><link rel="icon" type="image/svg+xml" href="/us-charts/icon-black.svg?v=3" media="(prefers-color-scheme: light)"><link rel="icon" type="image/svg+xml" href="/us-charts/icon-white.svg?v=3" media="(prefers-color-scheme: dark)"><link rel="apple-touch-icon" href="/us-charts/apple-touch-icon.png?v=3"><!--/site-icon--><!--mobile-fix:v1--><style id="mobile-fix">
+.mf-spacer{display:none}
+html.mf-sa .mf-spacer{display:block;height:calc(env(safe-area-inset-bottom,0px) + 110px)}
+html.mf-sa .detail .inner{padding-bottom:calc(env(safe-area-inset-bottom,0px) + 140px)}
+</style><script>(function(){try{if(window.top!==window.self)return;
+var sa=navigator.standalone===true||matchMedia('(display-mode: standalone)').matches;
+var touch=matchMedia('(pointer: coarse)').matches;
+if(sa||touch)document.documentElement.classList.add('mf-sa');}catch(e){}})();</script><!--/mobile-fix--><!--pc-wide:v1--><style id="pc-wide">@media (min-width:1280px){body>.wrap,body>main,body>div.wrap{max-width:1680px!important}}</style><!--/pc-wide--></head><body><!--kb-btn--><button class="kb-theme kb-corner" id="kbTheme" type="button" data-kb="msg" aria-label="明暗を切り替え（ライト／ダーク）" title="明暗を切り替え（ライト／ダーク）"><span class="kb-trk kb-l"><svg class="kb-sun" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="12" cy="12" r="4.3"/><path d="M12 2.2v2.3M12 19.5v2.3M2.2 12h2.3M19.5 12h2.3M5.1 5.1l1.6 1.6M17.3 17.3l1.6 1.6M5.1 18.9l1.6-1.6M17.3 6.7l1.6-1.6"/></svg></span><span class="kb-trk kb-r"><svg class="kb-moon" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M20.2 14.6A8.4 8.4 0 0 1 9.4 3.8a.6.6 0 0 0-.8-.7A9.2 9.2 0 1 0 20.9 15.4a.6.6 0 0 0-.7-.8z"/></svg></span><span class="kb-knob"><svg class="kb-sun" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="12" cy="12" r="4.3"/><path d="M12 2.2v2.3M12 19.5v2.3M2.2 12h2.3M19.5 12h2.3M5.1 5.1l1.6 1.6M17.3 17.3l1.6 1.6M5.1 18.9l1.6-1.6M17.3 6.7l1.6-1.6"/></svg><svg class="kb-moon" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M20.2 14.6A8.4 8.4 0 0 1 9.4 3.8a.6.6 0 0 0-.8-.7A9.2 9.2 0 1 0 20.9 15.4a.6.6 0 0 0-.7-.8z"/></svg></span></button><div class="kb-spacer" aria-hidden="true"></div><!--/kb-btn--><div class="wrap">
+<h1><a class="back" href="./charts.html" title="一覧へ">‹</a>MFP Midera Food Processing, Inc.<span class="mk">NASDAQ</span><span class="mk sec">資本財</span></h1>
+<div class="price"><b id="last"></b><span class="chg" id="chg"></span><span class="asof" id="asof"></span><a class="dash" href="./one/MFP.html" target="_top" title="シグナル・チャート・ファンダを1画面で">ダッシュボード ›</a></div>
+<section class="biz" aria-label="会社概要"><p>食肉加工・製パン・スナック向けの食品加工機械のメーカー。</p><a href="https://midera.com" target="_blank" rel="noopener noreferrer"><b>公式サイト ↗</b><span>midera.com</span></a></section><div class="st" id="state"></div>
+<div class="bar">
+  <div class="seg" id="periods"></div>
+  <div class="ipick">
+    <button class="ib" data-g="tr" type="button">トレンド系<span class="cnt" id="cTR"></span><small>チャート上</small></button>
+    <button class="ib" data-g="os" type="button">オシレーター系<span class="cnt" id="cOS"></span><small>チャート下</small></button>
+    <button class="ib" data-g="sg" type="button"><span class="sgi"><b class="bu">▲</b><b class="se">▼</b></span>売買サイン<span class="cnt" id="cSG"></span></button>
+  </div>
+</div>
+<div class="ipanel" id="ipanel" hidden>
+  <div class="iph"><b id="iptitle"></b><span id="ipdesc"></span>
+    <button type="button" id="ipreset">既定に戻す</button><button type="button" id="ipnone">すべて外す</button><button type="button" id="ipclose">閉じる</button></div>
+  <div class="sgst" id="sgst" hidden>表示のしかた
+    <div class="seg" id="sgstyle"><button type="button" data-st="label">ラベル（買・売）</button><button type="button" data-st="tri">大きい三角</button></div>
+    <label><input type="checkbox" id="sgvl">サインの足に縦線も引く</label></div>
+  <div class="ics" id="ipchips"></div>
+</div>
+<div class="legend" id="legend"></div>
+<div class="chart"><canvas id="cv"></canvas><div class="vmode" id="vmode"><button type="button" data-m="v">出来高</button><button type="button" data-m="a">売買代金</button></div><div class="xh" id="xhv"></div><div class="xh" id="xhh"></div><div id="tip"></div></div>
+<details class="nt" id="ntbox"><summary>指標の計算方法</summary><p class="note" id="note"></p></details>
+</div>
+<script>
+const CODE = "MFP";
+const RAW = [["2026-06-26",110.5,200.0,21.0,110.5,0],["2026-06-29",35.0,35.0,35.0,35.0,82100],["2026-06-30",40.0,40.0,40.0,40.0,29400],["2026-07-01",40.0,40.0,35.0,38.98,112300],["2026-07-02",42.54,42.54,34.98,36.01,187700],["2026-07-06",36.0,37.33,33.0,35.05,100400],["2026-07-07",35.5,40.04,34.65,36.6,8306000],["2026-07-08",36.49,39.59,36.06,39.0,1977400],["2026-07-09",39.47,45.02,38.2,44.0,2138800],["2026-07-10",44.75,45.18,40.9,41.44,1914500],["2026-07-13",40.61,44.4,40.0,42.6,1363900],["2026-07-14",42.83,44.1,42.2,43.5,1481000],["2026-07-15",43.43,44.81,43.08,43.47,1042500],["2026-07-16",43.89,45.47,43.02,44.68,893500],["2026-07-17",44.11,45.02,40.47,41.87,1109100],["2026-07-20",42.0,44.18,41.12,43.42,846700],["2026-07-21",44.02,46.68,43.61,45.84,1087200],["2026-07-22",46.0,47.33,43.22,44.68,1065000],["2026-07-23",45.19,47.78,44.16,47.75,995100],["2026-07-24",46.73,48.86,46.05,47.2,1230000],["2026-07-27",46.86,48.5,46.09,47.75,754200],["2026-07-28",48.0,48.0,45.06,46.58,1237900],["2026-07-29",46.98,47.91,44.86,46.61,788400],["2026-07-30",47.26,48.66,45.5,48.14,1162000],["2026-07-31",48.45,49.86,47.09,47.95,918200],["2026-08-03",47.53,48.86,46.75,47.29,495100],["2026-08-04",47.5,48.03,44.08,47.29,689300],["2026-08-05",46.91,48.39,45.85,46.67,695200],["2026-08-06",46.66,48.5,45.38,46.71,900900],["2026-08-07",48.35,48.6,45.78,45.92,638000],["2026-08-10",45.92,47.22,43.55,44.82,583500],["2026-08-11",44.9,45.95,44.15,44.95,766700],["2026-08-12",45.49,46.02,43.45,43.74,710000],["2026-08-13",44.04,45.16,42.5,43.08,743300],["2026-08-14",42.07,46.08,42.0,45.57,1260500],["2026-08-17",45.6,46.44,44.35,45.0,636400],["2026-08-18",44.5,45.25,42.85,42.91,549400],["2026-08-19",43.05,45.95,42.92,45.71,1098400],["2026-08-20",46.73,49.05,45.08,48.95,1386600],["2026-08-21",49.48,51.62,49.21,50.71,697000],["2026-08-24",50.65,51.34,48.19,48.75,422700],["2026-08-25",48.54,51.88,48.01,51.47,640600],["2026-08-26",50.12,52.58,47.73,48.44,509200],["2026-08-27",48.36,49.57,48.17,48.64,609100],["2026-08-28",48.65,49.92,46.11,46.77,529800],["2026-08-31",46.66,47.29,46.01,46.88,428700],["2026-09-01",46.63,47.95,44.07,44.2,345100],["2026-09-02",44.16,45.36,43.12,45.04,405500],["2026-09-03",45.28,46.17,43.2,44.01,509100],["2026-09-04",44.04,45.88,44.04,45.21,253600],["2026-09-08",44.96,45.19,42.83,42.91,306800],["2026-09-09",42.64,43.89,42.1,42.75,291500],["2026-09-10",42.13,43.4,41.2,41.57,292000],["2026-09-11",41.86,42.76,40.93,41.61,315300],["2026-09-14",40.77,42.84,40.28,41.51,477000],["2026-09-15",41.6,43.95,40.84,43.58,645300],["2026-09-16",43.47,46.15,43.47,44.27,1023200],["2026-09-17",45.38,45.69,44.39,44.99,415000],["2026-09-18",45.32,45.32,41.96,42.34,1690900],["2026-09-21",42.45,45.14,42.22,45.12,373400],["2026-09-22",45.36,45.36,44.01,44.74,452200],["2026-09-23",44.56,45.26,44.08,44.8,329000],["2026-09-24",44.45,44.64,42.81,42.98,415500],["2026-09-25",43.4,44.24,42.62,42.69,326400],["2026-09-28",42.16,42.26,40.86,41.15,256100],["2026-09-29",41.01,41.16,40.32,40.69,315300],["2026-09-30",41.06,41.6,40.06,40.82,753000],["2026-10-01",40.68,42.23,40.34,41.55,494700],["2026-10-02",42.2,42.6,41.16,41.69,314200],["2026-10-05",42.03,43.7,41.27,42.54,788600],["2026-10-06",42.44,43.09,41.49,41.78,264200],["2026-10-07",41.28,41.89,39.4,40.55,279600],["2026-10-08",40.44,40.61,39.44,40.38,229200],["2026-10-09",40.31,41.76,40.24,40.97,171100],["2026-10-12",40.65,40.85,39.26,39.53,241800],["2026-10-13",39.33,40.9,38.51,39.73,377500],["2026-10-14",39.2,39.87,38.51,39.73,446800],["2026-10-15",39.56,41.26,39.35,40.59,481500],["2026-10-16",40.23,41.19,39.21,39.57,410400],["2026-10-19",40.15,40.77,39.37,40.04,450000],["2026-10-20",40.63,42.32,40.03,41.84,455200],["2026-10-21",41.98,42.43,41.06,41.3,383200],["2026-10-22",40.69,41.34,39.84,41.19,542600],["2026-10-23",41.25,42.34,40.19,41.81,431800],["2026-10-26",41.92,43.74,41.65,43.37,415600],["2026-10-27",43.87,43.89,41.91,42.34,542100],["2026-10-28",42.8,42.9,40.8,41.92,397200],["2026-10-29",41.91,42.66,41.29,41.57,357400],["2026-10-30",41.56,42.08,39.22,40.12,622000],["2026-11-02",40.43,42.09,40.38,41.11,404300],["2026-11-03",41.56,43.02,41.3,42.07,428500],["2026-11-04",42.3,43.06,40.73,42.69,425200],["2026-11-05",42.33,43.34,39.78,40.94,597200],["2026-11-06",42.0,42.77,41.0,42.43,409600],["2026-11-09",43.27,46.57,43.11,46.11,324900],["2026-11-10",45.47,46.04,44.43,45.09,459900],["2026-11-11",45.66,46.62,44.95,45.62,255900],["2026-11-12",45.02,46.41,44.4,45.16,278300],["2026-11-13",45.36,46.42,43.36,44.31,270700],["2026-11-16",43.6,44.38,42.68,43.43,598200],["2026-11-17",46.0,46.94,42.35,42.37,613200],["2026-11-18",42.07,48.76,40.92,48.28,855600],["2026-11-19",48.28,49.49,46.89,47.49,394023]];
+const DATANOTE = "";
+</script>
+<script src="intra/MFP.js?v=20261119869"></script>
+<script src="assets/chart.js?v=aa49b450"></script><!--kb-theme-js--><script>(function(){var bs=document.querySelectorAll('button.kb-theme[data-kb]');
+for(var i=0;i<bs.length;i++)bs[i].addEventListener('click',function(){var b=this,d=document.documentElement,
+cur=d.getAttribute('data-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'),n=cur==='dark'?'light':'dark';
+d.setAttribute('data-theme',n);try{localStorage.setItem('fdb-theme',n)}catch(e){}
+var f=document.querySelectorAll('iframe');for(var j=0;j<f.length;j++){try{f[j].contentWindow.postMessage({chartTheme:n},'*')}catch(e){}}
+var k=b.getAttribute('data-kb');
+if(k==='reload')location.reload();
+else if(k==='msg')window.postMessage({chartTheme:n},'*');
+else if(k==='fn'&&typeof window.__kbRedraw==='function')window.__kbRedraw();});})();</script><!--/kb-theme-js--><!--mobile-fix-spacer--><div class="mf-spacer" aria-hidden="true"></div><!--/mobile-fix-spacer--></body></html>

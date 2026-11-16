@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8"><!--kb-theme:v3--><script>(function(){var d=document.documentElement,
+m=/[?&#]theme=(dark|light)/.exec(location.search+location.hash),t=m&&m[1];
+if(!t){try{t=localStorage.getItem('fdb-theme')}catch(e){}}
+if(t==='dark'||t==='light')d.setAttribute('data-theme',t);
+try{if(window.top!==window.self)d.classList.add('kb-embed')}catch(e){d.classList.add('kb-embed')}})();</script>
+<style id="kb-theme">
+:root{--kb-fg:#1f1f1e;--kb-line:#d6d5ce;--kb-hover:rgba(0,0,0,.05)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--kb-fg:#ecebe6;--kb-line:#3b3b38;--kb-hover:rgba(255,255,255,.08)}}
+:root[data-theme="dark"]{--kb-fg:#ecebe6;--kb-line:#3b3b38;--kb-hover:rgba(255,255,255,.08)}
+/* スイッチ本体（トラック） */
+:root{--kb-trk:#e8e7e1;--kb-knob:#fff;--kb-ico:#d08a00;--kb-dim:#a9a79f}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--kb-trk:#2b2b29;--kb-knob:#45453f;--kb-ico:#f3d36a;--kb-dim:#6f6e68}}
+:root[data-theme="dark"]{--kb-trk:#2b2b29;--kb-knob:#45453f;--kb-ico:#f3d36a;--kb-dim:#6f6e68}
+:root button.kb-theme.kb-theme{-webkit-appearance:none;appearance:none;position:relative;display:inline-block;box-sizing:border-box;
+width:54px;height:30px;min-width:54px;min-height:0;padding:0;border:1px solid var(--kb-line);border-radius:15px;background:var(--kb-trk);
+color:var(--kb-fg);font-size:0;line-height:0;cursor:pointer;box-shadow:inset 0 1px 2px rgba(0,0,0,.08);vertical-align:middle;flex-shrink:0;
+overflow:hidden;-webkit-tap-highlight-color:transparent;transition:background .3s,border-color .3s}
+:root button.kb-theme.kb-theme:focus-visible{outline:2px solid #2a78d6;outline-offset:2px}
+:root button.kb-theme.kb-theme svg{display:block;width:100%;height:100%}
+/* 両端の小さなアイコン（つまみが無い側だけ見える） */
+:root button.kb-theme.kb-theme .kb-trk{position:absolute;top:50%;width:13px;height:13px;margin-top:-6.5px;color:var(--kb-dim);transition:opacity .3s}
+:root button.kb-theme.kb-theme .kb-l{left:7px;opacity:0}
+:root button.kb-theme.kb-theme .kb-r{right:7px;opacity:1}
+/* つまみ */
+:root button.kb-theme.kb-theme .kb-knob{position:absolute;top:2px;left:2px;width:24px;height:24px;border-radius:50%;background:var(--kb-knob);
+color:var(--kb-ico);box-shadow:0 1px 3px rgba(0,0,0,.25),0 0 0 .5px rgba(0,0,0,.06);transform:translateX(0);
+transition:transform .32s cubic-bezier(.3,1.35,.5,1),background .3s,color .3s}
+:root button.kb-theme.kb-theme:active .kb-knob{width:28px}
+:root button.kb-theme.kb-theme .kb-knob svg{position:absolute;inset:0;margin:auto;width:15px;height:15px;transition:opacity .25s,transform .35s}
+:root button.kb-theme.kb-theme .kb-knob .kb-sun{opacity:1;transform:none}
+:root button.kb-theme.kb-theme .kb-knob .kb-moon{opacity:0;transform:rotate(-90deg) scale(.4)}
+/* ダーク表示中：つまみを右へ */
+@media (prefers-color-scheme:dark){
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-knob{transform:translateX(24px)}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme:active .kb-knob{transform:translateX(20px)}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-knob .kb-sun{opacity:0;transform:rotate(90deg) scale(.4)}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-knob .kb-moon{opacity:1;transform:none}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-l{opacity:1}
+:root:not([data-theme="light"]) button.kb-theme.kb-theme .kb-r{opacity:0}}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-knob{transform:translateX(24px)}
+:root[data-theme="dark"] button.kb-theme.kb-theme:active .kb-knob{transform:translateX(20px)}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-knob .kb-sun{opacity:0;transform:rotate(90deg) scale(.4)}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-knob .kb-moon{opacity:1;transform:none}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-l{opacity:1}
+:root[data-theme="dark"] button.kb-theme.kb-theme .kb-r{opacity:0}
+@media (prefers-reduced-motion:reduce){:root button.kb-theme.kb-theme *{transition:none!important}}
+/* 全ページ共通の置き場所：ページ右上の角 */
+:root button.kb-theme.kb-theme.kb-corner{position:absolute;top:12px;right:16px;z-index:60;margin:0;float:none}
+@media (max-width:700px){:root button.kb-theme.kb-theme.kb-corner{top:10px;right:12px}}
+/* 右上のスイッチの下に見えない「よけ」を置き、見出しの文字やボタンがスイッチと重ならないようにする */
+.kb-spacer{float:right;width:84px;height:46px;pointer-events:none}
+@media (max-width:700px){.kb-spacer{width:76px;height:44px}}
+html.kb-embed .kb-spacer{display:none}
+html.kb-embed button.kb-theme[data-kb]{display:none}
+
+</style><!--/kb-theme-->
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Welltower Inc.（WELL）業績ダッシュボード</title>
+<link rel="stylesheet" href="assets/style.css">
+<!--site-icon:v3--><link rel="icon" type="image/svg+xml" href="/us-charts/icon-black.svg?v=3" media="(prefers-color-scheme: light)"><link rel="icon" type="image/svg+xml" href="/us-charts/icon-white.svg?v=3" media="(prefers-color-scheme: dark)"><link rel="apple-touch-icon" href="/us-charts/apple-touch-icon.png?v=3"><!--/site-icon--><!--mobile-fix:v1--><style id="mobile-fix">
+.mf-spacer{display:none}
+html.mf-sa .mf-spacer{display:block;height:calc(env(safe-area-inset-bottom,0px) + 110px)}
+html.mf-sa .detail .inner{padding-bottom:calc(env(safe-area-inset-bottom,0px) + 140px)}
+</style><script>(function(){try{if(window.top!==window.self)return;
+var sa=navigator.standalone===true||matchMedia('(display-mode: standalone)').matches;
+var touch=matchMedia('(pointer: coarse)').matches;
+if(sa||touch)document.documentElement.classList.add('mf-sa');}catch(e){}})();</script><!--/mobile-fix--><!--pc-wide:v1--><style id="pc-wide">@media (min-width:1280px){body>.wrap,body>main,body>div.wrap{max-width:1680px!important}}</style><!--/pc-wide--></head>
+<body><!--kb-btn--><button class="kb-theme kb-corner" id="kbTheme" type="button" data-kb="reload" aria-label="明暗を切り替え（ライト／ダーク）" title="明暗を切り替え（ライト／ダーク）"><span class="kb-trk kb-l"><svg class="kb-sun" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="12" cy="12" r="4.3"/><path d="M12 2.2v2.3M12 19.5v2.3M2.2 12h2.3M19.5 12h2.3M5.1 5.1l1.6 1.6M17.3 17.3l1.6 1.6M5.1 18.9l1.6-1.6M17.3 6.7l1.6-1.6"/></svg></span><span class="kb-trk kb-r"><svg class="kb-moon" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M20.2 14.6A8.4 8.4 0 0 1 9.4 3.8a.6.6 0 0 0-.8-.7A9.2 9.2 0 1 0 20.9 15.4a.6.6 0 0 0-.7-.8z"/></svg></span><span class="kb-knob"><svg class="kb-sun" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="12" cy="12" r="4.3"/><path d="M12 2.2v2.3M12 19.5v2.3M2.2 12h2.3M19.5 12h2.3M5.1 5.1l1.6 1.6M17.3 17.3l1.6 1.6M5.1 18.9l1.6-1.6M17.3 6.7l1.6-1.6"/></svg><svg class="kb-moon" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M20.2 14.6A8.4 8.4 0 0 1 9.4 3.8a.6.6 0 0 0-.8-.7A9.2 9.2 0 1 0 20.9 15.4a.6.6 0 0 0-.7-.8z"/></svg></span></button><div class="kb-spacer" aria-hidden="true"></div><!--/kb-btn-->
+<div class="wrap">
+  <header class="mast">
+    <div class="eyebrow"><a href="../fundamentals.html" style="color:inherit">← 東証スクリーニング</a></div>
+    <h1>Welltower Inc.<span class="code">WELL</span></h1>
+    <div class="slip" id="slip"></div>
+    <p class="biz">高齢者向け住宅・医療施設に投資する不動産投資信託（REIT）。</p><p class="site"><a href="https://www.welltower.com" target="_blank" rel="noopener noreferrer"><b>公式サイト ↗</b><span>www.welltower.com</span></a></p>
+  </header>
+
+  <section class="cards" id="cards" aria-label="判定サマリー"></section>
+
+  <section class="grid">
+    <div class="panel" id="p-annual"></div>
+    <div class="panel" id="p-cf"></div>
+    <div class="panel" id="p-q"></div>
+    <div class="panel" id="p-div"></div>
+    <div class="panel full" id="p-bs"></div>
+    <div class="panel full" id="p-holders"></div>
+  </section>
+
+  <details class="more">
+    <summary>通期の数値をすべて見る</summary>
+    <div class="inner" id="t-annual"></div>
+  </details>
+  <details class="more">
+    <summary>判定の基準と注記</summary>
+    <div class="inner foot"><ol>
+      <li>直近の通期決算を、同じ業種の中央値と比べて判定しています。▲＝良い側　●＝並み　▼＝注意。</li>
+      <li>成長性：売上高の年平均成長率が5%以上で増収。利益が初年度を下回ると増収減益。</li>
+      <li>収益性：営業利益率が業種中央値の1.2倍以上で高い、0.6倍未満で低い。</li>
+      <li>財務安全性：自己資本比率が50%以上か業種の1.3倍以上で厚い、20%未満で薄め（業種並みなら標準）。</li>
+      <li>資本効率：ROE 10%以上で高い、5%未満で低い。</li>
+      <li>割安度：PERとPBRがともに業種中央値を下回ると割安、ともに上回ると割高。</li>
+      <li>売上総利益・粗利率は売上原価データがある期のみ表示し、データの無い系列・列は出しません。</li>
+      <li>グラフ：通期・配当の右端の薄い棒は会社予想（J-Quants 決算短信サマリーの最新値）。折れ線は右軸（%）。</li>
+      <li>経常利益は J-Quants の決算短信サマリーから取得（日本基準のみ。取得範囲は直近約2年）。IFRS・米国基準は税引前利益で表示します。</li>
+      <li>貸借対照表は年次決算（10-K）の連結貸借対照表を Yahoo Finance から取得し、区分にまとめたもの。外国企業は最新の為替でドルに換算しています。</li>
+      <li>株主構成は 13F（運用資産1億ドル超の機関投資家が四半期ごとに出す保有報告）の上位10社を、発行済株式数に対する割合で描画（Yahoo Finance 経由）。その他は上位10社以外の合計です。</li>
+      <li>四半期決算は累計値の差分から単独四半期を算出。フリーCFは営業CF＋投資CF。配当性向は一株配当÷EPS。</li>
+      <li>出所：~/株分析 の fundamentals/（通期）。株価・時価総額は取得日時点。生成 2026-11-20</li>
+    </ol></div>
+  </details>
+</div>
+<script src="assets/app.js"></script>
+<script>renderCompany({"code":"WELL","name":"Welltower Inc.","market":"NYSE","sector":"不動産","quote":{"price":243.19,"priceDate":"2026-11-19","mcap":178406.583,"per":190.43,"pbr":4.23,"psr":16.72,"yld":0.0105,"asof":"2026-11-20"},"annual":[{"fy":"22/12期","fyEnd":"2022-12-31","y":2022,"rev":5776.068,"gp":2217.298,"op":746.22,"pbt":173.062,"ni":141.214,"ta":37893.233,"se":20294.814,"eq":0.5356000000000001,"cr":2.6335,"ocf":1328.708,"icf":-3703.815,"fcf":2761.277,"freecf":1298.217,"ibd":14963.912,"cash":631.681,"ebitda":2039.49,"eps":0.31,"bps":41.38,"dps":2.3068,"opm":0.12919169234157216,"nim":0.02444811937809596,"gpm":0.3838767133627928,"roe":0.006958132259797996,"roa":0.0037266284457702515,"odp":173.062,"payout":7.441290322580645,"frcf":-2375.107},{"fy":"23/12期","fyEnd":"2023-12-31","y":2023,"rev":6478.231,"gp":2530.455,"op":940.454,"pbt":350.047,"ni":340.094,"ta":44012.166,"se":25404.376,"eq":0.5771999999999999,"cr":4.5106,"ocf":1601.861,"icf":-5707.742,"fcf":5448.647,"freecf":1551.162,"ibd":16118.779,"cash":1993.646,"ebitda":2401.11,"eps":0.66,"bps":45.02,"dps":2.2341,"opm":0.1451714210252768,"nim":0.052497973598039344,"gpm":0.390608948646629,"roe":0.013387221162212368,"roa":0.007727272500062824,"odp":350.047,"payout":3.3850000000000002,"frcf":-4105.881},{"fy":"24/12期","fyEnd":"2024-12-31","y":2024,"rev":7853.618,"gp":3023.407,"op":1145.698,"pbt":524.442,"ni":951.68,"ta":51044.308,"se":31956.208,"eq":0.626,"cr":5.2775,"ocf":2256.421,"icf":-5514.681,"fcf":4905.351,"freecf":2198.306,"ibd":16758.356,"cash":3506.586,"ebitda":2778.336,"eps":1.58,"bps":50.3,"dps":2.4324,"opm":0.14588155420851892,"nim":0.12117727141809036,"gpm":0.3849699590685465,"roe":0.029780754963167094,"roa":0.018644194373249216,"odp":524.442,"payout":1.5394936708860758,"frcf":-3258.2599999999998},{"fy":"25/12期","fyEnd":"2025-12-31","y":2025,"rev":10667.136,"gp":4179.055,"op":355.168,"pbt":-480.025,"ni":936.845,"ta":67303.047,"se":42129.498,"eq":0.626,"cr":5.3415,"ocf":2881.677,"icf":-10512.749,"fcf":8999.76,"freecf":2847.878,"ibd":21380.295,"cash":5033.678,"ebitda":2310.458,"eps":1.41,"bps":60.49,"dps":2.6963,"opm":0.03329553499646015,"nim":0.08782535443440488,"gpm":0.3917691684065901,"roe":0.02223726947802701,"roa":0.013919800688964349,"odp":-480.025,"payout":1.9122695035460993,"frcf":-7631.072}],"peer":{"n":237,"opm":0.17668187586295403,"nim":0.08176415517839947,"eq":0.39149999999999996,"roe":0.040897827509896206,"gpm":0.5803450998483158,"per":24.33,"pbr":1.1749999999999998,"yld":0.04535},"fc":null,"quarters":[{"fy":"25/06","fyEnd":"2025-06-30","perEnd":"2025-06-30","perSt":null,"rev":2516.141,"op":443.332,"odp":298.213,"ni":301.888,"opm":0.17619521322533196},{"fy":"25/09","fyEnd":"2025-09-30","perEnd":"2025-09-30","perSt":null,"rev":2628.061,"op":476.989,"odp":293.106,"ni":280.559,"opm":0.18149845075894355},{"fy":"25/12","fyEnd":"2025-12-31","perEnd":"2025-12-31","perSt":null,"rev":3134.347,"op":-943.73,"odp":-1270.051,"ni":96.441,"opm":-0.30109301873723615},{"fy":"26/03","fyEnd":"2026-03-31","perEnd":"2026-03-31","perSt":null,"rev":3305.702,"op":558.424,"odp":345.243,"ni":728.672,"opm":0.16892750768218065},{"fy":"26/09","fyEnd":"2026-09-30","perEnd":"2026-09-30","perSt":null,"rev":3693.033,"op":672.822,"odp":337.95,"ni":396.587,"opm":0.182186836673271}],"odpName":"税引前利益","holders":{"asof":"2026-09-30","filed":"2026-09-30","issued":733609863.0,"treasury":0,"holders":[["Blackrock Inc.",78049214,0.10640000000000001],["Vanguard Capital Management LLC",46118974,0.0629],["Vanguard Portfolio Management LLC",43449568,0.0592],["State Street Corporation",42138810,0.0574],["Capital International Investors",39500055,0.0538],["Cohen & Steers Inc.",36821274,0.050199999999999995],["FMR, LLC",22072421,0.0301],["Capital World Investors",20028842,0.0273],["Bank of America Corporation",19496361,0.026600000000000002],["Geode Capital Management, LLC",19029103,0.0259]]},"bs":[{"fy":"22/12","fyEnd":"2022-12-31","std":"US","ta":37893.233,"tl":16499.237,"na":21393.996,"noCA":false,"cash":631.681,"recv":1463.011,"inv":null,"oca":981.455,"ppe":323.942,"onca":34493.144,"pay":216.732,"ocl":951.36,"ncl":15331.145,"eq":20294.814,"oeq":1099.182},{"fy":"23/12","fyEnd":"2023-12-31","std":"US","ta":44012.166,"tl":17640.439,"na":26371.727,"noCA":false,"cash":1993.646,"recv":1523.639,"inv":null,"oca":1444.024,"ppe":350.969,"onca":38699.888,"pay":173.215,"ocl":926.707,"ncl":16540.517,"eq":25404.376,"oeq":967.351},{"fy":"24/12","fyEnd":"2024-12-31","std":"US","ta":51044.308,"tl":18471.722,"na":32572.586,"noCA":false,"cash":3506.586,"recv":1712.402,"inv":null,"oca":2009.915,"ppe":1201.131,"onca":42614.274,"pay":229.313,"ocl":1140.458,"ncl":17101.951,"eq":31956.208,"oeq":616.378},{"fy":"25/12","fyEnd":"2025-12-31","std":"US","ta":67303.047,"tl":24100.108,"na":43202.939,"noCA":false,"cash":5033.678,"recv":2373.409,"inv":null,"oca":2505.034,"ppe":2158.045,"onca":55232.881,"pay":297.071,"ocl":1558.608,"ncl":22244.429,"eq":42129.498,"oeq":1073.441}]});</script>
+<!--kb-theme-js--><script>(function(){var bs=document.querySelectorAll('button.kb-theme[data-kb]');
+for(var i=0;i<bs.length;i++)bs[i].addEventListener('click',function(){var b=this,d=document.documentElement,
+cur=d.getAttribute('data-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'),n=cur==='dark'?'light':'dark';
+d.setAttribute('data-theme',n);try{localStorage.setItem('fdb-theme',n)}catch(e){}
+var f=document.querySelectorAll('iframe');for(var j=0;j<f.length;j++){try{f[j].contentWindow.postMessage({chartTheme:n},'*')}catch(e){}}
+var k=b.getAttribute('data-kb');
+if(k==='reload')location.reload();
+else if(k==='msg')window.postMessage({chartTheme:n},'*');
+else if(k==='fn'&&typeof window.__kbRedraw==='function')window.__kbRedraw();});})();</script><!--/kb-theme-js--><!--mobile-fix-spacer--><div class="mf-spacer" aria-hidden="true"></div><!--/mobile-fix-spacer--></body>
+</html>
